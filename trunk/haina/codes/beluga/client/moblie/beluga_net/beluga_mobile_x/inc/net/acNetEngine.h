@@ -13,11 +13,12 @@
 
 #include "json/json.h"
 
+
+#ifdef BELUGA_DLL_BUILD
 #include "hessian_output.h"
 #include "hessian_input.h"
 #include "string_input_stream.h"
 #include "HessianRemoteReturning.h"
-#ifdef BELUGA_DLL_BUILD
 #define BELUGA_API __declspec(dllexport)
 #else
 #define BELUGA_API __declspec(dllimport)
@@ -31,7 +32,7 @@ public:
 	CacNetEngine(LPCTSTR aHostName,int aHttp_Port=INTERNET_DEFAULT_HTTP_PORT);
 	~CacNetEngine();
 public:
-	void	setNetHost(LPCTSTR aHostName,int aHttp_Port=INTERNET_DEFAULT_HTTP_PORT);
+	bool	setNetHost(LPCTSTR aHostName,int aHttp_Port=INTERNET_DEFAULT_HTTP_PORT);
 
 public:
 	int			getErrCode();
@@ -43,11 +44,10 @@ public:
  	string		login(string loginName, string password);
  	bool		logoutByPsssport(string passport);
 	
-
+#ifdef BELUGA_DLL_BUILD
 private:
 	string getHessianString(string aHessianStr);
 	HessianRemoteReturning	parse_json(string& aJson_string,Json::Value& jsonValue);
-
 private:
 	int		iErrCode;
 	hessian::hessian_output	ihes_output;
@@ -56,6 +56,7 @@ private:
 
 	string			iSendHes;
 	CHttpInternet	iHttpNet;
+#endif
 };
 
 #endif	/* __ACNETENGINE_H__ */

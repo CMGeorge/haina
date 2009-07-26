@@ -22,7 +22,7 @@
 			Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
 			OutputDirectory="..\$(ConfigurationName)"
 			IntermediateDirectory="$(PlatformName)\$(ConfigurationName)"
-			ConfigurationType="4"
+			ConfigurationType="2"
 			CharacterSet="1"
 			>
 			<Tool
@@ -44,14 +44,13 @@
 				Name="VCCLCompilerTool"
 				ExecutionBucket="7"
 				Optimization="0"
-				AdditionalIncludeDirectories="./inc;./inc/dto;./inc/net;./hessiancpp/inc;&quot;../../glib-2.20.1/glib-2.20.1&quot;;&quot;../../glib-2.20.1/glib-2.20.1/glib&quot;"
+				AdditionalIncludeDirectories="./inc;./inc/dto;./inc/net;./hessiancpp/inc;&quot;../../glib-2.20.1\glib-2.20.1\build\wince\glib-mobile\&quot;;&quot;../../glib-2.20.1\glib-2.20.1\build\wince\glib-mobile\glib&quot;"
 				PreprocessorDefinitions="_DEBUG;_WIN32_WCE=$(CEVER);UNDER_CE;$(PLATFORMDEFINES);WINCE;DEBUG;_LIB;$(ARCHFAM);$(_ARCHFAM_);_UNICODE;UNICODE;BELUGA_DLL_BUILD"
 				MinimalRebuild="true"
 				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="3"
-				EnableFloatingPointEmulation="false"
 				EnableFloatingPointEmulation="false"
 			/>
 			<Tool
@@ -67,11 +66,12 @@
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
-				AdditionalOptions=" /subsystem:windowsce,5.02"
-				AdditionalDependencies="Wininet.lib lib_json_mobile.lib glib.lib"
-				OutputFile="$(OutDir)/beluga_comm_m6.lib"
-				AdditionalLibraryDirectories="./lib/json/debug;./lib/glib/debug"
+				Name="VCLinkerTool"
+				AdditionalOptions=" /SUBSYSTEM:WINDOWSCE,5.02"
+				AdditionalDependencies="Wininet.lib Mmtimer.lib ./lib\json\debug\lib_json_mobile.lib ./lib\glib\debug\glib.lib"
+				GenerateDebugInformation="true"
+				GenerateMapFile="true"
+				MapExports="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -90,7 +90,7 @@
 			/>
 			<DeploymentTool
 				ForceDirty="-1"
-				RemoteDirectory=""
+				RemoteDirectory="%CSIDL_PROGRAM_FILES%\beluga_manage_t\"
 				RegisterOutput="0"
 				AdditionalFiles=""
 			/>

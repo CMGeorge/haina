@@ -1,6 +1,6 @@
 #include "HttpInternet.h"
 #include <iostream>
-
+#include <mmsystem.h>
 
 using namespace std;
 
@@ -18,12 +18,23 @@ CHttpInternet::~CHttpInternet()
 bool CHttpInternet::SetHostName(LPCTSTR aHostName,int aHttp_Port)
 {
 //	i_Internet = InternetOpen(NULL, INTERNET_OPEN_TYPE_PRECONFIG, NULL, NULL, INTERNET_FLAG_ASYNC);
-	i_Internet = InternetOpen(NULL, 
-							  INTERNET_OPEN_TYPE_PRECONFIG,
-							  NULL,
-							  NULL,
-							  NULL);
+	//i_Internet = InternetOpen(NULL, 
+	//						  INTERNET_OPEN_TYPE_PRECONFIG,
+	//						  NULL,
+	//						  NULL,
+	//						  NULL);
+	BYTE	ab=0x00;
+	DWORD dwFlags=0;
+	DWORD dwResult = INTERNET_ERROR_OPEN;
+	CHAR strAgent[64]={0};	
+	InternetGetConnectedState(&dwFlags,0);  
+	if(LOBYTE(dwFlags) ==(BYTE)INTERNET_CONNECTION_OFFLINE)//take appropriate steps
+	{
+		return false;
+	}
+	sprintf(strAgent, "Agent%ld", timeGetTime());
 
+	i_Internet = InternetOpenA(strAgent, INTERNET_OPEN_TYPE_DIRECT, NULL,NULL, 0);
 	if(i_Internet == NULL)
 		return false;
 							  
@@ -45,15 +56,17 @@ bool CHttpInternet::SetHostName(LPCTSTR aHostName,int aHttp_Port)
 	
 std::string CHttpInternet::SyncPostData(LPCTSTR aUrl,string aData)
 {
+	LPCTSTR szHead = _T("Accept: */*\r\n\r\n");
 	i_HttpRequest = HttpOpenRequest(i_Connect,_T("POST"),aUrl,HTTP_VERSION,NULL,0,INTERNET_FLAG_DONT_CACHE,0);
 	if (i_HttpRequest == NULL)
 	{
-		return NULL;
+		return "";
 	}
 
-	if (!HttpSendRequest(i_HttpRequest,http_header,_tcslen(http_header),(LPVOID)aData.c_str(),aData.size()))
+	if (!HttpSendRequest(i_HttpRequest,szHead/*http_header*/,_tcslen(szHead)/*_tcslen(http_header)*/,(LPVOID)aData.c_str(),aData.size()))
 	{
-		return NULL;    
+		DWORD dwTmp=GetLastError();
+		return "";    
 	}
 
 
@@ -61,7 +74,7 @@ std::string CHttpInternet::SyncPostData(LPCTSTR aUrl,string aData)
 	if(!InternetQueryDataAvailable(i_HttpRequest,&qdwSize,0,0))  
 	{  
 		//cout << "InternetQueryDataAvailable error" << endl;
-		return NULL;  
+		return "";  
 	}  
 	
 	return ReadNetFile();

@@ -7,7 +7,7 @@ using namespace hessian;
 
 
 
-CacNetEngine::CacNetEngine()
+CacNetEngine::CacNetEngine():iSendHes("")
 {
 }
 
@@ -26,9 +26,9 @@ CacNetEngine::~CacNetEngine()
 // 参数：aHttp_Port：访问端口，默认为80端口
 // 返回：无返回
 /************************************************************************/
-void CacNetEngine::setNetHost(LPCTSTR aHostName,int aHttp_Port)
+bool CacNetEngine::setNetHost(LPCTSTR aHostName,int aHttp_Port)
 {
-	iHttpNet.SetHostName(aHostName,aHttp_Port);
+	return iHttpNet.SetHostName(aHostName,aHttp_Port);
 }
 
 
@@ -210,7 +210,10 @@ GPtrArray* CacNetEngine::getOrUpdatePD(string aFlag)
 /************************************************************************/
 string CacNetEngine::registerx(string loginName, string password, string mobile)
 {
-	iSendHes.clear();
+	if (!iSendHes.empty())
+	{
+		iSendHes.clear();
+	}
 	ihes_output.write_string(iSendHes,loginName);
 	ihes_output.write_string(iSendHes,password);
 	ihes_output.write_string(iSendHes,mobile);

@@ -1,6 +1,6 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="9.00"
 	Name="jsontest"
 	ProjectGUID="{25AF2DD2-D396-4668-B188-488C33B8E620}"
 	Keyword="Win32Proj"
