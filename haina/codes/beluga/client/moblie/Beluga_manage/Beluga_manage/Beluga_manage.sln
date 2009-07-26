@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Beluga_manage", "Beluga_manage.vcproj", "{72EC5D10-1D2C-4DCD-819E-A299A076061E}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Beluga_manage_Test", "..\Beluga_manage_Test\Beluga_manage_Test.vcproj", "{E9B5AAAC-D5FF-486A-9C1E-DBF244635615}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "beluga_manage_t", "..\beluga_manage_t\beluga_manage_t.vcproj", "{30B5214E-6ADB-4EEA-A339-24B1E4930513}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test", "..\test\test.vcproj", "{452429F8-762D-4FE5-8238-B246FF615F61}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,12 +19,18 @@ Global
 		{72EC5D10-1D2C-4DCD-819E-A299A076061E}.Release|Windows Mobile 6 Professional SDK (ARMV4I).ActiveCfg = Release|Windows Mobile 6 Professional SDK (ARMV4I)
 		{72EC5D10-1D2C-4DCD-819E-A299A076061E}.Release|Windows Mobile 6 Professional SDK (ARMV4I).Build.0 = Release|Windows Mobile 6 Professional SDK (ARMV4I)
 		{72EC5D10-1D2C-4DCD-819E-A299A076061E}.Release|Windows Mobile 6 Professional SDK (ARMV4I).Deploy.0 = Release|Windows Mobile 6 Professional SDK (ARMV4I)
-		{E9B5AAAC-D5FF-486A-9C1E-DBF244635615}.Debug|Windows Mobile 6 Professional SDK (ARMV4I).ActiveCfg = Debug|Windows Mobile 6 Professional SDK (ARMV4I)
-		{E9B5AAAC-D5FF-486A-9C1E-DBF244635615}.Debug|Windows Mobile 6 Professional SDK (ARMV4I).Build.0 = Debug|Windows Mobile 6 Professional SDK (ARMV4I)
-		{E9B5AAAC-D5FF-486A-9C1E-DBF244635615}.Debug|Windows Mobile 6 Professional SDK (ARMV4I).Deploy.0 = Debug|Windows Mobile 6 Professional SDK (ARMV4I)
-		{E9B5AAAC-D5FF-486A-9C1E-DBF244635615}.Release|Windows Mobile 6 Professional SDK (ARMV4I).ActiveCfg = Release|Windows Mobile 6 Professional SDK (ARMV4I)
-		{E9B5AAAC-D5FF-486A-9C1E-DBF244635615}.Release|Windows Mobile 6 Professional SDK (ARMV4I).Build.0 = Release|Windows Mobile 6 Professional SDK (ARMV4I)
-		{E9B5AAAC-D5FF-486A-9C1E-DBF244635615}.Release|Windows Mobile 6 Professional SDK (ARMV4I).Deploy.0 = Release|Windows Mobile 6 Professional SDK (ARMV4I)
+		{30B5214E-6ADB-4EEA-A339-24B1E4930513}.Debug|Windows Mobile 6 Professional SDK (ARMV4I).ActiveCfg = Debug|Windows Mobile 6 Professional SDK (ARMV4I)
+		{30B5214E-6ADB-4EEA-A339-24B1E4930513}.Debug|Windows Mobile 6 Professional SDK (ARMV4I).Build.0 = Debug|Windows Mobile 6 Professional SDK (ARMV4I)
+		{30B5214E-6ADB-4EEA-A339-24B1E4930513}.Debug|Windows Mobile 6 Professional SDK (ARMV4I).Deploy.0 = Debug|Windows Mobile 6 Professional SDK (ARMV4I)
+		{30B5214E-6ADB-4EEA-A339-24B1E4930513}.Release|Windows Mobile 6 Professional SDK (ARMV4I).ActiveCfg = Release|Windows Mobile 6 Professional SDK (ARMV4I)
+		{30B5214E-6ADB-4EEA-A339-24B1E4930513}.Release|Windows Mobile 6 Professional SDK (ARMV4I).Build.0 = Release|Windows Mobile 6 Professional SDK (ARMV4I)
+		{30B5214E-6ADB-4EEA-A339-24B1E4930513}.Release|Windows Mobile 6 Professional SDK (ARMV4I).Deploy.0 = Release|Windows Mobile 6 Professional SDK (ARMV4I)
+		{452429F8-762D-4FE5-8238-B246FF615F61}.Debug|Windows Mobile 6 Professional SDK (ARMV4I).ActiveCfg = Debug|Windows Mobile 6 Professional SDK (ARMV4I)
+		{452429F8-762D-4FE5-8238-B246FF615F61}.Debug|Windows Mobile 6 Professional SDK (ARMV4I).Build.0 = Debug|Windows Mobile 6 Professional SDK (ARMV4I)
+		{452429F8-762D-4FE5-8238-B246FF615F61}.Debug|Windows Mobile 6 Professional SDK (ARMV4I).Deploy.0 = Debug|Windows Mobile 6 Professional SDK (ARMV4I)
+		{452429F8-762D-4FE5-8238-B246FF615F61}.Release|Windows Mobile 6 Professional SDK (ARMV4I).ActiveCfg = Release|Windows Mobile 6 Professional SDK (ARMV4I)
+		{452429F8-762D-4FE5-8238-B246FF615F61}.Release|Windows Mobile 6 Professional SDK (ARMV4I).Build.0 = Release|Windows Mobile 6 Professional SDK (ARMV4I)
+		{452429F8-762D-4FE5-8238-B246FF615F61}.Release|Windows Mobile 6 Professional SDK (ARMV4I).Deploy.0 = Release|Windows Mobile 6 Professional SDK (ARMV4I)
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

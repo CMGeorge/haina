@@ -22,7 +22,7 @@
 			Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
 			OutputDirectory="..\$(ConfigurationName)"
 			IntermediateDirectory="$(PlatformName)\$(ConfigurationName)"
-			ConfigurationType="4"
+			ConfigurationType="2"
 			CharacterSet="1"
 			>
 			<Tool
@@ -45,7 +45,7 @@
 				ExecutionBucket="7"
 				Optimization="0"
 				AdditionalIncludeDirectories="../include/;&quot;..\..\glib-2.20.1\glib-2.20.1\build\wince\glib-mobile\glib\&quot;;&quot;..\..\glib-2.20.1\glib-2.20.1\build\wince\glib-mobile\&quot;;..\..\BelugaDb\inc\;..\..\BelugaDb\inc\message\;..\..\BelugaDb\inc\contact\"
-				PreprocessorDefinitions="BELUGA_MANAGE_DLL_BUILD;_DEBUG;_WIN32_WCE=$(CEVER);UNDER_CE;$(PLATFORMDEFINES);WINCE;DEBUG;_LIB;$(ARCHFAM);$(_ARCHFAM_);_UNICODE;UNICODE"
+				PreprocessorDefinitions="_DEBUG;_WIN32_WCE=$(CEVER);UNDER_CE;$(PLATFORMDEFINES);WINCE;DEBUG;_LIB;$(ARCHFAM);$(_ARCHFAM_);_UNICODE;UNICODE;BELUGA_MANAGE_DLL_BUILD"
 				MinimalRebuild="true"
 				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
@@ -66,11 +66,13 @@
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
-				AdditionalOptions=" /subsystem:windowsce,5.02"
-				AdditionalDependencies="beluga_comm_m6.lib BelugaDb.lib sqlite3.lib"
-				OutputFile="$(OutDir)/Beluga_manage.lib"
-				AdditionalLibraryDirectories="../lib"
+				Name="VCLinkerTool"
+				AdditionalOptions=" /SUBSYSTEM:WINDOWSCE,5.02"
+				AdditionalDependencies="glib.lib BelugaDb.lib beluga_comm_m6.lib"
+				AdditionalLibraryDirectories="../lib/"
+				GenerateDebugInformation="true"
+				GenerateMapFile="true"
+				MapExports="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -89,7 +91,7 @@
 			/>
 			<DeploymentTool
 				ForceDirty="-1"
-				RemoteDirectory=""
+				RemoteDirectory="%CSIDL_PROGRAM_FILES%\Beluga_manage_t"
 				RegisterOutput="0"
 				AdditionalFiles=""
 			/>

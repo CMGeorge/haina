@@ -102,18 +102,19 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
     LoadString(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING); 
     LoadString(hInstance, IDC_BELUGA_MANAGE_TEST, szWindowClass, MAX_LOADSTRING);
 	string loginName="abcdefg",password="123456",mobile="13888888888";
-	beluga_manage	*bm=beluga_manage::GetInstance(KHostName,KHostNamePort);
-	bool bResult=bm->Register(loginName, password, mobile);
+	//beluga_manage	*bm=beluga_manage::GetInstance(KHostName,KHostNamePort);
+	beluga_manage bm;
+	bool bResult=bm.Register(loginName, password, mobile);
 	if (!bResult)
 	{
 		return FALSE;
 	}
-	bResult=bm->Logout();
+	//bResult=bm->Logout();
 	if (!bResult)
 	{
 		return FALSE;
 	}
-	bResult=bm->Login(loginName, password);
+	//bResult=bm->Login(loginName, password);
 	if (!bResult)
 	{
 		return FALSE;

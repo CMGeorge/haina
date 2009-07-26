@@ -5,7 +5,16 @@
 #include <string>
 #include <WinInet.h>
 #include <tchar.h>
-
+enum
+{
+	INTERNET_ERROR_CONNECT=1,
+	INTERNET_ERROR_OPEN_REQUEST,
+	INTERNET_ERROR_SEND_REQUEST,
+	INTERNET_ERROR_FILEOPEN,
+	INTERNET_ERROR_READFILE,
+	INTERNET_ERROR_OPEN,
+	INTERNET_ERROR_QUERY
+};
 class CHttpInternet
 {
 public:

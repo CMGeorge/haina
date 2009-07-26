@@ -24,24 +24,24 @@ typedef struct _WeatherInfo
 #endif
 class BELUGA_MANAGE_API beluga_manage
 {
-private:
+public:
 	beluga_manage(void);
 public:
 	~beluga_manage(void);
 public:
-	string GetQQStatusByID(string qqId);
-	static beluga_manage *GetInstance(LPCTSTR aHostName,int aHttp_Port);
-	WeatherInfo GetLiveWeatherByCityCode(string cityCode);
-	WeatherInfo* Get7WeatherDatas(string cityCode);
+	//string GetQQStatusByID(string qqId);
+	bool setNetHost(LPCTSTR aHostName,int aHttp_Port);
+	//WeatherInfo GetLiveWeatherByCityCode(string cityCode);
+	//WeatherInfo* Get7WeatherDatas(string cityCode);
 	bool Register(string loginName, string password, string mobile);
-	bool Login(string loginName, string password);
+	//bool Login(string loginName, string password);
 	bool Logout(void);
-	int GetErrCode(void);
-	bool GetOrUpdatePD(string updatePD);
+	//int GetErrCode(void);
+	//bool GetOrUpdatePD(string updatePD);
 	void GetPhoneContactList(void);
 #ifdef BELUGA_MANAGE_DLL_BUILD
 private:
-	static beluga_manage *m_pbm;
+
 	CacNetEngine	m_ane;
 	string			m_passport;
 	CContactDb * pContactDb;

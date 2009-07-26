@@ -15,7 +15,7 @@ public:
 	CacNetEngine(LPCTSTR aHostName,int aHttp_Port);
 	~CacNetEngine();
 public:
-	void	setNetHost(LPCTSTR aHostName,int aHttp_Port);
+	bool	setNetHost(LPCTSTR aHostName,int aHttp_Port);
 
 public:
 	int			getErrCode();
