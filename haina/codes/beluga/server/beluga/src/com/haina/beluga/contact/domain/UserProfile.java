@@ -145,7 +145,7 @@ public class UserProfile extends VersionalModel {
 
 	/**
 	 * @hibernate.property type="timestamp"
-	 * @hibernate.column name="brithday" sql-type="date"
+	 * @hibernate.column name="brithday" sql-type="timestamp"
 	 */
 	public Date getBrithday() {
 		return brithday;
