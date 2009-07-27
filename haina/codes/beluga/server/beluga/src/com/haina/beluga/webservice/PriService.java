@@ -77,6 +77,7 @@ public class PriService implements IPriService, InitializingBean {
 			return ret;
 		}
 		ret=contactUserHessianService.editLoginName(loginPassport.getLoginName(), newLoginName);
+		passportService.keepPassport(passport);
 		return ret;
 	}
 
@@ -103,6 +104,7 @@ public class PriService implements IPriService, InitializingBean {
 			return ret;
 		}
 		ret=contactUserHessianService.editMobile(loginPassport.getLoginName(), neoMobile);
+		passportService.keepPassport(passport);
 		return ret;
 	}
 
@@ -131,9 +133,11 @@ public class PriService implements IPriService, InitializingBean {
 			/*旧密码与新密码一样，直接返回修改成功。*/
 			ret = new HessianRemoteReturning();
 			ret.setStatusCode(IStatusCode.SUCCESS);
+			passportService.keepPassport(passport);
 			return ret;
 		}
 		ret=contactUserHessianService.editPassword(loginPassport.getLoginName(),oldPassword,neoPassword);
+		passportService.keepPassport(passport);
 		return ret;
 	}
 
