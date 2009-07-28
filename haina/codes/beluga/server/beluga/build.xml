@@ -173,8 +173,8 @@
     	
     </target>
 
-
-	<target name="db-load-sample" description="Loads the database with additional sample data">
+	<!--
+	<target name="db-load-sample" description="Loads the database with additional sample data" >
 		<taskdef name="dbunit" classname="org.dbunit.ant.DbUnitTask" classpathref="local.lib.classpath"/>
 		<echo>==== Loads the database with additional sample data ====</echo>
 		<condition property="operation" value="INSERT">
@@ -229,9 +229,7 @@
 		    	</java>
 		    </target>
     
-    <!-- =================================================================== -->
-    <!--            Create tables for background Quartz Shceduler            -->
-    <!-- =================================================================== -->
+   
     <target name="create_tables_for_quartz"
         description="Create tables for background Quartz Shceduler ">
         <sql driver="${hibernate.connection.driver_class}" url="${hibernate.connection.url}"
@@ -263,7 +261,7 @@
     
 	<target name="setup" depends="init, db-init, db-load"
 		description="setup env"/>
-
+	-->
 	<target name="one-click" depends="hibernatedoclet, db-init, db-load"
 			description="一键搞定"/>
 
