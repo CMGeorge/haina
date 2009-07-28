@@ -20,6 +20,7 @@
 #include "string_input_stream.h"
 #include "HessianRemoteReturning.h"
 #define BELUGA_API __declspec(dllexport)
+
 #else
 #define BELUGA_API __declspec(dllimport)
 #endif
