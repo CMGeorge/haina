@@ -68,7 +68,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions=" /SUBSYSTEM:WINDOWSCE,5.02"
-				AdditionalDependencies="Wininet.lib Mmtimer.lib ./lib\json\debug\lib_json_mobile.lib ./lib\glib\debug\glib.lib"
+				AdditionalDependencies="cellcore.lib Wininet.lib Mmtimer.lib ./lib\json\debug\lib_json_mobile.lib ./lib\glib\debug\glib.lib"
 				GenerateDebugInformation="true"
 				GenerateMapFile="true"
 				MapExports="true"

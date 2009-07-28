@@ -104,14 +104,20 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
     LoadString(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING); 
     LoadString(hInstance, IDC_BELUGA_T, szWindowClass, MAX_LOADSTRING);
 
-#define KHostName _T("196.254.2.2")
+//#define KHostName _T("196.254.2.2")
+#define KHostName _T("yanzisoft.oicp.net") 
 #define KHostNamePort 8079
 	CacNetEngine cne;
 	string loginName="qwcdefg",password="123456",mobile="13888888888";
 	bool bResult=false;
+	int iRe=0;
 	string strRe="";
 	bResult=cne.setNetHost(KHostName,KHostNamePort);
+	MessageBox(NULL,bResult?L"setNetHost-ok":L"failed",L"beluga",0);
+	iRe=cne.getQQStatus("95467703");
+	MessageBox(NULL,iRe==10000?L"online":(iRe==10001?L"offline":L"error"),L"beluga",0);
 	strRe=cne.registerx(loginName, password, mobile);
+	MessageBox(NULL,L"registerx",L"beluga",0);
     //如果它已经在运行，则将焦点置于窗口上，然后退出
     hWnd = FindWindow(szWindowClass, szTitle);	
     if (hWnd) 

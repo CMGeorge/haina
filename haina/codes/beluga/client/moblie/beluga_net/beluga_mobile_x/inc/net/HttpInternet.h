@@ -30,7 +30,8 @@ public:
 
 private:
 	std::string ReadNetFile();
-
+private:
+	static 	BOOL AutoDial_Connect();
 private:
 	TCHAR* http_header;
 	HINTERNET i_Internet;

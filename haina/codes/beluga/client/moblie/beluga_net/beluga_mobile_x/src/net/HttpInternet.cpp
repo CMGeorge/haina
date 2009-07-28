@@ -1,7 +1,7 @@
 #include "HttpInternet.h"
 #include <iostream>
 #include <mmsystem.h>
-
+#include "connmgr.h"
 using namespace std;
 
 CHttpInternet::CHttpInternet():http_header(_T("Content-Type: application/x-www-form-urlencoded"))
@@ -23,6 +23,7 @@ bool CHttpInternet::SetHostName(LPCTSTR aHostName,int aHttp_Port)
 	//						  NULL,
 	//						  NULL,
 	//						  NULL);
+	AutoDial_Connect();
 	BYTE	ab=0x00;
 	DWORD dwFlags=0;
 	DWORD dwResult = INTERNET_ERROR_OPEN;
@@ -57,18 +58,18 @@ bool CHttpInternet::SetHostName(LPCTSTR aHostName,int aHttp_Port)
 std::string CHttpInternet::SyncPostData(LPCTSTR aUrl,string aData)
 {
 	LPCTSTR szHead = _T("Accept: */*\r\n\r\n");
-	i_HttpRequest = HttpOpenRequest(i_Connect,_T("POST"),aUrl,HTTP_VERSION,NULL,0,INTERNET_FLAG_DONT_CACHE,0);
+	DWORD timeout=9000;
+	i_HttpRequest = HttpOpenRequest(i_Connect,_T("POST"),aUrl,HTTP_VERSION,NULL,0,INTERNET_FLAG_RELOAD|INTERNET_FLAG_DONT_CACHE,0);
 	if (i_HttpRequest == NULL)
 	{
 		return "";
 	}
-
-	if (!HttpSendRequest(i_HttpRequest,szHead/*http_header*/,_tcslen(szHead)/*_tcslen(http_header)*/,(LPVOID)aData.c_str(),aData.size()))
+	InternetSetOption(i_HttpRequest,INTERNET_OPTION_SEND_TIMEOUT,&timeout,sizeof(DWORD));
+	if (!HttpSendRequest(i_HttpRequest,http_header,_tcslen(http_header),(LPVOID)aData.c_str(),aData.size()))
 	{
-		DWORD dwTmp=GetLastError();
+		DWORD dwTmp=GetLastError();//INTERNET_ERROR_BASE+2
 		return "";    
 	}
-
 
 	DWORD	qdwSize;     
 	if(!InternetQueryDataAvailable(i_HttpRequest,&qdwSize,0,0))  
@@ -130,4 +131,106 @@ std::string CHttpInternet::ReadNetFile()
 
 	InternetCloseHandle(i_HttpRequest);
 	return httpRevData;
+}
+BOOL CHttpInternet::AutoDial_Connect()
+{
+	BYTE id[] = { 0x44,0xF1,0x6E,0x43,0xFB,0xB4,0x63,0x48,
+		0xA0,0x41,0x8F,0x90,0x5A,0x62,0xC5,0x72};
+
+	GUID networkID ;
+	memcpy(&networkID,id,sizeof(networkID));
+
+	CONNMGR_CONNECTIONINFO ci = { 0 };
+	BOOL bAvailable = FALSE;
+	HANDLE hConnection = NULL;
+
+	//set the CONNMGR_CONNECTIONINFO flags for testing network status.
+	ci.cbSize           = sizeof(ci);
+	ci.dwParams         = CONNMGR_PARAM_GUIDDESTNET
+		| CONNMGR_PARAM_MAXCONNLATENCY;
+	ci.dwFlags          = 0;
+	ci.ulMaxConnLatency = 4000;         // 4 second
+	ci.bDisabled        = TRUE;
+	ci.dwPriority       = CONNMGR_PRIORITY_USERINTERACTIVE;
+	ci.guidDestNet      = networkID;
+
+	HRESULT hr;
+	if (SUCCEEDED(hr=ConnMgrEstablishConnection(&ci, &hConnection)))
+	{
+		DWORD dwResult = WaitForSingleObject(hConnection, 4000);
+
+		switch (dwResult)
+		{
+		case WAIT_OBJECT_0:
+			{
+				DWORD dwStatus;
+				if( SUCCEEDED(ConnMgrConnectionStatus(hConnection, &dwStatus)) && 
+					( (dwStatus == CONNMGR_STATUS_CONNECTED) || (dwStatus == CONNMGR_STATUS_CONNECTIONDISABLED) ))
+				{
+					hr=S_OK;
+				}
+				else
+				{
+					hr=S_FALSE;
+				}
+				break;
+			}
+
+		case WAIT_TIMEOUT:
+			hr=E_FAIL;
+			break;
+		}
+	}
+	//hr==S_OK says that the connection already exist.
+	if(hr==S_OK)
+	{
+		return TRUE;
+	}
+
+	//otherwise, continue to establish connection
+	//reset the CONNMGR_CONNECTIONINFO structure 
+
+	CONNMGR_CONNECTIONINFO ConnInfo={0};
+
+	memset(&ci,0,sizeof(ci));
+
+	ci.cbSize = sizeof(ConnInfo);
+	ci.dwParams = CONNMGR_PARAM_GUIDDESTNET;
+	ci.dwFlags = 0;
+	ci.dwPriority = CONNMGR_PRIORITY_USERINTERACTIVE ;
+	ci.guidDestNet = networkID;
+
+	hr = ConnMgrEstablishConnection(&ci, &hConnection);
+
+	BOOL bStop = FALSE;
+	DWORD dwStatus;
+
+	while( bStop == FALSE )
+	{
+		DWORD dwResult = WaitForSingleObject(hConnection, INFINITE); 
+
+		if (dwResult == (WAIT_OBJECT_0))
+		{ 
+			hr=ConnMgrConnectionStatus(hConnection,&dwStatus);
+			if( SUCCEEDED(hr))
+			{
+				if( dwStatus == CONNMGR_STATUS_CONNECTED ||
+					dwStatus == CONNMGR_STATUS_CONNECTIONFAILED ||
+					dwStatus == CONNMGR_STATUS_NOPATHTODESTINATION ||
+					dwStatus == CONNMGR_STATUS_CONNECTIONDISABLED ||
+					dwStatus == CONNMGR_STATUS_CONNECTIONCANCELED)
+					bStop=TRUE;
+			}
+			else
+			{
+				bStop=TRUE;
+			}
+		}
+		else // failures
+		{
+			bStop = TRUE;
+		}
+	}
+
+	return (dwStatus == CONNMGR_STATUS_CONNECTED);
 }
