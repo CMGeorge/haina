@@ -24,7 +24,7 @@ public class PhoneDistrictDao extends BaseDao<PhoneDistrict,String> implements I
 					throws HibernateException, SQLException {
 				Query query = session.createQuery("select distinct p.weatherCityCode from PhoneDistrict p");
 				query.setCacheable(true);
-				query.setCacheRegion("com.haina.beluga.domain.PhoneDistrict");
+				query.setCacheRegion("com.haina.beluga.contact.domain.PhoneDistrict");
 				return query.list().toArray(new String[]{});
 			}
 			
