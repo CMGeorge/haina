@@ -88,7 +88,7 @@
         disk cache, which in this configuration will go to wherever java.io.tmp is
         defined on your system. On a standard Linux system this will be /tmp"
         -->
-    <cache name="com.haina.beluga.domain.Weather"
+    <cache name="com.haina.beluga.contact.domain.Weather"
         maxElementsInMemory="1000"
         eternal="false"
         timeToIdleSeconds="15000"
@@ -100,7 +100,7 @@
     <!-- Sample cache named sampleCache2
         This cache contains 1000 elements. Elements will always be held in memory.
         They are not expired. -->
-    <cache name="com.haina.beluga.domain.PhoneDistrict"
+    <cache name="com.haina.beluga.contact.domain.PhoneDistrict"
         maxElementsInMemory="1000"
         eternal="true"
         timeToIdleSeconds="0"
@@ -108,7 +108,7 @@
         overflowToDisk="false"
         />
     
-    <cache name="com.haina.beluga.domain.ContactUser"
+    <cache name="com.haina.beluga.contact.domain.ContactUser"
         maxElementsInMemory="1000"
         eternal="true"
         timeToIdleSeconds="0"
@@ -116,7 +116,7 @@
         overflowToDisk="false"
         />
         
-	<cache name="com.haina.beluga.domain.ContactTag"
+	<cache name="com.haina.beluga.contact.domain.ContactTag"
         maxElementsInMemory="1000"
         eternal="true"
         timeToIdleSeconds="0"
@@ -124,7 +124,7 @@
         overflowToDisk="false"
         />
     
-    <cache name="com.haina.beluga.domain.UserProfile"
+    <cache name="com.haina.beluga.contact.domain.UserProfile"
         maxElementsInMemory="1000"
         eternal="true"
         timeToIdleSeconds="0"
@@ -132,7 +132,7 @@
         overflowToDisk="false"
         />
     
-    <cache name="com.haina.beluga.domain.UserProfileExt"
+    <cache name="com.haina.beluga.contact.domain.UserProfileExt"
         maxElementsInMemory="1000"
         eternal="true"
         timeToIdleSeconds="0"
