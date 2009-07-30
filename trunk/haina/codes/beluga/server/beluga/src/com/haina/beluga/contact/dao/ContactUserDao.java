@@ -217,10 +217,19 @@ public class ContactUserDao extends BaseDao<ContactUser,String> implements ICont
 	public int editToOnline(String loginName, String password,String userLoginIp,Date onlineTime) {
 		int i=0;
 		if(!StringUtils.isNull(loginName)) {
-			i=this.getHibernateTemplate().bulkUpdate(
-					"update ContactUser u set u.userStatus = ?,u.lastLoginIp=?,u.lastLoginTime=? where u.loginName = ? and u.password = ?",
-					new Object[]{ContactUser.USER_STATUS_ONLINE,userLoginIp!=null ? userLoginIp : "",
-							onlineTime!=null ? onlineTime : new Date(),loginName,password});
+			ContactUser exampleUser=new ContactUser();
+			exampleUser.setLoginName(loginName);
+			exampleUser.setPassword(password);
+			exampleUser.setValidFlag(Boolean.TRUE);
+			List<ContactUser> list=this.getUserByExample(exampleUser);
+			if(list!=null && list.size()>0) {
+				exampleUser=list.get(0);
+				exampleUser.setLastLoginTime(onlineTime!=null ? onlineTime : new Date());
+				exampleUser.setLastLoginIp(userLoginIp!=null ? userLoginIp : "");
+				Integer loginNumber=exampleUser.getLoginNumber();
+				exampleUser.setLoginNumber(loginNumber!=null ? loginNumber+1 : 1);
+				i++;
+			}
 		}
 		return i;
 	}
