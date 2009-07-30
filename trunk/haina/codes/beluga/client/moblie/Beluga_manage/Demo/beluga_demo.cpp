@@ -62,8 +62,8 @@ void beluga_demo::OnBnClickedBtnQq()
 	UpdateData();
 	std::string tmp;
 	tmp=m_bm->GetQQStatusByID(CoverCstr2stdstr(m_strQQ_id));
-	m_strQQ_id.Format(L"%s", tmp.c_str());
-	MessageBox(m_strQQ_id);
+	//m_strQQ_id.Format(L"%s", tmp.c_str());
+	//MessageBox(m_strQQ_id);
 	//UpdateData(false);
 }
 
