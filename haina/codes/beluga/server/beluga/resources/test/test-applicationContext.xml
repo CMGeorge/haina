@@ -57,7 +57,7 @@
 	</bean>
 	
 	<bean id="passportService"
-		class="com.haina.beluga.service.PassportService">
+		class="com.haina.beluga.contact.service.PassportService">
 		<property name="loginExpiry">
 			<value>604800000</value>
 		</property>
