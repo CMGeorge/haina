@@ -20,7 +20,6 @@ typedef struct _WeatherInfo
 }WeatherInfo;
 #ifdef BELUGA_MANAGE_DLL_BUILD
 	class CacNetEngine;
-	class CContactDb;
 #endif
 class BELUGA_MANAGE_API beluga_manage
 {
@@ -29,21 +28,20 @@ public:
 public:
 	~beluga_manage(void);
 public:
-	//string GetQQStatusByID(string qqId);
+	string GetQQStatusByID(string qqId);
 	bool setNetHost(LPCTSTR aHostName,int aHttp_Port);
-	//WeatherInfo GetLiveWeatherByCityCode(string cityCode);
-	//WeatherInfo* Get7WeatherDatas(string cityCode);
+	WeatherInfo GetLiveWeatherByCityCode(string cityCode);
+	WeatherInfo* Get7WeatherDatas(string cityCode);
 	bool Register(string loginName, string password, string mobile);
-	//bool Login(string loginName, string password);
+	bool Login(string loginName, string password);
 	bool Logout(void);
-	//int GetErrCode(void);
-	//bool GetOrUpdatePD(string updatePD);
+	int GetErrCode(void);
+	bool GetOrUpdatePD(string updatePD);
 	void GetPhoneContactList(void);
 #ifdef BELUGA_MANAGE_DLL_BUILD
 private:
 
-	CacNetEngine	m_ane;
+	CacNetEngine	*m_ane;
 	string			m_passport;
-	CContactDb * pContactDb;
 #endif
 };
