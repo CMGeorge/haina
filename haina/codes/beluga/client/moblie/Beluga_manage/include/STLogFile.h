@@ -368,7 +368,7 @@ how to create it and others.
 #ifdef STLOG_FILENAME
 			Start(cszLogFileName);
 #else
-			TCHAR wszFileName[MAX_PATH];
+			TCHAR wszFileName[MAX_PATH]={0};
 			GetLogFileName(wszFileName);
 			Start(wszFileName);
 #endif
@@ -391,7 +391,7 @@ how to create it and others.
 				CloseHandle(m_hFile);
 
 				m_bIsStarted = TRUE;
-				TCHAR szExecutable[MAX_PATH];
+				TCHAR szExecutable[MAX_PATH]={0};
 				GetModuleFileName(NULL, szExecutable, MAX_PATH);
 				DWORD dwProcID = GetCurrentProcessId();
 				SYSTEMTIME st;
@@ -437,7 +437,7 @@ how to create it and others.
 		HANDLE m_hFile;
 		CRITICAL_SECTION m_crit;
 		BOOL m_bIsStarted;
-		TCHAR m_wszFileName[MAX_PATH];
+		TCHAR m_wszFileName[MAX_PATH]={0};
 
 
 		DWORD m_dwTLSIndex;
@@ -487,7 +487,7 @@ how to create it and others.
 		}
 	private:
 		void GetLogFileName(LPTSTR szFileName) {
-			TCHAR wszExecutableFilePath[MAX_PATH];
+			TCHAR wszExecutableFilePath[MAX_PATH]={0};
 			::GetModuleFileName(NULL, wszExecutableFilePath, MAX_PATH);
 #ifdef STLOG_CREATE_FILE_IN_THE_SAME_DIRECTORY
 			TCHAR *wszExecutableFileName = wszExecutableFilePath;
@@ -497,7 +497,7 @@ how to create it and others.
 			TCHAR *wszExecutableFileName = ::_tcsrchr(wszExecutableFilePath, _T('\\'));
 #else
 //For desktop systems we need to create a log on the system's windows drive
-			TCHAR wszExecutableFileName[MAX_PATH+1];
+			TCHAR wszExecutableFileName[MAX_PATH+1]={0};
 			::GetWindowsDirectory(wszExecutableFileName, MAX_PATH+1); //This will create a string with start "c:\"
 			TCHAR *pcFirstSlash = _tcschr(wszExecutableFileName, _T('\\'));
 			TCHAR *pcLastSlash = ::_tcsrchr(wszExecutableFilePath, _T('\\'));
@@ -512,7 +512,7 @@ how to create it and others.
 #ifdef STLOG_CREATE_NEW
 			BOOL bFound = FALSE;
 			int nFreeNumber = 0;
-			TCHAR wszTemp[MAX_PATH];
+			TCHAR wszTemp[MAX_PATH]={0};
 
 			while (!bFound) {
 
