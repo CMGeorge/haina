@@ -14,6 +14,13 @@
 
 #include <new>
 #define  DEBUG_NEW_EMULATE_MALLOC
+#ifndef DEBUG_NEW_NO_NEW_REDEFINITION
+#define new DEBUG_NEW
+#define DEBUG_NEW new(__FILE__, __LINE__)
+#define debug_new new
+#else
+#define debug_new new(__FILE__, __LINE__)
+#endif // DEBUG_NEW_NO_NEW_REDEFINITION
 /* Prototypes */
 bool check_leaks();
 void* operator new(size_t size, const char* file, int line);
@@ -25,13 +32,7 @@ void operator delete[](void* pointer, const char* file, int line);
 void operator delete[](void*);	// MSVC 6 requires this declaration
 
 /* Macros */
-#ifndef DEBUG_NEW_NO_NEW_REDEFINITION
-#define new DEBUG_NEW
-#define DEBUG_NEW new(__FILE__, __LINE__)
-#define debug_new new
-#else
-#define debug_new new(__FILE__, __LINE__)
-#endif // DEBUG_NEW_NO_NEW_REDEFINITION
+
 #ifdef DEBUG_NEW_EMULATE_MALLOC
 #include <stdlib.h>
 #define malloc(s) ((void*)(debug_new char[s]))
