@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/BelugaApp" >
+        <file>belugaapp.qrc</file>
+        <file>Resources/images/qq.png</file>
+        <file>Resources/images/group.png</file>
+        <file>Resources/images/group_expand.png</file>
+        <file>Resources/images/msn.png</file>
+        <file>Resources/images/phone.png</file>
+        <file>Resources/images/down.png</file>
+        <file>Resources/images/right.png</file>
+        <file>Resources/images/contact_default.png</file>
+        <file>Resources/images/search.png</file>
+        <file>Resources/images/weather.png</file>
+        <file>Resources/images/recent.png</file>
+    </qresource>
+</RCC>

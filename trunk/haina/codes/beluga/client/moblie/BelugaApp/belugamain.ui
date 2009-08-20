@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>BelugaAppMain</class>
+ <widget class="QDialog" name="BelugaAppMain">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>240</width>
+    <height>320</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Beluga</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>true</bool>
+  </property>
+  <widget class="QLabel" name="contactlogo">
+   <property name="geometry">
+    <rect>
+     <x>3</x>
+     <y>3</y>
+     <width>45</width>
+     <height>45</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string>border-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0 rgba(255, 235, 235, 206), stop:0.35 rgba(255, 188, 188, 80), stop:0.4 rgba(255, 162, 162, 80), stop:0.425 rgba(255, 132, 132, 156), stop:0.44 rgba(252, 128, 128, 80), stop:1 rgba(255, 255, 255, 0));</string>
+   </property>
+   <property name="text">
+    <string>Photo</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="search">
+   <property name="geometry">
+    <rect>
+     <x>55</x>
+     <y>3</y>
+     <width>150</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>hello</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="searchlabel">
+   <property name="geometry">
+    <rect>
+     <x>205</x>
+     <y>5</y>
+     <width>16</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::ClickFocus</enum>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="belugaapp.qrc">:/BelugaApp/Resources/images/search.png</pixmap>
+   </property>
+  </widget>
+ </widget>
+ <resources>
+  <include location="belugaapp.qrc"/>
+ </resources>
+ <connections/>
+</ui>
