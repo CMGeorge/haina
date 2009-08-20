@@ -41,11 +41,11 @@ EXPORT_C gint32 CTagIterator::Current(CDbEntity ** ppEntity)
  
 EXPORT_C gint32 CTagIterator::Next(gboolean * pSuccess)
 	{
+	m_dbQuery->nextRow();
 	*pSuccess = !m_dbQuery->eof();
 	if (FALSE == *pSuccess)
 		return ERROR(ESide_Client, EModule_Db, ECode_End_Of_Row);
-	
-	m_dbQuery->nextRow();
+
 	return 0; 
 	}
 

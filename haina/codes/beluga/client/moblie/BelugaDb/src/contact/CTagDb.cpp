@@ -202,7 +202,7 @@ IMPORT_C gint32 CTagDb::GetAllTags(CTagIterator ** ppTagIterator)
 	char sql[128] = {0};
 	OpenDatabase();
 	
-	strcpy(sql, "select * from tag order by name_spell asc;");	
+	strcpy(sql, "select * from tag order by tag_order asc;");	
 	m_dbQuery = m_dbBeluga.execQuery(sql);
 	*ppTagIterator = NULL;
 	*ppTagIterator = new CTagIterator(this);

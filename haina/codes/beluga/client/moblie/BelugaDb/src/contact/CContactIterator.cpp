@@ -119,11 +119,11 @@ EXPORT_C gint32 CContactIterator::Next(gboolean * pSuccess)
 		return 0;
 		}
 	
+	m_dbQuery->nextRow();
 	*pSuccess = !m_dbQuery->eof();
 	if (FALSE == *pSuccess)
 		return ERROR(ESide_Client, EModule_Db, ECode_End_Of_Row);
-	
-	m_dbQuery->nextRow();
+
 	return 0; 
 	}
 

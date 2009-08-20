@@ -43,7 +43,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\inc\message;..\..\inc\contact\;..\..\inc\config\;..\..\inc;&quot;..\..\..\sqlite-3.3.5\&quot;;&quot;..\..\..\glib-2.20.1\glib-2.20.1\&quot;;&quot;..\..\..\glib-2.20.1\glib-2.20.1\glib\&quot;"
+				AdditionalIncludeDirectories="..\..\inc\message;..\..\inc\contact\;..\..\inc\config\;..\..\inc;&quot;..\..\3rdParty\sqlite-3.3.5&quot;;&quot;..\..\3rdParty\glib-2.12.12\&quot;;&quot;..\..\3rdParty\glib-2.12.12\glib&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;BELUGADB_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
