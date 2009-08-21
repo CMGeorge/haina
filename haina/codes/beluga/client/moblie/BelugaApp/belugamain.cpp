@@ -1,6 +1,7 @@
 #include "belugamain.h"
 #include "glib.h"
 
+
 BelugaMain::BelugaMain(QWidget *parent, Qt::WFlags flags)
 	: QDialog(parent, flags)
 {
@@ -10,9 +11,8 @@ BelugaMain::BelugaMain(QWidget *parent, Qt::WFlags flags)
 	m_qTabBar = NULL;
 	m_qCurTree = NULL;
 	m_qMenuBar = NULL;
-	m_qSearchList = NULL;
-	m_qSearListPanelWidget = NULL;
 	m_nCurTabIndex = 0;
+	m_nCurDefaultAction = 0;
 	m_bIsCurTopItem = FALSE;
 
     setupUi(this);
@@ -20,12 +20,25 @@ BelugaMain::BelugaMain(QWidget *parent, Qt::WFlags flags)
 	m_qTabBar->setGeometry(QRect(55, 25, 182, 25));
 	m_qTabBar->setShape(QTabBar::RoundedNorth);
 	m_qTabBar->setExpanding(FALSE);
+	m_qTabBar->setVisible(FALSE);
 	/* set signals and slots */
 	connect(m_qTabBar, SIGNAL(currentChanged(int)), this, SLOT(onCurrentChanged(int)));
 
+	/* set search edit signals and slots */
+	connect(search, SIGNAL(editingFinished()), this, SLOT(onEditingFinished()));
+	connect(search, SIGNAL(textEdited(const QString&)), this, SLOT(onTextChanged(const QString&)));
+
+	/* search icon label */
+	searchlabel->setBuddy(search);
+
+	/* create close search action */
+	m_qActionCloseSearch = new QAction(tr("Close"), this);
+	m_qActions[CLOSE_SEARCH_ACTION] = m_qActionCloseSearch;
+	connect(m_qActionCloseSearch, SIGNAL(triggered(bool)), this, SLOT(onDefaultActionTriggered(bool)));
+
 	/* create menu */ 
 	m_qMenuBar = new QMenuBar();
-	createActions(FALSE);
+	createGroupActions();
 
 	/* init db engine and load main ui data */
 	if (FALSE == initBelugDb())
@@ -39,22 +52,10 @@ BelugaMain::BelugaMain(QWidget *parent, Qt::WFlags flags)
 		return;
 	}
 	
-	/* search icon label */
-	searchlabel->setBuddy(search);
-	/* search listview parent widget */
-	m_qSearListPanelWidget = new QWidget(this);
-	m_qSearListPanelWidget->setGeometry(QRect(0, 50, 240, 270));
-	m_qSearchList = new QListWidget(m_qSearListPanelWidget);
-	m_qSearchList->setGeometry(QRect(0, 50, 240, 270));
-	m_qSearListPanelWidget->setVisible(FALSE);
-
-	/* create search action */
-	m_qActionSearch = new QAction(tr("Search"), this);
-	connect(m_qActionSearch, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
-
 	contactlogo->setPixmap(QPixmap(":/BelugaApp/Resources/images/contact_default.png"));
 	m_qTabBar->setCurrentIndex(m_nCurTabIndex);
 	m_qTabBar->setTabText(m_nCurTabIndex, m_qTabBar->tabData(m_nCurTabIndex).toString());
+	m_qTabBar->setVisible(TRUE);
 	m_qWidgetPanelList.at(m_nCurTabIndex)->setVisible(TRUE);
 }
 
@@ -231,8 +232,7 @@ BOOL BelugaMain::loadGroups(int nTagId)
 			printf("Get group instance failed!\n");
 			goto _Error;
 		}
-		
-		
+				
 		CGroup * pGroup = (CGroup*)pEntity;
 		QTreeWidgetItem * qGroupItem = new QTreeWidgetItem();
 
@@ -334,6 +334,11 @@ BOOL BelugaMain::loadTags()
 		pTag->GetFieldValue(TagField_DeleteFlag, &tagDeleteFlag);
 		if (FALSE == atoi(tagDeleteFlag->str))  /* the Tag has been setting to deleted */
 		{
+			MenuBarStatus status;
+			status.nDefaultAction = GROUP_EXPAND_COLLAPSE_ACTION;
+			status.nMenuType = GROUP_MENU;
+			m_stMenuStatus.append(status);
+
 			GString * tagOrder = NULL;
 			pTag->GetFieldValue(TagField_TagOrder, &tagOrder);
 			nTagIndex = atoi(tagOrder->str);
@@ -371,7 +376,7 @@ BOOL BelugaMain::loadTags()
 			m_qTabBar->insertTab(nTagIndex, QIcon(QString(tagLogo->str)), QString());
 			m_qTabBar->setTabData(nTagIndex, QVariant(tr(tagName->str)));
 			g_string_free(tagName, TRUE);
-			g_string_free(tagLogo, TRUE);			
+			g_string_free(tagLogo, TRUE);
 		}
 		g_string_free(tagDeleteFlag, TRUE);
 
@@ -383,6 +388,11 @@ BOOL BelugaMain::loadTags()
 	pTagIterator = NULL;
 	
 	/* insert last tab for recent contact */ 
+	MenuBarStatus status;
+	status.nDefaultAction = GROUP_EXPAND_COLLAPSE_ACTION;
+	status.nMenuType = GROUP_MENU;
+	m_stMenuStatus.append(status);
+
 	QWidget * pWidget = new QWidget(this);
 	pWidget->setGeometry(QRect(0, 50, 240, 270));
 	pWidget->setObjectName(tr("Recent Contact"));
@@ -410,6 +420,34 @@ BOOL BelugaMain::loadTags()
 	m_qTabBar->insertTab(nTagIndex + 1, QIcon(":/BelugaApp/Resources/images/recent.png"), QString());
 	m_qTabBar->setTabData(nTagIndex + 1, QVariant(tr("Recent Contact")));
 
+	/* search list parent widget */
+	status.nDefaultAction = GROUP_EXPAND_COLLAPSE_ACTION;
+	status.nMenuType = GROUP_MENU;
+	m_stMenuStatus.append(status);
+
+	pWidget = new QWidget(this);
+	pWidget->setGeometry(QRect(0, 50, 240, 270));
+	pWidget->setObjectName(tr("Search Result"));
+	pWidget->setVisible(FALSE);
+	m_qWidgetPanelList.append(pWidget);
+
+	pTagList = new QTreeWidget(pWidget);
+	pTagList->setGeometry(QRect(0, 0, 240, 240));
+	pTagList->header()->setVisible(FALSE);
+	pTagList->setObjectName(tr("Search Result"));
+	pTagList->setColumnCount(3);
+	pTagList->setColumnWidth(0, 150);
+	pTagList->setColumnWidth(1, 50);
+	pTagList->setColumnWidth(2, 5);
+	pTagList->setUniformRowHeights(FALSE);
+	pTagList->setIndentation(1);
+	pTagList->setWordWrap(TRUE);
+	pTagList->expandAll();
+	pTagList->setFrameShadow(QFrame::Plain);
+	pTagList->setFrameShape(QFrame::NoFrame);
+	pTagList->setLineWidth(1);
+	m_qTreeList.append(pTagList);
+
 	return TRUE;
 
 _Error:
@@ -424,12 +462,17 @@ _Error:
 
 void BelugaMain::onCurrentChanged(int nIndex)
 {
+	saveMenuBar(m_nCurTabIndex, m_nCurDefaultAction, 
+		m_bIsCurTopItem ? GROUP_MENU : (m_nCurTabIndex + 1 == ContactType_Phone ? PHONECONTACT_MENU : IMCONTACT_MENU));
+	
 	m_qTabBar->setTabText(m_nCurTabIndex, QString(""));
 	m_qWidgetPanelList.at(m_nCurTabIndex)->setVisible(FALSE);
 	m_nCurTabIndex = nIndex;
 	m_qCurTree = m_qTreeList.at(m_nCurTabIndex);
 	m_qTabBar->setTabText(m_nCurTabIndex, m_qTabBar->tabData(m_nCurTabIndex).toString());
 	m_qWidgetPanelList.at(m_nCurTabIndex)->setVisible(TRUE);
+
+	restoreMenuBar(nIndex);
 }
 
 BOOL BelugaMain::addItemOperation(QTreeWidget * tree)
@@ -445,38 +488,96 @@ BOOL BelugaMain::addItemOperation(QTreeWidget * tree)
 
 void BelugaMain::onCurrentItemChanged(QTreeWidgetItem* current, QTreeWidgetItem* previous)
 {
-	if (NULL != previous && -1 == m_qCurTree->indexOfTopLevelItem(previous))   /* second level is contact item */
+	int prevIndex;
+	int curIndex;
+
+	if (m_qCurTree == m_qTreeList.last())  /* the tree list is search result list */
 	{
-		m_qCurTree->removeItemWidget(previous, 0);
-		previous->setSizeHint(0, current->sizeHint(0));
-		previous->setText(0, m_qCurItemText);
+		prevIndex = curIndex = -1;  /* means that them are contact items */
+	}
+	else
+	{
+		prevIndex = m_qCurTree->indexOfTopLevelItem(previous);
+		curIndex = m_qCurTree->indexOfTopLevelItem(current);
 	}
 
-	if (-1 == m_qCurTree->indexOfTopLevelItem(current))  /* second level is contact item */
+	if (NULL != previous)
 	{
-		current->setSizeHint(0, QSize(current->sizeHint(0).width(), 32));
+		if (-1 == prevIndex && -1 == curIndex)  /* prev and current item all are contact */
+		{
+			m_bIsCurTopItem = FALSE;
 
-		QLabel * iconlabel = new QLabel();
-		iconlabel->setObjectName(QString::fromUtf8("iconlabel"));
-		iconlabel->setGeometry(QRect(3, 3, 200, 26));
-		iconlabel->setPixmap(QPixmap(QString::fromUtf8(":/BelugaApp/Resources/images/contact_default.png")).scaled(QSize(26, 26)));
-		
-		m_qCurItemText.clear();
-		m_qCurItemText.append(current->text(0));
-		current->setText(0, QString("  %1\n  %2").arg(m_qCurItemText, current->data(1, Qt::UserRole).toString()));
-		m_qCurTree->setItemWidget(current, 0, iconlabel);
+			/* change prev item normal icon size */
+			m_qCurTree->removeItemWidget(previous, 0);
+			previous->setSizeHint(0, current->sizeHint(0));
+			previous->setText(0, m_qCurItemText);
+
+			/* change current item large icon size */
+			current->setSizeHint(0, QSize(current->sizeHint(0).width(), 32));
+			QLabel * iconlabel = new QLabel();
+			iconlabel->setObjectName(QString::fromUtf8("iconlabel"));
+			iconlabel->setGeometry(QRect(3, 3, 200, 26));
+			iconlabel->setPixmap(QPixmap(QString::fromUtf8(":/BelugaApp/Resources/images/contact_default.png")).scaled(QSize(26, 26)));
+
+			m_qCurItemText.clear();
+			m_qCurItemText.append(current->text(0));
+			current->setText(0, QString("  %1\n  %2").arg(m_qCurItemText, current->data(1, Qt::UserRole).toString()));
+			m_qCurTree->setItemWidget(current, 0, iconlabel);
+		}
+		else if (-1 != prevIndex && -1 == curIndex)  /* prev item is group but current item is contact */
+		{
+			m_bIsCurTopItem = FALSE;
+
+			/* change current item large icon size */
+			current->setSizeHint(0, QSize(current->sizeHint(0).width(), 32));
+			QLabel * iconlabel = new QLabel();
+			iconlabel->setObjectName(QString::fromUtf8("iconlabel"));
+			iconlabel->setGeometry(QRect(3, 3, 200, 26));
+			iconlabel->setPixmap(QPixmap(QString::fromUtf8(":/BelugaApp/Resources/images/contact_default.png")).scaled(QSize(26, 26)));
+
+			m_qCurItemText.clear();
+			m_qCurItemText.append(current->text(0));
+			current->setText(0, QString("  %1\n  %2").arg(m_qCurItemText, current->data(1, Qt::UserRole).toString()));
+			m_qCurTree->setItemWidget(current, 0, iconlabel);
+
+			/* change menu actions to contact actions */
+			createContactActions(m_nCurTabIndex + 1);
+		}
+		else if (-1 == prevIndex && -1 != curIndex) /* prev item is contact but current item is group */
+		{
+			m_bIsCurTopItem = TRUE;
+
+			/* change prev item normal icon size */
+			m_qCurTree->removeItemWidget(previous, 0);
+			previous->setSizeHint(0, current->sizeHint(0));
+			previous->setText(0, m_qCurItemText);
+
+			/* change menu actions to group actions */
+			createGroupActions();
+		}
 	}
+	else
+	{
+		onItemClicked(current, 0);
+	}
+	
 }
 
 void BelugaMain::onItemExpanded(QTreeWidgetItem* item)
 {
-
+	m_qActionExpandColapseG->setText(tr("Collapse"));
 }
 
 void BelugaMain::onItemClicked(QTreeWidgetItem* item, int column)
 {
 	if (-1 != m_qCurTree->indexOfTopLevelItem(item))  /* top level is group item */
 	{
+		if (!m_bIsCurTopItem)  /* prev item is not group */
+		{
+			createGroupActions();
+			m_bIsCurTopItem = TRUE;
+		}
+
 		QIcon icon;
 		if (item->isExpanded()) /* collapse group */
 		{
@@ -505,8 +606,14 @@ void BelugaMain::onItemClicked(QTreeWidgetItem* item, int column)
 		
 		if (NULL != m_qCurTree->itemWidget(item, 0)) /* item widget exists */
 			return;
-		
-		/* change the icon size */ 
+
+		if (m_bIsCurTopItem)  /* prev item is group */
+		{
+			createContactActions(m_nCurTabIndex + 1);
+			m_bIsCurTopItem = FALSE;
+		}
+
+		/* change the icon size large */ 
 		QLabel * iconlabel = new QLabel();
 		iconlabel->setObjectName(QString::fromUtf8("iconlabel"));
 		iconlabel->setGeometry(QRect(3, 3, 200, 26));
@@ -521,101 +628,367 @@ void BelugaMain::onItemClicked(QTreeWidgetItem* item, int column)
 
 void BelugaMain::onItemCollapsed(QTreeWidgetItem* item)
 {
-	
+	m_qActionExpandColapseG->setText(tr("Expand"));
 }
 
-BOOL BelugaMain::createActions(BOOL bContact)
+BOOL BelugaMain::createContactActions(int nContactType)
 {
 	m_qMenuBar->clear();
-	if (bContact)  /* contact actions */
+	
+	if (ContactType_Phone == nContactType)
 	{
 		m_qActionViewC = new QAction(tr("View"), this);
+		m_qActions[CONTACT_VIEW_ACTION] = m_qActionViewC;
 		connect(m_qActionViewC, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
 		m_qMenuBar->addAction(m_qActionViewC);
-		
+
 		m_qMenuCall = m_qMenuBar->addMenu(tr("Call"));		
 
 		m_qActionVoiceCall = new QAction(tr("Voice"), this);
+		m_qActions[CONTACT_VOICECALL_ACTION] = m_qActionVoiceCall;
 		connect(m_qActionVoiceCall, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
 		m_qMenuCall->addAction(m_qActionVoiceCall);
-		
+
 		m_qActionIpCall = new QAction(tr("IP"), this);
+		m_qActions[CONTACT_IPCALL_ACTION] = m_qActionIpCall;
 		connect(m_qActionIpCall, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
 		m_qMenuCall->addAction(m_qActionIpCall);
 
 		m_qActionVideoCall = new QAction(tr("Video"), this);
+		m_qActions[CONTACT_VIDEOCALL_ACTION] = m_qActionVideoCall;
 		connect(m_qActionVideoCall, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
 		m_qMenuCall->addAction(m_qActionVideoCall);
 
 		m_qActionMsgC = new QAction(tr("Message"), this);
+		m_qActions[CONTACT_MSG_ACTION] = m_qActionMsgC;
 		connect(m_qActionMsgC, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
 		m_qMenuBar->addAction(m_qActionMsgC);
 
 		m_qActionNewC = new QAction(tr("New"), this);
+		m_qActions[CONTACT_NEW_ACTION] = m_qActionNewC;
 		connect(m_qActionNewC, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
+		connect(m_qActionNewC, SIGNAL(triggered(bool)), this, SLOT(onDefaultActionTriggered(bool)));
 		m_qMenuBar->addAction(m_qActionNewC);
 
 		m_qActionEditC = new QAction(tr("Edit"), this);
+		m_qActions[CONTACT_EDIT_ACTION] = m_qActionEditC;
 		connect(m_qActionEditC, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
 		m_qMenuBar->addAction(m_qActionEditC);
 
 		m_qActionDelC = new QAction(tr("Delete"), this);
+		m_qActions[CONTACT_DEL_ACTION] = m_qActionDelC;
 		connect(m_qActionDelC, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
 		m_qMenuBar->addAction(m_qActionDelC);
 
-		m_qActionSelectC = new QAction(tr("Select More"), this);
-		connect(m_qActionSelectC, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
-		m_qMenuBar->addAction(m_qActionSelectC);
-		
 		m_qActionGroupC = new QAction(tr("Group"), this);
+		m_qActions[CONTACT_GROUP_ACTION] = m_qActionGroupC;
 		connect(m_qActionGroupC, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
 		m_qMenuBar->addAction(m_qActionGroupC);
-		
+
 		m_qActionSyncC = new QAction(tr("Sync"), this);
+		m_qActions[CONTACT_MSG_ACTION] = m_qActionSyncC;
 		connect(m_qActionSyncC, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
 		m_qMenuBar->addAction(m_qActionSyncC);
-	
-		m_qMenuBar->setDefaultAction(m_qActionNewC);
-	}
-	else /* group actions */
-	{
-		m_qActionExpandColapseG = new QAction(tr("Expand"), this);
-		connect(m_qActionExpandColapseG, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
-		m_qMenuBar->addAction(m_qActionExpandColapseG);
-
-		m_qActionEditG = new QAction(tr("Edit"), this);
-		connect(m_qActionEditG, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
-		m_qMenuBar->addAction(m_qActionEditG);
-
-		m_qActionNewG = new QAction(tr("New"), this);
-		connect(m_qActionNewG, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
-		m_qMenuBar->addAction(m_qActionNewG);
-	
-		m_qMenuOrder = m_qMenuBar->addMenu(tr("Order"));	
-
-		m_qActionUpG = new QAction(tr("Up"), this);
-		connect(m_qActionUpG, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
-		m_qMenuOrder->addAction(m_qActionUpG);
 		
-		m_qActionDownG = new QAction(tr("Down"), this);
-		connect(m_qActionDownG, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
-		m_qMenuOrder->addAction(m_qActionDownG);
-
-		m_qActionDelG = new QAction(tr("Delete"), this);
-		connect(m_qActionDelG, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
-		m_qMenuBar->addAction(m_qActionDelG);
-
-		m_qActionMsgG = new QAction(tr("Message"), this);
-		connect(m_qActionMsgG, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
-		m_qMenuBar->addAction(m_qActionMsgG);
-
-		m_qMenuBar->setDefaultAction(m_qActionExpandColapseG);
+		m_qMenuBar->setDefaultAction(m_qActionNewC);
+		m_nCurDefaultAction = CONTACT_NEW_ACTION;
 	}
+	else
+	{
+
+	}
+	
+	return TRUE;
+}
+
+BOOL BelugaMain::createGroupActions()
+{
+	m_qMenuBar->clear();
+
+	if (m_qCurTree && m_qCurTree->currentItem() && m_qCurTree->currentItem()->isExpanded())
+		m_qActionExpandColapseG = new QAction(tr("Collapse"), this);
+	else
+		m_qActionExpandColapseG = new QAction(tr("Expand"), this);
+	m_qActions[GROUP_EXPAND_COLLAPSE_ACTION] = m_qActionExpandColapseG;
+	connect(m_qActionExpandColapseG, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
+	connect(m_qActionExpandColapseG, SIGNAL(triggered(bool)), this, SLOT(onDefaultActionTriggered(bool)));
+
+	m_qActionEditG = new QAction(tr("Edit"), this);
+	m_qActions[GROUP_EDIT_ACTION] = m_qActionEditG;
+	connect(m_qActionEditG, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
+	m_qMenuBar->addAction(m_qActionEditG);
+
+	m_qActionNewG = new QAction(tr("New"), this);
+	m_qActions[GROUP_NEW_ACTION] = m_qActionNewG;
+	connect(m_qActionNewG, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
+	m_qMenuBar->addAction(m_qActionNewG);
+
+	m_qMenuOrder = m_qMenuBar->addMenu(tr("Order"));	
+
+	m_qActionUpG = new QAction(tr("Up"), this);
+	m_qActions[GROUP_UP_ACTION] = m_qActionUpG;
+	connect(m_qActionUpG, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
+	m_qMenuOrder->addAction(m_qActionUpG);
+
+	m_qActionDownG = new QAction(tr("Down"), this);
+	m_qActions[GROUP_DOWN_ACTION] = m_qActionDownG;
+	connect(m_qActionDownG, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
+	m_qMenuOrder->addAction(m_qActionDownG);
+
+	m_qActionDelG = new QAction(tr("Delete"), this);
+	m_qActions[GROUP_DEL_ACTION] = m_qActionDelG;
+	connect(m_qActionDelG, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
+	m_qMenuBar->addAction(m_qActionDelG);
+
+	m_qActionMsgG = new QAction(tr("Message"), this);
+	m_qActions[GROUP_MSG_ACTION] = m_qActionMsgG;
+	connect(m_qActionMsgG, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
+	m_qMenuBar->addAction(m_qActionMsgG);
+
+	m_qMenuBar->setDefaultAction(m_qActionExpandColapseG);
+	m_nCurDefaultAction = GROUP_EXPAND_COLLAPSE_ACTION;
 
 	return TRUE;
 }
 
 void BelugaMain::onActionTriggered(QAction* action)
 {
+	int i;
+	for (i=0; i<ACTION_NUM; i++)
+		if (action == m_qActions[i])
+			break;
 
+	switch(i)
+	{
+	/* contact actions */
+	case CONTACT_VIEW_ACTION:
+		break;
+	case CONTACT_VOICECALL_ACTION:
+		break;
+	case CONTACT_IPCALL_ACTION:
+		break;
+	case CONTACT_VIDEOCALL_ACTION:
+		break;
+	case CONTACT_NEW_ACTION:
+		break;
+	case CONTACT_EDIT_ACTION:
+		break;
+	case CONTACT_DEL_ACTION:
+		break;
+	case CONTACT_MSG_ACTION:
+		break;
+	case CONTACT_GROUP_ACTION:
+		break;
+	case CONTACT_SYNC_ACTION:
+		break;
+
+	/* group actions */
+	case GROUP_EXPAND_COLLAPSE_ACTION:
+		break;
+	case GROUP_EDIT_ACTION:
+		break;
+	case GROUP_NEW_ACTION:
+		break;
+	case GROUP_MSG_ACTION:
+		break;
+	case GROUP_UP_ACTION:
+		break;
+	case GROUP_DOWN_ACTION:
+		break;
+	case GROUP_DEL_ACTION:
+		break;
+
+	/* close search result */
+	case CLOSE_SEARCH_ACTION:
+		search->clear();
+		m_qTreeList.last()->clear();
+		m_qWidgetPanelList.last()->setVisible(FALSE);
+		m_qWidgetPanelList.at(m_nCurTabIndex)->setVisible(TRUE);
+		restoreMenuBar(m_nCurTabIndex);
+		break;
+
+	default:
+		break;
+	}
+}
+
+void BelugaMain::onEditingFinished()
+{
+
+}
+
+void BelugaMain::onTextChanged(const QString & text)
+{	
+	if (FALSE == m_qWidgetPanelList.last()->isVisible())
+	{
+		if (0 == text.length())
+			return;
+
+		saveMenuBar(m_nCurTabIndex, m_nCurDefaultAction, 
+			m_bIsCurTopItem ? GROUP_MENU : (m_nCurTabIndex + 1 == ContactType_Phone ? PHONECONTACT_MENU : IMCONTACT_MENU));
+
+		/* show search panel menu */
+		if (m_nCurTabIndex + 1 == ContactType_Phone)
+			createContactActions(ContactType_Phone);
+		else
+			createContactActions(ContactType_IM);
+		m_qMenuBar->setDefaultAction(m_qActionCloseSearch);
+		m_nCurDefaultAction = CLOSE_SEARCH_ACTION;
+
+		m_qWidgetPanelList.at(m_nCurTabIndex)->setVisible(FALSE);
+		m_qWidgetPanelList.last()->setVisible(TRUE);
+	}
+	
+	m_qTreeList.last()->clear();
+	if (text.length())
+		searchContacts(text.toLatin1().data()); /* search */
+}
+
+BOOL BelugaMain::saveMenuBar(int nTabId, int nDefaultActionId, int nMenuType)
+{
+	MenuBarStatus status = m_stMenuStatus.at(nTabId);
+	status.nDefaultAction = nDefaultActionId;
+	status.nMenuType = nMenuType;
+
+	return TRUE;
+}
+
+BOOL BelugaMain::restoreMenuBar(int nTabId)
+{
+	m_qMenuBar->clear();
+	
+	if (m_stMenuStatus.at(nTabId).nMenuType == PHONECONTACT_MENU)
+		createContactActions(ContactType_Phone);
+	else if (m_stMenuStatus.at(nTabId).nMenuType == IMCONTACT_MENU)
+		createContactActions(ContactType_IM);
+	else
+		createGroupActions();
+
+	m_qMenuBar->setDefaultAction(m_qActions[m_stMenuStatus.at(nTabId).nDefaultAction]);
+	m_nCurDefaultAction = m_stMenuStatus.at(nTabId).nDefaultAction;
+	
+	return TRUE;
+}
+
+BOOL BelugaMain::searchContacts(const char* text)
+{
+	gint32 ret = ECode_No_Error;
+	CContactIterator * pContactIterator = NULL;
+
+	ret = m_pContactDb->SearchContactsByName(m_nCurTabIndex + 1, (gchar*)text, TRUE, &pContactIterator);
+	if (ret != ECode_No_Error)
+	{
+		printf("search contacts failed!\n");
+		return FALSE;
+	}
+
+	BOOL bSucceed = FALSE;
+	do
+	{
+		CDbEntity * pEntity = NULL;
+		ret = pContactIterator->Current(&pEntity);	
+		if (ret != ECode_No_Error)
+		{
+			printf("Get contact instance failed!\n");
+			goto _Error;
+		}
+
+		CContact * pContact = (CContact*)pEntity;
+		QTreeWidgetItem * qContactItem = new QTreeWidgetItem();
+
+		/* set contact id as item data */
+		GString * ContactId = NULL;
+		pContact->GetFieldValue(ContactField_Id, &ContactId);
+		qContactItem->setData(0, Qt::UserRole, QVariant(ContactId->str)); 
+		g_string_free(ContactId, TRUE);
+
+		/* set contact Logo */
+		GString * contactLogo = NULL;
+		pContact->GetFieldValue(ContactField_Photo, &contactLogo);
+		QIcon qLogo;
+		if (contactLogo->len != 0)
+			qLogo.addFile(contactLogo->str);
+		else
+			qLogo.addFile(":/BelugaApp/Resources/images/contact_default.png");
+		qContactItem->setIcon(0, qLogo);
+		g_string_free(contactLogo, TRUE);			
+
+		/* set contact name */
+		GString * contactName = NULL;
+		pContact->GetFieldValue(ContactField_Name, &contactName);
+		qContactItem->setText(0, tr(contactName->str));
+		g_string_free(contactName, TRUE);
+
+		/* set contact name spell as sort condition */
+		GString * spellName = NULL;
+		pContact->GetFieldValue(ContactField_NameSpell, &spellName);
+		qContactItem->setData(2, Qt::UserRole, QVariant(spellName->str));
+		g_string_free(spellName, TRUE);
+
+		/* get contact type */
+		GString * contactType = NULL;
+		pContact->GetFieldValue(ContactField_Type, &contactType);
+		if (ContactType_Phone == atoi(contactType->str))
+		{
+			/* get phone contact pref phone */
+			GString * pref = NULL;
+			pContact->GetFieldValue(ContactField_PhonePref, &pref);
+			qContactItem->setData(1, Qt::UserRole, tr(pref->str));
+			g_string_free(pref, TRUE);
+		}
+		else
+		{
+			/* get im contact user id */
+			GString * userId = NULL;
+			pContact->GetFieldValue(ContactField_UserId, &userId);
+			qContactItem->setData(1, Qt::UserRole, tr(userId->str));
+			g_string_free(userId, TRUE);
+		}
+		g_string_free(contactType, TRUE);
+
+		m_qTreeList.last()->addTopLevelItem(qContactItem);
+
+		delete pContact;
+		pContact = NULL;
+	} while(0 == pContactIterator->Next(&bSucceed) && bSucceed);
+
+	delete pContactIterator;
+	pContactIterator = NULL;
+
+	return TRUE;
+
+_Error:
+	if (pContactIterator != NULL)
+	{
+		delete pContactIterator;
+		pContactIterator = NULL;
+	}
+
+	return FALSE;
+}
+
+void BelugaMain::onDefaultActionTriggered(bool checked)
+{
+	switch(m_nCurDefaultAction)
+	{
+		/* contact actions */
+	case CONTACT_NEW_ACTION:
+		break;
+
+		/* group actions */
+	case GROUP_EXPAND_COLLAPSE_ACTION:
+		break;
+
+		/* close search result */
+	case CLOSE_SEARCH_ACTION:
+		search->clear();
+		m_qTreeList.last()->clear();
+		m_qWidgetPanelList.last()->setVisible(FALSE);
+		m_qWidgetPanelList.at(m_nCurTabIndex)->setVisible(TRUE);
+		restoreMenuBar(m_nCurTabIndex);
+		break;
+
+	default:
+		break;
+	}
 }

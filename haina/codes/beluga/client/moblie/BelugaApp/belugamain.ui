@@ -42,7 +42,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>hello</string>
+    <string/>
    </property>
   </widget>
   <widget class="QLabel" name="searchlabel">
