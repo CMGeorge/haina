@@ -9,7 +9,6 @@
 #include <QtGui/QMenuBar>
 #include <QtGui/QMenu>
 #include <QtGui/QAction>
-#include <QtGui/QListWidget>
 #include <QtGui/QTabBar>
 #include <QtCore/QList>
 #include "ui_belugamain.h"
@@ -23,6 +22,45 @@
 #include "CContact.h"
 #include "CGroup.h"
 #include "CTag.h"
+
+
+enum eActionId 
+{
+	CLOSE_SEARCH_ACTION = 0,
+	/* contact action */
+	CONTACT_VIEW_ACTION,
+	CONTACT_VOICECALL_ACTION,
+	CONTACT_IPCALL_ACTION,
+	CONTACT_VIDEOCALL_ACTION,
+	CONTACT_MSG_ACTION,
+	CONTACT_NEW_ACTION,
+	CONTACT_EDIT_ACTION,
+	CONTACT_DEL_ACTION,
+	CONTACT_GROUP_ACTION,
+	CONTACT_SYNC_ACTION,
+
+	/* group action */
+	GROUP_EXPAND_COLLAPSE_ACTION,
+	GROUP_NEW_ACTION,
+	GROUP_EDIT_ACTION,
+	GROUP_DEL_ACTION,
+	GROUP_UP_ACTION,
+	GROUP_DOWN_ACTION,
+	GROUP_MSG_ACTION,
+
+	ACTION_NUM
+};
+
+typedef struct MenuBarStatus 
+{
+	int nDefaultAction;
+	int nMenuType; 
+} MenuBarStatus;
+
+
+#define  PHONECONTACT_MENU		0
+#define  IMCONTACT_MENU			1
+#define  GROUP_MENU				2
 
 
 class BelugaMain : public QDialog, public Ui::BelugaAppMain
@@ -39,7 +77,11 @@ private:
 	BOOL loadGroups(int nTagId);
 	BOOL loadTags();
 	BOOL addItemOperation(QTreeWidget * tree);
-	BOOL createActions(BOOL bContact);
+	BOOL createContactActions(int nContactType);
+	BOOL createGroupActions();
+	BOOL saveMenuBar(int nTabId, int nActionId, int nMenuType);
+	BOOL restoreMenuBar(int nTabId);
+	BOOL searchContacts(const char* text);
 
 private slots:
 	void onCurrentChanged(int nIndex);
@@ -48,6 +90,9 @@ private slots:
 	void onItemClicked(QTreeWidgetItem* item, int column);
 	void onItemCollapsed(QTreeWidgetItem* item);
 	void onActionTriggered(QAction* action);
+	void onDefaultActionTriggered(bool checked = false);
+	void onTextChanged(const QString & text);
+	void onEditingFinished();
 
 private:
 	CContactDb	* m_pContactDb;
@@ -56,16 +101,18 @@ private:
 	
 	QString		  m_qCurItemText;
 	int			  m_nCurTabIndex;
+	int			  m_nCurDefaultAction;
 	BOOL		  m_bIsCurTopItem; /* current item is top item which was group */
 	
 	QList<QWidget*> m_qWidgetPanelList;
 	QList<QTreeWidget*> m_qTreeList;
+	QAction		* m_qActions[ACTION_NUM];
 
 	QTabBar		* m_qTabBar;
 	QTreeWidget * m_qCurTree;
 	QMenuBar	* m_qMenuBar;
-	QWidget		* m_qSearListPanelWidget;
-	QListWidget * m_qSearchList;
+
+	QList<MenuBarStatus> m_stMenuStatus;
 
 	/* contact actions */
 	QMenu		* m_qMenuCall;
@@ -77,7 +124,6 @@ private:
 	QAction		* m_qActionNewC;
 	QAction		* m_qActionEditC;
 	QAction		* m_qActionDelC;
-	QAction		* m_qActionSelectC;
 	QAction     * m_qActionGroupC;
 	QAction	    * m_qActionSyncC;
 
@@ -91,8 +137,8 @@ private:
 	QAction		* m_qActionMsgG; /* group msg */
 	QAction		* m_qActionExpandColapseG;
 
-	/* search action */
-	QAction     * m_qActionSearch;
+	/* close search result action */
+	QAction     * m_qActionCloseSearch;
 };
 
 #endif // BELUGAMAIN_H
