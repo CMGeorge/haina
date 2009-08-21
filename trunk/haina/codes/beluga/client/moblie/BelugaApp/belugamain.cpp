@@ -798,15 +798,6 @@ void BelugaMain::onActionTriggered(QAction* action)
 	case GROUP_DEL_ACTION:
 		break;
 
-	/* close search result */
-	case CLOSE_SEARCH_ACTION:
-		search->clear();
-		m_qTreeList.last()->clear();
-		m_qWidgetPanelList.last()->setVisible(FALSE);
-		m_qWidgetPanelList.at(m_nCurTabIndex)->setVisible(TRUE);
-		restoreMenuBar(m_nCurTabIndex);
-		break;
-
 	default:
 		break;
 	}
@@ -841,7 +832,16 @@ void BelugaMain::onTextChanged(const QString & text)
 	
 	m_qTreeList.last()->clear();
 	if (text.length())
+	{
 		searchContacts(text.toLatin1().data()); /* search */
+	}
+	else
+	{
+		m_qWidgetPanelList.last()->setVisible(FALSE);
+		m_qWidgetPanelList.at(m_nCurTabIndex)->setVisible(TRUE);
+		restoreMenuBar(m_nCurTabIndex);
+	}
+		
 }
 
 BOOL BelugaMain::saveMenuBar(int nTabId, int nDefaultActionId, int nMenuType)
