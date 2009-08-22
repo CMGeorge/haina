@@ -490,7 +490,7 @@ EXPORT_C gint32 CContactDb::SearchContactsByName(guint32 nTagId, gchar* name, gb
 	OpenDatabase();
 	
 	if (nTagId != ContactType_Phone)
-		sprintf(sql, "select * from contact where nickname_spell like '%%%s%%' order by nikename_spell asc;", name);
+		sprintf(sql, "select * from contact where nickname_spell like '%%%s%%' order by nickname_spell asc;", name);
 	else if (onlyPref)
 		sprintf(sql, "select * from contact where name_spell like '%%%s%%' order by name_spell asc;", name);
 	else
