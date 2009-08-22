@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.haina.beluga.contact.dao.IContactUserDao;
 import com.haina.beluga.contact.domain.ContactUser;
+import com.haina.beluga.contact.domain.enumerate.SexEnum;
 import com.haina.beluga.webservice.data.hessian.HessianRemoteReturning;
 import com.haina.core.service.IBaseSerivce;
 
@@ -37,6 +38,32 @@ public interface IContactUserHessianService extends IBaseSerivce<IContactUserDao
 	 * @return
 	 */
 	public HessianRemoteReturning editContactUserToValid(ContactUser contactUser);
+	
+	/**
+	 * 编辑用户详细信息。<br/>
+	 * @param loginName 登录名
+	 * @param nickName 昵称
+	 * @param name 姓名
+	 * @param age 年龄
+	 * @param sex 性别
+	 * @param photo 头像文件
+	 * @param identification 身份证号码
+	 * @param brithday 生日
+	 * @param url 个人主页或博客
+	 * @param signature 签名
+	 * @param emailPref 首选email
+	 * @param telPref 首选电话号码
+	 * @param imPref 首选IM
+	 * @param ring 个性铃声文件
+	 * @param org 组织名称
+	 * @param title 职位
+	 * @param note 个人说明
+	 * @return
+	 */
+	public HessianRemoteReturning editUserProfile(String loginName, String nickName, String name,Integer age,
+			Integer sex, byte[] photo, String identification, Date brithday, String url, String signature,
+			String emailPref, String telPref, String imPref, byte[] ring, String org, String title, String note);
+	
 	
 	/**
 	 * 设置联系人用户有效。<br/>
