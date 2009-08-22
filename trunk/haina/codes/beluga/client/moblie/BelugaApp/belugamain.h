@@ -73,7 +73,7 @@ public:
 
 private:
 	BOOL initBelugDb();
-	BOOL loadContacts(QTreeWidgetItem* item);
+	BOOL loadContacts(QTreeWidget* tree, QTreeWidgetItem* item, CContactIterator * pContactIterator, bool isTree = TRUE);
 	BOOL loadGroups(int nTagId);
 	BOOL loadTags();
 	BOOL addItemOperation(QTreeWidget * tree);
