@@ -289,8 +289,6 @@ BOOL BelugaMain::loadGroups(int nTagId)
 	else
 		qDefaultGroupItem->setText(0, tr("My Friend"));
 	m_qCurTree->insertTopLevelItem(0, qDefaultGroupItem);
-	
-	addItemOperation(m_qCurTree);
 
 	return TRUE;
 
@@ -372,6 +370,7 @@ BOOL BelugaMain::loadTags()
 			pTagList->setFrameShape(QFrame::NoFrame);
 			pTagList->setLineWidth(1);
 			m_qTreeList.append(pTagList);
+			addItemOperation(pTagList);
 		
 			m_qTabBar->insertTab(nTagIndex, QIcon(QString(tagLogo->str)), QString());
 			m_qTabBar->setTabData(nTagIndex, QVariant(tr(tagName->str)));
@@ -416,6 +415,7 @@ BOOL BelugaMain::loadTags()
 	pTagList->setFrameShape(QFrame::NoFrame);
 	pTagList->setLineWidth(1);
 	m_qTreeList.append(pTagList);
+	addItemOperation(pTagList);
 	
 	m_qTabBar->insertTab(nTagIndex + 1, QIcon(":/BelugaApp/Resources/images/recent.png"), QString());
 	m_qTabBar->setTabData(nTagIndex + 1, QVariant(tr("Recent Contact")));
@@ -447,6 +447,7 @@ BOOL BelugaMain::loadTags()
 	pTagList->setFrameShape(QFrame::NoFrame);
 	pTagList->setLineWidth(1);
 	m_qTreeList.append(pTagList);
+	addItemOperation(pTagList);
 
 	return TRUE;
 
@@ -490,6 +491,9 @@ void BelugaMain::onCurrentItemChanged(QTreeWidgetItem* current, QTreeWidgetItem*
 {
 	int prevIndex;
 	int curIndex;
+	
+	if (NULL == current)
+		return;
 
 	if (m_qCurTree == m_qTreeList.last())  /* the tree list is search result list */
 	{
@@ -570,7 +574,14 @@ void BelugaMain::onItemExpanded(QTreeWidgetItem* item)
 
 void BelugaMain::onItemClicked(QTreeWidgetItem* item, int column)
 {
-	if (-1 != m_qCurTree->indexOfTopLevelItem(item))  /* top level is group item */
+	int index;
+
+	if (m_qWidgetPanelList.last()->isVisible()) /* search result panel is visible */
+		index = -1; /* means that this is contact item */
+	else
+		index = m_qCurTree->indexOfTopLevelItem(item);
+	
+	if (-1 != index)  /* top level is group item */
 	{
 		if (!m_bIsCurTopItem)  /* prev item is not group */
 		{
@@ -827,10 +838,19 @@ void BelugaMain::onTextChanged(const QString & text)
 		m_nCurDefaultAction = CLOSE_SEARCH_ACTION;
 
 		m_qWidgetPanelList.at(m_nCurTabIndex)->setVisible(FALSE);
+		m_qCurTree = m_qTreeList.last();
 		m_qWidgetPanelList.last()->setVisible(TRUE);
 	}
 	
-	m_qTreeList.last()->clear();
+/*	QTreeWidgetItem * item = m_qCurTree->currentItem();
+	if (NULL != item && NULL != m_qCurTree->itemWidget(item, 0))
+	{
+		m_qCurTree->removeItemWidget(item, 0);
+		item->setSizeHint(0, item->sizeHint(0));
+		item->setText(0, m_qCurItemText);
+	}	
+*/
+	m_qCurTree->clear();
 	if (text.length())
 	{
 		searchContacts(text.toLatin1().data()); /* search */
@@ -839,6 +859,7 @@ void BelugaMain::onTextChanged(const QString & text)
 	{
 		m_qWidgetPanelList.last()->setVisible(FALSE);
 		m_qWidgetPanelList.at(m_nCurTabIndex)->setVisible(TRUE);
+		m_qCurTree = m_qTreeList.at(m_nCurTabIndex);
 		restoreMenuBar(m_nCurTabIndex);
 	}
 		
@@ -969,6 +990,7 @@ _Error:
 
 void BelugaMain::onDefaultActionTriggered(bool checked)
 {
+	QTreeWidgetItem * item;
 	switch(m_nCurDefaultAction)
 	{
 		/* contact actions */
@@ -982,9 +1004,19 @@ void BelugaMain::onDefaultActionTriggered(bool checked)
 		/* close search result */
 	case CLOSE_SEARCH_ACTION:
 		search->clear();
-		m_qTreeList.last()->clear();
+/*		item = m_qCurTree->currentItem();
+
+		if (NULL != item && NULL != m_qCurTree->itemWidget(item, 0))
+		{
+			m_qCurTree->removeItemWidget(item, 0);
+			item->setSizeHint(0, item->sizeHint(0));
+			item->setText(0, m_qCurItemText);
+		}	
+*/
+		m_qCurTree->clear();
 		m_qWidgetPanelList.last()->setVisible(FALSE);
 		m_qWidgetPanelList.at(m_nCurTabIndex)->setVisible(TRUE);
+		m_qCurTree = m_qTreeList.at(m_nCurTabIndex);
 		restoreMenuBar(m_nCurTabIndex);
 		break;
 
