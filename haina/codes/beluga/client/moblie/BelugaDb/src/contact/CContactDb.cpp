@@ -490,14 +490,14 @@ EXPORT_C gint32 CContactDb::SearchContactsByName(guint32 nTagId, gchar* name, gb
 	OpenDatabase();
 	
 	if (nTagId != ContactType_Phone)
-		sprintf(sql, "select * from contact where nickname_spell like '%%%s%%' order by nickname_spell asc;", name);
+		sprintf(sql, "select * from contact where nickname_spell like '%%%s%%'and type = %d order by nickname_spell asc;", name, nTagId);
 	else if (onlyPref)
-		sprintf(sql, "select * from contact where name_spell like '%%%s%%' order by name_spell asc;", name);
+		sprintf(sql, "select * from contact where name_spell like '%%%s%%'and type = %d order by name_spell asc;", name, nTagId);
 	else
 		sprintf(sql, "select c.*, ext.* from contact c "\
 					"left join (select ce.cid ,ce.comm_key, ce.comm_value, a.* from contact_ext ce "\
 					"left join address a on ce.comm_value = a.aid) ext "\
-					"on c.cid = ext.cid where name_spell like '%%%s%%' order by name_spell asc;", name);
+					"on c.cid = ext.cid where name_spell like '%%%s%%'and type = %d order by name_spell asc;", name, nTagId);
 							
 	m_dbQuery = m_dbBeluga.execQuery(sql);
 	*ppContactIterator = NULL;
