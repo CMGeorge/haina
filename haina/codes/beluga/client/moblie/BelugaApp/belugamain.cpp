@@ -106,20 +106,11 @@ BOOL BelugaMain::initBelugDb()
 	return TRUE;
 }
 
-BOOL BelugaMain::loadContacts(QTreeWidgetItem* item)
+BOOL BelugaMain::loadContacts(QTreeWidget* tree, QTreeWidgetItem* item, CContactIterator * pContactIterator, bool isTree)
 {
 	gint32 ret = ECode_No_Error;
-	CContactIterator * pContactIterator = NULL;
-	int nGroupId = item->data(0, Qt::UserRole).toInt();
-
-	ret = m_pContactDb->GetAllContactsByGroup(nGroupId, TRUE, &pContactIterator);
-	if (ret != ECode_No_Error)
-	{
-		printf("Get all contacts failed!\n");
-		return FALSE;
-	}
-
 	BOOL bSucceed = FALSE;
+
 	do
 	{
 		CDbEntity * pEntity = NULL;
@@ -161,7 +152,7 @@ BOOL BelugaMain::loadContacts(QTreeWidgetItem* item)
 		pContact->GetFieldValue(ContactField_NameSpell, &spellName);
 		qContactItem->setData(2, Qt::UserRole, QVariant(spellName->str));
 		g_string_free(spellName, TRUE);
-		
+
 		/* get contact type */
 		GString * contactType = NULL;
 		pContact->GetFieldValue(ContactField_Type, &contactType);
@@ -183,7 +174,10 @@ BOOL BelugaMain::loadContacts(QTreeWidgetItem* item)
 		}
 		g_string_free(contactType, TRUE);
 
-		item->addChild(qContactItem);
+		if (isTree)
+			tree->addTopLevelItem(qContactItem);
+		else
+			item->addChild(qContactItem);
 
 		delete pContact;
 		pContact = NULL;
@@ -281,7 +275,8 @@ BOOL BelugaMain::loadGroups(int nTagId)
 
 	/* insert default group which is make up of all contact without group */ 
 	QTreeWidgetItem * qDefaultGroupItem = new QTreeWidgetItem();
-
+	
+	qDefaultGroupItem->setData(0, Qt::UserRole, GROUPID_DEFAULT); 
 	defaultIcon.addFile(":/BelugaApp/Resources/images/right.png");
 	qDefaultGroupItem->setIcon(0, defaultIcon);
 	if (ContactType_Phone == nTagId)
@@ -605,7 +600,21 @@ void BelugaMain::onItemClicked(QTreeWidgetItem* item, int column)
 
 			if (0 == item->childCount()) /* load contact from the group */
 			{
-				loadContacts(item);
+				int nGroupId = item->data(0, Qt::UserRole).toInt();
+				gint32 ret = ECode_No_Error;
+				CContactIterator * pContactIterator = NULL;
+				
+				if (GROUPID_DEFAULT != nGroupId)
+					ret = m_pContactDb->GetAllContactsByGroup(nGroupId, TRUE, &pContactIterator);
+				else
+					ret = m_pContactDb->GetAllContactsNotInGroupByTag(m_nCurTabIndex + 1, TRUE, &pContactIterator);
+				if (ret != ECode_No_Error)
+				{
+					printf("Get contacts failed!\n");
+					return;
+				}
+
+				loadContacts(NULL, item, pContactIterator, FALSE);
 			}
 			m_qCurTree->expandItem(item);
 		}
@@ -853,7 +862,17 @@ void BelugaMain::onTextChanged(const QString & text)
 	m_qCurTree->clear();
 	if (text.length())
 	{
-		searchContacts(text.toLatin1().data()); /* search */
+		gint32 ret = ECode_No_Error;
+		CContactIterator * pContactIterator = NULL;
+
+		ret = m_pContactDb->SearchContactsByName(m_nCurTabIndex + 1, (gchar*)text.toLatin1().data(), TRUE, &pContactIterator);
+		if (ret != ECode_No_Error)
+		{
+			printf("search contacts failed!\n");
+			return;
+		}
+
+		loadContacts(m_qCurTree, NULL, pContactIterator, TRUE); /* load searched result */
 	}
 	else
 	{
@@ -891,106 +910,9 @@ BOOL BelugaMain::restoreMenuBar(int nTabId)
 	return TRUE;
 }
 
-BOOL BelugaMain::searchContacts(const char* text)
-{
-	gint32 ret = ECode_No_Error;
-	CContactIterator * pContactIterator = NULL;
-
-	ret = m_pContactDb->SearchContactsByName(m_nCurTabIndex + 1, (gchar*)text, TRUE, &pContactIterator);
-	if (ret != ECode_No_Error)
-	{
-		printf("search contacts failed!\n");
-		return FALSE;
-	}
-
-	BOOL bSucceed = FALSE;
-	do
-	{
-		CDbEntity * pEntity = NULL;
-		ret = pContactIterator->Current(&pEntity);	
-		if (ret != ECode_No_Error)
-		{
-			printf("Get contact instance failed!\n");
-			goto _Error;
-		}
-
-		CContact * pContact = (CContact*)pEntity;
-		QTreeWidgetItem * qContactItem = new QTreeWidgetItem();
-
-		/* set contact id as item data */
-		GString * ContactId = NULL;
-		pContact->GetFieldValue(ContactField_Id, &ContactId);
-		qContactItem->setData(0, Qt::UserRole, QVariant(ContactId->str)); 
-		g_string_free(ContactId, TRUE);
-
-		/* set contact Logo */
-		GString * contactLogo = NULL;
-		pContact->GetFieldValue(ContactField_Photo, &contactLogo);
-		QIcon qLogo;
-		if (contactLogo->len != 0)
-			qLogo.addFile(contactLogo->str);
-		else
-			qLogo.addFile(":/BelugaApp/Resources/images/contact_default.png");
-		qContactItem->setIcon(0, qLogo);
-		g_string_free(contactLogo, TRUE);			
-
-		/* set contact name */
-		GString * contactName = NULL;
-		pContact->GetFieldValue(ContactField_Name, &contactName);
-		qContactItem->setText(0, tr(contactName->str));
-		g_string_free(contactName, TRUE);
-
-		/* set contact name spell as sort condition */
-		GString * spellName = NULL;
-		pContact->GetFieldValue(ContactField_NameSpell, &spellName);
-		qContactItem->setData(2, Qt::UserRole, QVariant(spellName->str));
-		g_string_free(spellName, TRUE);
-
-		/* get contact type */
-		GString * contactType = NULL;
-		pContact->GetFieldValue(ContactField_Type, &contactType);
-		if (ContactType_Phone == atoi(contactType->str))
-		{
-			/* get phone contact pref phone */
-			GString * pref = NULL;
-			pContact->GetFieldValue(ContactField_PhonePref, &pref);
-			qContactItem->setData(1, Qt::UserRole, tr(pref->str));
-			g_string_free(pref, TRUE);
-		}
-		else
-		{
-			/* get im contact user id */
-			GString * userId = NULL;
-			pContact->GetFieldValue(ContactField_UserId, &userId);
-			qContactItem->setData(1, Qt::UserRole, tr(userId->str));
-			g_string_free(userId, TRUE);
-		}
-		g_string_free(contactType, TRUE);
-
-		m_qTreeList.last()->addTopLevelItem(qContactItem);
-
-		delete pContact;
-		pContact = NULL;
-	} while(0 == pContactIterator->Next(&bSucceed) && bSucceed);
-
-	delete pContactIterator;
-	pContactIterator = NULL;
-
-	return TRUE;
-
-_Error:
-	if (pContactIterator != NULL)
-	{
-		delete pContactIterator;
-		pContactIterator = NULL;
-	}
-
-	return FALSE;
-}
-
 void BelugaMain::onDefaultActionTriggered(bool checked)
 {
-	QTreeWidgetItem * item;
+//	QTreeWidgetItem * item;
 	switch(m_nCurDefaultAction)
 	{
 		/* contact actions */
