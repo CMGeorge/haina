@@ -46,7 +46,7 @@ BelugaMain::BelugaMain(QWidget *parent, Qt::WFlags flags)
 		printf("Init BelugaDb Failed!\n");
 		return;
 	}
-	if (FALSE == loadTags() || FALSE == loadGroups(ContactType_Phone))
+	if (FALSE == loadTags()/* || FALSE == loadGroups(ContactType_Phone)*/)
 	{
 		printf("Load BelugaDb data Failed!\n");
 		return;
@@ -458,15 +458,36 @@ _Error:
 
 void BelugaMain::onCurrentChanged(int nIndex)
 {
-	saveMenuBar(m_nCurTabIndex, m_nCurDefaultAction, 
-		m_bIsCurTopItem ? GROUP_MENU : (m_nCurTabIndex + 1 == ContactType_Phone ? PHONECONTACT_MENU : IMCONTACT_MENU));
-	
+	if (m_qWidgetPanelList.last()->isVisible())
+	{
+		search->clear();
+/*		item = m_qCurTree->currentItem();
+
+		if (NULL != item && NULL != m_qCurTree->itemWidget(item, 0))
+		{
+		m_qCurTree->removeItemWidget(item, 0);
+		item->setSizeHint(0, item->sizeHint(0));
+		item->setText(0, m_qCurItemText);
+		}	
+*/
+		m_qCurTree->clear();
+		m_qWidgetPanelList.last()->setVisible(FALSE);
+	}
+	else
+	{
+		saveMenuBar(m_nCurTabIndex, m_nCurDefaultAction, 
+			m_bIsCurTopItem ? GROUP_MENU : (m_nCurTabIndex + 1 == ContactType_Phone ? PHONECONTACT_MENU : IMCONTACT_MENU));
+	}
+
 	m_qTabBar->setTabText(m_nCurTabIndex, QString(""));
 	m_qWidgetPanelList.at(m_nCurTabIndex)->setVisible(FALSE);
 	m_nCurTabIndex = nIndex;
 	m_qCurTree = m_qTreeList.at(m_nCurTabIndex);
 	m_qTabBar->setTabText(m_nCurTabIndex, m_qTabBar->tabData(m_nCurTabIndex).toString());
 	m_qWidgetPanelList.at(m_nCurTabIndex)->setVisible(TRUE);
+
+	if (0 == m_qCurTree->topLevelItemCount())
+		loadGroups(m_nCurTabIndex + 1);
 
 	restoreMenuBar(nIndex);
 }
@@ -715,7 +736,39 @@ BOOL BelugaMain::createContactActions(int nContactType)
 	}
 	else
 	{
+		m_qActionViewC = new QAction(tr("View"), this);
+		m_qActions[CONTACT_VIEW_ACTION] = m_qActionViewC;
+		connect(m_qActionViewC, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
+		m_qMenuBar->addAction(m_qActionViewC);
 
+		m_qActionMsgC = new QAction(tr("Message"), this);
+		m_qActions[CONTACT_MSG_ACTION] = m_qActionMsgC;
+		connect(m_qActionMsgC, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
+		m_qMenuBar->addAction(m_qActionMsgC);
+
+		m_qActionNewC = new QAction(tr("New"), this);
+		m_qActions[CONTACT_NEW_ACTION] = m_qActionNewC;
+		connect(m_qActionNewC, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
+		connect(m_qActionNewC, SIGNAL(triggered(bool)), this, SLOT(onDefaultActionTriggered(bool)));
+		m_qMenuBar->addAction(m_qActionNewC);
+
+		m_qActionEditC = new QAction(tr("Edit"), this);
+		m_qActions[CONTACT_EDIT_ACTION] = m_qActionEditC;
+		connect(m_qActionEditC, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
+		m_qMenuBar->addAction(m_qActionEditC);
+
+		m_qActionDelC = new QAction(tr("Delete"), this);
+		m_qActions[CONTACT_DEL_ACTION] = m_qActionDelC;
+		connect(m_qActionDelC, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
+		m_qMenuBar->addAction(m_qActionDelC);
+
+		m_qActionGroupC = new QAction(tr("Group"), this);
+		m_qActions[CONTACT_GROUP_ACTION] = m_qActionGroupC;
+		connect(m_qActionGroupC, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
+		m_qMenuBar->addAction(m_qActionGroupC);
+
+		m_qMenuBar->setDefaultAction(m_qActionNewC);
+		m_nCurDefaultAction = CONTACT_NEW_ACTION;
 	}
 	
 	return TRUE;
