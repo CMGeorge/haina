@@ -405,4 +405,24 @@ public class ContactUserHessianService extends BaseSerivce<IContactUserDao,Conta
 			return null;
 		}
 	}
+
+	@Override
+	public HessianRemoteReturning editUserProfile(String loginName,
+			String nickName, String name, Integer age, Integer sex,
+			byte[] photo, String identification, Date brithday, String url,
+			String signature, String emailPref, String telPref, String imPref,
+			byte[] ring, String org, String title, String note) {
+		HessianRemoteReturning ret=new HessianRemoteReturning();
+		if(StringUtils.isNull(loginName)) {
+			ret.setStatusCode(IStatusCode.INVALID_LOGINNAME);
+			return ret;
+		}
+		ContactUser contactUser=getBaseDao().getValidUserByLoginName(loginName);
+		if(null==contactUser) {
+			ret.setStatusCode(IStatusCode.INVALID_CONTACT_USER);
+			return ret;
+		}
+		UserProfile userProfile=contactUser.getUserProfile();
+		return ret;
+	}
 }
