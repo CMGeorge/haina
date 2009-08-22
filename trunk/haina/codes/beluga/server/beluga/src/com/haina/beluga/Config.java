@@ -7,12 +7,13 @@ import com.haina.core.util.StringUtils;
 /**
  * 全局配置类。
  * @author huangyongqiang
- *
+ * @version 1.0
+ * @since 1.0
+ * @date 2009-08-08
  */
 public final class Config {
 
 	private final static ResourceBundle GLOBAL_CONFIG =ResourceBundle.getBundle("configs.global-config");
-	
 	
 	public static String getGlobalConfig(String name) {
 		String ret=null;
