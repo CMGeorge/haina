@@ -22,6 +22,7 @@
 #include "CContact.h"
 #include "CGroup.h"
 #include "CTag.h"
+#include "glib.h"
 
 
 enum eActionId 
@@ -82,6 +83,7 @@ private:
 	BOOL saveMenuBar(int nTabId, int nActionId, int nMenuType);
 	BOOL restoreMenuBar(int nTabId);
 	BOOL searchContacts(const char* text);
+	QTreeWidget * createTreeWidget(const char* name);
 
 private slots:
 	void onCurrentChanged(int nIndex);
