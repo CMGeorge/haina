@@ -973,3 +973,23 @@ void BelugaMain::onDefaultActionTriggered(bool checked)
 		break;
 	}
 }
+
+CContactDb * BelugaMain::getContactDb()
+{
+	return m_pContactDb;
+}
+
+CGroupDb * BelugaMain::getGroupDb()
+{
+	return m_pGroupDb;
+}
+
+QTreeWidget * BelugaMain::getGroupTree(int nTabIndex)
+{
+	return m_qTreeList.at(nTabIndex);
+}
+
+int BelugaMain::getCurrentTab()
+{
+	return m_nCurTabIndex;
+}
