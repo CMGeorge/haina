@@ -72,6 +72,11 @@ public:
 	BelugaMain(QWidget *parent = 0, Qt::WFlags flags = 0);
 	~BelugaMain();
 
+	CContactDb * getContactDb();
+	CGroupDb * getGroupDb();
+	QTreeWidget * getGroupTree(int nTabIndex);
+	int getCurrentTab();
+
 private:
 	BOOL initBelugDb();
 	BOOL loadContacts(QTreeWidget* tree, QTreeWidgetItem* item, CContactIterator * pContactIterator, bool isTree = TRUE);

@@ -6,7 +6,6 @@
 #include <QtGui/QWidget>
 #include <QtGui/QPicture>
 #include <QtGui/QMenuBar>
-#include <QtGui/QMenu>
 #include <QtGui/QAction>
 #include <QtCore/QList>
 #include "ui_belugadetail.h"
