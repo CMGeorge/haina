@@ -41,6 +41,7 @@ enum ECommType
     CommType_Pref = 0x04,
     CommType_QQ = 0x05,
     CommType_MSN = 0x06,
+	CommType_Mobile = 0x07
 };
 
 struct stRecentContact
