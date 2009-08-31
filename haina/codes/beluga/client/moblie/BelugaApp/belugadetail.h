@@ -8,14 +8,37 @@
 #include <QtGui/QMenuBar>
 #include <QtGui/QAction>
 #include <QtCore/QList>
+#include <QtGui/QComboBox>
+#include <QtGui/QDateEdit>
+#include <QtGui/QPlainTextEdit>
+#include <QtGui/QLabel>
 #include "ui_belugadetail.h"
 
-#include "CContactDb.h"
-#include "CGroupDb.h"
-#include "CContactIterator.h"
-#include "CGroupIterator.h"
-#include "CContact.h"
-#include "CGroup.h"
+
+enum eDetailRow
+{
+	Row_Name = 0,
+	Row_NickName,
+	Row_Sex,
+	Row_Photo,
+	Row_PhoneMobile,
+	Row_PhoneWork,
+	Row_PhoneHome,
+	Row_EmailWork,
+	Row_EmailHome,
+	Row_IMQQ,
+	Row_IMMSN,
+	Row_AddrWork,
+	Row_AddrHome,
+	Row_Birthday,
+	Row_Org,
+	Row_Url,
+	Row_Ring,
+	Row_Title,
+	Row_Note
+};
+
+class BelugaMain;
 
 class BelugaDetail : public QDialog, public Ui::belugadetail
 {
@@ -26,55 +49,19 @@ public:
 	~BelugaDetail();
 
 private:
+	BOOL initializeFields();
 
 private slots:
 
 private:
-	CContactDb	* m_pContactDb;
-	CGroupDb	* m_pGroupDb;
+	QList<QLabel*> m_qLeftWidgets;
+	QList<QWidget*> m_qRightWidgets;
 
-#if 0
-	QString		  m_qCurItemText;
-	int			  m_nCurTabIndex;
-	int			  m_nCurDefaultAction;
-	BOOL		  m_bIsCurTopItem; /* current item is top item which was group */
-
-	QList<QWidget*> m_qWidgetPanelList;
-	QList<QTreeWidget*> m_qTreeList;
-	QAction		* m_qActions[ACTION_NUM];
-
-	QTabBar		* m_qTabBar;
-	QTreeWidget * m_qCurTree;
 	QMenuBar	* m_qMenuBar;
+	QAction		* m_qActionOk;
+	QAction     * m_qActionCancel;
 
-	QList<MenuBarStatus> m_stMenuStatus;
-
-	/* contact actions */
-	QMenu		* m_qMenuCall;
-	QAction		* m_qActionVoiceCall;
-	QAction     * m_qActionVideoCall;
-	QAction		* m_qActionIpCall;
-	QAction		* m_qActionMsgC;
-	QAction		* m_qActionViewC;
-	QAction		* m_qActionNewC;
-	QAction		* m_qActionEditC;
-	QAction		* m_qActionDelC;
-	QAction     * m_qActionGroupC;
-	QAction	    * m_qActionSyncC;
-
-	/* group actions */
-	QAction		* m_qActionEditG;
-	QAction		* m_qActionNewG;
-	QMenu		* m_qMenuOrder;
-	QAction		* m_qActionUpG;
-	QAction		* m_qActionDownG;
-	QAction     * m_qActionDelG;
-	QAction		* m_qActionMsgG; /* group msg */
-	QAction		* m_qActionExpandColapseG;
-
-	/* close search result action */
-	QAction     * m_qActionCloseSearch;
-#endif
+	BelugaMain  * m_pBelugaMain;
 };
 
 #endif // BELUGADETAIL_H

@@ -31,6 +31,9 @@
    <property name="lineWidth">
     <number>0</number>
    </property>
+   <property name="midLineWidth">
+    <number>0</number>
+   </property>
    <property name="horizontalScrollBarPolicy">
     <enum>Qt::ScrollBarAlwaysOff</enum>
    </property>
@@ -38,7 +41,13 @@
     <bool>false</bool>
    </property>
    <property name="gridStyle">
-    <enum>Qt::NoPen</enum>
+    <enum>Qt::SolidLine</enum>
+   </property>
+   <property name="cornerButtonEnabled">
+    <bool>false</bool>
+   </property>
+   <property name="rowCount">
+    <number>19</number>
    </property>
    <property name="columnCount">
     <number>2</number>
@@ -46,54 +55,36 @@
    <attribute name="horizontalHeaderVisible">
     <bool>false</bool>
    </attribute>
-   <attribute name="verticalHeaderVisible">
+   <attribute name="horizontalHeaderDefaultSectionSize">
+    <number>100</number>
+   </attribute>
+   <attribute name="horizontalHeaderHighlightSections">
     <bool>false</bool>
    </attribute>
    <attribute name="verticalHeaderVisible">
     <bool>false</bool>
    </attribute>
-   <attribute name="horizontalHeaderVisible">
-    <bool>false</bool>
-   </attribute>
-   <row>
-    <property name="text">
-     <string>Name:</string>
-    </property>
-    <property name="textAlignment">
-     <set>AlignRight|AlignVCenter</set>
-    </property>
-   </row>
-   <row>
-    <property name="text">
-     <string>Sex:</string>
-    </property>
-    <property name="textAlignment">
-     <set>AlignRight|AlignVCenter</set>
-    </property>
-   </row>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
    <column/>
    <column/>
-   <item row="0" column="0">
-    <property name="text">
-     <string>Name:</string>
-    </property>
-    <property name="textAlignment">
-     <set>AlignRight|AlignVCenter</set>
-    </property>
-   </item>
-   <item row="0" column="1">
-    <property name="text">
-     <string/>
-    </property>
-   </item>
-   <item row="1" column="0">
-    <property name="text">
-     <string>Sex:</string>
-    </property>
-    <property name="textAlignment">
-     <set>AlignRight|AlignVCenter</set>
-    </property>
-   </item>
   </widget>
  </widget>
  <resources/>

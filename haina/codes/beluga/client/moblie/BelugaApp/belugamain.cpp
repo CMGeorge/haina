@@ -1,5 +1,8 @@
 #include "belugamain.h"
 #include "belugadetail.h"
+#include "belugamobile.h"
+
+#include <QtGui/QMessageBox>
 
 
 BelugaMain::BelugaMain(QWidget *parent, Qt::WFlags flags)
@@ -14,6 +17,7 @@ BelugaMain::BelugaMain(QWidget *parent, Qt::WFlags flags)
 	m_nCurTabIndex = 0;
 	m_nCurDefaultAction = 0;
 	m_bIsCurTopItem = FALSE;
+	m_bSelfContactLoaded = FALSE;
 
     setupUi(this);
 	m_qTabBar = new QTabBar(this);
@@ -76,6 +80,11 @@ BelugaMain::~BelugaMain()
 		delete m_pTagDb;
 		m_pTagDb = NULL;
 	}
+	if (m_pConfigDb == NULL)
+	{
+		delete m_pConfigDb;
+		m_pConfigDb = NULL;
+	}
 }
 
 BOOL BelugaMain::initBelugDb()
@@ -98,10 +107,17 @@ BOOL BelugaMain::initBelugDb()
 		printf("Create tag db instance error.\n");
 		return FALSE;
 	}
+	m_pConfigDb = new CConfigDb();
+	if (NULL == m_pConfigDb)
+	{
+		printf("Create config db instance error.\n");
+		return FALSE;
+	}
 
 	m_pContactDb->InitEntityDb("\\Program Files\\Beluga\\beluga.db");
 	m_pGroupDb->InitEntityDb("\\Program Files\\Beluga\\beluga.db");
 	m_pTagDb->InitEntityDb("\\Program Files\\Beluga\\beluga.db");
+	m_pConfigDb->InitEntityDb("\\Program Files\\Beluga\\beluga.db");
 
 	return TRUE;
 }
@@ -606,10 +622,14 @@ void BelugaMain::onItemExpanded(QTreeWidgetItem* item)
 
 	if (0 == item->childCount()) /* load contact from the group */
 	{
+		/* check config, if mobile platform contact database exists some contacts, import into beluga database */
+		loadSelfContacts();
+
+		/* load contact from the group */
 		int nGroupId = item->data(0, Qt::UserRole).toInt();
 		gint32 ret = ECode_No_Error;
 		CContactIterator * pContactIterator = NULL;
-
+		
 		if (GROUPID_DEFAULT != nGroupId)
 			ret = m_pContactDb->GetAllContactsByGroup(nGroupId, TRUE, &pContactIterator);
 		else
@@ -633,57 +653,48 @@ BOOL BelugaMain::createContactActions(int nContactType)
 	{
 		m_qActionViewC = new QAction(tr("View"), this);
 		m_qActions[CONTACT_VIEW_ACTION] = m_qActionViewC;
-		connect(m_qActionViewC, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
 		m_qMenuBar->addAction(m_qActionViewC);
 
 		m_qMenuCall = m_qMenuBar->addMenu(tr("Call"));		
 
 		m_qActionVoiceCall = new QAction(tr("Voice"), this);
 		m_qActions[CONTACT_VOICECALL_ACTION] = m_qActionVoiceCall;
-		connect(m_qActionVoiceCall, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
 		m_qMenuCall->addAction(m_qActionVoiceCall);
 
 		m_qActionIpCall = new QAction(tr("IP"), this);
 		m_qActions[CONTACT_IPCALL_ACTION] = m_qActionIpCall;
-		connect(m_qActionIpCall, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
 		m_qMenuCall->addAction(m_qActionIpCall);
 
 		m_qActionVideoCall = new QAction(tr("Video"), this);
 		m_qActions[CONTACT_VIDEOCALL_ACTION] = m_qActionVideoCall;
-		connect(m_qActionVideoCall, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
 		m_qMenuCall->addAction(m_qActionVideoCall);
 
 		m_qActionMsgC = new QAction(tr("Message"), this);
 		m_qActions[CONTACT_MSG_ACTION] = m_qActionMsgC;
-		connect(m_qActionMsgC, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
 		m_qMenuBar->addAction(m_qActionMsgC);
 
 		m_qActionNewC = new QAction(tr("New"), this);
 		m_qActions[CONTACT_NEW_ACTION] = m_qActionNewC;
-//		connect(m_qActionNewC, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
 		connect(m_qActionNewC, SIGNAL(triggered(bool)), this, SLOT(onDefaultActionTriggered(bool)));
-//		m_qMenuBar->addAction(m_qActionNewC);
+		m_qMenuBar->addAction(m_qActionNewC);
 
 		m_qActionEditC = new QAction(tr("Edit"), this);
 		m_qActions[CONTACT_EDIT_ACTION] = m_qActionEditC;
-		connect(m_qActionEditC, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
 		m_qMenuBar->addAction(m_qActionEditC);
 
 		m_qActionDelC = new QAction(tr("Delete"), this);
 		m_qActions[CONTACT_DEL_ACTION] = m_qActionDelC;
-		connect(m_qActionDelC, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
 		m_qMenuBar->addAction(m_qActionDelC);
 
 		m_qActionGroupC = new QAction(tr("Group"), this);
 		m_qActions[CONTACT_GROUP_ACTION] = m_qActionGroupC;
-		connect(m_qActionGroupC, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
 		m_qMenuBar->addAction(m_qActionGroupC);
 
 		m_qActionSyncC = new QAction(tr("Sync"), this);
-		m_qActions[CONTACT_MSG_ACTION] = m_qActionSyncC;
-		connect(m_qActionSyncC, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
+		m_qActions[CONTACT_SYNC_ACTION] = m_qActionSyncC;
 		m_qMenuBar->addAction(m_qActionSyncC);
-		
+	    
+		connect(m_qMenuBar, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
 		m_qMenuBar->setDefaultAction(m_qActionNewC);
 		m_nCurDefaultAction = CONTACT_NEW_ACTION;
 	}
@@ -691,35 +702,30 @@ BOOL BelugaMain::createContactActions(int nContactType)
 	{
 		m_qActionViewC = new QAction(tr("View"), this);
 		m_qActions[CONTACT_VIEW_ACTION] = m_qActionViewC;
-		connect(m_qActionViewC, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
 		m_qMenuBar->addAction(m_qActionViewC);
 
 		m_qActionMsgC = new QAction(tr("Message"), this);
 		m_qActions[CONTACT_MSG_ACTION] = m_qActionMsgC;
-		connect(m_qActionMsgC, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
 		m_qMenuBar->addAction(m_qActionMsgC);
 
 		m_qActionNewC = new QAction(tr("New"), this);
 		m_qActions[CONTACT_NEW_ACTION] = m_qActionNewC;
-//		connect(m_qActionNewC, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
 		connect(m_qActionNewC, SIGNAL(triggered(bool)), this, SLOT(onDefaultActionTriggered(bool)));
-//		m_qMenuBar->addAction(m_qActionNewC);
+		m_qMenuBar->addAction(m_qActionNewC);
 
 		m_qActionEditC = new QAction(tr("Edit"), this);
 		m_qActions[CONTACT_EDIT_ACTION] = m_qActionEditC;
-		connect(m_qActionEditC, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
 		m_qMenuBar->addAction(m_qActionEditC);
 
 		m_qActionDelC = new QAction(tr("Delete"), this);
 		m_qActions[CONTACT_DEL_ACTION] = m_qActionDelC;
-		connect(m_qActionDelC, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
 		m_qMenuBar->addAction(m_qActionDelC);
 
 		m_qActionGroupC = new QAction(tr("Group"), this);
 		m_qActions[CONTACT_GROUP_ACTION] = m_qActionGroupC;
-		connect(m_qActionGroupC, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
 		m_qMenuBar->addAction(m_qActionGroupC);
 
+		connect(m_qMenuBar, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
 		m_qMenuBar->setDefaultAction(m_qActionNewC);
 		m_nCurDefaultAction = CONTACT_NEW_ACTION;
 	}
@@ -736,41 +742,35 @@ BOOL BelugaMain::createGroupActions()
 	else
 		m_qActionExpandColapseG = new QAction(tr("Expand"), this);
 	m_qActions[GROUP_EXPAND_COLLAPSE_ACTION] = m_qActionExpandColapseG;
-	connect(m_qActionExpandColapseG, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
 	connect(m_qActionExpandColapseG, SIGNAL(triggered(bool)), this, SLOT(onDefaultActionTriggered(bool)));
 
 	m_qActionEditG = new QAction(tr("Edit"), this);
 	m_qActions[GROUP_EDIT_ACTION] = m_qActionEditG;
-	connect(m_qActionEditG, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
 	m_qMenuBar->addAction(m_qActionEditG);
 
 	m_qActionNewG = new QAction(tr("New"), this);
 	m_qActions[GROUP_NEW_ACTION] = m_qActionNewG;
-	connect(m_qActionNewG, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
 	m_qMenuBar->addAction(m_qActionNewG);
 
 	m_qMenuOrder = m_qMenuBar->addMenu(tr("Order"));	
 
 	m_qActionUpG = new QAction(tr("Up"), this);
 	m_qActions[GROUP_UP_ACTION] = m_qActionUpG;
-	connect(m_qActionUpG, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
 	m_qMenuOrder->addAction(m_qActionUpG);
 
 	m_qActionDownG = new QAction(tr("Down"), this);
 	m_qActions[GROUP_DOWN_ACTION] = m_qActionDownG;
-	connect(m_qActionDownG, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
 	m_qMenuOrder->addAction(m_qActionDownG);
 
 	m_qActionDelG = new QAction(tr("Delete"), this);
 	m_qActions[GROUP_DEL_ACTION] = m_qActionDelG;
-	connect(m_qActionDelG, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
 	m_qMenuBar->addAction(m_qActionDelG);
 
 	m_qActionMsgG = new QAction(tr("Message"), this);
 	m_qActions[GROUP_MSG_ACTION] = m_qActionMsgG;
-	connect(m_qActionMsgG, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
 	m_qMenuBar->addAction(m_qActionMsgG);
 
+	connect(m_qMenuBar, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
 	m_qMenuBar->setDefaultAction(m_qActionExpandColapseG);
 	m_nCurDefaultAction = GROUP_EXPAND_COLLAPSE_ACTION;
 
@@ -992,4 +992,46 @@ QTreeWidget * BelugaMain::getGroupTree(int nTabIndex)
 int BelugaMain::getCurrentTab()
 {
 	return m_nCurTabIndex;
+}
+
+BOOL BelugaMain::loadSelfContacts()
+{
+	gint32 ret; 
+	CConfig * pConfig = NULL;
+	
+	if (m_bSelfContactLoaded)
+		return TRUE;
+	
+	QMessageBox msg(QMessageBox::Question, "", tr("Load the native contacts ?"), QMessageBox::Yes|QMessageBox::No, this);
+	if (QMessageBox::No == msg.exec())
+	{
+		return FALSE;
+	}
+
+	ret = m_pConfigDb->GetConfigByName("loadselfcontact", &pConfig);
+	if (ret != ECode_No_Error)
+	{
+		printf("get config failed!");
+		return FALSE;
+	}
+	
+	GString * value = NULL;
+	pConfig->GetFieldValue(ConfigField_Value, &value);
+	if (atoi(value->str) == 0) /*  not loaded config value */
+	{
+		BelugaWinMobile::Contact * pContact = new BelugaWinMobile::Contact();
+		pContact->importContacts(m_pContactDb);
+		delete pContact;
+
+		/* set loaded config */
+#if 0
+		g_string_assign(value, "1");
+		pConfig->SetFieldValue(ConfigField_Value, &value);
+		m_pConfigDb->UpdateEntity(pConfig);
+#endif
+		g_string_free(value, TRUE);
+		m_bSelfContactLoaded = TRUE;
+	}
+
+	return TRUE;
 }

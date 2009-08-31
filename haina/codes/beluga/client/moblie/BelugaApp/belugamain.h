@@ -22,6 +22,8 @@
 #include "CContact.h"
 #include "CGroup.h"
 #include "CTag.h"
+#include "CConfigDb.h"
+#include "CConfig.h"
 #include "glib.h"
 
 
@@ -89,6 +91,7 @@ private:
 	BOOL restoreMenuBar(int nTabId);
 	BOOL searchContacts(const char* text);
 	QTreeWidget * createTreeWidget(const char* name);
+	BOOL loadSelfContacts();
 
 private slots:
 	void onCurrentChanged(int nIndex);
@@ -105,11 +108,13 @@ private:
 	CContactDb	* m_pContactDb;
 	CGroupDb	* m_pGroupDb;
 	CTagDb		* m_pTagDb;
+	CConfigDb   * m_pConfigDb;
 	
 	QString		  m_qCurItemText;
 	int			  m_nCurTabIndex;
 	int			  m_nCurDefaultAction;
 	BOOL		  m_bIsCurTopItem; /* current item is top item which was group */
+	BOOL		  m_bSelfContactLoaded;
 	
 	QList<QWidget*> m_qWidgetPanelList;
 	QList<QTreeWidget*> m_qTreeList;
