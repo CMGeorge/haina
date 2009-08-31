@@ -41,7 +41,7 @@
 				Name="VCCLCompilerTool"
 				ExecutionBucket="7"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\src\include;..\..\src\cpp;&quot;..\..\..\3rdParty\glib-2.12.12\glib&quot;"
+				AdditionalIncludeDirectories="..\..\src\include;..\..\src\cpp;&quot;..\..\..\3rdParty\glib-2.12.12&quot;;&quot;..\..\..\3rdParty\glib-2.12.12\glib&quot;"
 				PreprocessorDefinitions="_DEBUG;_WIN32_WCE=$(CEVER);UNDER_CE;$(PLATFORMDEFINES);WINCE;DEBUG;_WINDOWS;_USRDLL;DLL_EXPORTS;$(ARCHFAM);$(_ARCHFAM_);_UNICODE;UNICODE;INITGUID"
 				MinimalRebuild="true"
 				RuntimeLibrary="1"
