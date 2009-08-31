@@ -41,7 +41,7 @@
 				Name="VCCLCompilerTool"
 				ExecutionBucket="7"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\src\include;..\..\src\cpp"
+				AdditionalIncludeDirectories="..\..\src\include;..\..\src\cpp;&quot;..\..\..\3rdParty\glib-2.12.12\glib&quot;"
 				PreprocessorDefinitions="_DEBUG;_WIN32_WCE=$(CEVER);UNDER_CE;$(PLATFORMDEFINES);WINCE;DEBUG;_WINDOWS;_USRDLL;DLL_EXPORTS;$(ARCHFAM);$(_ARCHFAM_);_UNICODE;UNICODE;INITGUID"
 				MinimalRebuild="true"
 				RuntimeLibrary="1"
@@ -64,7 +64,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions=" /subsystem:windowsce,5.02"
-				AdditionalDependencies="glib.lib iconv.lib"
+				AdditionalDependencies="..\..\..\TargetLib\glib.lib ..\..\..\TargetLib\iconv.lib"
 				OutputFile="..\..\..\TargetLib\BelugaContact.dll"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="..\..\..\TargetLib\BelugaContact.lib"
