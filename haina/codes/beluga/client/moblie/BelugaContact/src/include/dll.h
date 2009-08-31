@@ -16,16 +16,16 @@
 #include <glib.h>
 
 // This class is exported from the dll.dll
-class DLL_API Cdll {
+class DLL_API CContactDll {
 public:
-	Cdll(void);
+	CContactDll(void);
 	// TODO: add your methods here.
 	//设备上的总联系人数量
 	gint totalCount;
 	//初始化并设置当前实例对象中的总联系人数量
 	gboolean init(void);
 	// 读取设备上存储的联系人
-	gboolean getContact(GList *pGListContact, guint offset, guint len) const;
+	gboolean getContact(GList **pGListContact, guint offset, guint len) const;
 };
 
 extern DLL_API int ndll;

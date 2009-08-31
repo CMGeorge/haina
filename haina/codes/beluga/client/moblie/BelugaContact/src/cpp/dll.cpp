@@ -39,7 +39,7 @@ DLL_API int fndll(void)
 
 // This is the constructor of a class that has been exported.
 // see dll.h for the class definition
-Cdll::Cdll()
+CContactDll::CContactDll()
 { 
 	this->totalCount=0;
 	return; 
@@ -51,7 +51,7 @@ Cdll::Cdll()
 * Description:读取设备上存储的联系人
 * Return gboolean:方法执行是否成功
 */
-gboolean Cdll::init(void)
+gboolean CContactDll::init(void)
 {	
 	this->totalCount=0;
 	//var
@@ -101,12 +101,12 @@ gboolean Cdll::init(void)
 * Author:JackyHo
 * Date:2009.8.30
 * Description:读取设备上存储的联系人，获取到的联系人放在pGListContact中
-* Param GList *pGListContact:获取到的联系人放在该对象中
+* Param GList *pGListContact:获取到的联系人放在该对象中，类型为IContact（在mobilede的sdk目录下Pimstore.h中）
 * Param guintOffset:获取联系人的偏移量，从0开始
 * Param guintLen:从偏移量guintOffset开始读取联系人数量
 * Return gboolean:方法执行是否成功
 */
-gboolean Cdll::getContact(GList *pGListContact, guint guintOffset, guint guintLen) const
+gboolean CContactDll::getContact(GList **pGListContact, guint guintOffset, guint guintLen) const
 {
 	if(guintOffset< 0||guintOffset< 0)
 	{
@@ -167,7 +167,7 @@ gboolean Cdll::getContact(GList *pGListContact, guint guintOffset, guint guintLe
 		hr = pItems->Item(i+1,(IDispatch **)&pContact);
 		if (FAILED(hr)) return FALSE;
 		//储存联系人对象
-		pGListContact = g_list_append(pGListContact, (gpointer)pContact);
+		*pGListContact = g_list_append(*pGListContact, (gpointer)pContact);
 		//pContact->Release();		
 	}
 	// Release objects.
