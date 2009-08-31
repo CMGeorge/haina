@@ -17,7 +17,7 @@
 class CPhoneContact : public CContact
 {
 public:
-    IMPORT_C CPhoneContact(CEntityDb * pEntityDb);
+    IMPORT_C CPhoneContact(CEntityDb * pEntityDb, gboolean init = TRUE);
     IMPORT_C ~CPhoneContact();
     
     IMPORT_C gint32 GetAllPhones(GHashTable ** hPhones);

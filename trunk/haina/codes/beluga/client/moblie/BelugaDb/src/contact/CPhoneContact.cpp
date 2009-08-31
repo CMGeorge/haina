@@ -92,13 +92,19 @@ static void copy_address(gpointer data, gpointer user_data)
 	}
 
 
-EXPORT_C CPhoneContact::CPhoneContact(CEntityDb * pEntityDb) :
+EXPORT_C CPhoneContact::CPhoneContact(CEntityDb * pEntityDb, gboolean init) :
     CContact(pEntityDb)
 	{
 	m_hCommInfoHashTable = NULL;
 	m_aAddressArray = NULL;
 	memset(m_aHashKey, 0, sizeof(m_aHashKey));
 	pHashKey = m_aHashKey;
+
+	if (init)
+		{
+		m_hCommInfoHashTable = g_hash_table_new_full(g_int_hash, g_int_equal, NULL, g_free);
+		m_aAddressArray = g_ptr_array_new();
+		}
 	}
 
 EXPORT_C CPhoneContact::~CPhoneContact()

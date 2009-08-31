@@ -30,8 +30,9 @@ public:
     IMPORT_C gint32 DeleteEntity(guint32 nEntityId);
     IMPORT_C gint32 UpdateEntity(CDbEntity * pEntity);
     
-    IMPORT_C gint32 GetConfigByName(gchar * configName, CConfig* pConfig);
-    
+    IMPORT_C gint32 GetConfigByName(gchar * configName, CConfig** pConfig);
+    IMPORT_C gint32 GetConfigByKey(guint32 configKey, CConfig** pConfig);
+
     IMPORT_C gint32 DeleteAllConfigs();
     
     IMPORT_C gint32 GetAllConfigs(CConfigIterator ** ppConfigIterator); 

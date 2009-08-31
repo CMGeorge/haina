@@ -197,7 +197,7 @@ EXPORT_C gint32 CConfigDb::DeleteAllConfigs()
 	return 0;
 	}
  
-EXPORT_C gint32 CConfigDb::GetConfigByName(gchar * configName, CConfig* pConfig)
+EXPORT_C gint32 CConfigDb::GetConfigByName(gchar * configName, CConfig** pConfig)
 	{
 	char sql[256] = {0};
 	OpenDatabase();
@@ -210,19 +210,47 @@ EXPORT_C gint32 CConfigDb::GetConfigByName(gchar * configName, CConfig* pConfig)
 		return ERROR(ESide_Client, EModule_Db, ECode_Not_Exist);
 		}
 	
-	pConfig = new CConfig(this);
-	if (NULL == pConfig)
+	*pConfig = new CConfig(this);
+	if (NULL == *pConfig)
 		{
 		CloseDatabase();
 		return ERROR(ESide_Client, EModule_Db, ECode_No_Memory);
 		}
 	
 	for (int i=0; i<query.numFields(); i++)
-		pConfig->SetFieldValue(i, g_string_new(query.fieldValue(i)));
+		(*pConfig)->SetFieldValue(i, g_string_new(query.fieldValue(i)));
 		
 	CloseDatabase();
 	
 	return 0;
+	}
+
+EXPORT_C gint32 CConfigDb::GetConfigByKey(guint32 configKey, CConfig** pConfig)
+	{
+		char sql[256] = {0};
+		OpenDatabase();
+
+		sprintf(sql, "select * from config where cfg_key = %d;", configKey);
+		CppSQLite3Query query = m_dbBeluga.execQuery(sql);	
+		if (query.eof())
+		{
+			CloseDatabase();
+			return ERROR(ESide_Client, EModule_Db, ECode_Not_Exist);
+		}
+
+		*pConfig = new CConfig(this);
+		if (NULL == *pConfig)
+		{
+			CloseDatabase();
+			return ERROR(ESide_Client, EModule_Db, ECode_No_Memory);
+		}
+
+		for (int i=0; i<query.numFields(); i++)
+			(*pConfig)->SetFieldValue(i, g_string_new(query.fieldValue(i)));
+
+		CloseDatabase();
+
+		return 0;
 	}
 
 EXPORT_C gint32 CConfigDb::GetConfigsTotality(guint32 *totality)

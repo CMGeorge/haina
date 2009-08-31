@@ -30,7 +30,7 @@ EXPORT_C gint32 CContactIterator::Current(CDbEntity ** ppEntity)
 	
 	/* fill contact table fields */
 	if (ContactType_Phone == contactType)
-		*ppEntity = new CPhoneContact(m_pEntityDb);
+		*ppEntity = new CPhoneContact(m_pEntityDb, FALSE);
 	else	
 		*ppEntity = new CIMContact(m_pEntityDb);
 	if (NULL == *ppEntity)
