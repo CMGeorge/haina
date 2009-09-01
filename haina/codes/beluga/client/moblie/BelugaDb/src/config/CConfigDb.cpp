@@ -154,7 +154,7 @@ EXPORT_C gint32 CConfigDb::UpdateEntity(CDbEntity * pEntity)
 			if (i != ConfigField_EndFlag - 1)
 				strcat(sql, ", ");
 			}
-		strcat(sql, "where cid = ?;");
+		strcat(sql, " where cid = ?;");
 		
 		CppSQLite3Statement statement = m_dbBeluga.compileStatement(sql);
 		for (i=1; i<ConfigField_EndFlag; i++)
