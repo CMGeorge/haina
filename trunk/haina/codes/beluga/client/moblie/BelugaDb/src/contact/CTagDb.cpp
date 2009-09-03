@@ -157,6 +157,16 @@ EXPORT_C gint32 CTagDb::UpdateEntity(CDbEntity * pEntity)
 		strcat(sql, "where tid = ?;");
 		
 		CppSQLite3Statement statement = m_dbBeluga.compileStatement(sql);
+		
+		GString * idValue = NULL;
+		if (ECode_No_Error == pEntity->GetFieldValue(0, &idValue))
+		{
+			statement.bind(TagField_EndFlag, idValue->str);
+			g_string_free(idValue, TRUE);
+		}
+		else
+			statement.bindNull(TagField_EndFlag);
+
 		for (i=1; i<TagField_EndFlag; i++)
 			{
 			GString * fieldValue = NULL;

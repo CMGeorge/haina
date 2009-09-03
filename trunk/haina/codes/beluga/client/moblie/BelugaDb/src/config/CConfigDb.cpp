@@ -105,7 +105,7 @@ EXPORT_C gint32 CConfigDb::SaveEntity(CDbEntity * pEntity)
 				g_string_free(fieldValue, TRUE);
 				}
 			else
-				statement.bindNull(i);
+				statement.bindNull(i); 
 			}
 		statement.execDML();
 		statement.reset();
@@ -157,6 +157,16 @@ EXPORT_C gint32 CConfigDb::UpdateEntity(CDbEntity * pEntity)
 		strcat(sql, " where cid = ?;");
 		
 		CppSQLite3Statement statement = m_dbBeluga.compileStatement(sql);
+
+		GString * idValue = NULL;
+		if (ECode_No_Error == pEntity->GetFieldValue(0, &idValue))
+			{
+			statement.bind(ConfigField_EndFlag, idValue->str);
+			g_string_free(idValue, TRUE);
+			}
+		else
+			statement.bindNull(ConfigField_EndFlag);
+
 		for (i=1; i<ConfigField_EndFlag; i++)
 			{
 			GString * fieldValue = NULL;

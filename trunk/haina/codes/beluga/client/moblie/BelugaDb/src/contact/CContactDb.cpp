@@ -246,6 +246,16 @@ EXPORT_C gint32 CContactDb::UpdateEntity(CDbEntity * pEntity)
 		strcat(sql, "where cid = ?;");
 		
 		CppSQLite3Statement statement = m_dbBeluga.compileStatement(sql);
+
+		GString * idValue = NULL;
+		if (ECode_No_Error == pEntity->GetFieldValue(0, &idValue))
+		{
+			statement.bind(ContactField_EndFlag, idValue->str);
+			g_string_free(idValue, TRUE);
+		}
+		else
+			statement.bindNull(ContactField_EndFlag);
+
 		for (i=1; i<ContactField_EndFlag; i++)
 			{
 			GString * fieldValue = NULL;
