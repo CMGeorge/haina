@@ -158,6 +158,16 @@ EXPORT_C gint32 CGroupDb::UpdateEntity(CDbEntity * pEntity)
 		strcat(sql, "where gid = ?;");
 		
 		CppSQLite3Statement statement = m_dbBeluga.compileStatement(sql);
+
+		GString * idValue = NULL;
+		if (ECode_No_Error == pEntity->GetFieldValue(0, &idValue))
+		{
+			statement.bind(GroupField_EndFlag, idValue->str);
+			g_string_free(idValue, TRUE);
+		}
+		else
+			statement.bindNull(GroupField_EndFlag);
+
 		for (i=1; i<GroupField_EndFlag; i++)
 			{
 			GString * fieldValue = NULL;
