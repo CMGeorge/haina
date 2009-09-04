@@ -13,78 +13,31 @@
   <property name="windowTitle">
    <string>belugadetail</string>
   </property>
-  <widget class="QTableWidget" name="contacttable">
+  <widget class="QScrollArea" name="detailarea">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
      <width>240</width>
-     <height>320</height>
+     <height>270</height>
     </rect>
-   </property>
-   <property name="frameShape">
-    <enum>QFrame::NoFrame</enum>
-   </property>
-   <property name="frameShadow">
-    <enum>QFrame::Plain</enum>
-   </property>
-   <property name="lineWidth">
-    <number>0</number>
-   </property>
-   <property name="midLineWidth">
-    <number>0</number>
    </property>
    <property name="horizontalScrollBarPolicy">
     <enum>Qt::ScrollBarAlwaysOff</enum>
    </property>
-   <property name="showGrid">
+   <property name="widgetResizable">
     <bool>false</bool>
    </property>
-   <property name="gridStyle">
-    <enum>Qt::SolidLine</enum>
-   </property>
-   <property name="cornerButtonEnabled">
-    <bool>false</bool>
-   </property>
-   <property name="rowCount">
-    <number>19</number>
-   </property>
-   <property name="columnCount">
-    <number>2</number>
-   </property>
-   <attribute name="horizontalHeaderVisible">
-    <bool>false</bool>
-   </attribute>
-   <attribute name="horizontalHeaderDefaultSectionSize">
-    <number>100</number>
-   </attribute>
-   <attribute name="horizontalHeaderHighlightSections">
-    <bool>false</bool>
-   </attribute>
-   <attribute name="verticalHeaderVisible">
-    <bool>false</bool>
-   </attribute>
-   <row/>
-   <row/>
-   <row/>
-   <row/>
-   <row/>
-   <row/>
-   <row/>
-   <row/>
-   <row/>
-   <row/>
-   <row/>
-   <row/>
-   <row/>
-   <row/>
-   <row/>
-   <row/>
-   <row/>
-   <row/>
-   <row/>
-   <column/>
-   <column/>
+   <widget class="QWidget" name="scrollAreaWidgetContents">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>238</width>
+      <height>268</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

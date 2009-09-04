@@ -3,6 +3,8 @@
 #include "belugamobile.h"
 
 #include <QtGui/QMessageBox>
+#include <QtGui/QProgressDialog>
+#include "Pimstore.h"
 
 
 BelugaMain::BelugaMain(QWidget *parent, Qt::WFlags flags)
@@ -41,7 +43,7 @@ BelugaMain::BelugaMain(QWidget *parent, Qt::WFlags flags)
 	connect(m_qActionCloseSearch, SIGNAL(triggered(bool)), this, SLOT(onDefaultActionTriggered(bool)));
 
 	/* create menu */ 
-	m_qMenuBar = new QMenuBar();
+	m_qMenuBar = new QMenuBar(this);
 	createGroupActions();
 
 	/* init db engine and load main ui data */
@@ -404,7 +406,7 @@ QTreeWidget * BelugaMain::createTreeWidget(const char* name)
 
 	QTreeWidget * pTagList = NULL;
 	pTagList = new QTreeWidget(pWidget);
-	pTagList->setGeometry(QRect(0, 0, 240, 240));
+	pTagList->setGeometry(QRect(0, 0, 240, 222));
 	pTagList->header()->setVisible(FALSE);
 	pTagList->setObjectName(tr(name));
 	pTagList->setColumnCount(3);
@@ -1001,12 +1003,6 @@ BOOL BelugaMain::loadSelfContacts()
 	
 	if (m_bSelfContactLoaded)
 		return TRUE;
-	
-	QMessageBox msg(QMessageBox::Question, "", tr("Load the native contacts ?"), QMessageBox::Yes|QMessageBox::No, this);
-	if (QMessageBox::No == msg.exec())
-	{
-		return FALSE;
-	}
 
 	ret = m_pConfigDb->GetConfigByName("loadselfcontact", &pConfig);
 	if (ret != ECode_No_Error)
@@ -1019,19 +1015,178 @@ BOOL BelugaMain::loadSelfContacts()
 	pConfig->GetFieldValue(ConfigField_Value, &value);
 	if (atoi(value->str) == 0) /*  not loaded config value */
 	{
-		BelugaWinMobile::Contact * pContact = new BelugaWinMobile::Contact();
-		pContact->importContacts(m_pContactDb);
-		delete pContact;
+		QMessageBox msg(QMessageBox::Question, "", tr("Load the native contacts?"), QMessageBox::Yes|QMessageBox::No, this);
+		msg.setDefaultButton(QMessageBox::Yes);
+		if (QMessageBox::No == msg.exec())
+		{
+			delete pConfig;
+			return FALSE;
+		}
+
+		importContacts();
 
 		/* set loaded config */
-#if 0
 		g_string_assign(value, "1");
-		pConfig->SetFieldValue(ConfigField_Value, &value);
+		pConfig->SetFieldValue(ConfigField_Value, value);
 		m_pConfigDb->UpdateEntity(pConfig);
-#endif
 		g_string_free(value, TRUE);
 		m_bSelfContactLoaded = TRUE;
 	}
+
+	return TRUE;
+}
+
+gboolean BelugaMain::importContacts()
+{
+	GList * pContactList = NULL;
+	GList * pCurContact = NULL;
+	GList * pLastContact = NULL;
+	IContact * pIContact = NULL;
+	int i = 0;
+
+	BelugaWinMobile::Contact * pContact = new BelugaWinMobile::Contact();
+	pContact->getContacts(&pContactList, 0, pContact->getContactCount());
+	pCurContact = g_list_first(pContactList);
+	pLastContact = g_list_last(pContactList);
+
+	QProgressDialog progress(tr("Importing contacts..."), tr("Cancel"), 0, pContact->getContactCount(), this);
+	progress.setMinimumDuration(1000);
+	progress.setWindowModality(Qt::WindowModal);
+	do 
+	{
+		if (pCurContact == NULL)
+			break;
+
+		progress.setValue(i++);
+		if (progress.wasCanceled())
+			break;
+
+		CPhoneContact* pContact = new CPhoneContact(m_pContactDb);
+
+		/* set contact type */
+		GString * value = g_string_new("1");  /* 1: ContactType_Phone */
+		pContact->SetFieldValue(ContactField_Type, value);
+		g_string_free(value, TRUE);
+
+		pIContact = (IContact*)(pCurContact->data);
+		value = g_string_new("");
+
+		BSTR bstr;
+		const wchar_t* wstr;
+		char* cstr;
+
+		/* set contact name */
+		pIContact->get_FirstName(&bstr);
+		wstr = (const wchar_t*)bstr;
+		cstr = (char*)malloc(2 * wcslen(wstr));
+		wcstombs(cstr, wstr, wcslen(wstr));
+		g_string_sprintf(value, "%s", cstr);
+		SysFreeString(bstr);
+		free(cstr);
+
+		pIContact->get_MiddleName(&bstr);
+		wstr = (const wchar_t*)bstr;
+		cstr = (char*)malloc(2 * wcslen(wstr));
+		wcstombs(cstr, wstr, wcslen(wstr));
+		g_string_sprintfa(value, "%s", cstr);
+		SysFreeString(bstr);
+		free(cstr);
+
+		pIContact->get_LastName(&bstr);
+		wstr = (const wchar_t*)bstr;
+		cstr = (char*)malloc(2 * wcslen(wstr));
+		wcstombs(cstr, wstr, wcslen(wstr));
+		g_string_sprintfa(value, " %s", cstr);
+		SysFreeString(bstr);
+		free(cstr);
+
+		pContact->SetFieldValue(ContactField_Name, value);
+		g_string_free(value, TRUE);
+
+		/* set contact sex, mobile contact has not sex field, default set male */
+		value = g_string_new("0"); /* 0: male */
+		pContact->SetFieldValue(ContactField_Sex, value);
+		g_string_free(value, TRUE);
+
+		/* name spell */
+		/* nickname */
+		/* nickname spell */
+
+		/*
+		ContactField_Photo,
+		ContactField_Signature,
+		ContactField_PhonePref,
+		ContactField_EmailPref,
+		ContactField_IMPref,
+		ContactField_Birthday,
+		ContactField_Org,
+		ContactField_Url,
+		ContactField_Ring,
+		ContactField_Title,
+		ContactField_Note,
+		*/
+
+		/* set mobile phone */ 
+		pIContact->get_MobileTelephoneNumber(&bstr);
+		wstr = (const wchar_t*)bstr;
+		cstr = (char*)malloc(2 * wcslen(wstr));
+		wcstombs(cstr, wstr, wcslen(wstr));
+		value = g_string_new(cstr);
+		SysFreeString(bstr);
+		free(cstr);
+
+		pContact->SetFieldValue(ContactField_PhonePref, value);
+		g_string_free(value, TRUE);
+
+		/* set work email */
+		pIContact->get_Email1Address(&bstr);
+		wstr = (const wchar_t*)bstr;
+		cstr = (char*)malloc(2 * wcslen(wstr));
+		wcstombs(cstr, wstr, wcslen(wstr));
+		value = g_string_new(cstr);
+		SysFreeString(bstr);
+		free(cstr);
+
+		pContact->SetFieldValue(ContactField_EmailPref, value);
+		g_string_free(value, TRUE);
+
+		/*
+		imtable = NULL;
+		addrarray = NULL;
+		guint32 commkey[2] = {0x45,0x46};
+
+		imtable = g_hash_table_new_full(g_int_hash, g_int_equal, NULL, g_free);
+		g_hash_table_insert(imtable, &commkey[0], g_strdup("82010953"));  //QQ
+		g_hash_table_insert(imtable, &commkey[1], g_strdup("sherry.co@163.com")); //MSN
+
+		addrarray = g_ptr_array_new();
+		stAddress * pAddr = (stAddress*)g_malloc0(sizeof(stAddress));
+		pAddr->aid = 1;
+		pAddr->atype = CommType_Address | CommType_Home;
+		g_stpcpy(pAddr->block, "1508号");  // 中文可能需要先做utf8转换
+		g_stpcpy(pAddr->street, "梅家浜路");
+		g_stpcpy(pAddr->district, "松江");
+		g_stpcpy(pAddr->city, "上海");
+		g_stpcpy(pAddr->state, "上海");
+		g_stpcpy(pAddr->country, "中国");
+		g_stpcpy(pAddr->postcode, "200233");
+		g_ptr_array_add(addrarray, pAddr);
+
+		pContact->SetIMs(imtable);
+		pContact->SetAddresses(addrarray);
+
+		g_hash_table_destroy(imtable);
+		freeAddressArray(addrarray);
+		*/
+		// 保存到数据库
+		m_pContactDb->SaveEntity((CDbEntity*)pContact);
+		pIContact->Release();
+
+		pCurContact = g_list_next(pCurContact);
+	} while(pCurContact != pLastContact);
+	
+	progress.setValue(pContact->getContactCount());
+	delete pContact;
 
 	return TRUE;
 }
