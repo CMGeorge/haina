@@ -12,5 +12,7 @@
         <file>Resources/images/search.png</file>
         <file>Resources/images/weather.png</file>
         <file>Resources/images/recent.png</file>
+        <file>Resources/images/female.png</file>
+        <file>Resources/images/male.png</file>
     </qresource>
 </RCC>

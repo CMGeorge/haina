@@ -12,6 +12,9 @@
 #include <QtGui/QDateEdit>
 #include <QtGui/QPlainTextEdit>
 #include <QtGui/QLabel>
+#include <QtGui/QLayout>
+#include <QtGui/QVBoxLayout>
+#include <QtGui/QHBoxLayout>
 #include "ui_belugadetail.h"
 
 
@@ -50,8 +53,11 @@ public:
 
 private:
 	BOOL initializeFields();
+	void setWidgetRect();
 
 private slots:
+	void onActionTriggered(QAction* action);
+	void onDefaultActionTriggered(bool checked = false);
 
 private:
 	QList<QLabel*> m_qLeftWidgets;

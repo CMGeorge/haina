@@ -92,6 +92,7 @@ private:
 	BOOL searchContacts(const char* text);
 	QTreeWidget * createTreeWidget(const char* name);
 	BOOL loadSelfContacts();
+	gboolean importContacts();
 
 private slots:
 	void onCurrentChanged(int nIndex);

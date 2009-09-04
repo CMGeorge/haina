@@ -12,19 +12,21 @@
 #include "CContact.h"
 #include "glib.h"
 
+
 namespace BelugaWinMobile
 {
 	/* mobile platform contact */
-	class Contact {
-	public:
+	class Contact  {
+		public:
 		/* read contact read contact from mobile platform */
-		Contact();
-		~Contact();
-		
-		gboolean importContacts(CContactDb * pContactDb);
+			Contact();
+			~Contact();
+			
+			guint32 getContactCount();
+			gboolean getContacts(GList** pContacts, guint32 offset, guint32 limit);
 
-	private:
-		CContactDll * m_pContact;
+		private:
+			CContactDll * m_pContact;
 	};
 	
 	class SMS {};
