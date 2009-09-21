@@ -98,7 +98,7 @@ EXPORT_C gint32 CContactDb::GetEntityById(guint32 nId, CDbEntity** ppEntity)
 		}
 	
 	if (ContactType_Phone == query.getIntField(ContactField_Type))
-		*ppEntity = new CPhoneContact(this);
+		*ppEntity = new CPhoneContact(this, FALSE);
 	else
 		*ppEntity = new CIMContact(this);
 	if (NULL == *ppEntity)

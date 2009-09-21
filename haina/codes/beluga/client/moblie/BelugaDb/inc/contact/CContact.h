@@ -30,7 +30,8 @@ enum ContactField
     ContactField_Birthday,
     ContactField_Org,
     ContactField_Url,
-    ContactField_Ring,
+    ContactField_CallRing,
+	ContactField_MsgRing,
     ContactField_Title,
     ContactField_Note,
     ContactField_EndFlag
