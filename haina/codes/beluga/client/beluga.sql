@@ -22,7 +22,8 @@ create table contact(
     birthday varchar(10),
     org varchar(64),
     url varchar(256),
-    ring varchar(256),
+    call_ring varchar(256),
+    msg_ring varchar(256),
     title varchar(256),
     note varchar(512));
 GO
