@@ -14,5 +14,25 @@
         <file>Resources/images/recent.png</file>
         <file>Resources/images/female.png</file>
         <file>Resources/images/male.png</file>
+        <file>Resources/images/photo_contact_1.png</file>
+        <file>Resources/images/photo_contact_2.png</file>
+        <file>Resources/jobs/job_1.png</file>
+        <file>Resources/jobs/job_2.png</file>
+        <file>Resources/jobs/job_3.png</file>
+        <file>Resources/jobs/job_4.png</file>
+        <file>Resources/jobs/job_5.png</file>
+        <file>Resources/jobs/job_6.png</file>
+        <file>Resources/jobs/job_7.png</file>
+        <file>Resources/jobs/job_8.png</file>
+        <file>Resources/jobs/job_9.png</file>
+        <file>Resources/jobs/job_10.png</file>
+        <file>Resources/jobs/job_11.png</file>
+        <file>Resources/jobs/job_12.png</file>
+        <file>Resources/jobs/job_13.png</file>
+        <file>Resources/jobs/job_14.png</file>
+        <file>Resources/jobs/job_15.png</file>
+        <file>Resources/jobs/job_16.png</file>
+        <file>Resources/images/default_call_ring.png</file>
+        <file>Resources/images/default_msg_ring.png</file>
     </qresource>
 </RCC>

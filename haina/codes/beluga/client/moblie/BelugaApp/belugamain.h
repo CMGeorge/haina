@@ -11,6 +11,7 @@
 #include <QtGui/QAction>
 #include <QtGui/QTabBar>
 #include <QtCore/QList>
+#include <QtGui/QPushButton>
 #include "ui_belugamain.h"
 
 #include "CContactDb.h"
@@ -78,6 +79,7 @@ public:
 	CGroupDb * getGroupDb();
 	QTreeWidget * getGroupTree(int nTabIndex);
 	int getCurrentTab();
+	int updateGroupView(int nGroupId);
 
 private:
 	BOOL initBelugDb();
@@ -99,6 +101,7 @@ private slots:
 	void onCurrentItemChanged(QTreeWidgetItem* current, QTreeWidgetItem* previous);
 	void onItemExpanded(QTreeWidgetItem* item);
 	void onItemClicked(QTreeWidgetItem* item, int column);
+	void onItemDoubleClicked(QTreeWidgetItem* item, int column);
 	void onItemCollapsed(QTreeWidgetItem* item);
 	void onActionTriggered(QAction* action);
 	void onDefaultActionTriggered(bool checked = false);
