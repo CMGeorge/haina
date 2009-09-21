@@ -1276,6 +1276,9 @@ int BelugaMain::updateGroupView(int nGroupId)
 
 void BelugaMain::onItemDoubleClicked(QTreeWidgetItem* item, int column)
 {
+	if (-1 != m_qCurTree->indexOfTopLevelItem(item))   /* group item */
+		return;
+
 	if (m_nCurTabIndex == 0) /* phone contact */
 	{
 		int nContactId = item->data(0, Qt::UserRole).toInt();
