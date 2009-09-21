@@ -1,10 +1,12 @@
 #include "belugamain.h"
 #include "belugadetail.h"
 #include "belugamobile.h"
+#include "belugaview.h"
 
 #include <QtGui/QMessageBox>
 #include <QtGui/QProgressDialog>
 #include "Pimstore.h"
+#include "hz2py.h"
 
 
 BelugaMain::BelugaMain(QWidget *parent, Qt::WFlags flags)
@@ -58,7 +60,8 @@ BelugaMain::BelugaMain(QWidget *parent, Qt::WFlags flags)
 		return;
 	}
 	
-	contactlogo->setPixmap(QPixmap(":/BelugaApp/Resources/images/contact_default.png"));
+	contactphoto->setIconSize(QSize(42, 42));
+	contactphoto->setIcon(QIcon(":/BelugaApp/Resources/images/contact_default.png"));
 	m_qTabBar->setCurrentIndex(m_nCurTabIndex);
 	m_qTabBar->setTabText(m_nCurTabIndex, m_qTabBar->tabData(m_nCurTabIndex).toString());
 	m_qTabBar->setVisible(TRUE);
@@ -145,7 +148,7 @@ BOOL BelugaMain::loadContacts(QTreeWidget* tree, QTreeWidgetItem* item, CContact
 		/* set contact id as item data */
 		GString * ContactId = NULL;
 		pContact->GetFieldValue(ContactField_Id, &ContactId);
-		qContactItem->setData(0, Qt::UserRole, QVariant(ContactId->str)); 
+		qContactItem->setData(0, Qt::UserRole, QVariant(ContactId->str));
 		g_string_free(ContactId, TRUE);
 
 		/* set contact Logo */
@@ -153,9 +156,15 @@ BOOL BelugaMain::loadContacts(QTreeWidget* tree, QTreeWidgetItem* item, CContact
 		pContact->GetFieldValue(ContactField_Photo, &contactLogo);
 		QIcon qLogo;
 		if (contactLogo->len != 0)
+		{
 			qLogo.addFile(contactLogo->str);
+			qContactItem->setData(3, Qt::UserRole, QVariant(QString(contactLogo->str)));
+		}
 		else
+		{
 			qLogo.addFile(":/BelugaApp/Resources/images/contact_default.png");
+			qContactItem->setData(3, Qt::UserRole, QVariant(QString(":/BelugaApp/Resources/images/contact_default.png")));
+		}
 		qContactItem->setIcon(0, qLogo);
 		g_string_free(contactLogo, TRUE);			
 
@@ -409,10 +418,11 @@ QTreeWidget * BelugaMain::createTreeWidget(const char* name)
 	pTagList->setGeometry(QRect(0, 0, 240, 222));
 	pTagList->header()->setVisible(FALSE);
 	pTagList->setObjectName(tr(name));
-	pTagList->setColumnCount(3);
+	pTagList->setColumnCount(4);
 	pTagList->setColumnWidth(0, 150);
 	pTagList->setColumnWidth(1, 50);
-	pTagList->setColumnWidth(2, 5);
+	pTagList->setColumnWidth(2, 3);
+	pTagList->setColumnWidth(3, 2);
 	pTagList->setUniformRowHeights(FALSE);
 	pTagList->setIndentation(1);
 	pTagList->setWordWrap(TRUE);
@@ -469,6 +479,7 @@ BOOL BelugaMain::addItemOperation(QTreeWidget * tree)
 	connect(tree, SIGNAL(itemExpanded(QTreeWidgetItem*)), this, SLOT(onItemExpanded(QTreeWidgetItem*)));
 	connect(tree, SIGNAL(itemCollapsed(QTreeWidgetItem*)), this, SLOT(onItemCollapsed(QTreeWidgetItem*)));
 	connect(tree, SIGNAL(itemClicked(QTreeWidgetItem*, int)), this, SLOT(onItemClicked(QTreeWidgetItem*, int)));
+	connect(tree, SIGNAL(itemDoubleClicked(QTreeWidgetItem*, int)), this, SLOT(onItemDoubleClicked(QTreeWidgetItem*, int)));
 
 	return TRUE;
 }
@@ -507,7 +518,8 @@ void BelugaMain::onCurrentItemChanged(QTreeWidgetItem* current, QTreeWidgetItem*
 			QLabel * iconlabel = new QLabel();
 			iconlabel->setObjectName(QString::fromUtf8("iconlabel"));
 			iconlabel->setGeometry(QRect(3, 3, 200, 26));
-			iconlabel->setPixmap(QPixmap(QString::fromUtf8(":/BelugaApp/Resources/images/contact_default.png")).scaled(QSize(26, 26)));
+			// iconlabel->setPixmap(QPixmap(QString::fromUtf8(":/BelugaApp/Resources/images/contact_default.png")).scaled(QSize(26, 26)));
+			iconlabel->setPixmap(QPixmap(current->data(3, Qt::UserRole).toString()).scaled(QSize(26, 26)));
 
 			m_qCurItemText.clear();
 			m_qCurItemText.append(current->text(0));
@@ -523,7 +535,8 @@ void BelugaMain::onCurrentItemChanged(QTreeWidgetItem* current, QTreeWidgetItem*
 			QLabel * iconlabel = new QLabel();
 			iconlabel->setObjectName(QString::fromUtf8("iconlabel"));
 			iconlabel->setGeometry(QRect(3, 3, 200, 26));
-			iconlabel->setPixmap(QPixmap(QString::fromUtf8(":/BelugaApp/Resources/images/contact_default.png")).scaled(QSize(26, 26)));
+			//iconlabel->setPixmap(QPixmap(QString::fromUtf8(":/BelugaApp/Resources/images/contact_default.png")).scaled(QSize(26, 26)));
+			iconlabel->setPixmap(QPixmap(current->data(3, Qt::UserRole).toString()).scaled(QSize(26, 26)));
 
 			m_qCurItemText.clear();
 			m_qCurItemText.append(current->text(0));
@@ -597,7 +610,8 @@ void BelugaMain::onItemClicked(QTreeWidgetItem* item, int column)
 		QLabel * iconlabel = new QLabel();
 		iconlabel->setObjectName(QString::fromUtf8("iconlabel"));
 		iconlabel->setGeometry(QRect(3, 3, 200, 26));
-		iconlabel->setPixmap(QPixmap(QString::fromUtf8(":/BelugaApp/Resources/images/contact_default.png")).scaled(QSize(26, 26)));
+		//iconlabel->setPixmap(QPixmap(QString::fromUtf8(":/BelugaApp/Resources/images/contact_default.png")).scaled(QSize(26, 26)));
+		iconlabel->setPixmap(QPixmap(item->data(3, Qt::UserRole).toString()).scaled(QSize(26, 26)));
 		/* adjust text position */
 		m_qCurItemText.clear();
 		m_qCurItemText.append(item->text(0));
@@ -678,7 +692,7 @@ BOOL BelugaMain::createContactActions(int nContactType)
 		m_qActionNewC = new QAction(tr("New"), this);
 		m_qActions[CONTACT_NEW_ACTION] = m_qActionNewC;
 		connect(m_qActionNewC, SIGNAL(triggered(bool)), this, SLOT(onDefaultActionTriggered(bool)));
-		m_qMenuBar->addAction(m_qActionNewC);
+//		m_qMenuBar->addAction(m_qActionNewC);
 
 		m_qActionEditC = new QAction(tr("Edit"), this);
 		m_qActions[CONTACT_EDIT_ACTION] = m_qActionEditC;
@@ -713,7 +727,7 @@ BOOL BelugaMain::createContactActions(int nContactType)
 		m_qActionNewC = new QAction(tr("New"), this);
 		m_qActions[CONTACT_NEW_ACTION] = m_qActionNewC;
 		connect(m_qActionNewC, SIGNAL(triggered(bool)), this, SLOT(onDefaultActionTriggered(bool)));
-		m_qMenuBar->addAction(m_qActionNewC);
+//		m_qMenuBar->addAction(m_qActionNewC);
 
 		m_qActionEditC = new QAction(tr("Edit"), this);
 		m_qActions[CONTACT_EDIT_ACTION] = m_qActionEditC;
@@ -790,6 +804,18 @@ void BelugaMain::onActionTriggered(QAction* action)
 	{
 	/* contact actions */
 	case CONTACT_VIEW_ACTION:
+		{
+			QTreeWidgetItem * item =m_qCurTree->currentItem();
+			int nContactId = item->data(0, Qt::UserRole).toInt();
+			int nGroupId = item->parent()->data(0, Qt::UserRole).toInt();
+			/* show contact view */
+			bool bEdited = FALSE;
+			BelugaView view(this, nContactId, &bEdited);
+			view.exec();
+
+			if (bEdited)
+				updateGroupView(nGroupId);
+		}
 		break;
 	case CONTACT_VOICECALL_ACTION:
 		break;
@@ -797,9 +823,18 @@ void BelugaMain::onActionTriggered(QAction* action)
 		break;
 	case CONTACT_VIDEOCALL_ACTION:
 		break;
-	case CONTACT_NEW_ACTION:
-		break;
 	case CONTACT_EDIT_ACTION:
+		{
+			CContact * pContact = NULL;
+			QTreeWidgetItem * item =m_qCurTree->currentItem();
+			m_pContactDb->GetEntityById(item->data(0, Qt::UserRole).toInt(), (CDbEntity**)&pContact);
+			if (pContact == NULL)
+				return;
+
+			BelugaDetail detail(this, this);
+			detail.setFieldsValue((CPhoneContact*)pContact);
+			detail.exec();
+		}
 		break;
 	case CONTACT_DEL_ACTION:
 		break;
@@ -926,12 +961,8 @@ void BelugaMain::onDefaultActionTriggered(bool checked)
 		/* contact actions */
 	case CONTACT_NEW_ACTION:
 		{
-			BelugaDetail detail(this);
-			if (QDialog::Accepted == detail.exec())
-			{
-				/* insert the new contact item to tree */
-			}
-			
+			BelugaDetail detail(this, this);
+			detail.exec();
 		}
 		break;
 
@@ -1101,15 +1132,24 @@ gboolean BelugaMain::importContacts()
 		free(cstr);
 
 		pContact->SetFieldValue(ContactField_Name, value);
+		/* nickname */	
+		pContact->SetFieldValue(ContactField_NickName, value);
+
+		/* set name spell */
+		QString spell = Chinese2PY(QString(value->str));
 		g_string_free(value, TRUE);
+		GString * namespell = g_string_new(spell.toLatin1().data()); 
+		pContact->SetFieldValue(ContactField_NameSpell, namespell);
+		/* set nickname spell */
+		pContact->SetFieldValue(ContactField_NickNameSpell, namespell);
+		g_string_free(namespell, TRUE);
 
 		/* set contact sex, mobile contact has not sex field, default set male */
 		value = g_string_new("0"); /* 0: male */
 		pContact->SetFieldValue(ContactField_Sex, value);
 		g_string_free(value, TRUE);
 
-		/* name spell */
-		/* nickname */
+
 		/* nickname spell */
 
 		/*
@@ -1189,4 +1229,69 @@ gboolean BelugaMain::importContacts()
 	delete pContact;
 
 	return TRUE;
+}
+
+int BelugaMain::updateGroupView(int nGroupId)
+{
+	QTreeWidgetItem * item = NULL;
+	int i = 0;
+
+	item = m_qCurTree->currentItem()->parent();
+	if (NULL == item || nGroupId != item->data(0, Qt::UserRole).toInt())
+	{
+		for(i=0; i<m_qCurTree->topLevelItemCount(); i++)
+		{
+			item = m_qCurTree->topLevelItem(i);
+			if (nGroupId == item->data(0, Qt::UserRole).toInt())
+				break;
+		}
+	}
+
+	if (NULL == item)
+		return -1;
+
+	QList<QTreeWidgetItem*> list = item->takeChildren();
+	for (i=0; i<list.count(); i++)
+		delete list[i];
+	list.clear();
+
+	/* reload contact list */
+	gint32 ret = ECode_No_Error;
+	CContactIterator * pContactIterator = NULL;
+
+	if (GROUPID_DEFAULT != nGroupId)
+		ret = m_pContactDb->GetAllContactsByGroup(nGroupId, TRUE, &pContactIterator);
+	else
+		ret = m_pContactDb->GetAllContactsNotInGroupByTag(m_nCurTabIndex + 1, TRUE, &pContactIterator);
+	if (ret != ECode_No_Error)
+	{
+		printf("Get contacts failed!\n");
+		return -1;
+	}
+
+	loadContacts(NULL, item, pContactIterator, FALSE);
+
+	return 0;
+}
+
+void BelugaMain::onItemDoubleClicked(QTreeWidgetItem* item, int column)
+{
+	if (m_nCurTabIndex == 0) /* phone contact */
+	{
+		int nContactId = item->data(0, Qt::UserRole).toInt();
+		int nGroupId = item->parent()->data(0, Qt::UserRole).toInt();
+		/* show contact view */
+		bool bEdited = FALSE;
+		BelugaView view(this, nContactId, &bEdited);
+		view.exec();
+
+		if (bEdited)
+			updateGroupView(nGroupId);
+	}
+	else  /* im contact */
+	{
+		/* msg to contact */
+	}
+	
+	return;
 }
