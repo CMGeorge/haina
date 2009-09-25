@@ -417,14 +417,15 @@ static QString GetPYbyChar(int chr)
 	// 检查是否为ASCII字符
 	if (chr>0 && chr<160)
 	{
-		strRet.arg("%1", chr);
+		char ch = chr;
+		strRet = QString("%1").arg(ch);
 		return strRet;
 	}
 
 	// 无效字符(不在拼音数据范围)
 	if (chr<-20319 || chr>-10247)
 	{
-		strRet = "";
+		strRet = QString("");
 		
 		return strRet;		
 	}
@@ -435,7 +436,7 @@ static QString GetPYbyChar(int chr)
 	{
 		if (m_pyTable[iLoop].iIndex <= chr)
 		{
-			strRet = m_pyTable[iLoop].pszPY;
+			strRet = QString(m_pyTable[iLoop].pszPY);
 			break;
 		}
 	}

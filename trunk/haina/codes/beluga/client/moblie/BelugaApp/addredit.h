@@ -9,6 +9,8 @@
 #include <QtGui/QIcon>
 #include <QtGui/QMenuBar>
 #include <QtGui/QFileDialog>
+#include <QtGui/QStylePainter>
+#include <QtGui/QPainter>
 #include "ui_addredit.h"
 #include "CContact.h"
 
@@ -22,6 +24,9 @@ public:
 	~AddrEdit();
 
 	void accept();
+
+private:
+	void paintEvent(QPaintEvent * event);
 
 private slots:
 	void onAccepted();

@@ -12,6 +12,9 @@
 #include <QtGui/QTabBar>
 #include <QtCore/QList>
 #include <QtGui/QPushButton>
+#include <QtCore/QFile>
+#include <QtGui/QStylePainter>
+#include <QtGui/QPainter>
 #include "ui_belugamain.h"
 
 #include "CContactDb.h"
@@ -95,6 +98,7 @@ private:
 	QTreeWidget * createTreeWidget(const char* name);
 	BOOL loadSelfContacts();
 	gboolean importContacts();
+	void paintEvent(QPaintEvent * event);
 
 private slots:
 	void onCurrentChanged(int nIndex);
@@ -103,10 +107,31 @@ private slots:
 	void onItemClicked(QTreeWidgetItem* item, int column);
 	void onItemDoubleClicked(QTreeWidgetItem* item, int column);
 	void onItemCollapsed(QTreeWidgetItem* item);
-	void onActionTriggered(QAction* action);
+	void onActionTriggered(int actionRow);
 	void onDefaultActionTriggered(bool checked = false);
 	void onTextChanged(const QString & text);
 	void onEditingFinished();
+
+	void onActionVoiceCallTriggered(bool checked = false);
+	void onActionVideoCallTriggered(bool checked = false);
+	void onActionIPCallTriggered(bool checked = false);
+	void onActionMsgCTriggered(bool checked = false);
+	void onActionViewCTriggered(bool checked = false);
+	void onActionNewCTriggered(bool checked = false);
+	void onActionEditCTriggered(bool checked = false);
+	void onActionDelCTriggered(bool checked = false);
+	void onActionGroupCTriggered(bool checked = false);
+	void onActionSyncTriggered(bool checked = false);
+
+	void onActionEditGTriggered(bool checked = false);
+	void onActionNewGTriggered(bool checked = false);
+#if 0
+	void onActionUpGTriggered(bool checked = false);
+	void onActionDownGTriggered(bool checked = false);
+#endif
+	void onActionDelGTriggered(bool checked = false);
+	void onActionMsgGTriggered(bool checked = false);
+	void onActionExpandColapseGTriggered(bool checked = false);
 
 private:
 	CContactDb	* m_pContactDb;
@@ -146,9 +171,11 @@ private:
 	/* group actions */
 	QAction		* m_qActionEditG;
 	QAction		* m_qActionNewG;
+#if 0
 	QMenu		* m_qMenuOrder;
 	QAction		* m_qActionUpG;
 	QAction		* m_qActionDownG;
+#endif
 	QAction     * m_qActionDelG;
 	QAction		* m_qActionMsgG; /* group msg */
 	QAction		* m_qActionExpandColapseG;

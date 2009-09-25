@@ -37,12 +37,12 @@ BelugaDetail::BelugaDetail(QWidget *parent /* = 0 */, BelugaMain* pMain, Qt::WFl
 	initializeFields();
 
 	m_qMenuBar = new QMenuBar(this);
-	connect(m_qMenuBar, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
 	m_qActionOk = new QAction(tr("Ok"), this);
-	m_qActionCancel = new QAction(tr("Cancel"), this);;
+	m_qActionCancel = new QAction(tr("Cancel"), this);
 //	m_qMenuBar->addAction(m_qActionOk);
 	m_qMenuBar->addAction(m_qActionCancel);
 	m_qMenuBar->setDefaultAction(m_qActionOk);
+	connect(m_qActionCancel, SIGNAL(triggered(bool)), this, SLOT(onActionCancelTriggered(bool)));
 	connect(m_qActionOk, SIGNAL(triggered(bool)), this, SLOT(onDefaultActionTriggered(bool)));
 
 #if 0
@@ -555,12 +555,9 @@ void BelugaDetail::setWidgetRect()
 	scrollAreaWidgetContents->setGeometry(0, 0, 240, h);
 }
 
-void BelugaDetail::onActionTriggered(QAction* action)
+void BelugaDetail::onActionCancelTriggered(bool checked)
 {
-	if (action == m_qActionCancel)
-	{
-		reject();
-	}
+	reject();
 }
 
 void BelugaDetail::onDefaultActionTriggered(bool checked)
@@ -1101,4 +1098,12 @@ void BelugaDetail::setFieldsValue(CPhoneContact * pContact)
 		((QLineEdit*)m_qRightWidgets[Row_IMMSN])->setText(QString(im));	
 		g_free(im);	
 	}
+}
+
+void BelugaDetail::paintEvent(QPaintEvent *)
+{
+	QStyleOption opt;
+	opt.init(this);
+	QPainter p(this);
+	style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
 }

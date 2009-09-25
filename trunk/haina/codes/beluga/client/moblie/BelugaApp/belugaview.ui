@@ -51,7 +51,7 @@
     <string/>
    </property>
    <property name="alignment">
-    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
   <widget class="QLabel" name="nicknamelabel">
@@ -67,22 +67,6 @@
     <string/>
    </property>
    <property name="alignment">
-    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-   </property>
-  </widget>
-  <widget class="QLabel" name="sexlabel">
-   <property name="geometry">
-    <rect>
-     <x>190</x>
-     <y>2</y>
-     <width>32</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="alignment">
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
@@ -92,7 +76,7 @@
      <x>0</x>
      <y>65</y>
      <width>240</width>
-     <height>201</height>
+     <height>202</height>
     </rect>
    </property>
    <property name="frameShape">

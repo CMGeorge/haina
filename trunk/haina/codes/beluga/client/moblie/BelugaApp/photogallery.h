@@ -9,6 +9,8 @@
 #include <QtGui/QIcon>
 #include <QtGui/QMenuBar>
 #include <QtGui/QFileDialog>
+#include <QtGui/QStylePainter>
+#include <QtGui/QPainter>
 #include "ui_photogallery.h"
 
 
@@ -21,7 +23,7 @@ public:
 	~PhotoGallery();
 
 private:
-
+	inline void paintEvent(QPaintEvent * event);
 
 private slots:
 	void onItemClicked(QTableWidgetItem * item);

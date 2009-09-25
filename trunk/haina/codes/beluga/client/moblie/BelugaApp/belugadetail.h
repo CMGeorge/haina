@@ -16,6 +16,8 @@
 #include <QtGui/QVBoxLayout>
 #include <QtGui/QHBoxLayout>
 #include <QtGui/QPushButton>
+#include <QtGui/QStylePainter>
+#include <QtGui/QPainter>
 #include "ui_belugadetail.h"
 #include "CContact.h"
 #include "CPhoneContact.h"
@@ -59,9 +61,10 @@ private:
 	BOOL initializeFields();
 	void setWidgetRect();
 	void getFieldsValue(CPhoneContact * pContact);
+	void paintEvent(QPaintEvent * event);
 
 private slots:
-	void onActionTriggered(QAction* action);
+	void onActionCancelTriggered(bool checked = false);
 	void onDefaultActionTriggered(bool checked = false);
 	void onClicked( bool checked = false);
 	void onTelActionTrigggered(QAction * action);
