@@ -146,7 +146,7 @@ EXPORT_C gint32 CGroupDb::UpdateEntity(CDbEntity * pEntity)
 	try 
 		{
 		/* update group entity */
-		strcpy(sql, "update group set "); 
+		strcpy(sql, "update cgroup set "); 
 		for (i=1; i<GroupField_EndFlag; i++)
 			{
 			GString * fieldName = (GString*)g_ptr_array_index(m_pFieldsName, i);
