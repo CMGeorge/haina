@@ -9,6 +9,9 @@
 #include <QtGui/QListWidget>
 #include <QtGui/QListWidgetItem>
 #include <QtGui/QLabel>
+#include <QtGui/QStylePainter>
+#include <QtGui/QPainter>
+#include <QtGui/QMessageBox>
 #include "ui_belugaview.h"
 #include "CContact.h"
 #include "CPhoneContact.h"
@@ -25,9 +28,17 @@ public:
 
 private:
 	BOOL initializeFields();
+	void paintEvent(QPaintEvent * event);
 
 private slots:
-	void onActionTriggered(QAction* action);
+	void onActionVoiceCallTriggered(bool checked = false);
+	void onActionVideoCallTriggered(bool checked = false);
+	void onActionIPCallTriggered(bool checked = false);
+	void onActionMsgCTriggered(bool checked = false);
+	void onActionDelCTriggered(bool checked = false);
+	void onActionNoteTriggered(bool checked = false);
+	void onActionBackTriggered(bool checked = false);
+
 	void onDefaultActionTriggered(bool checked = false);
 	void onItemDoubleClicked(QListWidgetItem * item);
 	void onCurrentItemChanged(QListWidgetItem * current, QListWidgetItem * previous);
@@ -45,7 +56,6 @@ private:
 	QAction		* m_qActionIpCall;
 	QAction		* m_qActionMsgC;
 	QAction		* m_qActionDelC;
-	QAction     * m_qActionGroupC;
 	QAction     * m_qActionNote;
 
 	BelugaMain		* m_pBelugaMain;

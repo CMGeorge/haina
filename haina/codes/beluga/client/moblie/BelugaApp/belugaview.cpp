@@ -22,27 +22,36 @@ BelugaView::BelugaView(QWidget *parent /* = 0 */, int nContactId, bool * bEdited
 	connect(contactlist, SIGNAL(itemDoubleClicked(QListWidgetItem*)), this, SLOT(onItemDoubleClicked(QListWidgetItem*)));
 
 	m_qMenuBar = new QMenuBar(this);
-	connect(m_qMenuBar, SIGNAL(triggered(QAction*)), this, SLOT(onActionTriggered(QAction*)));
 	m_qActionEdit = new QAction(tr("Edit"), this);
-	
+
 	m_qMenuCall = m_qMenuBar->addMenu(tr("Call"));
 	m_qActionVoiceCall = new QAction(tr("Voice Call"), this);
 	m_qMenuCall->addAction(m_qActionVoiceCall);
+	connect(m_qActionVoiceCall, SIGNAL(triggered(bool)), this, SLOT(onActionVoiceCallTriggered(bool)));
+
 	m_qActionVideoCall = new QAction(tr("Video Call"), this);
 	m_qMenuCall->addAction(m_qActionVideoCall);
+	connect(m_qActionVideoCall, SIGNAL(triggered(bool)), this, SLOT(onActionVideoCallTriggered(bool)));
+
 	m_qActionIpCall = new QAction(tr("IP Call"), this);
 	m_qMenuCall->addAction(m_qActionIpCall);
+	connect(m_qActionIpCall, SIGNAL(triggered(bool)), this, SLOT(onActionIPCallTriggered(bool)));
 
 	m_qActionMsgC = new QAction(tr("Message"), this);
 	m_qMenuBar->addAction(m_qActionMsgC);
-	m_qActionGroupC = new QAction(tr("Group"), this);
-	m_qMenuBar->addAction(m_qActionGroupC);
+	connect(m_qActionMsgC, SIGNAL(triggered(bool)), this, SLOT(onActionMsgCTriggered(bool)));
+
 	m_qActionDelC = new QAction(tr("Delete"), this);
 	m_qMenuBar->addAction(m_qActionDelC);
+	connect(m_qActionDelC, SIGNAL(triggered(bool)), this, SLOT(onActionDelCTriggered(bool)));
+
 	m_qActionNote = new QAction(tr("View Note"), this);
 	m_qMenuBar->addAction(m_qActionNote);
+	connect(m_qActionNote, SIGNAL(triggered(bool)), this, SLOT(onActionNoteTriggered(bool)));
+
 	m_qActionBack = new QAction(tr("Back"), this);
 	m_qMenuBar->addAction(m_qActionBack);
+	connect(m_qActionBack, SIGNAL(triggered(bool)), this, SLOT(onActionBackTriggered(bool)));
 
 	m_qMenuBar->setDefaultAction(m_qActionEdit);
 	connect(m_qActionEdit, SIGNAL(triggered(bool)), this, SLOT(onDefaultActionTriggered(bool)));
@@ -269,37 +278,53 @@ BOOL BelugaView::initializeFields()
 	return TRUE;
 }
 
-void BelugaView::onActionTriggered(QAction* action)
+void BelugaView::onActionVoiceCallTriggered(bool checked)
 {
-	if (action == m_qActionVoiceCall)
-	{
 
-	}
-	else if (action == m_qActionVideoCall)
-	{
+}
 
+void BelugaView::onActionVideoCallTriggered(bool checked)
+{
 
-	}
-	else if (action == m_qActionIpCall)
-	{
+}
 
-	}
-	else if (action == m_qActionMsgC)
-	{
+void BelugaView::onActionIPCallTriggered(bool checked)
+{
 
-	}
-	else if (action == m_qActionGroupC)
-	{
+}
 
-	}
-	else if (action == m_qActionDelC)
-	{
+void BelugaView::onActionMsgCTriggered(bool checked)
+{
 
-	}
-	else if (action == m_qActionBack)
+}
+
+void BelugaView::onActionDelCTriggered(bool checked)
+{
+	QMessageBox msg(QMessageBox::Question, "", tr("Sure to delete the contact?"), QMessageBox::Yes|QMessageBox::No, this);
+	msg.setDefaultButton(QMessageBox::Yes);
+	if (QMessageBox::Yes == msg.exec())
 	{
-		accept();
+		GString * ContactId = NULL;
+		m_pContact->GetFieldValue(ContactField_Id, &ContactId);		
+		int id = atoi(ContactId->str);
+		g_string_free(ContactId, TRUE);
+
+		if (0 == m_pBelugaMain->getContactDb()->DeleteEntity(id))  /* remove successfully */
+		{
+			*m_bEidted = TRUE;
+			accept();
+		}
 	}
+}
+
+void BelugaView::onActionBackTriggered(bool checked)
+{
+	accept();
+}
+
+void BelugaView::onActionNoteTriggered(bool checked)
+{
+
 }
 
 void BelugaView::onDefaultActionTriggered(bool checked)
@@ -326,3 +351,10 @@ void BelugaView::onItemClicked (QListWidgetItem * item)
 
 }
 
+void BelugaView::paintEvent(QPaintEvent *)
+{
+	QStyleOption opt;
+	opt.init(this);
+	QPainter p(this);
+	style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
+}

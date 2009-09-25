@@ -52,4 +52,10 @@ void AddrEdit::onAccepted()
 	QDialog::accept();
 }
 
-
+void AddrEdit::paintEvent(QPaintEvent *)
+{
+	QStyleOption opt;
+	opt.init(this);
+	QPainter p(this);
+	style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
+}

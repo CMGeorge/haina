@@ -1,0 +1,59 @@
+QPushButton{
+  border-style:outset;
+  border:0px;
+  padding:0px;
+  margin:2px;
+  height:45px;
+  width:45px;
+}
+QLineEdit{
+  border:2px;
+  border-color:#cde3eb;
+  border-radius:5px;
+  height:15px;
+  width:60px;
+}
+QScrollBar:horizontal{
+  border:1px;
+  border-color:#6fb7ce;
+  background:#cde3eb;
+  margin:1px;
+}
+QScrollBar::handle:horizontal{
+  background:#6fb7ce;
+  min-width:10px;
+}
+QScrollBar::add-line:horizontal{
+  border:1px;
+  background:#cde3eb;
+  widtn:10px;
+  subcontrol-postion:right;
+  subcontrol-origin:margin;
+}
+QScrollBar::sub-line:horizontal{
+  border:1px;
+  background:#cde3eb;
+  width:10px;
+  subcontrol-position:left;
+  subcontrol-origin:margin;
+}
+
+QFrame{
+  border:2px;
+  border-color:#6fb7ce;
+  border-radius:3px;
+  border-width: 2px;
+  border-style: solid;
+  padding:0px;
+}
+
+QLabel {
+    border: none;
+    padding: 0;
+    background: none;
+    font: bold "Times New Roman";
+}
+
+QDialog {
+   background: #6fb7ce;
+}

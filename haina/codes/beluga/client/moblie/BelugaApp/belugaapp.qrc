@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/BelugaApp" >
-        <file>belugaapp.qrc</file>
         <file>Resources/images/qq.png</file>
         <file>Resources/images/group.png</file>
         <file>Resources/images/group_expand.png</file>
@@ -34,5 +33,37 @@
         <file>Resources/jobs/job_16.png</file>
         <file>Resources/images/default_call_ring.png</file>
         <file>Resources/images/default_msg_ring.png</file>
+        <file>coffee.qss</file>
+        <file>Resources/gui/checkbox_checked.png</file>
+        <file>Resources/gui/checkbox_checked_hover.png</file>
+        <file>Resources/gui/checkbox_checked_pressed.png</file>
+        <file>Resources/gui/checkbox_unchecked.png</file>
+        <file>Resources/gui/checkbox_unchecked_hover.png</file>
+        <file>Resources/gui/checkbox_unchecked_pressed.png</file>
+        <file>Resources/gui/down_arrow.png</file>
+        <file>Resources/gui/down_arrow_disabled.png</file>
+        <file>Resources/gui/frame.png</file>
+        <file>Resources/gui/pagefold.png</file>
+        <file>Resources/gui/pushbutton.png</file>
+        <file>Resources/gui/pushbutton_hover.png</file>
+        <file>Resources/gui/pushbutton_pressed.png</file>
+        <file>Resources/gui/radiobutton_checked.png</file>
+        <file>Resources/gui/radiobutton_checked_hover.png</file>
+        <file>Resources/gui/radiobutton_checked_pressed.png</file>
+        <file>Resources/gui/radiobutton_unchecked.png</file>
+        <file>Resources/gui/radiobutton_unchecked_hover.png</file>
+        <file>Resources/gui/radiobutton_unchecked_pressed.png</file>
+        <file>Resources/gui/sizegrip.png</file>
+        <file>Resources/gui/spindown.png</file>
+        <file>Resources/gui/spindown_hover.png</file>
+        <file>Resources/gui/spindown_off.png</file>
+        <file>Resources/gui/spindown_pressed.png</file>
+        <file>Resources/gui/spinup.png</file>
+        <file>Resources/gui/spinup_hover.png</file>
+        <file>Resources/gui/spinup_off.png</file>
+        <file>Resources/gui/spinup_pressed.png</file>
+        <file>Resources/gui/up_arrow.png</file>
+        <file>Resources/gui/up_arrow_disabled.png</file>
+        <file>beluga.qss</file>
     </qresource>
 </RCC>
