@@ -66,6 +66,9 @@
      <height>45</height>
     </size>
    </property>
+   <property name="autoDefault">
+    <bool>false</bool>
+   </property>
    <property name="flat">
     <bool>true</bool>
    </property>

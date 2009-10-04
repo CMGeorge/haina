@@ -1,42 +1,3 @@
-QPushButton{
-  border-style:outset;
-  border:0px;
-  padding:0px;
-  margin:2px;
-  height:45px;
-  width:45px;
-}
-QLineEdit{
-  border:2px;
-  border-color:#cde3eb;
-  border-radius:5px;
-  height:15px;
-  width:60px;
-}
-QScrollBar:horizontal{
-  border:1px;
-  border-color:#6fb7ce;
-  background:#cde3eb;
-  margin:1px;
-}
-QScrollBar::handle:horizontal{
-  background:#6fb7ce;
-  min-width:10px;
-}
-QScrollBar::add-line:horizontal{
-  border:1px;
-  background:#cde3eb;
-  widtn:10px;
-  subcontrol-postion:right;
-  subcontrol-origin:margin;
-}
-QScrollBar::sub-line:horizontal{
-  border:1px;
-  background:#cde3eb;
-  width:10px;
-  subcontrol-position:left;
-  subcontrol-origin:margin;
-}
 
 QFrame{
   border:2px;
@@ -55,5 +16,106 @@ QLabel {
 }
 
 QDialog {
-   background: #6fb7ce;
+   background: none;
 }
+
+QPlainEdit{
+  border:2px;
+  border-color:#cde3eb;
+  border-radius:5px;
+  border-style: solid;
+}
+
+QComboBox,QDateEdit,QToolButton{
+  border:2px;
+  border-color:#cde3eb;
+  border-radius:5px;
+  border-style: solid;
+}
+
+QComboBox::drop-down,QDateEdit::drop-down{
+  border:0px;
+  image:url(:/BelugaApp/Resources/gui/down_arrow.png);
+  subcontrol-position: center right;
+}
+
+QToolButton::menu-button{
+  border:0px;
+  border-top-right-radius: 2px;
+}
+
+QToolButton::menu-arrow{
+  image:url(:/BelugaApp/Resources/gui/down_arrow.png);
+}
+
+QDateEdit:open{
+  border-style: solid;
+  border-radius:5px;
+  border:2px;
+}
+
+QPushButton{
+  border-style: solid;
+  border:0px;
+  padding:0px;
+  margin:2px;
+  height:45px;
+  width:45px;
+}
+
+QPushButton:pressed,QPushButton:hover,QPushButton:checked{
+  border-style: solid;
+  border-radius:5px;
+  border:1px;
+  padding:0px;
+  margin:2px;
+}
+
+QLineEdit{
+  border:2px;
+  border-color:#cde3eb;
+  border-radius:5px;
+  height:15px;
+  width:60px;
+  border-style: solid;
+}
+
+QScrollBar:vertical{
+  border:1px solid grey;
+  background:#e8eeee;
+  width:15px;
+  margin: 17px 0 17px 0;
+}
+
+QScrollBar::handle:vertical{
+  background:#addff6;
+  min-height:10px;
+}
+
+QScrollBar::add-line:vertical{
+  border:1px solid grey;
+  background:#addff6;
+  height:15px;
+  subcontrol-position:bottom;
+  subcontrol-origin:margin;
+}
+
+QScrollBar::sub-line:vertical{
+  border:1px solid grey;
+  background:#addff6;
+  height:15px;
+  subcontrol-position:top;
+  subcontrol-origin:margin;
+}
+
+QScrollBar::up-arrow:vertical,QScrollBar::down-arrow:vertical{
+  border:1px solid grey;
+  width:3px;
+  height:3px;
+  background:#e8eeee;
+}
+
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+  background: none;
+}
+

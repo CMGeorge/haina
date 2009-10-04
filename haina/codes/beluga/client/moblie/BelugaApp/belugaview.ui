@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>belugaview</string>
+   <string>Beluga</string>
   </property>
   <widget class="QPushButton" name="photo">
    <property name="geometry">
@@ -30,6 +30,9 @@
      <width>58</width>
      <height>58</height>
     </size>
+   </property>
+   <property name="autoDefault">
+    <bool>false</bool>
    </property>
    <property name="flat">
     <bool>true</bool>
@@ -93,6 +96,10 @@
    </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>contactlist</tabstop>
+  <tabstop>photo</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>belugadetail</string>
+   <string>Beluga</string>
   </property>
   <widget class="QScrollArea" name="detailarea">
    <property name="geometry">
