@@ -72,7 +72,7 @@ struct stPhoneDistrict
 };
 
 
-#define 	MAX_RECENT_CONTACT_NUM		15
+#define 	MAX_RECENT_CONTACT_NUM		60
 
 
 
@@ -130,6 +130,8 @@ public:
 
     IMPORT_C gint32 GetRecentContacts(GPtrArray ** pContacts);
     IMPORT_C gint32 SaveRecentContact(stRecentContact * contact);
+	IMPORT_C gboolean IsInRecentContact(guint32 nContactId);
+	IMPORT_C tm & GetAarliestContactTime(guint32 nContactId = -1);
 
     gint32 GetContactCommInfo(CPhoneContact * pContact); /* must create a hashtable and a ptrarray */
 private:

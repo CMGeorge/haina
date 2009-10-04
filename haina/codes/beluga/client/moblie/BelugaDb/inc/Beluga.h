@@ -87,5 +87,6 @@ enum ECode
 
 IMPORT_C void freeGStringArray(GPtrArray * pArray);
 IMPORT_C void freeAddressArray(GPtrArray * pArray);
+IMPORT_C void GetLocalTime(tm* time);
 
 #endif /* BELUGA_H_ */
