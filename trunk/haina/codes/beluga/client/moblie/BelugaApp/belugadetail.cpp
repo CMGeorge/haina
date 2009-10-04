@@ -205,14 +205,15 @@ BOOL BelugaDetail::initializeFields()
 	/* Mobile Phone */
 	qEdit = new QLineEdit(parent);
 	m_qRightWidgets.append(qEdit);
-	qPushButton = new QPushButton(tr("Mobile tel:"), parent);
-	qPushButton->setFlat(TRUE);
-	m_qLeftWidgets.append(qPushButton);
+	QToolButton * qToolButton = new QToolButton(parent);
+	qToolButton->setPopupMode(QToolButton::MenuButtonPopup);
+	qToolButton->setText(tr("Mobile tel:"));
+	m_qLeftWidgets.append(qToolButton);
 	QMenu * qMenu = new QMenu();
 	m_qActionMobileTel = new QAction(tr("Prefer"), this);
 	qMenu->addAction(m_qActionMobileTel);
 	m_qActionMobileTel->setCheckable(TRUE);
-	qPushButton->setMenu(qMenu);
+	qToolButton->setMenu(qMenu);
 #if 0
 	qHLayout = new QHBoxLayout();
 	qHLayout->addWidget(qLabel);
@@ -230,14 +231,15 @@ BOOL BelugaDetail::initializeFields()
 	/* Work Phone */
 	qEdit = new QLineEdit(parent);
 	m_qRightWidgets.append(qEdit);
-	qPushButton = new QPushButton(tr("Work tel:"), parent);
-	qPushButton->setFlat(TRUE);
-	m_qLeftWidgets.append(qPushButton);
+	qToolButton = new QToolButton(parent);
+	qToolButton->setPopupMode(QToolButton::MenuButtonPopup);
+	qToolButton->setText(tr("Work tel:"));
+	m_qLeftWidgets.append(qToolButton);
 	qMenu = new QMenu();
 	m_qActionWorkTel = new QAction(tr("Prefer"), this);
 	qMenu->addAction(m_qActionWorkTel);
 	m_qActionWorkTel->setCheckable(TRUE);
-	qPushButton->setMenu(qMenu);
+	qToolButton->setMenu(qMenu);
 #if 0
 	qHLayout = new QHBoxLayout();
 	qHLayout->addWidget(qLabel);
@@ -255,14 +257,15 @@ BOOL BelugaDetail::initializeFields()
 	/* Home Phone */
 	qEdit = new QLineEdit(parent);
 	m_qRightWidgets.append(qEdit);
-	qPushButton = new QPushButton(tr("Home tel:"), parent);
-	qPushButton->setFlat(TRUE);
-	m_qLeftWidgets.append(qPushButton);
+	qToolButton = new QToolButton(parent);
+	qToolButton->setPopupMode(QToolButton::MenuButtonPopup);
+	qToolButton->setText(tr("Home tel:"));
+	m_qLeftWidgets.append(qToolButton);
 	qMenu = new QMenu();
 	m_qActionHomeTel = new QAction(tr("Prefer"), this);
 	qMenu->addAction(m_qActionHomeTel);
 	m_qActionHomeTel->setCheckable(TRUE);
-	qPushButton->setMenu(qMenu);
+	qToolButton->setMenu(qMenu);
 #if 0
 	qHLayout = new QHBoxLayout();
 	qHLayout->addWidget(qLabel);
@@ -280,14 +283,15 @@ BOOL BelugaDetail::initializeFields()
 	/* Work Email */
 	qEdit = new QLineEdit(parent);
 	m_qRightWidgets.append(qEdit);
-	qPushButton = new QPushButton(tr("Work email:"), parent);
-	qPushButton->setFlat(TRUE);
-	m_qLeftWidgets.append(qPushButton);
+	qToolButton = new QToolButton(parent);
+	qToolButton->setPopupMode(QToolButton::MenuButtonPopup);
+	qToolButton->setText(tr("Work email:"));
+	m_qLeftWidgets.append(qToolButton);
 	qMenu = new QMenu();
 	m_qActionWorkEmail = new QAction(tr("Prefer"), this);
 	qMenu->addAction(m_qActionWorkEmail);
 	m_qActionWorkEmail->setCheckable(TRUE);
-	qPushButton->setMenu(qMenu);
+	qToolButton->setMenu(qMenu);
 #if 0
 	qHLayout = new QHBoxLayout();
 	qHLayout->addWidget(qLabel);
@@ -305,14 +309,15 @@ BOOL BelugaDetail::initializeFields()
 	/* Home Email */
 	qEdit = new QLineEdit(parent);
 	m_qRightWidgets.append(qEdit);
-	qPushButton = new QPushButton(tr("Home email:"), parent);
-	qPushButton->setFlat(TRUE);
-	m_qLeftWidgets.append(qPushButton);
+	qToolButton = new QToolButton(parent);
+	qToolButton->setPopupMode(QToolButton::MenuButtonPopup);
+	qToolButton->setText(tr("Home email:"));
+	m_qLeftWidgets.append(qToolButton);
 	qMenu = new QMenu();
 	m_qActionHomeEmail = new QAction(tr("Prefer"), this);
 	qMenu->addAction(m_qActionHomeEmail);
 	m_qActionHomeEmail->setCheckable(TRUE);
-	qPushButton->setMenu(qMenu);
+	qToolButton->setMenu(qMenu);
 #if 0
 	qHLayout = new QHBoxLayout();
 	qHLayout->addWidget(qLabel);
@@ -374,14 +379,15 @@ BOOL BelugaDetail::initializeFields()
 	qComboBox->addItem(tr("Edit address..."));
 	connect(qComboBox, SIGNAL(activated(int)), this, SLOT(onWorkAddrActivated(int)));
 	m_qRightWidgets.append(qComboBox);
-	qPushButton = new QPushButton(tr("Work addr:"), parent);
-	qPushButton->setFlat(TRUE);
-	m_qLeftWidgets.append(qPushButton);
+	qToolButton = new QToolButton(parent);
+	qToolButton->setPopupMode(QToolButton::MenuButtonPopup);
+	qToolButton->setText(tr("Work addr:"));
+	m_qLeftWidgets.append(qToolButton);
 	qMenu = new QMenu();
 	m_qActionWorkAddr = new QAction(tr("Prefer"), this);
 	qMenu->addAction(m_qActionWorkAddr);
 	m_qActionWorkAddr->setCheckable(TRUE);
-	qPushButton->setMenu(qMenu);
+	qToolButton->setMenu(qMenu);
 #if 0
 	qHLayout = new QHBoxLayout();
 	qHLayout->addWidget(qLabel);
@@ -401,14 +407,15 @@ BOOL BelugaDetail::initializeFields()
 	qComboBox->addItem(tr("Edit address..."));
 	connect(qComboBox, SIGNAL(activated(int)), this, SLOT(onHomeAddrActivated(int)));
 	m_qRightWidgets.append(qComboBox);
-	qPushButton = new QPushButton(tr("Home addr:"), parent);
-	qPushButton->setFlat(TRUE);
-	m_qLeftWidgets.append(qPushButton);
+	qToolButton = new QToolButton(parent);
+	qToolButton->setPopupMode(QToolButton::MenuButtonPopup);
+	qToolButton->setText(tr("Home addr:"));
+	m_qLeftWidgets.append(qToolButton);
 	qMenu = new QMenu();
 	m_qActionHomeAddr = new QAction(tr("Prefer"), this);
 	qMenu->addAction(m_qActionHomeAddr);
 	m_qActionHomeAddr->setCheckable(TRUE);
-	qPushButton->setMenu(qMenu);
+	qToolButton->setMenu(qMenu);
 #if 0
 	qHLayout = new QHBoxLayout();
 	qHLayout->addWidget(qLabel);

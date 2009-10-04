@@ -16,6 +16,7 @@
 #include <QtGui/QVBoxLayout>
 #include <QtGui/QHBoxLayout>
 #include <QtGui/QPushButton>
+#include <QtGui/QToolButton>
 #include <QtGui/QStylePainter>
 #include <QtGui/QPainter>
 #include "ui_belugadetail.h"

@@ -23,14 +23,25 @@ BelugaMain::BelugaMain(QWidget *parent, Qt::WFlags flags)
 	m_nCurDefaultAction = 0;
 	m_bIsCurTopItem = FALSE;
 	m_bSelfContactLoaded = FALSE;
+	m_QStatusWidget = NULL;
 
     setupUi(this);
-
+	
+	/* set beluga css */
 	QFile file(":/BelugaApp/beluga.qss");
 	file.open(QIODevice::ReadOnly);
 	QString stylesheet = QString(file.readAll());
 	qApp->setStyleSheet(stylesheet);
 
+	/* show person status timer */
+	m_qTimer = new QTimer(this);
+	m_qTimer->setSingleShot(true);
+	connect(m_qTimer, SIGNAL(timeout()), this, SLOT(showPersonStatus()));
+	
+	/* person status widget */
+	createPersonStatus();
+
+	/* create tab bar */
 	m_qTabBar = new QTabBar(this);
 	m_qTabBar->setGeometry(QRect(55, 25, 182, 25));
 	m_qTabBar->setShape(QTabBar::RoundedNorth);
@@ -374,7 +385,7 @@ BOOL BelugaMain::loadTags()
 			pTag->GetFieldValue(TagField_Logo, &tagLogo);
 			createTreeWidget(tagName->str);		
 			m_qTabBar->insertTab(nTagIndex, QIcon(QString(tagLogo->str)), QString());
-			m_qTabBar->setTabData(nTagIndex, QVariant(tr(tagName->str)));
+			m_qTabBar->setTabToolTip(nTagIndex, tr(tagName->str));
 			g_string_free(tagName, TRUE);
 			g_string_free(tagLogo, TRUE);
 		}
@@ -391,7 +402,7 @@ BOOL BelugaMain::loadTags()
 	createTreeWidget("Recent Contact");
 	
 	m_qTabBar->insertTab(nTagIndex + 1, QIcon(":/BelugaApp/Resources/images/recent.png"), QString());
-	m_qTabBar->setTabData(nTagIndex + 1, QVariant(tr("Recent Contact")));
+	m_qTabBar->setTabToolTip(nTagIndex, tr("Recent Contact"));
 
 	/* search list parent widget */
 	createTreeWidget("Search Result");
@@ -533,6 +544,9 @@ void BelugaMain::onCurrentItemChanged(QTreeWidgetItem* current, QTreeWidgetItem*
 			m_qCurItemText.append(current->text(0));
 			current->setText(0, QString("  %1\n  %2").arg(m_qCurItemText, current->data(1, Qt::UserRole).toString()));
 			m_qCurTree->setItemWidget(current, 0, iconlabel);
+
+			hidePersonStatus();
+			m_qTimer->start(2000);
 		}
 		else if (-1 != prevIndex && -1 == curIndex)  /* prev item is group but current item is contact */
 		{
@@ -553,6 +567,9 @@ void BelugaMain::onCurrentItemChanged(QTreeWidgetItem* current, QTreeWidgetItem*
 
 			/* change menu actions to contact actions */
 			createContactActions(m_nCurTabIndex + 1);
+			
+			hidePersonStatus();
+			m_qTimer->start(2000);
 		}
 		else if (-1 == prevIndex && -1 != curIndex) /* prev item is contact but current item is group */
 		{
@@ -625,6 +642,9 @@ void BelugaMain::onItemClicked(QTreeWidgetItem* item, int column)
 		m_qCurItemText.append(item->text(0));
 		item->setText(0, QString("  %1\n  %2").arg(m_qCurItemText, item->data(1, Qt::UserRole).toString()));
 		m_qCurTree->setItemWidget(item, 0, iconlabel);
+		
+		hidePersonStatus();
+		m_qTimer->start(2000);
 	}
 }
 
@@ -726,6 +746,11 @@ BOOL BelugaMain::createContactActions(int nContactType)
 		m_qActions[CONTACT_SYNC_ACTION] = m_qActionSyncC;
 		m_qMenuBar->addAction(m_qActionSyncC);
 	    connect(m_qActionSyncC, SIGNAL(triggered(bool)), this, SLOT(onActionSyncTriggered(bool)));
+		
+		m_qActionSetting = new QAction(tr("Setting"), this);
+		m_qActions[SETTING_ACTION] = m_qActionSetting;
+		m_qMenuBar->addAction(m_qActionSetting);
+		connect(m_qActionSetting, SIGNAL(triggered(bool)), this, SLOT(onActionSettingTriggered(bool)));
 
 		m_qMenuBar->setDefaultAction(m_qActionNewC);
 		m_nCurDefaultAction = CONTACT_NEW_ACTION;
@@ -761,6 +786,11 @@ BOOL BelugaMain::createContactActions(int nContactType)
 		m_qActions[CONTACT_GROUP_ACTION] = m_qActionGroupC;
 		m_qMenuBar->addAction(m_qActionGroupC);
 		connect(m_qActionGroupC, SIGNAL(triggered(bool)), this, SLOT(onActionGroupCTriggered(bool)));
+
+		m_qActionSetting = new QAction(tr("Setting"), this);
+		m_qActions[SETTING_ACTION] = m_qActionSetting;
+		m_qMenuBar->addAction(m_qActionSetting);
+		connect(m_qActionSetting, SIGNAL(triggered(bool)), this, SLOT(onActionSettingTriggered(bool)));
 
 		m_qMenuBar->setDefaultAction(m_qActionNewC);
 		m_nCurDefaultAction = CONTACT_NEW_ACTION;
@@ -818,6 +848,11 @@ BOOL BelugaMain::createGroupActions()
 	m_qActions[GROUP_DEL_ACTION] = m_qActionDelG;
 	m_qMenuBar->addAction(m_qActionDelG);
 	connect(m_qActionDelG, SIGNAL(triggered(bool)), this, SLOT(onActionDelGTriggered(bool)));
+
+	m_qActionSetting = new QAction(tr("Setting"), this);
+	m_qActions[SETTING_ACTION] = m_qActionSetting;
+	m_qMenuBar->addAction(m_qActionSetting);
+	connect(m_qActionSetting, SIGNAL(triggered(bool)), this, SLOT(onActionSettingTriggered(bool)));
 
 	m_qMenuBar->setDefaultAction(m_qActionExpandColapseG);
 	m_nCurDefaultAction = GROUP_EXPAND_COLLAPSE_ACTION;
@@ -984,6 +1019,9 @@ _Error:
 			CGroup * pGroup = NULL;
 
 			int groupId = m_qCurTree->currentItem()->data(0, Qt::UserRole).toInt();
+			if (groupId == (int)GROUPID_DEFAULT)
+				return;
+
 			m_pGroupDb->GetEntityById(groupId, (CDbEntity**)&pGroup);
 
 			GString * name = NULL;
@@ -1052,12 +1090,16 @@ _Error:
 		break;
 	case GROUP_DEL_ACTION:
 		{
+			QTreeWidgetItem * item = m_qCurTree->currentItem();
+			int groupId = item->data(0, Qt::UserRole).toInt();
+			if (groupId == (int)GROUPID_DEFAULT)
+				return;
+
 			QMessageBox msg(QMessageBox::Question, "", tr("Sure to delete the group?"), QMessageBox::Yes|QMessageBox::No, this);
 			msg.setDefaultButton(QMessageBox::Yes);
 			if (QMessageBox::Yes == msg.exec())
 			{
-				QTreeWidgetItem * item =m_qCurTree->currentItem();
-				if (0 == m_pGroupDb->DeleteEntity(item->data(0, Qt::UserRole).toInt()))  /* remove successfully */
+				if (0 == m_pGroupDb->DeleteEntity(groupId))  /* remove successfully */
 				{
 					int index = m_qCurTree->indexOfTopLevelItem(item);
 					if (index != -1)
@@ -1069,7 +1111,12 @@ _Error:
 			}	
 		}
 		break;
+	
+	case SETTING_ACTION:
+		{
 
+		}
+		break;
 	default:
 		break;
 	}
@@ -1162,6 +1209,11 @@ void BelugaMain::onActionMsgGTriggered(bool checked)
 void BelugaMain::onActionExpandColapseGTriggered(bool checked)
 {
 
+}
+
+void BelugaMain::onActionSettingTriggered(bool checked)
+{
+	onActionTriggered(SETTING_ACTION);
 }
 
 
@@ -1535,8 +1587,8 @@ int BelugaMain::updateGroupView(int nGroupId)
 	QTreeWidgetItem * item = NULL;
 	int i = 0;
 
-	item = m_qCurTree->currentItem()->parent();
-	if (NULL == item || nGroupId != item->data(0, Qt::UserRole).toInt())
+	item = m_qCurTree->currentItem();
+	if (NULL == item || nGroupId != item->parent()->data(0, Qt::UserRole).toInt())
 	{
 		for(i=0; i<m_qCurTree->topLevelItemCount(); i++)
 		{
@@ -1578,6 +1630,8 @@ void BelugaMain::onItemDoubleClicked(QTreeWidgetItem* item, int column)
 	if (-1 != m_qCurTree->indexOfTopLevelItem(item))   /* group item */
 		return;
 
+	hidePersonStatus();
+
 	if (m_nCurTabIndex == 0) /* phone contact */
 	{
 		int nContactId = item->data(0, Qt::UserRole).toInt();
@@ -1604,4 +1658,196 @@ void BelugaMain::paintEvent(QPaintEvent *)
 	opt.init(this);
 	QPainter p(this);
 	style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
+}
+
+void BelugaMain::showPersonStatus()
+{
+	QTreeWidgetItem * item =m_qCurTree->currentItem();
+	if (-1 != m_qCurTree->indexOfTopLevelItem(item))   /* group item */
+		return;
+
+	if (m_nCurTabIndex == 0) /* phone contact */
+	{	
+		/* set contact status */
+		photoshow->setIcon(QIcon(item->data(3, Qt::UserRole).toString()));
+
+		/* set contact signature */
+		GString * string = NULL;
+		CContact * pContact = NULL;
+		int nContactId = item->data(0, Qt::UserRole).toInt();
+		if (0!= m_pContactDb->GetEntityById(nContactId, (CDbEntity**)&pContact))
+			return;
+		
+		pContact->GetFieldValue(ContactField_Signature, &string);
+		signature->setPlainText(string->str);
+		g_string_free(string, TRUE);
+		string = NULL;
+		
+		/* set contact name */
+		pContact->GetFieldValue(ContactField_Name, &string);
+		name->setText(string->str);
+		g_string_free(string, TRUE);
+		string = NULL;
+
+		/*set location */ 
+		stPhoneDistrict disctrict;
+		pContact->GetFieldValue(ContactField_PhonePref, &string);
+		if (0 == m_pContactDb->GetPhoneDistrict(string->str, &disctrict))
+			location->setText(QString("%1 %2").arg(disctrict.ownerState).arg(disctrict.districtName));
+		
+		g_string_free(string, TRUE);
+		string = NULL;
+		delete pContact;
+		pContact = NULL;
+
+		/*set weather */ 
+		weather->setIcon(QIcon(":/BelugaApp/Resources/weather/rain.png"));
+
+		/* set sysmsg */
+		tm time, now; 
+		if (m_pContactDb->IsInRecentContact(nContactId)) /* the contact is a recent contact */
+		{
+			time = m_pContactDb->GetAarliestContactTime(nContactId);
+		}
+		else
+		{
+			time = m_pContactDb->GetAarliestContactTime();
+		}
+		
+		GetLocalTime(&now);
+		if (now.tm_mday == time.tm_mday && now.tm_hour == time.tm_hour && now.tm_min == time.tm_min && now.tm_sec == time.tm_sec)
+			sysmsg->setText(tr("Long time we aren't in touch!"));
+
+		int days = now.tm_mday - time.tm_mday;
+		if (days > 7)
+			sysmsg->setText(tr("At least a week we aren't in touch!"));
+		else if (days > 3)
+			sysmsg->setText(tr("At least 3 days we aren't in touch!"));
+		else
+			sysmsg->setText(tr("How are you, my friend!"));
+		
+		/* hide some widget  */
+		m_qTabBar->setVisible(FALSE);
+		contactphoto->setVisible(FALSE);
+		search->setVisible(FALSE);
+		searchlabel->setVisible(FALSE);
+
+		m_qWidgetPanelList.at(m_nCurTabIndex)->setGeometry(0, 135, 240, 136);
+		m_qTreeList.at(m_nCurTabIndex)->setGeometry(0, 0, 240, 133);
+
+		/* show contact status */
+		m_QStatusWidget->setVisible(TRUE);
+	}
+	else  /* im contact */
+	{
+		/* msg to contact */
+	}
+
+}
+
+void BelugaMain::hidePersonStatus()
+{
+	m_qTimer->stop();
+	m_qWidgetPanelList.at(m_nCurTabIndex)->setGeometry(0, 50, 240, 220);
+	m_qTreeList.at(m_nCurTabIndex)->setGeometry(0, 0, 240, 217);
+	
+	m_qTabBar->setVisible(TRUE);
+	contactphoto->setVisible(TRUE);
+	search->setVisible(TRUE);
+	searchlabel->setVisible(TRUE);
+
+	/* hide contact view */
+	m_QStatusWidget->setVisible(FALSE);
+}
+
+void BelugaMain::createPersonStatus()
+{
+	QPushButton *fun1;
+	QPushButton *fun2;
+	QPushButton *fun3;
+	QPushButton *fun4;
+	QPushButton *fun5;
+	QPushButton *fun6;
+	QPushButton *fun7;
+	QPushButton *fun8;
+
+	m_QStatusWidget = new QWidget(this);
+	m_QStatusWidget->setGeometry(0, 0, 240, 140);
+	m_QStatusWidget->setVisible(FALSE);
+
+	photoshow = new QPushButton(m_QStatusWidget);
+	photoshow->setObjectName(QString::fromUtf8("photoshow"));
+	photoshow->setGeometry(QRect(5, 3, 80, 90));
+	photoshow->setFlat(true);
+
+	name = new QLabel(m_QStatusWidget);
+	name->setObjectName(QString::fromUtf8("name"));
+	name->setGeometry(QRect(90, 3, 145, 16));
+
+	signature = new QPlainTextEdit(m_QStatusWidget);
+	signature->setObjectName(QString::fromUtf8("signature"));
+	signature->setGeometry(QRect(90, 20, 145, 38));
+
+	location = new QLabel(m_QStatusWidget);
+	location->setObjectName(QString::fromUtf8("location"));
+	location->setGeometry(QRect(100, 60, 85, 32));
+
+	weather = new QPushButton(m_QStatusWidget);
+	weather->setObjectName(QString::fromUtf8("weather"));
+	weather->setGeometry(QRect(190, 60, 32, 32));
+	weather->setFlat(true);
+
+	sysmsg = new QLabel(m_QStatusWidget);
+	sysmsg->setObjectName(QString::fromUtf8("sysmsg"));
+	sysmsg->setGeometry(QRect(5, 93, 230, 16));
+
+	fun1 = new QPushButton(m_QStatusWidget);
+	fun1->setObjectName(QString::fromUtf8("fun1"));
+	fun1->setGeometry(QRect(5, 110, 24, 24));
+	fun1->setFlat(true);
+	fun1->setIcon(QIcon(":/BelugaApp/Resources/status/call.png"));
+
+	fun2 = new QPushButton(m_QStatusWidget);
+	fun2->setObjectName(QString::fromUtf8("fun2"));
+	fun2->setGeometry(QRect(32, 110, 24, 24));
+	fun2->setFlat(true);
+	fun2->setIcon(QIcon(":/BelugaApp/Resources/status/msg.png"));
+
+	fun3 = new QPushButton(m_QStatusWidget);
+	fun3->setObjectName(QString::fromUtf8("fun3"));
+	fun3->setGeometry(QRect(59, 110, 24, 24));
+	fun3->setFlat(true);
+	fun3->setIcon(QIcon(":/BelugaApp/Resources/status/qq.png"));
+	qq = fun3;
+
+	fun4 = new QPushButton(m_QStatusWidget);
+	fun4->setObjectName(QString::fromUtf8("fun4"));
+	fun4->setGeometry(QRect(86, 110, 24, 24));
+	fun4->setFlat(true);
+	fun4->setIcon(QIcon(":/BelugaApp/Resources/status/msn.png"));
+	msn = fun4;
+
+	fun5 = new QPushButton(m_QStatusWidget);
+	fun5->setObjectName(QString::fromUtf8("fun5"));
+	fun5->setGeometry(QRect(113, 110, 24, 24));
+	fun5->setFlat(true);
+	fun5->setIcon(QIcon(":/BelugaApp/Resources/status/friend.png"));
+
+	fun6 = new QPushButton(m_QStatusWidget);
+	fun6->setObjectName(QString::fromUtf8("fun6"));
+	fun6->setGeometry(QRect(140, 110, 24, 24));
+	fun6->setFlat(true);
+	fun6->setIcon(QIcon(":/BelugaApp/Resources/status/music.png"));
+
+	fun7 = new QPushButton(m_QStatusWidget);
+	fun7->setObjectName(QString::fromUtf8("fun7"));
+	fun7->setGeometry(QRect(167, 110, 24, 24));
+	fun7->setFlat(true);
+	fun7->setIcon(QIcon(":/BelugaApp/Resources/status/tv.png"));
+
+	fun8 = new QPushButton(m_QStatusWidget);
+	fun8->setObjectName(QString::fromUtf8("fun8"));
+	fun8->setGeometry(QRect(194, 110, 24, 24));
+	fun8->setFlat(true);
+	fun8->setIcon(QIcon(":/BelugaApp/Resources/status/game.png"));
 }

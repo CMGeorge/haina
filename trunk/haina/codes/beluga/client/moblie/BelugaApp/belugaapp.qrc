@@ -65,5 +65,18 @@
         <file>Resources/gui/up_arrow.png</file>
         <file>Resources/gui/up_arrow_disabled.png</file>
         <file>beluga.qss</file>
+        <file>Resources/status/call.png</file>
+        <file>Resources/status/friend.png</file>
+        <file>Resources/status/game.png</file>
+        <file>Resources/status/im.png</file>
+        <file>Resources/status/msn.png</file>
+        <file>Resources/status/music.png</file>
+        <file>Resources/status/qq.png</file>
+        <file>Resources/status/tv.png</file>
+        <file>Resources/status/msg.png</file>
+        <file>Resources/weather/cloud.png</file>
+        <file>Resources/weather/rain.png</file>
+        <file>Resources/weather/suny2cloud.png</file>
+        <file>Resources/weather/suny.png</file>
     </qresource>
 </RCC>

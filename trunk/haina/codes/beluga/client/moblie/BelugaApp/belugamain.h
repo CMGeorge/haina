@@ -4,6 +4,7 @@
 #include <QtGui/QDialog>
 #include <QtGui/QTabWidget>
 #include <QtGui/QTreeWidget>
+#include <QtGui/QTreeWidgetItem>
 #include <QtGui/QWidget>
 #include <QtGui/QPicture>
 #include <QtGui/QMenuBar>
@@ -11,10 +12,12 @@
 #include <QtGui/QAction>
 #include <QtGui/QTabBar>
 #include <QtCore/QList>
+#include <QtCore/QTimer>
 #include <QtGui/QPushButton>
 #include <QtCore/QFile>
 #include <QtGui/QStylePainter>
 #include <QtGui/QPainter>
+#include <QtGui/QPlainTextEdit>
 #include "ui_belugamain.h"
 
 #include "CContactDb.h"
@@ -54,7 +57,8 @@ enum eActionId
 	GROUP_UP_ACTION,
 	GROUP_DOWN_ACTION,
 	GROUP_MSG_ACTION,
-
+	
+	SETTING_ACTION,
 	ACTION_NUM
 };
 
@@ -99,6 +103,8 @@ private:
 	BOOL loadSelfContacts();
 	gboolean importContacts();
 	void paintEvent(QPaintEvent * event);
+	void createPersonStatus();
+	void hidePersonStatus();
 
 private slots:
 	void onCurrentChanged(int nIndex);
@@ -133,6 +139,10 @@ private slots:
 	void onActionMsgGTriggered(bool checked = false);
 	void onActionExpandColapseGTriggered(bool checked = false);
 
+	void onActionSettingTriggered(bool checked = false);
+
+	void showPersonStatus();
+
 private:
 	CContactDb	* m_pContactDb;
 	CGroupDb	* m_pGroupDb;
@@ -154,7 +164,8 @@ private:
 	QMenuBar	* m_qMenuBar;
 
 	QList<MenuBarStatus> m_stMenuStatus;
-
+	
+	QAction     * m_qActionSetting;
 	/* contact actions */
 	QMenu		* m_qMenuCall;
 	QAction		* m_qActionVoiceCall;
@@ -182,6 +193,19 @@ private:
 
 	/* close search result action */
 	QAction     * m_qActionCloseSearch;
+
+	/* show person status */
+	QTimer		* m_qTimer;
+	QWidget		* m_QStatusWidget;
+
+	QPushButton		*photoshow;
+	QPlainTextEdit	*signature;
+	QPushButton		*weather;
+	QLabel			*name;
+	QLabel			*location;
+	QLabel			*sysmsg;
+	QPushButton		*qq;
+	QPushButton		*msn;
 };
 
 #endif // BELUGAMAIN_H
