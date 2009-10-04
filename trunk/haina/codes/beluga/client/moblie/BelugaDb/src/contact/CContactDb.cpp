@@ -843,7 +843,12 @@ EXPORT_C gint32 CContactDb::GetPhoneDistrict(gchar* phoneNumber,  stPhoneDistric
 	phoneDistrict->phoneRange = NULL;
 	sprintf(sql, "select * from phone_district where phone_range like '%%%s%%';", phoneNumber);
 	CppSQLite3Query query = m_dbBeluga.execQuery(sql);
-	
+	if (query.eof())
+	{
+		CloseDatabase();
+		return ERROR(ESide_Client, EModule_Db, ECode_Not_Exist);
+	}
+
 	strcpy(phoneDistrict->districtNumber, query.getStringField(1));
 	strcpy(phoneDistrict->districtName, query.getStringField(2));
 	strcpy(phoneDistrict->ownerState, query.getStringField(3));
@@ -936,18 +941,89 @@ EXPORT_C gint32 CContactDb::SaveRecentContact(stRecentContact * contact)
 	OpenDatabase();
 	if (m_dbBeluga.execScalar("select count(*) from recent_contact;") > MAX_RECENT_CONTACT_NUM)
 		{
-		m_dbBeluga.execDML("delete from recent_contact where time = (select max(time) from recent_contact);");
+		m_dbBeluga.execDML("delete from recent_contact where time = (select min(time) from recent_contact);");
+		}
+	
+	sprintf(sql, "select count(*) from recent_contact where cid = %d;", contact->nContactId);
+	if (m_dbBeluga.execScalar(sql) != 0)
+		{
+		memset(sql, 0, 256);
+		sprintf(sql, "update recent_contact set event = %d, event_comm = '%s', time = '%d-%d-%d %02d:%02d:%02d' where cid = %d;", 
+			contact->event, contact->eventCommInfo,
+			contact->time.tm_year, contact->time.tm_mon, contact->time.tm_mday,
+			contact->time.tm_hour, contact->time.tm_min, contact->time.tm_sec, contact->nContactId);
+		}
+		else
+		{
+		memset(sql, 0, 256);
+		sprintf(sql, "insert into recent_contact values(null, %d, %d, '%s', %d-%d-%d %02d:%02d:%02d);", 
+			contact->nContactId, contact->event, contact->eventCommInfo,
+			contact->time.tm_year, contact->time.tm_mon, contact->time.tm_mday,
+			contact->time.tm_hour, contact->time.tm_min, contact->time.tm_sec);
 		}
 
-	sprintf(sql, "insert into recent_contact values(null, %d, %d, '%s', %d-%d-%d %02d:%02d:%02d);", 
-				contact->nContactId, contact->event, contact->eventCommInfo,
-				contact->time.tm_year, contact->time.tm_mon, contact->time.tm_mday,
-				contact->time.tm_hour, contact->time.tm_min, contact->time.tm_sec);
-	m_dbBeluga.execDML(sql);	
+	m_dbBeluga.execDML(sql);
 	CloseDatabase();
 	return 0;
 	}
-    
+
+gboolean CContactDb::IsInRecentContact(guint32 nContactId)
+	{
+	char sql[256] = {0};
+	OpenDatabase();
+	sprintf(sql, "select count(*) from recent_contact where cid = %d;", nContactId);
+	if (m_dbBeluga.execScalar(sql) == 0)
+		{
+		CloseDatabase();
+		return FALSE;
+		}
+	else
+		{
+		CloseDatabase();
+		return TRUE;
+		}
+	}
+
+tm & CContactDb::GetAarliestContactTime(guint32 nContactId)
+	{
+	tm stTime;
+	char sql[64] = {0};
+	char times[20] = {0};
+	OpenDatabase();
+
+	if (nContactId == -1)
+		sprintf(sql, "select min(time) from recent_contact;");
+	else
+		sprintf(sql, "select time from recent_contact where cid = %d;", nContactId);
+
+	CppSQLite3Query query = m_dbBeluga.execQuery(sql);
+	
+	GetLocalTime(&stTime);
+	if (query.eof())
+		{
+		CloseDatabase();
+		return stTime;
+		}
+	
+	strcpy(times, query.getStringField(0));  /* exp: 2009-6-30 21:51:23 */
+	if (strlen(times) != 0)
+		{	
+		char * tmp = strrchr(times, '-');
+		stTime.tm_mon = atoi(tmp+1);
+		tmp = strrchr(tmp, '-');
+		stTime.tm_mday = atoi(tmp+1);
+		tmp = strrchr(tmp, ' ');
+		stTime.tm_hour = atoi(tmp+1);
+		tmp = strrchr(tmp, ':');
+		stTime.tm_min = atoi(tmp+1);
+		tmp = strrchr(tmp, ':');
+		stTime.tm_sec = atoi(tmp+1);
+		CloseDatabase();
+		}
+	return stTime;
+	}
+
+
 gint32 CContactDb::GetContactCommInfo(CPhoneContact * pContact)
 	{
 	char sql[128] = {0};
