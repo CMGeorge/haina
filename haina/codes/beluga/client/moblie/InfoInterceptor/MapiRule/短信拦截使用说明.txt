@@ -1,0 +1,4 @@
+第一  把com控件搞到DLL下面注册（现成有打包工具，生成既可以使用,安装即可完成）
+第二  重启机子即可.
+
+有新的短信或Email信息会调用CMailRuleClient::ProcessMessage方法. (短信已验证通过Email未验证.)
