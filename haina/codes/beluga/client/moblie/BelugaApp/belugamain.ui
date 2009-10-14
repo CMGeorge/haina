@@ -16,38 +16,6 @@
   <property name="autoFillBackground">
    <bool>true</bool>
   </property>
-  <widget class="QLineEdit" name="search">
-   <property name="geometry">
-    <rect>
-     <x>55</x>
-     <y>3</y>
-     <width>150</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="searchlabel">
-   <property name="geometry">
-    <rect>
-     <x>205</x>
-     <y>5</y>
-     <width>16</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="focusPolicy">
-    <enum>Qt::NoFocus</enum>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap resource="belugaapp.qrc">:/BelugaApp/Resources/images/search.png</pixmap>
-   </property>
-  </widget>
   <widget class="QPushButton" name="contactphoto">
    <property name="geometry">
     <rect>
@@ -70,6 +38,19 @@
     <bool>false</bool>
    </property>
    <property name="flat">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="search">
+   <property name="geometry">
+    <rect>
+     <x>55</x>
+     <y>2</y>
+     <width>160</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="editable">
     <bool>true</bool>
    </property>
   </widget>

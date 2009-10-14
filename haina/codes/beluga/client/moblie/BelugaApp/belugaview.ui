@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>240</width>
-    <height>320</height>
+    <height>288</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -86,6 +86,9 @@
     <enum>QFrame::StyledPanel</enum>
    </property>
    <property name="verticalScrollBarPolicy">
+    <enum>Qt::ScrollBarAsNeeded</enum>
+   </property>
+   <property name="horizontalScrollBarPolicy">
     <enum>Qt::ScrollBarAlwaysOff</enum>
    </property>
    <property name="editTriggers">
