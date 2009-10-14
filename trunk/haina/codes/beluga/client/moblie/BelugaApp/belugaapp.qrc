@@ -33,7 +33,6 @@
         <file>Resources/jobs/job_16.png</file>
         <file>Resources/images/default_call_ring.png</file>
         <file>Resources/images/default_msg_ring.png</file>
-        <file>coffee.qss</file>
         <file>Resources/gui/checkbox_checked.png</file>
         <file>Resources/gui/checkbox_checked_hover.png</file>
         <file>Resources/gui/checkbox_checked_pressed.png</file>
@@ -64,7 +63,6 @@
         <file>Resources/gui/spinup_pressed.png</file>
         <file>Resources/gui/up_arrow.png</file>
         <file>Resources/gui/up_arrow_disabled.png</file>
-        <file>beluga.qss</file>
         <file>Resources/status/call.png</file>
         <file>Resources/status/friend.png</file>
         <file>Resources/status/game.png</file>
@@ -78,5 +76,34 @@
         <file>Resources/weather/rain.png</file>
         <file>Resources/weather/suny2cloud.png</file>
         <file>Resources/weather/suny.png</file>
+        <file>Resources/faces/face.png</file>
+        <file>Resources/faces/mantou_001.png</file>
+        <file>Resources/faces/mantou_002.png</file>
+        <file>Resources/faces/mantou_003.png</file>
+        <file>Resources/faces/mantou_004.png</file>
+        <file>Resources/faces/mantou_005.png</file>
+        <file>Resources/faces/mantou_006.png</file>
+        <file>Resources/faces/mantou_007.png</file>
+        <file>Resources/faces/mantou_008.png</file>
+        <file>Resources/faces/mantou_009.png</file>
+        <file>Resources/faces/mantou_010.png</file>
+        <file>Resources/faces/mantou_011.png</file>
+        <file>Resources/faces/mantou_012.png</file>
+        <file>Resources/faces/mantou_013.png</file>
+        <file>Resources/faces/mantou_014.png</file>
+        <file>Resources/faces/mantou_015.png</file>
+        <file>Resources/faces/mantou_016.png</file>
+        <file>Resources/faces/mantou_017.png</file>
+        <file>Resources/faces/mantou_018.png</file>
+        <file>Resources/faces/mantou_019.png</file>
+        <file>Resources/faces/mantou_020.png</file>
+        <file>Resources/images/quick_msg.png</file>
+        <file>Resources/images/signature.png</file>
+        <file>Resources/images/video.png</file>
+        <file>Resources/images/audio.png</file>
+        <file>Resources/images/file.png</file>
+        <file>Resources/images/got.png</file>
+        <file>Resources/images/picture.png</file>
+        <file>beluga.qss</file>
     </qresource>
 </RCC>

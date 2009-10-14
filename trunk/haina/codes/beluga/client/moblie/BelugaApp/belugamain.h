@@ -18,6 +18,7 @@
 #include <QtGui/QStylePainter>
 #include <QtGui/QPainter>
 #include <QtGui/QPlainTextEdit>
+#include <QtGui/QLabel>
 #include "ui_belugamain.h"
 
 #include "CContactDb.h"
@@ -104,7 +105,7 @@ private:
 	gboolean importContacts();
 	void paintEvent(QPaintEvent * event);
 	void createPersonStatus();
-	void hidePersonStatus();
+	void loadRecentContact();
 
 private slots:
 	void onCurrentChanged(int nIndex);
@@ -116,7 +117,6 @@ private slots:
 	void onActionTriggered(int actionRow);
 	void onDefaultActionTriggered(bool checked = false);
 	void onTextChanged(const QString & text);
-	void onEditingFinished();
 
 	void onActionVoiceCallTriggered(bool checked = false);
 	void onActionVideoCallTriggered(bool checked = false);
@@ -142,6 +142,10 @@ private slots:
 	void onActionSettingTriggered(bool checked = false);
 
 	void showPersonStatus();
+	void hidePersonStatus();
+	
+	void onFocusChanged(QWidget * old, QWidget * now);
+
 
 private:
 	CContactDb	* m_pContactDb;
@@ -151,6 +155,7 @@ private:
 	
 	QString		  m_qCurItemText;
 	int			  m_nCurTabIndex;
+	int			  m_nRencentContactTab;
 	int			  m_nCurDefaultAction;
 	BOOL		  m_bIsCurTopItem; /* current item is top item which was group */
 	BOOL		  m_bSelfContactLoaded;
@@ -195,7 +200,8 @@ private:
 	QAction     * m_qActionCloseSearch;
 
 	/* show person status */
-	QTimer		* m_qTimer;
+	QTimer		* m_qShowTimer;
+	QTimer      * m_qCloseTimer;
 	QWidget		* m_QStatusWidget;
 
 	QPushButton		*photoshow;
@@ -206,6 +212,7 @@ private:
 	QLabel			*sysmsg;
 	QPushButton		*qq;
 	QPushButton		*msn;
+	bool		  m_statusVisible;
 };
 
 #endif // BELUGAMAIN_H
