@@ -11,79 +11,87 @@
 #define __CMSGDB_H__
 
 
+#include <time.h>
+#include "CEntityDb.h"
 
-/*
-class CContactDb : public CEntityDb
+#include "CMsg.h"
+#include "CMsgIterator.h"
+#include "CQuickMsg.h"
+#include "CQuickMsgIterator.h"
+#include "CMsgFace.h"
+#include "CMsgFaceIterator.h"
+#include "CSignature.h"
+#include "CSignatureIterator.h"
+
+class CMsgDb : public CEntityDb
 {
 public:
-    CContactDb();
-    ~CContactDb();
+    IMPORT_C CMsgDb();
+    IMPORT_C ~CMsgDb();
 
+	IMPORT_C gint32 InitEntityDb(gchar* dbName);
+    IMPORT_C gint32 getMaxMsgId(guint32 * pMaxMsgId);
+    IMPORT_C gint32 getMaxQuickMsgId(guint32 * pMaxQuickMsgId);
+    IMPORT_C gint32 getMaxSignatureId(guint32 * pMaxSigId);
+    IMPORT_C gint32 getMaxMsgFaceId(guint32 * pMaxFaceId);
 
-    ECODE getMaxMsgId(uint32 * pMaxMsgId);
-    ECODE getMaxQuickMsgId(uint32 * pMaxQuickMsgId);
-    ECODE getMaxSignatureId(uint32 * pMaxSigId);
-    ECODE getMaxMsgFaceId(uint32 * pMaxFaceId);
+    IMPORT_C gint32 getMsgById(guint32 nMsgId, CMsg** ppMsg);
+    IMPORT_C gint32 getQuickMsgById(guint32 nQuickMsgId, CQuickMsg** ppMsg);
+    IMPORT_C gint32 getSignatureById(guint32 nSignatureId, CSignature** ppSig);
+    IMPORT_C gint32 getMsgFaceById(guint32 nMsgFaceId, CMsgFace** ppFace);
 
-    ECODE getMsgById(uint32 nMsgId, CMsg** ppMsg);
-    ECODE getQuickMsgById(uint32 nQuickMsgId, CQuickMsg** ppMsg);
-    ECODE getSignatureById(uint32 nSignatureId, CSignature** ppSig);
-    ECODE getMsgFaceById(uint32 nMsgFaceId, CMsgFace** ppFace);
+    IMPORT_C gint32 saveMsg(CMsg * ppMsg);
+    IMPORT_C gint32 saveQuickMsg(CQuickMsg * pMsg);
+    IMPORT_C gint32 saveSignature(CSignature * pSig);
+    IMPORT_C gint32 saveMsgFace(CMsgFace * pFace);
 
-    ECODE createMsg(CMsg** ppMsg);
-    ECODE createQuickMsg(CQuickMsg** ppMsg);
-    ECODE createSignature(CSignature** ppSig);
-    ECODE createMsgFace(CMsgFace** ppFace);
+    IMPORT_C gint32 updateMsg(CMsg * pMsg);
+    IMPORT_C gint32 updateQuickMsg(CQuickMsg * pMsg);
+    IMPORT_C gint32 updateSignature(CSignature * pSig);
+    IMPORT_C gint32 updateMsgFace(CMsgFace * pFace);
 
-    ECODE saveMsg(CMsg * ppMsg);
-    ECODE saveQuickMsg(CQuickMsg * pMsg);
-    ECODE saveSignature(CSignature * pSig);
-    ECODE saveMsgFace(CMsgFace * pFace);
+    IMPORT_C gint32 deleteMsg(guint32 nMsgId);
+    IMPORT_C gint32 deleteQuickMsg(guint32 nMsgId);
+    IMPORT_C gint32 deleteSignature(guint32 nSigId);
+    IMPORT_C gint32 deleteMsgFace(guint32 nFaceId);
 
-    ECODE updateMsg(CMsg * pMsg);
-    ECODE updateQuickMsg(CQuickMsg * pMsg);
-    ECODE updateSignature(CSignature * pSig);
-    ECODE updateMsgFace(CMsgFace * pFace);
-
-    ECODE deleteMsg(CMsg * pMsg);
-    ECODE deleteMsg(uint32 nMsgId);
-    ECODE deleteQuickMsg(CQuickMsg * pMsg);
-    ECODE deleteQuickMsg(uint32 nMsgId);
-    ECODE deleteSignature(CSignature * pSig);
-    ECODE deleteSignature(uint32 nSigId);
-    ECODE deleteMsgFace(CMsgFace * pFace);
-    ECODE deleteMsgFace(uint32 nFaceId);
-*/
 	/* delete all msgs sent to and received from a contact */
-/*    ECODE deleteAllMsgsByContact(uint32 nContactId); 
-    ECODE deleteAllMsgs();
+    IMPORT_C gint32 deleteAllMsgsByContact(guint32 nContactId); 
+    IMPORT_C gint32 deleteAllMsgs();
 
-    ECODE getMsgsTotality(uint32 &totality);
-    ECODE getMsgsTotalityByContact(uint32 nContactId, uint32 &totality); */
+    IMPORT_C gint32 getMsgsTotality(guint32 &totality);
+    IMPORT_C gint32 getMsgsTotalityByContact(guint32 nContactId, guint32 &totality); 
     /* msgs totality from the time on */
-/*    ECODE getMsgsTotalityByContact(uint32 nContactId, TIME time, uint32 &totality);  
-    ECODE getMsgsTotalityByGroup(uint32 nGroupId, uint32 &totality);
-    ECODE getMsgFacesTotality(uint32 &totality);
-    ECODE getSignaturesTotality(uint32 &totality);
-    ECODE getQuickMsgsTotality(uint32 &totality);
+    IMPORT_C gint32 getMsgsTotalityByContact(guint32 nContactId, tm time, guint32 &totality);  
+    IMPORT_C gint32 getMsgsTotalityByGroup(guint32 nGroupId, guint32 &totality);
 
+    IMPORT_C gint32 getMsgFacesTotality(guint32 &totality);
+    IMPORT_C gint32 getSignaturesTotality(guint32 &totality);
+    IMPORT_C gint32 getQuickMsgsTotality(guint32 &totality);
 
-    ECODE searchMsgs(uint32 fieldsIndex[], String fieldsValue[], uint32 limit, uint32 offset, CMsgIterator ** ppMsgIterator); */
+	IMPORT_C gint32 getAllMsgFaces(CMsgFaceIterator ** ppMsgFaceIterator);
+	IMPORT_C gint32 getAllSignatures(CSignatureIterator ** ppSigIterator);
+	IMPORT_C gint32 getAllQuickMsgs(CQuickMsgIterator ** ppQuickMsgIterator);
+
+    IMPORT_C gint32 searchMsgs(GArray * fieldsIndex, GPtrArray * fieldsValue, guint32 limit, guint32 offset, CMsgIterator ** ppMsgIterator); 
 	/* search msgs sent to and received from a contact */
-/*    ECODE searchMsgsByContact(uint32 nContactId,  uint32 limit, uint32 offset, CMsgIterator ** ppMsgIterator); 
- * 
- */	
+    IMPORT_C gint32 searchMsgsByContact(guint32 nContactId,  guint32 limit, guint32 offset, CMsgIterator ** ppMsgIterator); 
 	/* search msgs sent to and received from a contact base on time */
-//    ECODE searchMsgsByContact(uint32 nContactId, TIME time, uint32 limit, uint32 offset, CMsgIterator ** ppMsgIterator);
+    IMPORT_C gint32 searchMsgsByContact(guint32 nContactId, tm time, guint32 limit, guint32 offset, CMsgIterator ** ppMsgIterator);
     /* search msgs sent to and received from a group */
-//    ECODE searchMsgsByGroup(uint32 nGroupId, uint32 limit, uint32 offset, CMsgIterator ** ppMsgIterator); 
+    IMPORT_C gint32 searchMsgsByGroup(guint32 nGroupId, guint32 limit, guint32 offset, CMsgIterator ** ppMsgIterator); 
     /* search msgs sent to and received from a group base on time */
-//    ECODE searchMsgsByGroup(uint32 nGroupId, TIME time, uint32 limit, uint32 offset, CMsgIterator ** ppMsgIterator); 
-/*
+    IMPORT_C gint32 searchMsgsByGroup(guint32 nGroupId, tm time, guint32 limit, guint32 offset, CMsgIterator ** ppMsgIterator); 
+	
+	IMPORT_C gchar * getDbPath();
+
+
 private:
-    ECODE getMaxMsgContentId(uint32 * pMaxContentId);
+	GPtrArray	  * m_pMsgTableFieldsName;
+	GPtrArray	  * m_pQuickMsgTableFieldsName;
+	GPtrArray	  * m_pMsgFaceTableFieldsName;
+	GPtrArray	  * m_pSignatureTableFieldsName;
 };
 
-*/
 #endif
 

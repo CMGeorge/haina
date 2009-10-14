@@ -7,12 +7,11 @@
  ============================================================================
  */
 
-#ifndef __CTAG_H__
-#define __CTAG_H__
+#ifndef __CQUICKMSGITERATOR_H__
+#define __CQUICKMSGITERATOR_H__
 
 #include <glib.h>
 #include "CDbEntityIterator.h"
-#include "CQuickMsgDb.h"
 
 class CQuickMsgIterator : public CDbEntityIterator
 {
@@ -25,10 +24,10 @@ public:
 	IMPORT_C ~CQuickMsgIterator()
 		{
 		}
-/*	
+	
 	IMPORT_C gint32 Current(CDbEntity ** pEntity);
 	IMPORT_C gint32 Next(gboolean * pSuccess);
-	IMPORT_C gint32 Prev(gboolean * pSuccess);*/
+	IMPORT_C gint32 Prev(gboolean * pSuccess);
 };	
 
 #endif

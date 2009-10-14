@@ -13,7 +13,6 @@
 
 #include <glib.h>
 #include "CDbEntityIterator.h"
-#include "CSignatureDb.h"
 
 class CSignatureIterator : public CDbEntityIterator
 {
@@ -26,10 +25,10 @@ public:
 	IMPORT_C ~CSignatureIterator()
 		{
 		}
-	/*
+	
 	IMPORT_C gint32 Current(CDbEntity ** pEntity);
 	IMPORT_C gint32 Next(gboolean * pSuccess);
-	IMPORT_C gint32 Prev(gboolean * pSuccess);*/
+	IMPORT_C gint32 Prev(gboolean * pSuccess);
 };	
 
 #endif

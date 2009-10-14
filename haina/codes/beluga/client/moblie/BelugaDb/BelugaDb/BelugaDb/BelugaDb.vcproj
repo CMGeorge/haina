@@ -420,10 +420,6 @@
 					>
 				</File>
 				<File
-					RelativePath="..\..\inc\message\CMsgFaceDb.h"
-					>
-				</File>
-				<File
 					RelativePath="..\..\inc\message\CMsgFaceIterator.h"
 					>
 				</File>
@@ -436,19 +432,11 @@
 					>
 				</File>
 				<File
-					RelativePath="..\..\inc\message\CQuickMsgDb.h"
-					>
-				</File>
-				<File
 					RelativePath="..\..\inc\message\CQuickMsgIterator.h"
 					>
 				</File>
 				<File
 					RelativePath="..\..\inc\message\CSignature.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\inc\message\CSignatureDb.h"
 					>
 				</File>
 				<File
@@ -531,6 +519,30 @@
 			<Filter
 				Name="message"
 				>
+				<File
+					RelativePath="..\..\src\message\CMsg.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\message\CMsgDb.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\message\CMsgFaceIterator.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\message\CMsgIterator.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\message\CQuickMsgIterator.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\message\CSignatureIterator.cpp"
+					>
+				</File>
 			</Filter>
 		</Filter>
 	</Files>
