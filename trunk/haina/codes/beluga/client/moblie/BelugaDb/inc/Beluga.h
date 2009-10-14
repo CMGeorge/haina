@@ -79,7 +79,8 @@ enum ECode
 	ECode_No_Memory = 4,
 	ECode_Insert_Failed = 5,
 	ECode_Update_Failed = 6,
-	ECode_End_Of_Row = 7
+	ECode_End_Of_Row = 7,
+	ECode_Open_File_Failed = 8
 	};
 
 #define	ERROR(side, module, code)	((side << 24)|(module << 16)|(code))
@@ -87,6 +88,7 @@ enum ECode
 
 IMPORT_C void freeGStringArray(GPtrArray * pArray);
 IMPORT_C void freeAddressArray(GPtrArray * pArray);
+IMPORT_C void freeRecentContactArray(GPtrArray * pArray);
 IMPORT_C void GetLocalTime(tm* time);
 
 #endif /* BELUGA_H_ */
