@@ -83,9 +83,9 @@
 			/>
 			<DeploymentTool
 				ForceDirty="-1"
-				RemoteDirectory="%CSIDL_PROGRAM_FILES%\Beluga"
+				RemoteDirectory=""
 				RegisterOutput="0"
-				AdditionalFiles="msvcr80.dll|$(BINDIR)\$(INSTRUCTIONSET)|%CSIDL_PROGRAM_FILES%\$(ProjectName)|0;QtCore4.dll|$(QTDIR)\lib|%CSIDL_PROGRAM_FILES%\$(ProjectName)|0;QtGui4.dll|$(QTDIR)\lib|%CSIDL_PROGRAM_FILES%\$(ProjectName)|0"
+				AdditionalFiles=""
 			/>
 			<DebuggerTool
 			/>
@@ -159,9 +159,9 @@
 			/>
 			<DeploymentTool
 				ForceDirty="-1"
-				RemoteDirectory="%CSIDL_PROGRAM_FILES%\Beluga"
+				RemoteDirectory=""
 				RegisterOutput="0"
-				AdditionalFiles="msvcr80d.dll|$(BINDIR)\$(INSTRUCTIONSET)|%CSIDL_PROGRAM_FILES%\$(ProjectName)|0;QtCored4.dll|$(QTDIR)\lib|%CSIDL_PROGRAM_FILES%\$(ProjectName)|0;QtGuid4.dll|$(QTDIR)\lib|%CSIDL_PROGRAM_FILES%\$(ProjectName)|0"
+				AdditionalFiles=""
 			/>
 			<DebuggerTool
 			/>

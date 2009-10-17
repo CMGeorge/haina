@@ -18,6 +18,7 @@ class BELUGASERVICE_API HttpConnection: public Connection
 
 public:
     HttpConnection(const std::string& url);
+	HttpConnection();
     ~HttpConnection();
 
     // Implement Connection interface.
