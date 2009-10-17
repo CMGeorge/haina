@@ -69,7 +69,7 @@
 				LinkIncremental="2"
 				DelayLoadDLLs="$(NOINHERIT)"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="$(OutDir)/BelugaService.pdb"
+				ProgramDatabaseFile="../../../TargetLib/$(ProjectName).pdb"
 				SubSystem="0"
 				ImportLibrary="../../../TargetLib/$(ProjectName).lib"
 			/>
@@ -150,7 +150,7 @@
 				LinkIncremental="1"
 				DelayLoadDLLs="$(NOINHERIT)"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="$(OutDir)/BelugaService.pdb"
+				ProgramDatabaseFile="../../../TargetLib/$(ProjectName).pdb"
 				SubSystem="0"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
