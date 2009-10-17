@@ -90,7 +90,7 @@
 			/>
 			<DeploymentTool
 				ForceDirty="-1"
-				RemoteDirectory="%CSIDL_PROGRAM_FILES%\Beluga"
+				RemoteDirectory=""
 				RegisterOutput="0"
 				AdditionalFiles=""
 			/>
@@ -173,7 +173,7 @@
 			/>
 			<DeploymentTool
 				ForceDirty="-1"
-				RemoteDirectory="%CSIDL_PROGRAM_FILES%\Beluga"
+				RemoteDirectory=""
 				RegisterOutput="0"
 				AdditionalFiles=""
 			/>
@@ -206,10 +206,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\cpp\service\HessianRemoteReturning.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\cpp\hessian\HttpConnection.cpp"
 				>
 			</File>
@@ -218,15 +214,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\cpp\service\IPubServiceProxy.cpp"
+				RelativePath="..\..\src\cpp\pubService\IPubServiceProxy.cpp"
 				>
 			</File>
 			<File
 				RelativePath="..\..\src\cpp\hessian\MemoryStreamBuf.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\cpp\service\Object.cpp"
 				>
 			</File>
 		</Filter>
@@ -264,10 +256,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\include\service\HessianRemoteReturning.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\include\hessian\HttpConnection.h"
 				>
 			</File>
@@ -276,19 +264,15 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\include\service\IPubService.h"
+				RelativePath="..\..\src\include\pubService\IPubService.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\include\service\IPubServiceProxy.h"
+				RelativePath="..\..\src\include\pubService\IPubServiceProxy.h"
 				>
 			</File>
 			<File
 				RelativePath="..\..\src\include\hessian\MemoryStreamBuf.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\include\service\Object.h"
 				>
 			</File>
 			<File
