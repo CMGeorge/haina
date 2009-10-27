@@ -181,7 +181,7 @@
 			Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
 			OutputDirectory="$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(PlatformName)\$(ConfigurationName)"
-			ConfigurationType="2"
+			ConfigurationType="4"
 			CharacterSet="1"
 			>
 			<Tool
@@ -223,14 +223,8 @@
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
-				Name="VCLinkerTool"
+				Name="VCLibrarianTool"
 				AdditionalOptions=" /SUBSYSTEM:WINDOWSCE,5.02"
-				AdditionalDependencies="aygshell.lib cellcore.lib sms.lib"
-				OutputFile="..\..\TargetLib\InfoInterceptor.dll"
-				GenerateDebugInformation="true"
-				AssemblyDebug="0"
-				ProgramDatabaseFile="..\..\TargetLib\InfoInterceptor.pdb"
-				ImportLibrary="../../TargetLib/InfoInterceptor.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
