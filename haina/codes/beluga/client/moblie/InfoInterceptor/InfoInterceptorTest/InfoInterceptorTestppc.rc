@@ -44,6 +44,7 @@ BEGIN
         MENUITEM "About",                       IDM_HELP_ABOUT
         MENUITEM "MakePhone",                   ID_HELP_DMESSAGE
         MENUITEM "INITMESSAGE",                 ID_HELP_INITMESSAGE
+        MENUITEM "SendMessage",                 ID_HELP_SENDMESSAGE
     END
 END
 

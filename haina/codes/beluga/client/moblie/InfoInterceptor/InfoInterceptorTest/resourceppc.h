@@ -15,6 +15,7 @@
 #define IDC_STATIC_3                    203
 #define ID_HELP_DMESSAGE                32771
 #define ID_HELP_INITMESSAGE             32772
+#define ID_HELP_SENDMESSAGE             32773
 #define IDM_OK                          40000
 #define IDM_HELP                        40001
 #define IDM_HELP_ABOUT                  40002
@@ -26,7 +27,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NO_MFC                     1
 #define _APS_NEXT_RESOURCE_VALUE        129
-#define _APS_NEXT_COMMAND_VALUE         32773
+#define _APS_NEXT_COMMAND_VALUE         32774
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           110
 #endif

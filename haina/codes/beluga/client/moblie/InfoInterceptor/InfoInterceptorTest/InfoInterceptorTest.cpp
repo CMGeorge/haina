@@ -208,6 +208,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 					pBelugaMessage->INITMapIRule();
 					/*InitMessage();*/
 					break;
+				case ID_HELP_SENDMESSAGE:
+                     
+				    pBelugaMessage=new BelugaMessage();
+					pBelugaMessage->BelugaSendMessage(_T("13588147246"),_T("1312afdafadsÖĞÎÄ"));
+					break;
 
 #ifdef WIN32_PLATFORM_WFSP
                 case IDM_OK:
