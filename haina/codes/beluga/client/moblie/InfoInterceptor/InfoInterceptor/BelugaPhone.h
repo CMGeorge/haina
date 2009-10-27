@@ -4,8 +4,7 @@ class BelugaPhone
 {
 public:
 	BelugaPhone(void);
-	HRESULT MakePhoneCall(TCHAR* phoneNum,bool showPrompt);
+    BOOL DialNumber( TCHAR	gszDefaultNum[]);
 public:
 	~BelugaPhone(void);
-
 };
