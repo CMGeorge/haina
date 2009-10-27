@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="gb2312"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="8.00"
 	Name="InfoInterceptor"
 	ProjectGUID="{5A9F42EB-0A34-4D92-B421-4F7678A1FF78}"
 	RootNamespace="InfoInterceptor"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="131072"
 	>
 	<Platforms>
 		<Platform
@@ -84,9 +83,6 @@
 				Name="VCBscMakeTool"
 			/>
 			<Tool
-				Name="VCFxCopTool"
-			/>
-			<Tool
 				Name="VCCodeSignTool"
 			/>
 			<Tool
@@ -155,8 +151,6 @@
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(OutDir)/InfoInterceptor.pdb"
 				SubSystem="0"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
 				ImportLibrary="$(OutDir)/InfoInterceptor.lib"
 			/>
 			<Tool
@@ -167,9 +161,6 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-			/>
-			<Tool
-				Name="VCFxCopTool"
 			/>
 			<Tool
 				Name="VCCodeSignTool"
@@ -234,7 +225,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions=" /SUBSYSTEM:WINDOWSCE,5.02"
-				AdditionalDependencies="aygshell.lib cellcore.lib"
+				AdditionalDependencies="aygshell.lib cellcore.lib sms.lib"
 				OutputFile="..\..\TargetLib\InfoInterceptor.dll"
 				GenerateDebugInformation="true"
 				AssemblyDebug="0"
@@ -249,9 +240,6 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-			/>
-			<Tool
-				Name="VCFxCopTool"
 			/>
 			<Tool
 				Name="VCCodeSignTool"
@@ -323,8 +311,6 @@
 				SubSystem="0"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
 				ImportLibrary="$(OutDir)/InfoInterceptor.lib"
 			/>
 			<Tool
@@ -335,9 +321,6 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-			/>
-			<Tool
-				Name="VCFxCopTool"
 			/>
 			<Tool
 				Name="VCCodeSignTool"
@@ -409,8 +392,6 @@
 				SubSystem="0"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
 				ImportLibrary="$(OutDir)/InfoInterceptor.lib"
 			/>
 			<Tool
@@ -421,9 +402,6 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-			/>
-			<Tool
-				Name="VCFxCopTool"
 			/>
 			<Tool
 				Name="VCCodeSignTool"
@@ -495,8 +473,6 @@
 				SubSystem="0"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
 				ImportLibrary="$(OutDir)/InfoInterceptor.lib"
 			/>
 			<Tool
@@ -507,9 +483,6 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-			/>
-			<Tool
-				Name="VCFxCopTool"
 			/>
 			<Tool
 				Name="VCCodeSignTool"
