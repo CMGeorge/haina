@@ -1,5 +1,6 @@
 #include "StdAfx.h"
 #include "BelugaMessage.h"
+#include <cemapi.h>
 
 #define MMBUFSIZE 1024  
 BelugaMessage::BelugaMessage(void)
@@ -39,78 +40,6 @@ typedef void (CALLBACK *LPFTERMINATESMSMESSAGEPASSING)(void);
 LPFCAPTURESMSMESSAGES  lpfCaptureSmsMessages;
 LPFSMSMESSAGEAVAILABLE lpfSmsMessageAvailable;
 LPFTERMINATESMSMESSAGEPASSING lpfTermainateSmsMessagePassing;
-
-//EXTERN_C void CaptureSMSMessages (void)
-//
-//{
-//
-//      g_hClientEvent = CreateEvent(NULL, FALSE, FALSE, _T("SMSAvailableEvent"));
-//
-//      ASSERT(g_hClientEvent != NULL);
-//
-//      g_hClientMutex = CreateMutex(NULL, FALSE, _T("SMSDataMutex"));
-//
-//      ASSERT(g_hClientMutex != NULL);
-//
-// 
-//
-//      g_hClientMMObj = CreateFileMapping((HANDLE)-1, NULL, PAGE_READWRITE, 0, MMBUFSIZE, TEXT("SmsBuffer"));
-//
-//      ASSERT(g_hClientMMObj != NULL);
-//
-//	  
-//
-//     g_pClientSmsBuffer = (PSMS_BUFFER)MapViewOfFile(g_hClientMMObj, FILE_MAP_WRITE, 0, 0, 0);
-//
-//      if (g_pClientSmsBuffer == NULL) {
-//
-//             CloseHandle(g_hClientMMObj);
-//
-//      }
-//
-//      ASSERT(g_pClientSmsBuffer != NULL);
-//
-// 
-//
-//}
-//
-//
-//void TerminateSMSMessagePassing (void)
-//{
-// // Make sure to have one last empty string available to copy to the client.
-// memset(g_pClientSmsBuffer, 0, sizeof(SMS_BUFFER));
-//
-// SetEvent(g_hClientEvent);    // optionally allow the calling application to  return from GetData.
-// CloseHandle(g_hClientEvent);
-// CloseHandle(g_hClientMutex);
-//
-// if (g_pClientSmsBuffer) {
-//  UnmapViewOfFile(g_pClientSmsBuffer);
-//  g_pClientSmsBuffer = NULL;
-// }
-// if (g_hClientMMObj) {
-//  CloseHandle(g_hClientMMObj);
-//  g_hClientMMObj = NULL;
-// }
-//}
-//
-//BOOL SMSMessageAvailable (wchar_t *lpDestination, wchar_t *lpPhoneNr)
-//{
-// WaitForSingleObject(g_hClientEvent, INFINITE);
-//
-// if (g_pClientSmsBuffer != NULL) {
-//  WaitForSingleObject(g_hClientMutex, INFINITE);
-//  lstrcpy(lpPhoneNr, g_pClientSmsBuffer->g_szPhoneNr);
-//  lstrcpy(lpDestination, g_pClientSmsBuffer->g_szMessageBody);
-//  ReleaseMutex(g_hClientMutex);
-// } else {
-//  *lpPhoneNr = '\0';
-//  *lpDestination = '\0';
-// }
-// return *lpPhoneNr != '\0';
-//}
-
-
 
  int ThreadProc(LPVOID lpParam)         //进程函数
 {
@@ -160,10 +89,80 @@ BOOL BelugaMessage::INITMapIRule()
 	return (0 == lResult);
 }
 
-BOOL BelugaMessage::SendMessageW(TCHAR phoneNum[], TCHAR MessageContext[])
+
+
+BOOL BelugaMessage::BelugaSendMessage(TCHAR phoneNum[], TCHAR MessageContext[])
 {
-	 LONG lResult;
 	
-	return (0 == lResult);
+
+
+	 HRESULT   h; 
+	 SMS_HANDLE   smsHandle   =   NULL; 
+       DWORD Last_Error ; 
+
+	 SMS_ADDRESS   smsaDestination; 
+	 SMS_ADDRESS  smsaCenter;
+	 SMS_MESSAGE_ID   smsmidMessageID=0; 
+	 TEXT_PROVIDER_SPECIFIC_DATA   tpsd; 
+
+   
+	 h   =   SmsOpen(   SMS_MSGTYPE_TEXT,   SMS_MODE_SEND,   &smsHandle,   NULL   ); 
+	 if   (FAILED(h)) 
+	 { 
+	   //MessageBox(   _T(   "Open   Err "   ),   _T(   "sendsms "   ),   MB_ICONINFORMATION   ); 
+	   return   false; 
+	 } 
+     
+	 // 设置 SMS Center
+	 //TCHAR source[] = TEXT("+8613800571500");
+     //LPTSTR lpszSMSCenter = source;
+     HRESULT hRet = 0;
+     hRet=SmsGetSMSC(&smsaCenter);
+	 	/*Last_Error=GetLastError();*/
+     smsaCenter.smsatAddressType =SMSAT_UNKNOWN;// SMSAT_INTERNATIONAL;
+    //_tcsncpy(smsaCenter.ptsAddress, lpszSMSCenter, SMS_MAX_ADDRESS_LENGTH);
+	 hRet=SmsSetSMSC(&smsaCenter);
+     
+	 
+
+
+	 /*smsaDestination.smsatAddressType   =   SMSAT_INTERNATIONAL; */
+	 smsaDestination.smsatAddressType   =SMSAT_UNKNOWN ;//  SMSAT_INTERNATIONAL; 
+	 _tcsncpy(   smsaDestination.ptsAddress,phoneNum   /*_T(   "+8613854875421"   )*/,   SMS_MAX_ADDRESS_LENGTH   ); 
+       
+	 memset(&tpsd, 0, sizeof(tpsd));
+     
+	 tpsd.dwMessageOptions   =   PS_MESSAGE_OPTION_NONE; 
+	 tpsd.psMessageClass   =   PS_MESSAGE_CLASS1; 
+	 tpsd.psReplaceOption   =   PSRO_NONE; 
+     tpsd.dwHeaderDataSize = 0;
+
+	 LPCTSTR   lpszMessage   = MessageContext/*  _T(   "1111234324111 "   )*/; 
+	 const DWORD messageLegth= lstrlen(lpszMessage) *   sizeof(   TCHAR   );
+	 //messageLegth= _tcslen(   lpszMessage   ) ;
+	 h=   SmsSendMessage(smsHandle,   
+		NULL,   
+		&smsaDestination,   
+		NULL, 
+		(   PBYTE   )lpszMessage,  
+		/*lstrlen(lpszMessage),*/ messageLegth,   
+		(   PBYTE   )&tpsd, 
+		sizeof(   TEXT_PROVIDER_SPECIFIC_DATA   ),   
+		/*SMSDE_OPTIMAL,*/SMSDE_UCS2,
+		SMS_OPTION_DELIVERY_NONE, 
+		&smsmidMessageID   ); 
+ 
+	 if   (   SUCCEEDED(h)) 
+	{ 
+	} 
+	else 
+	{ 
+		Last_Error=GetLastError();
+		return false;
+	} 
+    
+	SmsClose(   smsHandle   );
+	return (0 == h);
 
 }
+
