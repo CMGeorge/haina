@@ -521,6 +521,15 @@ void BelugaMain::onCurrentItemChanged(QTreeWidgetItem* current, QTreeWidgetItem*
 	if (NULL == current)
 		return;
 
+	if (m_nCurTabIndex == m_nRencentContactTab)  /* recent contact tab */
+	{
+		int contactType = current->data(3, Qt::UserRole).toInt();
+		if (contactType == ContactType_IM)
+			m_qMenuCall->setEnabled(FALSE);
+		else
+			m_qMenuCall->setEnabled(FALSE);
+	}
+
 	if (m_qCurTree == m_qTreeList.last())  /* the tree list is search result list */
 	{
 		prevIndex = curIndex = -1;  /* means that them are contact items */
@@ -2086,14 +2095,17 @@ void BelugaMain::loadRecentContact()
 			CContact * pContact = NULL;
 			m_pContactDb->GetEntityById(pRecentContact->nContactId, (CDbEntity**)&pContact);
 			pContact->GetFieldValue(ContactField_Name, &contactName);
-			delete pContact;
-			pContact = NULL;
-
 			QString recentContact = QString("%1(%2)").arg(tr(contactName->str), tr(pRecentContact->eventCommInfo));
 			g_string_free(contactName, TRUE);
-
 			qItem->setText(0, recentContact);
-			g_string_free(contactName, TRUE);
+
+			/* set contact type */
+			GString * contactType = NULL;
+			pContact->GetFieldValue(ContactField_Type, &contactType);
+			qItem->setData(3, Qt::UserRole, QVariant(contactType->str));
+			g_string_free(contactType, TRUE);
+			delete pContact;
+			pContact = NULL;
 
 			if (m_qCurTree == NULL)
 			{
