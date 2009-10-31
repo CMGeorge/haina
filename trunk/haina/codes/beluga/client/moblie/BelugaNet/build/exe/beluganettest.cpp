@@ -143,7 +143,6 @@ void BelugaNetTest::pushButtonWeatherSubmitClick()
 	SetCursor(NULL);//恢复鼠标状态	
 }
 
-
 void BelugaNetTest::pushButtonCitySubmitClick()
 {
 	SetCursor(LoadCursor(NULL,IDC_WAIT)); //设定鼠标忙碌状态
@@ -165,6 +164,7 @@ void BelugaNetTest::pushButtonCitySubmitClick()
 		try
 		{
 			contactDb->GetMaxPhoneDistrictUpdateFlag(&updateFlag);
+			//updateFlag = 0;
 		}
 		catch(...){}
 		if(updateFlag<0)
@@ -173,12 +173,9 @@ void BelugaNetTest::pushButtonCitySubmitClick()
 			ui.plainTextEditCity->setPlainText("local db read error");
 			return;
 		}
-		updateFlag = 1;
-		//int to string
-		stringstream ss;
-		ss << updateFlag;
 		//在hessian中传输含有中文的字符串时要以utf8编码方式传输
-		HessianRemoteReturning ret = service->getOrUpdatePD(ss.str());//默认30秒超时
+		HessianRemoteReturning ret = service->getOrUpdatePDCount(updateFlag);
+		int count(0);
 		/**
 		* 状态包括：
 		* 1.成功 statusCode=0
@@ -190,11 +187,27 @@ void BelugaNetTest::pushButtonCitySubmitClick()
 		if(ret.statusCode == 0)
 		{
 			QString str = QString::fromUtf8(ret.value.c_str());
+			count = str.toInt();
+		}
+		else
+		{
+			ui.plainTextEditCity->setPlainText("failure");
+			return;
+		}
+		guint len = 1;
+		for(guint i(0);i<count;i+=len)
+		{
+			ret = service->getOrUpdatePD(updateFlag, i, len);//默认30秒超时
+			QString str = QString::fromUtf8(ret.value.c_str());
 			Json::Reader reader;
 			Json::Value jsonValue;
 			WeatherDto weatherDto;
 			if(reader.parse(string(str.toAscii()),jsonValue))
 			{
+				char msg[50]={0};
+				sprintf(msg,"add:%d/%d",i+1,count);
+				ui.plainTextEditCity->setPlainText(msg);
+				QApplication::processEvents();
 				if(jsonValue.isArray())
 				{
 					int size = jsonValue.size();
@@ -223,12 +236,8 @@ void BelugaNetTest::pushButtonCitySubmitClick()
 						phoneDistrict.phoneRange = g_string_new(jsonValueTmp["range"].asString().c_str());
 						phoneDistrict.updateFlag = jsonValueTmp["updateFlg"].asInt();
 						strcpy(phoneDistrict.weatherCode, jsonValueTmp["weatherCityCode"].asString().c_str());
-						
-						contactDb->SavePhoneDistrict(&phoneDistrict);
-						char msg[50]={0};
-						sprintf(msg,"add:%d/%d",i+1,size);
-						ui.plainTextEditCity->setPlainText(msg);
-						QApplication::processEvents();
+
+						contactDb->SavePhoneDistrict(&phoneDistrict);				
 					}
 				}
 				else
@@ -240,10 +249,6 @@ void BelugaNetTest::pushButtonCitySubmitClick()
 			{
 				ui.plainTextEditCity->setPlainText("json parse error");
 			}
-		}
-		else
-		{
-			ui.plainTextEditCity->setPlainText("failure");
 		}
 	}
 	catch(...)
