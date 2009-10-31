@@ -1,3 +1,7 @@
+/**
+* @author north0808@gmail.com
+* @version 1.0
+*/
 #include "pubService/HessianRemoteReturning.h"
 
 namespace pubService {

@@ -1,3 +1,7 @@
+/**
+* @author north0808@gmail.com
+* @version 1.0
+*/
 #ifndef PUBSERVICE_HESSIANREMOTERETURNING_H
 #define PUBSERVICE_HESSIANREMOTERETURNING_H
 
