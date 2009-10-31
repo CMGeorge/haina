@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BelugaNetTest", "BelugaNetTest.vcproj", "{B846D3FB-AF7F-4AF8-8FBF-E70CE1FE300F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A4F3BD1C-B78C-40D2-AD11-A2DA0CDE0D99} = {A4F3BD1C-B78C-40D2-AD11-A2DA0CDE0D99}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BelugaNet", "..\dll\BelugaNet.vcproj", "{A4F3BD1C-B78C-40D2-AD11-A2DA0CDE0D99}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Debug|Windows Mobile 6 Professional SDK (ARMV4I) = Debug|Windows Mobile 6 Professional SDK (ARMV4I)
+		Release|Win32 = Release|Win32
+		Release|Windows Mobile 6 Professional SDK (ARMV4I) = Release|Windows Mobile 6 Professional SDK (ARMV4I)
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B846D3FB-AF7F-4AF8-8FBF-E70CE1FE300F}.Debug|Win32.ActiveCfg = Debug|Windows Mobile 6 Professional SDK (ARMV4I)
+		{B846D3FB-AF7F-4AF8-8FBF-E70CE1FE300F}.Debug|Windows Mobile 6 Professional SDK (ARMV4I).ActiveCfg = Release|Windows Mobile 6 Professional SDK (ARMV4I)
+		{B846D3FB-AF7F-4AF8-8FBF-E70CE1FE300F}.Debug|Windows Mobile 6 Professional SDK (ARMV4I).Build.0 = Release|Windows Mobile 6 Professional SDK (ARMV4I)
+		{B846D3FB-AF7F-4AF8-8FBF-E70CE1FE300F}.Debug|Windows Mobile 6 Professional SDK (ARMV4I).Deploy.0 = Release|Windows Mobile 6 Professional SDK (ARMV4I)
+		{B846D3FB-AF7F-4AF8-8FBF-E70CE1FE300F}.Release|Win32.ActiveCfg = Release|Windows Mobile 6 Professional SDK (ARMV4I)
+		{B846D3FB-AF7F-4AF8-8FBF-E70CE1FE300F}.Release|Windows Mobile 6 Professional SDK (ARMV4I).ActiveCfg = Release|Windows Mobile 6 Professional SDK (ARMV4I)
+		{B846D3FB-AF7F-4AF8-8FBF-E70CE1FE300F}.Release|Windows Mobile 6 Professional SDK (ARMV4I).Build.0 = Release|Windows Mobile 6 Professional SDK (ARMV4I)
+		{B846D3FB-AF7F-4AF8-8FBF-E70CE1FE300F}.Release|Windows Mobile 6 Professional SDK (ARMV4I).Deploy.0 = Release|Windows Mobile 6 Professional SDK (ARMV4I)
+		{A4F3BD1C-B78C-40D2-AD11-A2DA0CDE0D99}.Debug|Win32.ActiveCfg = Debug|Windows Mobile 6 Professional SDK (ARMV4I)
+		{A4F3BD1C-B78C-40D2-AD11-A2DA0CDE0D99}.Debug|Windows Mobile 6 Professional SDK (ARMV4I).ActiveCfg = Release|Windows Mobile 6 Professional SDK (ARMV4I)
+		{A4F3BD1C-B78C-40D2-AD11-A2DA0CDE0D99}.Debug|Windows Mobile 6 Professional SDK (ARMV4I).Build.0 = Release|Windows Mobile 6 Professional SDK (ARMV4I)
+		{A4F3BD1C-B78C-40D2-AD11-A2DA0CDE0D99}.Debug|Windows Mobile 6 Professional SDK (ARMV4I).Deploy.0 = Release|Windows Mobile 6 Professional SDK (ARMV4I)
+		{A4F3BD1C-B78C-40D2-AD11-A2DA0CDE0D99}.Release|Win32.ActiveCfg = Release|Windows Mobile 6 Professional SDK (ARMV4I)
+		{A4F3BD1C-B78C-40D2-AD11-A2DA0CDE0D99}.Release|Windows Mobile 6 Professional SDK (ARMV4I).ActiveCfg = Release|Windows Mobile 6 Professional SDK (ARMV4I)
+		{A4F3BD1C-B78C-40D2-AD11-A2DA0CDE0D99}.Release|Windows Mobile 6 Professional SDK (ARMV4I).Build.0 = Release|Windows Mobile 6 Professional SDK (ARMV4I)
+		{A4F3BD1C-B78C-40D2-AD11-A2DA0CDE0D99}.Release|Windows Mobile 6 Professional SDK (ARMV4I).Deploy.0 = Release|Windows Mobile 6 Professional SDK (ARMV4I)
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
