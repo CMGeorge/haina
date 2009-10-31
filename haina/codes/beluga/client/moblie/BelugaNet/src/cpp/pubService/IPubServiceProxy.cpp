@@ -46,6 +46,26 @@ IPubServiceProxy::getOrUpdatePD (const std::string& param1)
 }
 
 pubService::HessianRemoteReturning
+IPubServiceProxy::getOrUpdatePD (hessian::Int param1, hessian::Int param2, hessian::Int param3)
+{
+    static char METHOD_NAME[] = "getOrUpdatePD";
+    hessian::Call<pubService::HessianRemoteReturning > call(METHOD_NAME, sizeof(METHOD_NAME) - 1);
+    call << param1;
+    call << param2;
+    call << param3;
+    return call.invoke(connection_);
+}
+
+pubService::HessianRemoteReturning
+IPubServiceProxy::getOrUpdatePDCount (hessian::Int param1)
+{
+    static char METHOD_NAME[] = "getOrUpdatePDCount";
+    hessian::Call<pubService::HessianRemoteReturning > call(METHOD_NAME, sizeof(METHOD_NAME) - 1);
+    call << param1;
+    return call.invoke(connection_);
+}
+
+pubService::HessianRemoteReturning
 IPubServiceProxy::testCN (const std::string& param1)
 {
     static char METHOD_NAME[] = "testCN";
