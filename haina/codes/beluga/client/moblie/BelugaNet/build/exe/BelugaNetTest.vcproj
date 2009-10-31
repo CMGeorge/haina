@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="BelugaNetTest"
+	ProjectGUID="{B846D3FB-AF7F-4AF8-8FBF-E70CE1FE300F}"
+	RootNamespace="BelugaNetTest"
+	Keyword="Qt4VSv1.0"
+	>
+	<Platforms>
+		<Platform
+			Name="Windows Mobile 6 Professional SDK (ARMV4I)"
+		/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+		<Configuration
+			Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="Windows Mobile 6 Professional SDK (ARMV4I)\$(ConfigurationName)"
+			ConfigurationType="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				ExecutionBucket="7"
+				Optimization="0"
+				AdditionalIncludeDirectories=".\GeneratedFiles;&quot;$(QTDIR)\include&quot;;&quot;.\GeneratedFiles\$(ConfigurationName)&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;.\;../../src/include;../../../3rdParty/curl/src/include;../../../jsoncpp/include;../../../BelugaDb/inc;&quot;../../../3rdParty/glib-2.12.12&quot;;&quot;../../../3rdParty/glib-2.12.12/glib&quot;"
+				PreprocessorDefinitions="UNDER_CE,WINCE,_WINDOWS,_UNICODE,UNICODE,_WIN32,QT_NO_PRINTER,QT_NO_PRINTDIALOG,,ARMV4I,_ARMV4I_,armv4i,_ARM_,ARM,_M_ARM,ARM,__arm__,Q_OS_WINCE_WM,QT_NO_PRINTER,QT_NO_PRINTDIALOG,_WIN32_WCE=0x502,QT_THREAD_SUPPORT,QT_NO_DEBUG,NDEBUG,QT_CORE_LIB,QT_GUI_LIB"
+				MinimalRebuild="true"
+				RuntimeLibrary="0"
+				BufferSecurityCheck="false"
+				TreatWChar_tAsBuiltInType="false"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/SUBSYSTEM:WINDOWSCE,5.02"
+				AdditionalDependencies="qtmain.lib QtCore4.lib QtGui4.lib ../../../TargetLib/BelugaNet.lib ../../../jsoncpp/build/mobile6/$(ConfigurationName)/lib_json/lib_json_mobile.lib ../../../TargetLib/BelugaDb.lib ../../../TargetLib/glib.lib ../../../TargetLib/iconv.lib"
+				OutputFile="$(OutDir)\$(ProjectName).exe"
+				LinkIncremental="2"
+				AdditionalLibraryDirectories="$(QTDIR)\lib"
+				GenerateDebugInformation="true"
+				SubSystem="0"
+				TargetMachine="16"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCCodeSignTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+			<DeploymentTool
+				ForceDirty="-1"
+				RemoteDirectory="%CSIDL_PROGRAM_FILES%\Leopard"
+				RegisterOutput="0"
+				AdditionalFiles="msvcr80.dll|$(BINDIR)\$(INSTRUCTIONSET)|%CSIDL_PROGRAM_FILES%\$(ProjectName)|0;QtCore4.dll|$(QTDIR)\lib|%CSIDL_PROGRAM_FILES%\$(ProjectName)|0;QtGui4.dll|$(QTDIR)\lib|%CSIDL_PROGRAM_FILES%\$(ProjectName)|0"
+			/>
+			<DebuggerTool
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="Windows Mobile 6 Professional SDK (ARMV4I)\$(ConfigurationName)"
+			ConfigurationType="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				ExecutionBucket="7"
+				Optimization="0"
+				AdditionalIncludeDirectories=".\GeneratedFiles;&quot;$(QTDIR)\include&quot;;&quot;.\GeneratedFiles\$(ConfigurationName)&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;.\;../../src/include;../../../3rdParty/curl/src/include;../../../jsoncpp/include;../../../BelugaDb/inc;&quot;../../../3rdParty/glib-2.12.12&quot;;&quot;../../../3rdParty/glib-2.12.12/glib&quot;"
+				PreprocessorDefinitions="UNDER_CE,WINCE,_WINDOWS,_UNICODE,UNICODE,_WIN32,QT_NO_PRINTER,QT_NO_PRINTDIALOG,,ARMV4I,_ARMV4I_,armv4i,_ARM_,ARM,_M_ARM,ARM,__arm__,Q_OS_WINCE_WM,QT_NO_PRINTER,QT_NO_PRINTDIALOG,_WIN32_WCE=0x502,QT_THREAD_SUPPORT,QT_CORE_LIB,QT_GUI_LIB"
+				MinimalRebuild="true"
+				RuntimeLibrary="0"
+				BufferSecurityCheck="true"
+				TreatWChar_tAsBuiltInType="false"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/SUBSYSTEM:WINDOWSCE,5.02"
+				AdditionalDependencies="qtmaind.lib QtCored4.lib QtGuid4.lib ../../../TargetLib/BelugaNet.lib ../../../jsoncpp/build/mobile6/$(ConfigurationName)/lib_json/lib_json_mobile.lib ../../../TargetLib/BelugaDb.lib ../../../TargetLib/glib.lib ../../../TargetLib/iconv.lib"
+				OutputFile="$(OutDir)\$(ProjectName).exe"
+				LinkIncremental="2"
+				AdditionalLibraryDirectories="$(QTDIR)\lib"
+				GenerateDebugInformation="true"
+				SubSystem="0"
+				TargetMachine="16"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCCodeSignTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+			<DeploymentTool
+				ForceDirty="-1"
+				RemoteDirectory="%CSIDL_PROGRAM_FILES%\Leopard"
+				RegisterOutput="0"
+				AdditionalFiles="msvcr80d.dll|$(BINDIR)\$(INSTRUCTIONSET)|%CSIDL_PROGRAM_FILES%\$(ProjectName)|0;QtCored4.dll|$(QTDIR)\lib|%CSIDL_PROGRAM_FILES%\$(ProjectName)|0;QtGuid4.dll|$(QTDIR)\lib|%CSIDL_PROGRAM_FILES%\$(ProjectName)|0"
+			/>
+			<DebuggerTool
+			/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Source Files"
+			Filter="cpp;cxx;c;def"
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
+			>
+			<File
+				RelativePath=".\beluganettest.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\main.cpp"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Header Files"
+			Filter="h"
+			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
+			>
+			<File
+				RelativePath=".\beluganettest.h"
+				>
+				<FileConfiguration
+					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="Moc&apos;ing $(InputFileName)..."
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DUNDER_CE -DWINCE -D_WINDOWS -D_UNICODE -DUNICODE -D_WIN32 -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D -DARMV4I -D_ARMV4I_ -Darmv4i -D_ARM_ -DARM -D_M_ARM -DARM -D__arm__ -DQ_OS_WINCE_WM -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D_WIN32_WCE=0x502 -DQT_THREAD_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB  -I&quot;.\GeneratedFiles\.&quot; -I&quot;$(QTDIR)\include\.&quot; -I&quot;.\GeneratedFiles\$(ConfigurationName)\.&quot; -I&quot;$(QTDIR)\include\QtCore\.&quot; -I&quot;$(QTDIR)\include\QtGui\.&quot; -I&quot;.\.&quot; -I&quot;.\..\..\src\include\.&quot; -I&quot;.\..\..\..\3rdParty\curl\src\include\.&quot; -I&quot;.\..\..\..\jsoncpp\include\.&quot; -I&quot;.\..\..\..\BelugaDb\inc\.&quot; -I&quot;.\..\..\..\3rdParty\glib-2.12.12\.&quot; -I&quot;.\..\..\..\3rdParty\glib-2.12.12\glib\.&quot; &quot;.\beluganettest.h&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;&#x0D;&#x0A;"
+						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
+						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="Moc&apos;ing $(InputFileName)..."
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DUNDER_CE -DWINCE -D_WINDOWS -D_UNICODE -DUNICODE -D_WIN32 -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D -DARMV4I -D_ARMV4I_ -Darmv4i -D_ARM_ -DARM -D_M_ARM -DARM -D__arm__ -DQ_OS_WINCE_WM -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D_WIN32_WCE=0x502 -DQT_THREAD_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB  -I&quot;.\GeneratedFiles\.&quot; -I&quot;$(QTDIR)\include\.&quot; -I&quot;.\GeneratedFiles\$(ConfigurationName)\.&quot; -I&quot;$(QTDIR)\include\QtCore\.&quot; -I&quot;$(QTDIR)\include\QtGui\.&quot; -I&quot;.\.&quot; -I&quot;.\..\..\src\include\.&quot; -I&quot;.\..\..\..\3rdParty\curl\src\include\.&quot; -I&quot;.\..\..\..\jsoncpp\include\.&quot; -I&quot;.\..\..\..\BelugaDb\inc\.&quot; -I&quot;.\..\..\..\3rdParty\glib-2.12.12\.&quot; -I&quot;.\..\..\..\3rdParty\glib-2.12.12\glib\.&quot; &quot;.\beluganettest.h&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;&#x0D;&#x0A;"
+						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
+						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
+					/>
+				</FileConfiguration>
+			</File>
+		</Filter>
+		<Filter
+			Name="Form Files"
+			Filter="ui"
+			UniqueIdentifier="{99349809-55BA-4b9d-BF79-8FDBB0286EB3}"
+			>
+			<File
+				RelativePath=".\beluganettest.ui"
+				>
+				<FileConfiguration
+					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="Uic&apos;ing $(InputFileName)..."
+						CommandLine="&quot;$(QTDIR)\bin\uic.exe&quot; -o &quot;.\GeneratedFiles\ui_$(InputName).h&quot; &quot;$(InputPath)&quot;&#x0D;&#x0A;"
+						AdditionalDependencies="$(QTDIR)\bin\uic.exe"
+						Outputs="&quot;.\GeneratedFiles\ui_$(InputName).h&quot;"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="Uic&apos;ing $(InputFileName)..."
+						CommandLine="&quot;$(QTDIR)\bin\uic.exe&quot; -o &quot;.\GeneratedFiles\ui_$(InputName).h&quot; &quot;$(InputPath)&quot;&#x0D;&#x0A;"
+						AdditionalDependencies="$(QTDIR)\bin\uic.exe"
+						Outputs="&quot;.\GeneratedFiles\ui_$(InputName).h&quot;"
+					/>
+				</FileConfiguration>
+			</File>
+		</Filter>
+		<Filter
+			Name="Resource Files"
+			Filter="qrc;*"
+			UniqueIdentifier="{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}"
+			ParseFiles="false"
+			>
+			<File
+				RelativePath=".\beluganettest.qrc"
+				>
+				<FileConfiguration
+					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="Rcc&apos;ing $(InputFileName)..."
+						CommandLine="&quot;$(QTDIR)\bin\rcc.exe&quot; -name &quot;$(InputName)&quot; -no-compress &quot;$(InputPath)&quot; -o .\GeneratedFiles\qrc_$(InputName).cpp&#x0D;&#x0A;"
+						AdditionalDependencies="$(InputPath)"
+						Outputs=".\GeneratedFiles\qrc_$(InputName).cpp"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="Rcc&apos;ing $(InputFileName)..."
+						CommandLine="&quot;$(QTDIR)\bin\rcc.exe&quot; -name &quot;$(InputName)&quot; -no-compress &quot;$(InputPath)&quot; -o .\GeneratedFiles\qrc_$(InputName).cpp&#x0D;&#x0A;"
+						AdditionalDependencies="$(InputPath)"
+						Outputs=".\GeneratedFiles\qrc_$(InputName).cpp"
+					/>
+				</FileConfiguration>
+			</File>
+		</Filter>
+		<Filter
+			Name="Generated Files"
+			Filter="moc;h;cpp"
+			UniqueIdentifier="{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}"
+			SourceControlFiles="false"
+			>
+			<File
+				RelativePath=".\GeneratedFiles\Debug\moc_beluganettest.cpp"
+				>
+				<FileConfiguration
+					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\GeneratedFiles\Release\moc_beluganettest.cpp"
+				>
+				<FileConfiguration
+					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\GeneratedFiles\qrc_beluganettest.cpp"
+				>
+				<FileConfiguration
+					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\GeneratedFiles\ui_beluganettest.h"
+				>
+			</File>
+		</Filter>
+		<File
+			RelativePath=".\BelugaNetTest.ico"
+			>
+		</File>
+		<File
+			RelativePath=".\BelugaNetTest.rc"
+			>
+		</File>
+	</Files>
+	<Globals>
+		<Global
+			Name="MocDir"
+			Value=".\GeneratedFiles\$(ConfigurationName)"
+		/>
+		<Global
+			Name="MocOptions"
+			Value=""
+		/>
+		<Global
+			Name="QtVersion"
+			Value="wince"
+		/>
+		<Global
+			Name="QtVersion Windows Mobile 6 Professional SDK (ARMV4I)"
+			Value="wince"
+		/>
+		<Global
+			Name="RccDir"
+			Value=".\GeneratedFiles"
+		/>
+		<Global
+			Name="UicDir"
+			Value=".\GeneratedFiles"
+		/>
+	</Globals>
+</VisualStudioProject>
