@@ -27,7 +27,6 @@ public:
     pubService::HessianRemoteReturning getLiveWeather(const std::string& param1);
     pubService::HessianRemoteReturning get7Weatherdatas(const std::string& param1);
     pubService::HessianRemoteReturning getQQStatus(const std::string& param1);
-    pubService::HessianRemoteReturning getOrUpdatePD(const std::string& param1);
     pubService::HessianRemoteReturning getOrUpdatePD(hessian::Int param1, hessian::Int param2, hessian::Int param3);
     pubService::HessianRemoteReturning getOrUpdatePDCount(hessian::Int param1);
     pubService::HessianRemoteReturning testCN(const std::string& param1);
