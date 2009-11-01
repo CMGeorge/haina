@@ -86,7 +86,7 @@
 			/>
 			<DeploymentTool
 				ForceDirty="-1"
-				RemoteDirectory="%CSIDL_PROGRAM_FILES%\Leopard"
+				RemoteDirectory="%CSIDL_PROGRAM_FILES%\Beluga"
 				RegisterOutput="0"
 				AdditionalFiles="msvcr80.dll|$(BINDIR)\$(INSTRUCTIONSET)|%CSIDL_PROGRAM_FILES%\$(ProjectName)|0;QtCore4.dll|$(QTDIR)\lib|%CSIDL_PROGRAM_FILES%\$(ProjectName)|0;QtGui4.dll|$(QTDIR)\lib|%CSIDL_PROGRAM_FILES%\$(ProjectName)|0"
 			/>
@@ -164,7 +164,7 @@
 			/>
 			<DeploymentTool
 				ForceDirty="-1"
-				RemoteDirectory="%CSIDL_PROGRAM_FILES%\Leopard"
+				RemoteDirectory="%CSIDL_PROGRAM_FILES%\Beluga"
 				RegisterOutput="0"
 				AdditionalFiles="msvcr80d.dll|$(BINDIR)\$(INSTRUCTIONSET)|%CSIDL_PROGRAM_FILES%\$(ProjectName)|0;QtCored4.dll|$(QTDIR)\lib|%CSIDL_PROGRAM_FILES%\$(ProjectName)|0;QtGuid4.dll|$(QTDIR)\lib|%CSIDL_PROGRAM_FILES%\$(ProjectName)|0"
 			/>
@@ -293,18 +293,11 @@
 			SourceControlFiles="false"
 			>
 			<File
-				RelativePath=".\GeneratedFiles\Debug\moc_beluganettest.cpp"
+				RelativePath=".\GeneratedFiles\Release\moc_beluganettest.cpp"
 				>
 				<FileConfiguration
-					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)"
-					ExcludedFromBuild="true"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
 					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
+					ExcludedFromBuild="true"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -312,17 +305,10 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath=".\GeneratedFiles\Release\moc_beluganettest.cpp"
+				RelativePath=".\GeneratedFiles\Debug\moc_beluganettest.cpp"
 				>
 				<FileConfiguration
 					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
 					ExcludedFromBuild="true"
 					>
 					<Tool
