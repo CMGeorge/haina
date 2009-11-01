@@ -49,7 +49,25 @@ public interface IPubService extends Serializable {
 	 * List集合，集合对象为PhoneDistrictDto.
 	 * 
 	 */
-	public HessianRemoteReturning getOrUpdatePD(String updateFlg);
+	// public HessianRemoteReturning getOrUpdatePD(String updateFlg);
+	/**
+	 * 状态包括：
+	 * 1.成功 statusCode=0
+	 * 
+	 * value值为：
+	 * List集合，集合对象为PhoneDistrictDto.
+	 * 
+	 */
+	public HessianRemoteReturning getOrUpdatePD(int updateFlg, int begin,
+			int count);
+	/**
+	 * 状态包括：
+	 * 1.成功 statusCode=0
+	 * 
+	 * value值为：Long
+	 * 
+	 */
+	public HessianRemoteReturning getOrUpdatePDCount(int updateFlg);
 	
 	public HessianRemoteReturning testCN(String cn);
 	
