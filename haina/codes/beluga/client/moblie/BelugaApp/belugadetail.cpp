@@ -603,7 +603,7 @@ void BelugaDetail::onDefaultActionTriggered(bool checked)
 
 		GString * groupName = NULL;
 		pGroup->GetFieldValue(GroupField_Name, &groupName);
-		items << QString(groupName->str);
+		items << QString::fromUtf8(groupName->str);
 		g_string_free(groupName, TRUE);
 
 		GString * groupId = NULL;
@@ -799,7 +799,7 @@ void BelugaDetail::getFieldsValue(CPhoneContact * pContact)
 
 	/* set contact uid: default uid is name */
 	QString string = ((QLineEdit*)m_qRightWidgets[Row_Name])->text();
-	value = g_string_new(string.toLatin1().data());
+	value = g_string_new(string.toUtf8().data());
 	pContact->SetFieldValue(ContactField_UserId, value);
 
 	/* set contact name */
@@ -808,18 +808,18 @@ void BelugaDetail::getFieldsValue(CPhoneContact * pContact)
 
 	/* set contact name spell */
 	QString spell = Chinese2PY(string);
-	GString * namespell = g_string_new(spell.toLatin1().data()); 
+	GString * namespell = g_string_new(spell.toUtf8().data()); 
 	pContact->SetFieldValue(ContactField_NameSpell, namespell);
 	g_string_free(namespell, TRUE);
 
 	/* set contact nickname */
 	string = ((QLineEdit*)m_qRightWidgets[Row_NickName])->text();
-	value = g_string_new(string.toLatin1().data());
+	value = g_string_new(string.toUtf8().data());
 	pContact->SetFieldValue(ContactField_NickName, value);
 
 	/* set contact nickname spell */
 	spell = Chinese2PY(string);
-	namespell = g_string_new(spell.toLatin1().data()); 
+	namespell = g_string_new(spell.toUtf8().data()); 
 	pContact->SetFieldValue(ContactField_NickNameSpell, namespell);
 	g_string_free(namespell, TRUE);
 
@@ -832,12 +832,12 @@ void BelugaDetail::getFieldsValue(CPhoneContact * pContact)
 	g_string_free(value, TRUE);
 
 	/* set contact photo */
-	value = g_string_new(m_qDIYPhotoFile.toLatin1().data());
+	value = g_string_new(m_qDIYPhotoFile.toUtf8().data());
 	pContact->SetFieldValue(ContactField_Photo, value);
 	g_string_free(value, TRUE);
 
 	/* set contact signature */
-	value = g_string_new(tr("Hi, Belugaer").toLatin1().data());
+	value = g_string_new(tr("Hi, Belugaer").toUtf8().data());
 	pContact->SetFieldValue(ContactField_Signature, value);
 	g_string_free(value, TRUE);
 
@@ -851,48 +851,48 @@ void BelugaDetail::getFieldsValue(CPhoneContact * pContact)
 
 	/* set contact org */
 	string = ((QLineEdit*)m_qRightWidgets[Row_Org])->text();
-	value = g_string_new(string.toLatin1().data());
+	value = g_string_new(string.toUtf8().data());
 	pContact->SetFieldValue(ContactField_Org, value);
 	g_string_free(value, TRUE);
 
 	/* set contact Url */
 	string = ((QLineEdit*)m_qRightWidgets[Row_Url])->text();
-	value = g_string_new(string.toLatin1().data());
+	value = g_string_new(string.toUtf8().data());
 	pContact->SetFieldValue(ContactField_Url, value);
 	g_string_free(value, TRUE);
 
 	/* set contact title */
 	string = ((QLineEdit*)m_qRightWidgets[Row_Title])->text();
-	value = g_string_new(string.toLatin1().data());
+	value = g_string_new(string.toUtf8().data());
 	pContact->SetFieldValue(ContactField_Title, value);
 	g_string_free(value, TRUE);
 
 	/* set contact ring */
 	QString callRing = ((QComboBox*)m_qRightWidgets[Row_Ring])->itemData(0).toString();
 	QString msgRing = ((QComboBox*)m_qRightWidgets[Row_Ring])->itemData(1).toString();
-	value = g_string_new(callRing.toLatin1().data()); 
+	value = g_string_new(callRing.toUtf8().data()); 
 	pContact->SetFieldValue(ContactField_CallRing, value);
-	value = g_string_assign(value, msgRing.toLatin1().data()); 
+	value = g_string_assign(value, msgRing.toUtf8().data()); 
 	pContact->SetFieldValue(ContactField_MsgRing, value);
 	g_string_free(value, TRUE);
 
 	/* set contact note */
 	string = ((QPlainTextEdit*)m_qRightWidgets[Row_Note])->toPlainText();
-	value = g_string_new(string.toLatin1().data()); 
+	value = g_string_new(string.toUtf8().data()); 
 	pContact->SetFieldValue(ContactField_Note, value);
 	g_string_free(value, TRUE);
 
 	/* set mobile phone */ 
 	QString mobilephone = ((QLineEdit*)m_qRightWidgets[Row_PhoneMobile])->text();
-	pContact->SetPhone((ECommType)(CommType_Mobile | CommType_Phone), mobilephone.toLatin1().data());
+	pContact->SetPhone((ECommType)(CommType_Mobile | CommType_Phone), mobilephone.toUtf8().data());
 	
 	/* set home phone */ 
 	QString homephone = ((QLineEdit*)m_qRightWidgets[Row_PhoneHome])->text();
-	pContact->SetPhone((ECommType)(CommType_Home | CommType_Phone), homephone.toLatin1().data());
+	pContact->SetPhone((ECommType)(CommType_Home | CommType_Phone), homephone.toUtf8().data());
 
 	/* set work phone */ 
 	QString workphone = ((QLineEdit*)m_qRightWidgets[Row_PhoneWork])->text();
-	pContact->SetPhone((ECommType)(CommType_Work | CommType_Phone), workphone.toLatin1().data());
+	pContact->SetPhone((ECommType)(CommType_Work | CommType_Phone), workphone.toUtf8().data());
 	
 	/* set pref phone */
 	if (((QLineEdit*)m_qRightWidgets[m_nPrefTel])->text().isEmpty())
@@ -902,17 +902,17 @@ void BelugaDetail::getFieldsValue(CPhoneContact * pContact)
 		if (workphone.isEmpty())
 			m_nPrefTel = Row_PhoneHome;
 	}
-	value = g_string_new(((QLineEdit*)m_qRightWidgets[m_nPrefTel])->text().toLatin1().data());
+	value = g_string_new(((QLineEdit*)m_qRightWidgets[m_nPrefTel])->text().toUtf8().data());
 	pContact->SetFieldValue(ContactField_PhonePref, value);
 	g_string_free(value, TRUE);
 
 	/* set home email */ 
 	QString homeemail = ((QLineEdit*)m_qRightWidgets[Row_EmailHome])->text();
-	pContact->SetEmail((ECommType)(CommType_Home | CommType_Email), homeemail.toLatin1().data());
+	pContact->SetEmail((ECommType)(CommType_Home | CommType_Email), homeemail.toUtf8().data());
 
 	/* set work email */ 
 	QString workemail = ((QLineEdit*)m_qRightWidgets[Row_EmailWork])->text();
-	pContact->SetEmail((ECommType)(CommType_Work | CommType_Email), workemail.toLatin1().data());
+	pContact->SetEmail((ECommType)(CommType_Work | CommType_Email), workemail.toUtf8().data());
 
 	/* set pref email */
 	if (((QLineEdit*)m_qRightWidgets[m_nPrefEmail])->text().isEmpty())
@@ -920,7 +920,7 @@ void BelugaDetail::getFieldsValue(CPhoneContact * pContact)
 		if (workemail.isEmpty())
 			m_nPrefEmail = Row_EmailHome;
 	}
-	value = g_string_new(((QLineEdit*)m_qRightWidgets[m_nPrefEmail])->text().toLatin1().data());
+	value = g_string_new(((QLineEdit*)m_qRightWidgets[m_nPrefEmail])->text().toUtf8().data());
 	pContact->SetFieldValue(ContactField_EmailPref, value);
 	g_string_free(value, TRUE);
 
@@ -932,11 +932,11 @@ void BelugaDetail::getFieldsValue(CPhoneContact * pContact)
 
 	/* set QQ */ 
 	string = ((QLineEdit*)m_qRightWidgets[Row_IMQQ])->text();
-	pContact->SetIM((ECommType)(CommType_IM | CommType_QQ), string.toLatin1().data());
+	pContact->SetIM((ECommType)(CommType_IM | CommType_QQ), string.toUtf8().data());
 
 	/* set MSN */ 
 	string = ((QLineEdit*)m_qRightWidgets[Row_IMMSN])->text();
-	pContact->SetIM((ECommType)(CommType_IM | CommType_MSN), string.toLatin1().data());
+	pContact->SetIM((ECommType)(CommType_IM | CommType_MSN), string.toUtf8().data());
 }
 
 void BelugaDetail::setFieldsValue(CPhoneContact * pContact)
@@ -949,12 +949,12 @@ void BelugaDetail::setFieldsValue(CPhoneContact * pContact)
 	/* set contact name */
 	GString * value = NULL;
 	pContact->GetFieldValue(ContactField_Name, &value);
-	((QLineEdit*)m_qRightWidgets[Row_Name])->setText(QString(value->str));
+	((QLineEdit*)m_qRightWidgets[Row_Name])->setText(QString::fromUtf8(value->str));
 	g_string_free(value, TRUE);
 
 	/* set contact nickname */
 	pContact->GetFieldValue(ContactField_NickName, &value);
-	((QLineEdit*)m_qRightWidgets[Row_NickName])->setText(QString(value->str));
+	((QLineEdit*)m_qRightWidgets[Row_NickName])->setText(QString::fromUtf8(value->str));
 	g_string_free(value, TRUE);
 
 	/* set contact sex */
@@ -966,46 +966,46 @@ void BelugaDetail::setFieldsValue(CPhoneContact * pContact)
 
 	/* set contact photo */
 	pContact->GetFieldValue(ContactField_Photo, &value);
-	m_qDIYPhotoFile = QString(value->str);
+	m_qDIYPhotoFile = QString::fromUtf8(value->str);
 	((QPushButton*)m_qRightWidgets[Row_Photo])->setIcon(QIcon(m_qDIYPhotoFile));
 	g_string_free(value, TRUE);
 
 	/* set contact birthday */
 	pContact->GetFieldValue(ContactField_Birthday, &value);
-	((QDateEdit*)m_qRightWidgets[Row_Birthday])->setDate(QDate::fromString(QString(value->str), "yyyy-MM-dd"));
+	((QDateEdit*)m_qRightWidgets[Row_Birthday])->setDate(QDate::fromString(QString::fromUtf8(value->str), "yyyy-MM-dd"));
 	g_string_free(value, TRUE);
 
 	/* set contact org */
 	pContact->GetFieldValue(ContactField_Org, &value);
-	((QLineEdit*)m_qRightWidgets[Row_Org])->setText(QString(value->str));	
+	((QLineEdit*)m_qRightWidgets[Row_Org])->setText(QString::fromUtf8(value->str));	
 	g_string_free(value, TRUE);
 
 	/* set contact Url */
 	pContact->GetFieldValue(ContactField_Url, &value);
-	((QLineEdit*)m_qRightWidgets[Row_Url])->setText(QString(value->str));	
+	((QLineEdit*)m_qRightWidgets[Row_Url])->setText(QString::fromUtf8(value->str));	
 	g_string_free(value, TRUE);
 
 	/* set contact title */
 	pContact->GetFieldValue(ContactField_Title, &value);
-	((QLineEdit*)m_qRightWidgets[Row_Title])->setText(QString(value->str));	
+	((QLineEdit*)m_qRightWidgets[Row_Title])->setText(QString::fromUtf8(value->str));	
 	g_string_free(value, TRUE);
 
 	/* set contact ring */
 	pContact->GetFieldValue(ContactField_CallRing, &value);
-	QString fileName = QString(value->str);
+	QString fileName = QString::fromUtf8(value->str);
 	((QComboBox*)m_qRightWidgets[Row_Ring])->setItemText(0, fileName.right(fileName.length() - fileName.lastIndexOf('/') - 1));
 	((QComboBox*)m_qRightWidgets[Row_Ring])->setItemData(0, QVariant(fileName));
 	g_string_free(value, TRUE);
 
 	pContact->GetFieldValue(ContactField_MsgRing, &value);
-	fileName = QString(value->str);
+	fileName = QString::fromUtf8(value->str);
 	((QComboBox*)m_qRightWidgets[Row_Ring])->setItemText(1, fileName.right(fileName.length() - fileName.lastIndexOf('/') - 1));
 	((QComboBox*)m_qRightWidgets[Row_Ring])->setItemData(1, QVariant(fileName));
 	g_string_free(value, TRUE);
 
 	/* set contact note */
 	pContact->GetFieldValue(ContactField_Note, &value);
-	((QPlainTextEdit*)m_qRightWidgets[Row_Note])->setPlainText(QString(value->str));
+	((QPlainTextEdit*)m_qRightWidgets[Row_Note])->setPlainText(QString::fromUtf8(value->str));
 	g_string_free(value, TRUE);
 
 	/* set mobile phone */
@@ -1015,7 +1015,7 @@ void BelugaDetail::setFieldsValue(CPhoneContact * pContact)
 	pContact->GetPhone((ECommType)(CommType_Mobile | CommType_Phone), &sPhone);
 	if (sPhone != NULL)
 	{
-		((QLineEdit*)m_qRightWidgets[Row_PhoneMobile])->setText(QString(sPhone));
+		((QLineEdit*)m_qRightWidgets[Row_PhoneMobile])->setText(QString::fromUtf8(sPhone));
 		if (g_strcasecmp(value->str, sPhone) == 0)
 			m_qActionMobileTel->setChecked(TRUE);
 		g_free(sPhone);
@@ -1026,7 +1026,7 @@ void BelugaDetail::setFieldsValue(CPhoneContact * pContact)
 	pContact->GetPhone((ECommType)(CommType_Home | CommType_Phone), &sPhone);
 	if (sPhone != NULL)
 	{
-		((QLineEdit*)m_qRightWidgets[Row_PhoneHome])->setText(QString(sPhone));
+		((QLineEdit*)m_qRightWidgets[Row_PhoneHome])->setText(QString::fromUtf8(sPhone));
 		if (g_strcasecmp(value->str, sPhone) == 0)
 			m_qActionHomeTel->setChecked(TRUE);
 		g_free(sPhone);
@@ -1037,7 +1037,7 @@ void BelugaDetail::setFieldsValue(CPhoneContact * pContact)
 	pContact->GetPhone((ECommType)(CommType_Work | CommType_Phone), &sPhone);
 	if (sPhone != NULL)
 	{
-		((QLineEdit*)m_qRightWidgets[Row_PhoneWork])->setText(QString(sPhone));
+		((QLineEdit*)m_qRightWidgets[Row_PhoneWork])->setText(QString::fromUtf8(sPhone));
 		if (g_strcasecmp(value->str, sPhone) == 0)
 			m_qActionWorkTel->setChecked(TRUE);
 		g_free(sPhone);
@@ -1051,7 +1051,7 @@ void BelugaDetail::setFieldsValue(CPhoneContact * pContact)
 	pContact->GetEmail((ECommType)(CommType_Home | CommType_Email), &sEmail);
 	if (sEmail != NULL)
 	{
-		((QLineEdit*)m_qRightWidgets[Row_EmailHome])->setText(QString(sEmail));
+		((QLineEdit*)m_qRightWidgets[Row_EmailHome])->setText(QString::fromUtf8(sEmail));
 		if (g_strcasecmp(value->str, sEmail) == 0)
 			m_qActionHomeEmail->setChecked(TRUE);
 		g_free(sEmail);
@@ -1062,7 +1062,7 @@ void BelugaDetail::setFieldsValue(CPhoneContact * pContact)
 	pContact->GetPhone((ECommType)(CommType_Work | CommType_Email), &sEmail);
 	if (sEmail != NULL)
 	{
-		((QLineEdit*)m_qRightWidgets[Row_EmailWork])->setText(QString(sEmail));
+		((QLineEdit*)m_qRightWidgets[Row_EmailWork])->setText(QString::fromUtf8(sEmail));
 		if (g_strcasecmp(value->str, sEmail) == 0)
 			m_qActionWorkEmail->setChecked(TRUE);
 		g_free(sEmail);
@@ -1076,7 +1076,7 @@ void BelugaDetail::setFieldsValue(CPhoneContact * pContact)
 	{
 		memcpy(&m_stHomeAddr, addr, sizeof(stAddress));
 		g_free(addr);
-		((QComboBox*)m_qRightWidgets[Row_AddrHome])->setItemText(0, QString("%1,%2,%3,%4").arg(m_stHomeAddr.city).arg(m_stHomeAddr.district).arg(m_stHomeAddr.street).arg(m_stHomeAddr.block));
+		((QComboBox*)m_qRightWidgets[Row_AddrHome])->setItemText(0, QString("%1,%2,%3,%4").arg(QString::fromUtf8(m_stHomeAddr.city)).arg(QString::fromUtf8(m_stHomeAddr.district)).arg(QString::fromUtf8(m_stHomeAddr.street)).arg(QString::fromUtf8(m_stHomeAddr.block)));
 	}
 
 	/* set work address */ 
@@ -1085,7 +1085,7 @@ void BelugaDetail::setFieldsValue(CPhoneContact * pContact)
 	{
 		memcpy(&m_stWorkAddr, addr, sizeof(stAddress));
 		g_free(addr);
-		((QComboBox*)m_qRightWidgets[Row_AddrWork])->setItemText(0, QString("%1,%2,%3,%4").arg(m_stHomeAddr.city).arg(m_stHomeAddr.district).arg(m_stHomeAddr.street).arg(m_stHomeAddr.block));
+		((QComboBox*)m_qRightWidgets[Row_AddrWork])->setItemText(0, QString("%1,%2,%3,%4").arg(QString::fromUtf8(m_stHomeAddr.city)).arg(QString::fromUtf8(m_stHomeAddr.district)).arg(QString::fromUtf8(m_stHomeAddr.street)).arg(QString::fromUtf8(m_stHomeAddr.block)));
 	}
 
 	/* set QQ */ 
@@ -1093,7 +1093,7 @@ void BelugaDetail::setFieldsValue(CPhoneContact * pContact)
 	pContact->GetIM((ECommType)(CommType_IM | CommType_QQ), &im);
 	if (im != NULL)
 	{
-		((QLineEdit*)m_qRightWidgets[Row_IMQQ])->setText(QString(im));	
+		((QLineEdit*)m_qRightWidgets[Row_IMQQ])->setText(QString::fromUtf8(im));	
 		g_free(im);	
 	}
 
@@ -1102,7 +1102,7 @@ void BelugaDetail::setFieldsValue(CPhoneContact * pContact)
 	pContact->GetIM((ECommType)(CommType_IM | CommType_MSN), &im);
 	if (im != NULL)
 	{
-		((QLineEdit*)m_qRightWidgets[Row_IMMSN])->setText(QString(im));	
+		((QLineEdit*)m_qRightWidgets[Row_IMMSN])->setText(QString::fromUtf8(im));	
 		g_free(im);	
 	}
 }

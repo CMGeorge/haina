@@ -81,18 +81,18 @@ BOOL BelugaView::initializeFields()
 	/* photo */
 	GString * value = NULL;
 	pContact->GetFieldValue(ContactField_Photo, &value);
-	photo->setIcon(QIcon(QString(value->str)));
+	photo->setIcon(QIcon(QString::fromUtf8(value->str)));
 	g_string_free(value, TRUE);
 
 	/* name */
 	pContact->GetFieldValue(ContactField_Name, &value); 
-	namelabel->setText(QString(value->str));
+	namelabel->setText(QString::fromUtf8(value->str));
 	
 	/* nickname */
 	GString *nickname = NULL;
 	pContact->GetFieldValue(ContactField_NickName, &nickname); 
 	if (g_strcasecmp(value->str, nickname->str) != 0)
-		nicknamelabel->setText(QString(nickname->str));
+		nicknamelabel->setText(QString::fromUtf8(nickname->str));
 	g_string_free(value, TRUE);
 	g_string_free(nickname, TRUE);
 	
@@ -101,7 +101,7 @@ BOOL BelugaView::initializeFields()
 	pContact->GetFieldValue(ContactField_Org, &value); 
 	if (value->len)
 	{
-		string = QString(tr(" Org:\t%1")).arg(QString(value->str));
+		string = QString(tr(" Org:\t%1")).arg(QString::fromUtf8(value->str));
 		qItem = new QListWidgetItem(string);
 		contactlist->addItem(qItem);
 	}
@@ -111,7 +111,7 @@ BOOL BelugaView::initializeFields()
 	pContact->GetFieldValue(ContactField_Title, &value); 
 	if (value->len)
 	{
-		string = QString(tr(" Title:\t%1")).arg(QString(value->str));
+		string = QString(tr(" Title:\t%1")).arg(QString::fromUtf8(value->str));
 		qItem = new QListWidgetItem(string);
 		contactlist->addItem(qItem);
 	}
@@ -128,9 +128,9 @@ BOOL BelugaView::initializeFields()
 	if (sPhone != NULL && strlen(sPhone))
 	{
 		if (g_strcasecmp(value->str, sPhone) == 0)
-			string = QString(tr(" Mobile(*):\t%1")).arg(QString(sPhone));	
+			string = QString(tr(" Mobile(*):\t%1")).arg(QString::fromUtf8(sPhone));	
 		else
-			string = QString(tr(" Mobile:\t%1")).arg(QString(sPhone));	
+			string = QString(tr(" Mobile:\t%1")).arg(QString::fromUtf8(sPhone));	
 		qItem = new QListWidgetItem(string);
 		qItem->setData(Qt::UserRole, QVariant(sPhone));
 		contactlist->addItem(qItem);
@@ -144,9 +144,9 @@ BOOL BelugaView::initializeFields()
 	if (sPhone != NULL && strlen(sPhone))
 	{
 		if (g_strcasecmp(value->str, sPhone) == 0)
-			string = QString(tr(" Work Tel(*):\t%1")).arg(QString(sPhone));	
+			string = QString(tr(" Work Tel(*):\t%1")).arg(QString::fromUtf8(sPhone));	
 		else
-			string = QString(tr(" Work Tel:\t%1")).arg(QString(sPhone));	
+			string = QString(tr(" Work Tel:\t%1")).arg(QString::fromUtf8(sPhone));	
 		qItem = new QListWidgetItem(string);
 		qItem->setData(Qt::UserRole, QVariant(sPhone));
 		contactlist->addItem(qItem);
@@ -160,9 +160,9 @@ BOOL BelugaView::initializeFields()
 	if (sPhone != NULL && strlen(sPhone))
 	{
 		if (g_strcasecmp(value->str, sPhone) == 0)
-			string = QString(tr(" Home Tel(*):\t%1")).arg(QString(sPhone));	
+			string = QString(tr(" Home Tel(*):\t%1")).arg(QString::fromUtf8(sPhone));	
 		else
-			string = QString(tr(" Home Tel:\t%1")).arg(QString(sPhone));	
+			string = QString(tr(" Home Tel:\t%1")).arg(QString::fromUtf8(sPhone));	
 		qItem = new QListWidgetItem(string);
 		qItem->setData(Qt::UserRole, QVariant(sPhone));
 		contactlist->addItem(qItem);
@@ -178,9 +178,9 @@ BOOL BelugaView::initializeFields()
 	if (sEmail != NULL && strlen(sEmail))
 	{
 		if (g_strcasecmp(value->str, sEmail) == 0)
-			string = QString(tr(" Work Email(*):\t%1")).arg(QString(sEmail));	
+			string = QString(tr(" Work Email(*):\t%1")).arg(QString::fromUtf8(sEmail));	
 		else
-			string = QString(tr(" Work Email:\t%1")).arg(QString(sEmail));	
+			string = QString(tr(" Work Email:\t%1")).arg(QString::fromUtf8(sEmail));	
 		qItem = new QListWidgetItem(string);
 		qItem->setData(Qt::UserRole, QVariant(sEmail));
 		contactlist->addItem(qItem);
@@ -194,9 +194,9 @@ BOOL BelugaView::initializeFields()
 	if (sEmail != NULL && strlen(sEmail))
 	{
 		if (g_strcasecmp(value->str, sEmail) == 0)
-			string = QString(tr(" Home Email(*):\t%1")).arg(QString(sEmail));	
+			string = QString(tr(" Home Email(*):\t%1")).arg(QString::fromUtf8(sEmail));	
 		else
-			string = QString(tr(" Home Email:\t%1")).arg(QString(sEmail));	
+			string = QString(tr(" Home Email:\t%1")).arg(QString::fromUtf8(sEmail));	
 		qItem = new QListWidgetItem(string);
 		qItem->setData(Qt::UserRole, QVariant(sEmail));
 		contactlist->addItem(qItem);
@@ -210,7 +210,7 @@ BOOL BelugaView::initializeFields()
 	pContact->GetIM((ECommType)(CommType_IM | CommType_QQ), &im);
 	if (im != NULL && strlen(im))
 	{
-		string = QString(tr(" QQ:\t%1")).arg(QString(im));	
+		string = QString(tr(" QQ:\t%1")).arg(QString::fromUtf8(im));	
 		qItem = new QListWidgetItem(string);
 		qItem->setData(Qt::UserRole, QVariant(im));
 		contactlist->addItem(qItem);
@@ -223,7 +223,7 @@ BOOL BelugaView::initializeFields()
 	pContact->GetIM((ECommType)(CommType_IM | CommType_MSN), &im);
 	if (im != NULL && strlen(im))
 	{
-		string = QString(tr(" MSN:\t%1")).arg(QString(im));	
+		string = QString(tr(" MSN:\t%1")).arg(QString::fromUtf8(im));	
 		qItem = new QListWidgetItem(string);
 		qItem->setData(Qt::UserRole, QVariant(im));
 		contactlist->addItem(qItem);
@@ -235,7 +235,7 @@ BOOL BelugaView::initializeFields()
 	pContact->GetFieldValue(ContactField_Url, &value); 
 	if (value->len)
 	{
-		string = QString(tr(" URL:\t%1")).arg(QString(value->str));
+		string = QString(tr(" URL:\t%1")).arg(QString::fromUtf8(value->str));
 		qItem = new QListWidgetItem(string);
 		qItem->setData(Qt::UserRole, QVariant(value->str));
 		contactlist->addItem(qItem);
@@ -246,7 +246,7 @@ BOOL BelugaView::initializeFields()
 	pContact->GetFieldValue(ContactField_Birthday, &value); 
 	if (value->len)
 	{
-		string = QString(tr(" Birthday:\t%1")).arg(QString(value->str));
+		string = QString(tr(" Birthday:\t%1")).arg(QString::fromUtf8(value->str));
 		qItem = new QListWidgetItem(string);
 		contactlist->addItem(qItem);
 	}
@@ -258,7 +258,7 @@ BOOL BelugaView::initializeFields()
 	if (addr != NULL && (strlen(addr->block) || strlen(addr->city) || strlen(addr->district) || strlen(addr->state) || strlen(addr->street)))
 	{
 		string = QString(tr(" Work Address:"));	
-		string.append(QString("\t%1,%2,%3\n\t\t%4,%5,%6,%7").arg(addr->country).arg(addr->state).arg(addr->postcode).arg(addr->city).arg(addr->district).arg(addr->street).arg(addr->block));
+		string.append(QString("\t%1,%2,%3\n\t\t%4,%5,%6,%7").arg(QString::fromUtf8(addr->country)).arg(QString::fromUtf8(addr->state)).arg(QString::fromUtf8(addr->postcode)).arg(QString::fromUtf8(addr->city)).arg(QString::fromUtf8(addr->district)).arg(QString::fromUtf8(addr->street)).arg(QString::fromUtf8(addr->block)));
 		qItem = new QListWidgetItem(string);
 		contactlist->addItem(qItem);
 	}
@@ -271,7 +271,7 @@ BOOL BelugaView::initializeFields()
 	if (addr != NULL && (strlen(addr->block) || strlen(addr->city) || strlen(addr->district) || strlen(addr->state) || strlen(addr->street)))
 	{
 		string = QString(tr(" Home Address:"));	
-		string.append(QString("\t%1,%2,%3\n\t\t%4,%5,%6,%7").arg(addr->country).arg(addr->state).arg(addr->postcode).arg(addr->city).arg(addr->district).arg(addr->street).arg(addr->block));
+		string.append(QString("\t%1,%2,%3\n\t\t%4,%5,%6,%7").arg(QString::fromUtf8(addr->country)).arg(QString::fromUtf8(addr->state)).arg(QString::fromUtf8(addr->postcode)).arg(QString::fromUtf8(addr->city)).arg(QString::fromUtf8(addr->district)).arg(QString::fromUtf8(addr->street)).arg(QString::fromUtf8(addr->block)));
 		qItem = new QListWidgetItem(string);
 		contactlist->addItem(qItem);
 	}

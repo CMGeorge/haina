@@ -37,9 +37,9 @@ NewMessage::NewMessage(QWidget *parent /* = 0 */, gchar* phoneNumber, gchar* con
 	/* set first contact */
 	if (phoneNumber)
 	{
-		m_qPhoneNumberList.append(QString(phoneNumber));
+		m_qPhoneNumberList.append(QString::fromUtf8(phoneNumber));
 		if (contactName)	
-			m_qContactNameList.append(QString(contactName));
+			m_qContactNameList.append(QString::fromUtf8(contactName));
 		else
 			m_qContactNameList.append(QString());
 	}

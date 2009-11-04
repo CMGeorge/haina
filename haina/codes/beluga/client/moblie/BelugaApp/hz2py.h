@@ -2,6 +2,8 @@
 #define __HZ2PY_H_
 
 #include <QtCore/QString>
+#include <string>
+using namespace std;
 
 typedef struct _tPYTABLE
 {
@@ -447,19 +449,25 @@ static QString GetPYbyChar(int chr)
 static QString Chinese2PY(QString hz)
 {
 	int   iValue;
-	char  nFirst = 0;
-	char  nSecond = 0;
+	uchar  nFirst = 0;
+	uchar  nSecond = 0;
 	QString strRet;
+	wchar_t * hz_wstr = NULL;
+	char * hz_str = NULL;
 	
-	QByteArray hzArray = hz.toLatin1();
+	hz_wstr = (wchar_t*)malloc(hz.length());
+	hz_str = (char*)malloc(wcslen(hz_wstr) * 2);
 
-	for(int iLoop=0; iLoop<hzArray.length(); iLoop++)
+	hz.toWCharArray(hz_wstr);
+	wcstombs(hz_str, hz_wstr, wcslen(hz_wstr)*2);
+
+	for(uint iLoop=0; iLoop<strlen(hz_str); iLoop++)
 	{ 
-		nFirst = hzArray[iLoop];
+		nFirst = hz_str[iLoop];
 		if (nFirst>160)
 		{
 			iLoop++;
-			nSecond = hzArray[iLoop];
+			nSecond = hz_str[iLoop];
 
 			// ¸³ÖµË÷Òý
 			iValue = nFirst*256 + nSecond - 65536;
