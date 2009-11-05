@@ -748,7 +748,7 @@ void BelugaDetail::onHomeAddrActivated(int index)
 	if (QDialog::Accepted == addr.exec() && (strlen(m_stHomeAddr.city) != 0 || strlen(m_stHomeAddr.district) != 0 || strlen(m_stHomeAddr.block) != 0))
 	{
 		qHomeAddr->clear();
-		qHomeAddr->addItem(QString("%1,%2,%3,%4").arg(m_stHomeAddr.city).arg(m_stHomeAddr.district).arg(m_stHomeAddr.street).arg(m_stHomeAddr.block));
+		qHomeAddr->addItem(QString("%1,%2,%3,%4").arg(QString::fromUtf8(m_stHomeAddr.city)).arg(QString::fromUtf8(m_stHomeAddr.district)).arg(QString::fromUtf8(m_stHomeAddr.street)).arg(QString::fromUtf8(m_stHomeAddr.block)));
 		qHomeAddr->addItem(tr("Edit address..."));
 	}
 }
@@ -764,7 +764,7 @@ void BelugaDetail::onWorkAddrActivated(int index)
 	if (QDialog::Accepted == addr.exec() && (strlen(m_stWorkAddr.city) != 0 || strlen(m_stWorkAddr.district) != 0 || strlen(m_stWorkAddr.block) != 0))
 	{
 		qWorkAddr->clear();
-		qWorkAddr->addItem(QString("%1,%2,%3,%4").arg(m_stWorkAddr.city).arg(m_stWorkAddr.district).arg(m_stHomeAddr.street).arg(m_stWorkAddr.block));
+		qWorkAddr->addItem(QString("%1,%2,%3,%4").arg(QString::fromUtf8(m_stWorkAddr.city)).arg(QString::fromUtf8(m_stWorkAddr.district)).arg(QString::fromUtf8(m_stWorkAddr.street)).arg(QString::fromUtf8(m_stWorkAddr.block)));
 		qWorkAddr->addItem(tr("Edit address..."));
 	}
 }
