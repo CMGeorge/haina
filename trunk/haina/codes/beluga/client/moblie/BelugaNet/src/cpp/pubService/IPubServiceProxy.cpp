@@ -37,6 +37,15 @@ IPubServiceProxy::getQQStatus (const std::string& param1)
 }
 
 pubService::HessianRemoteReturning
+IPubServiceProxy::getMSNStatus (const std::string& param1)
+{
+    static char METHOD_NAME[] = "getMSNStatus";
+    hessian::Call<pubService::HessianRemoteReturning > call(METHOD_NAME, sizeof(METHOD_NAME) - 1);
+    call << param1;
+    return call.invoke(connection_);
+}
+
+pubService::HessianRemoteReturning
 IPubServiceProxy::getOrUpdatePD (hessian::Int param1, hessian::Int param2, hessian::Int param3)
 {
     static char METHOD_NAME[] = "getOrUpdatePD";
