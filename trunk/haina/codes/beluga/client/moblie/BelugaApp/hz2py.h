@@ -455,13 +455,18 @@ static QString Chinese2PY(QString hz)
 	wchar_t * hz_wstr = NULL;
 	char * hz_str = NULL;
 	
-	hz_wstr = (wchar_t*)malloc(hz.length());
-	hz_str = (char*)malloc(wcslen(hz_wstr) * 2);
-
+	uint len = hz.length() + 1;
+	hz_wstr = (wchar_t*)malloc(len * sizeof(wchar_t));
+	memset(hz_wstr, 0, len);
 	hz.toWCharArray(hz_wstr);
-	wcstombs(hz_str, hz_wstr, wcslen(hz_wstr)*2);
-
-	for(uint iLoop=0; iLoop<strlen(hz_str); iLoop++)
+	
+	len = (wcslen(hz_wstr) + 1) * 2 ;
+	hz_str = (char*)malloc(len * sizeof(char));
+	memset(hz_str, 0, len);
+	wcstombs(hz_str, hz_wstr, len);
+	
+	len = strlen(hz_str);
+	for(uint iLoop=0; iLoop<len; iLoop++)
 	{ 
 		nFirst = hz_str[iLoop];
 		if (nFirst>160)
