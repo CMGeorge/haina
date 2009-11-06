@@ -206,6 +206,7 @@
 				PreprocessorDefinitions="_DEBUG;_WIN32_WCE=$(CEVER);UNDER_CE;$(PLATFORMDEFINES);WINCE;DEBUG;_WINDOWS;_USRDLL;INFOINTERCEPTOR_EXPORTS;$(ARCHFAM);$(_ARCHFAM_);_UNICODE;UNICODE"
 				MinimalRebuild="true"
 				RuntimeLibrary="1"
+				TreatWChar_tAsBuiltInType="false"
 				UsePrecompiledHeader="2"
 				WarningLevel="3"
 				DebugInformationFormat="3"
@@ -225,6 +226,7 @@
 			<Tool
 				Name="VCLibrarianTool"
 				AdditionalOptions=" /SUBSYSTEM:WINDOWSCE,5.02"
+				OutputFile="..\..\TargetLib\$(ProjectName).lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -416,7 +418,7 @@
 			Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)"
 			OutputDirectory="$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(PlatformName)\$(ConfigurationName)"
-			ConfigurationType="2"
+			ConfigurationType="4"
 			CharacterSet="1"
 			>
 			<Tool
@@ -457,17 +459,9 @@
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
-				Name="VCLinkerTool"
-				AdditionalOptions=" /subsystem:windowsce,5.02"
-				OutputFile="$(OutDir)/InfoInterceptor.dll"
-				LinkIncremental="1"
-				DelayLoadDLLs="$(NOINHERIT)"
-				GenerateDebugInformation="true"
-				ProgramDatabaseFile="$(OutDir)/InfoInterceptor.pdb"
-				SubSystem="0"
-				OptimizeReferences="2"
-				EnableCOMDATFolding="2"
-				ImportLibrary="$(OutDir)/InfoInterceptor.lib"
+				Name="VCLibrarianTool"
+				AdditionalOptions=" /SUBSYSTEM:WINDOWSCE,5.02"
+				OutputFile="..\..\TargetLib\$(ProjectName).lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
