@@ -11,6 +11,8 @@
 #include <json/json.h> 
 #include <sstream>
 #include <glib.h>
+#include <string>
+
 
 using namespace std;
 using namespace hessian;
@@ -26,8 +28,8 @@ class NetService
 		~NetService();
 		
 		void setServerURL(string & url);
-		gint32 getQQStatus(GString * qq);
-		WeatherDto * getWeather(GString * cityCode);
+		gint32 getQQStatus(gchar * qq);
+		WeatherDto * getWeather(gchar * cityCode);
 		gboolean updatePhoneDistrict(guint32 updateFlag);
 
 	private:

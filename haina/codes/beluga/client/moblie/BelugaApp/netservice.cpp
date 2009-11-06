@@ -17,9 +17,9 @@ void NetService::setServerURL(string & url)
 	m_serverUrl = url;
 }
 
-gint32 NetService::getQQStatus(GString * qq)
+gint32 NetService::getQQStatus(gchar * qq)
 {
-	string UserId(qq->str);
+	string UserId(qq);
 		
 	HttpConnection connection(m_serverUrl);
 	IPubServiceProxy *service = new IPubServiceProxy(connection);
@@ -53,10 +53,10 @@ gint32 NetService::getQQStatus(GString * qq)
 	}
 }
 
-WeatherDto * NetService::getWeather(GString * cityCode)
+WeatherDto * NetService::getWeather(gchar * cityCode)
 {
 	WeatherDto * weatherDto = new WeatherDto;
-	string weatherCityCode(cityCode->str);
+	string weatherCityCode(cityCode);
 	HttpConnection connection(m_serverUrl);
 	IPubServiceProxy *service = new IPubServiceProxy(connection);
 	
