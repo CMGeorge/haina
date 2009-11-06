@@ -902,6 +902,13 @@
 				RelativePath=".\GeneratedFiles\Release\moc_belugaview.cpp"
 				>
 				<FileConfiguration
+					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
 					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
 					ExcludedFromBuild="true"
 					>
