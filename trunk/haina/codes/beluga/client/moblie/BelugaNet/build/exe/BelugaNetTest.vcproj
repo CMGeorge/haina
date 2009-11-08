@@ -86,9 +86,9 @@
 			/>
 			<DeploymentTool
 				ForceDirty="-1"
-				RemoteDirectory="%CSIDL_PROGRAM_FILES%\Beluga"
+				RemoteDirectory="%CSIDL_PROGRAM_FILES%\BelugaApp"
 				RegisterOutput="0"
-				AdditionalFiles="msvcr80.dll|$(BINDIR)\$(INSTRUCTIONSET)|%CSIDL_PROGRAM_FILES%\$(ProjectName)|0;QtCore4.dll|$(QTDIR)\lib|%CSIDL_PROGRAM_FILES%\$(ProjectName)|0;QtGui4.dll|$(QTDIR)\lib|%CSIDL_PROGRAM_FILES%\$(ProjectName)|0"
+				AdditionalFiles="msvcr80.dll|$(BINDIR)\$(INSTRUCTIONSET)|%CSIDL_PROGRAM_FILES%\BelugaApp|0;QtCore4.dll|$(QTDIR)\lib|%CSIDL_PROGRAM_FILES%\BelugaApp|0;QtGui4.dll|$(QTDIR)\lib|%CSIDL_PROGRAM_FILES%\BelugaApp|0"
 			/>
 			<DebuggerTool
 			/>
@@ -164,9 +164,9 @@
 			/>
 			<DeploymentTool
 				ForceDirty="-1"
-				RemoteDirectory="%CSIDL_PROGRAM_FILES%\Beluga"
+				RemoteDirectory="%CSIDL_PROGRAM_FILES%\BelugaApp"
 				RegisterOutput="0"
-				AdditionalFiles="msvcr80d.dll|$(BINDIR)\$(INSTRUCTIONSET)|%CSIDL_PROGRAM_FILES%\$(ProjectName)|0;QtCored4.dll|$(QTDIR)\lib|%CSIDL_PROGRAM_FILES%\$(ProjectName)|0;QtGuid4.dll|$(QTDIR)\lib|%CSIDL_PROGRAM_FILES%\$(ProjectName)|0"
+				AdditionalFiles="msvcr80d.dll|$(BINDIR)\$(INSTRUCTIONSET)|%CSIDL_PROGRAM_FILES%\BelugaApp|0;QtCored4.dll|$(QTDIR)\lib|%CSIDL_PROGRAM_FILES%\BelugaApp|0;QtGuid4.dll|$(QTDIR)\lib|%CSIDL_PROGRAM_FILES%\BelugaApp|0"
 			/>
 			<DebuggerTool
 			/>
@@ -293,10 +293,10 @@
 			SourceControlFiles="false"
 			>
 			<File
-				RelativePath=".\GeneratedFiles\Release\moc_beluganettest.cpp"
+				RelativePath=".\GeneratedFiles\Debug\moc_beluganettest.cpp"
 				>
 				<FileConfiguration
-					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
+					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)"
 					ExcludedFromBuild="true"
 					>
 					<Tool
@@ -305,10 +305,10 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath=".\GeneratedFiles\Debug\moc_beluganettest.cpp"
+				RelativePath=".\GeneratedFiles\Release\moc_beluganettest.cpp"
 				>
 				<FileConfiguration
-					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)"
+					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
 					ExcludedFromBuild="true"
 					>
 					<Tool
