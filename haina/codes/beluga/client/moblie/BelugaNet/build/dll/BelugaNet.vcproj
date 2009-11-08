@@ -89,7 +89,7 @@
 			/>
 			<DeploymentTool
 				ForceDirty="-1"
-				RemoteDirectory="%CSIDL_PROGRAM_FILES%\Beluga"
+				RemoteDirectory="%CSIDL_PROGRAM_FILES%\BelugaApp"
 				RegisterOutput="0"
 				AdditionalFiles=""
 			/>
@@ -173,7 +173,7 @@
 			/>
 			<DeploymentTool
 				ForceDirty="-1"
-				RemoteDirectory="%CSIDL_PROGRAM_FILES%\Beluga"
+				RemoteDirectory="%CSIDL_PROGRAM_FILES%\BelugaApp"
 				RegisterOutput="0"
 				AdditionalFiles=""
 			/>
