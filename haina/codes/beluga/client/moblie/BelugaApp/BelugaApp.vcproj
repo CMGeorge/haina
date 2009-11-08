@@ -39,13 +39,15 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				ExecutionBucket="7"
-				AdditionalIncludeDirectories=".\GeneratedFiles;&quot;$(QTDIR)\include&quot;;&quot;.\GeneratedFiles\$(ConfigurationName)&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;.\..\BelugaDb\inc\config;.\..\BelugaDb\inc\contact;.\..\BelugaDb\inc\message;.\..\BelugaDb\inc;&quot;.\..\3rdParty\glib-2.12.12\glib&quot;;&quot;.\..\3rdParty\glib-2.12.12&quot;;.\..\BelugaContact\src\include;.\"
+				Optimization="0"
+				AdditionalIncludeDirectories=".\GeneratedFiles;&quot;.\GeneratedFiles\$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;.;.\..\BelugaDb\inc\contact;.\..\BelugaDb\inc\message;.\..\BelugaDb\inc\config;.\..\BelugaDb\inc;&quot;.\..\3rdParty\glib-2.12.12\glib&quot;;&quot;.\..\3rdParty\glib-2.12.12&quot;;.\..\BelugaContact\src\include;.\..\InfoInterceptor\InfoInterceptor;.\..\jsoncpp\include;.\..\BelugaNet\src\include;.\..\3rdParty\curl\src\include"
 				PreprocessorDefinitions="UNDER_CE,WINCE,_WINDOWS,_UNICODE,UNICODE,_WIN32,QT_NO_PRINTER,QT_NO_PRINTDIALOG,ARMV4I,_ARMV4I_,armv4i,_ARM_,ARM,_M_ARM,ARM,__arm__,Q_OS_WINCE_WM,QT_NO_PRINTER,QT_NO_PRINTDIALOG,_WIN32_WCE=0x502,QT_THREAD_SUPPORT,QT_NO_DEBUG,NDEBUG,QT_CORE_LIB,QT_GUI_LIB"
-				RuntimeLibrary="2"
-				BufferSecurityCheck="false"
+				MinimalRebuild="true"
+				RuntimeLibrary="0"
+				BufferSecurityCheck="true"
 				TreatWChar_tAsBuiltInType="false"
 				WarningLevel="3"
-				DebugInformationFormat="0"
+				DebugInformationFormat="3"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -59,10 +61,10 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/SUBSYSTEM:WINDOWSCE,5.02"
-				AdditionalDependencies="qtmain.lib QtCore4.lib QtGui4.lib ..\TargetLib\BelugaDb.lib ..\TargetLib\glib.lib ..\TargetLib\sqlite3.lib ..\TargetLib\iconv.lib ..\TargetLib\BelugaContact.lib"
+				AdditionalDependencies="qtmain.lib QtCore4.lib QtGui4.lib ..\TargetLib\BelugaDb.lib ..\TargetLib\glib.lib ..\TargetLib\sqlite3.lib ..\TargetLib\iconv.lib ..\TargetLib\BelugaContact.lib Pimstore.lib aygshell.lib sms.lib cellcore.lib ..\TargetLib\InfoInterceptor.lib ..\TargetLib\BelugaNet.lib ..\jsoncpp\build\mobile6\$(ConfigurationName)\lib_json\lib_json_mobile.lib"
 				OutputFile="$(OutDir)\$(ProjectName).exe"
 				AdditionalLibraryDirectories="$(QTDIR)\lib"
-				GenerateDebugInformation="false"
+				GenerateDebugInformation="true"
 				SubSystem="0"
 				TargetMachine="16"
 			/>
@@ -118,7 +120,8 @@
 				Optimization="0"
 				AdditionalIncludeDirectories=".\GeneratedFiles;&quot;.\GeneratedFiles\$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;.;.\..\BelugaDb\inc\contact;.\..\BelugaDb\inc\message;.\..\BelugaDb\inc\config;.\..\BelugaDb\inc;&quot;.\..\3rdParty\glib-2.12.12\glib&quot;;&quot;.\..\3rdParty\glib-2.12.12&quot;;.\..\BelugaContact\src\include;.\..\InfoInterceptor\InfoInterceptor;.\..\jsoncpp\include;.\..\BelugaNet\src\include;.\..\3rdParty\curl\src\include"
 				PreprocessorDefinitions="UNDER_CE;WINCE;_WINDOWS;_UNICODE;UNICODE;_WIN32;QT_NO_PRINTER;QT_NO_PRINTDIALOG;ARMV4I;_ARMV4I_;armv4i;_ARM_;ARM;_M_ARM;__arm__;Q_OS_WINCE_WM;_WIN32_WCE=0x502;QT_THREAD_SUPPORT;QT_CORE_LIB;QT_GUI_LIB"
-				RuntimeLibrary="1"
+				MinimalRebuild="true"
+				RuntimeLibrary="0"
 				BufferSecurityCheck="true"
 				TreatWChar_tAsBuiltInType="false"
 				WarningLevel="3"
@@ -231,7 +234,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing $(InputFileName)..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DUNDER_CE -DWINCE -D_WINDOWS -D_UNICODE -DUNICODE -D_WIN32 -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D -DARMV4I -D_ARMV4I_ -Darmv4i -D_ARM_ -DARM -D_M_ARM -DARM -D__arm__ -DQ_OS_WINCE_WM -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D_WIN32_WCE=0x502 -DQT_THREAD_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB  -I&quot;.\GeneratedFiles\.&quot; -I&quot;$(QTDIR)\include\.&quot; -I&quot;.\GeneratedFiles\$(ConfigurationName)\.&quot; -I&quot;$(QTDIR)\include\QtCore\.&quot; -I&quot;$(QTDIR)\include\QtGui\.&quot; -I&quot;.\..\BelugaDb\inc\config\.&quot; -I&quot;.\..\BelugaDb\inc\contact\.&quot; -I&quot;.\..\BelugaDb\inc\message\.&quot; -I&quot;.\..\BelugaDb\inc\.&quot; -I&quot;.\..\3rdParty\glib-2.12.12\glib\.&quot; -I&quot;.\..\3rdParty\glib-2.12.12\.&quot; -I&quot;.\..\BelugaContact\src\include\.&quot; -I&quot;.\.&quot; &quot;.\addredit.h&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DUNDER_CE -DWINCE -D_WINDOWS -D_UNICODE -DUNICODE -D_WIN32 -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DARMV4I -D_ARMV4I_ -Darmv4i -D_ARM_ -DARM -D_M_ARM -DARM -D__arm__ -DQ_OS_WINCE_WM -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D_WIN32_WCE=0x502 -DQT_THREAD_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB  -I&quot;.\GeneratedFiles\.&quot; -I&quot;.\GeneratedFiles\$(ConfigurationName)\.&quot; -I&quot;$(QTDIR)\include\.&quot; -I&quot;$(QTDIR)\include\QtCore\.&quot; -I&quot;$(QTDIR)\include\QtGui\.&quot; -I&quot;.\.&quot; -I&quot;.\..\BelugaDb\inc\contact\.&quot; -I&quot;.\..\BelugaDb\inc\message\.&quot; -I&quot;.\..\BelugaDb\inc\config\.&quot; -I&quot;.\..\BelugaDb\inc\.&quot; -I&quot;.\..\3rdParty\glib-2.12.12\glib\.&quot; -I&quot;.\..\3rdParty\glib-2.12.12\.&quot; -I&quot;.\..\BelugaContact\src\include\.&quot; -I&quot;.\..\InfoInterceptor\InfoInterceptor\.&quot; -I&quot;.\..\jsoncpp\include\.&quot; -I&quot;.\..\BelugaNet\src\include\.&quot; -I&quot;.\..\3rdParty\curl\src\include\.&quot; &quot;.\addredit.h&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -283,7 +286,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing $(InputFileName)..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DUNDER_CE -DWINCE -D_WINDOWS -D_UNICODE -DUNICODE -D_WIN32 -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D -DARMV4I -D_ARMV4I_ -Darmv4i -D_ARM_ -DARM -D_M_ARM -DARM -D__arm__ -DQ_OS_WINCE_WM -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D_WIN32_WCE=0x502 -DQT_THREAD_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB  -I&quot;.\GeneratedFiles\.&quot; -I&quot;$(QTDIR)\include\.&quot; -I&quot;.\GeneratedFiles\$(ConfigurationName)\.&quot; -I&quot;$(QTDIR)\include\QtCore\.&quot; -I&quot;$(QTDIR)\include\QtGui\.&quot; -I&quot;.\..\BelugaDb\inc\config\.&quot; -I&quot;.\..\BelugaDb\inc\contact\.&quot; -I&quot;.\..\BelugaDb\inc\message\.&quot; -I&quot;.\..\BelugaDb\inc\.&quot; -I&quot;.\..\3rdParty\glib-2.12.12\glib\.&quot; -I&quot;.\..\3rdParty\glib-2.12.12\.&quot; -I&quot;.\..\BelugaContact\src\include\.&quot; -I&quot;.\.&quot; &quot;.\belugadetail.h&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DUNDER_CE -DWINCE -D_WINDOWS -D_UNICODE -DUNICODE -D_WIN32 -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DARMV4I -D_ARMV4I_ -Darmv4i -D_ARM_ -DARM -D_M_ARM -DARM -D__arm__ -DQ_OS_WINCE_WM -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D_WIN32_WCE=0x502 -DQT_THREAD_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB  -I&quot;.\GeneratedFiles\.&quot; -I&quot;.\GeneratedFiles\$(ConfigurationName)\.&quot; -I&quot;$(QTDIR)\include\.&quot; -I&quot;$(QTDIR)\include\QtCore\.&quot; -I&quot;$(QTDIR)\include\QtGui\.&quot; -I&quot;.\.&quot; -I&quot;.\..\BelugaDb\inc\contact\.&quot; -I&quot;.\..\BelugaDb\inc\message\.&quot; -I&quot;.\..\BelugaDb\inc\config\.&quot; -I&quot;.\..\BelugaDb\inc\.&quot; -I&quot;.\..\3rdParty\glib-2.12.12\glib\.&quot; -I&quot;.\..\3rdParty\glib-2.12.12\.&quot; -I&quot;.\..\BelugaContact\src\include\.&quot; -I&quot;.\..\InfoInterceptor\InfoInterceptor\.&quot; -I&quot;.\..\jsoncpp\include\.&quot; -I&quot;.\..\BelugaNet\src\include\.&quot; -I&quot;.\..\3rdParty\curl\src\include\.&quot; &quot;.\belugadetail.h&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -309,7 +312,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing $(InputFileName)..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DUNDER_CE -DWINCE -D_WINDOWS -D_UNICODE -DUNICODE -D_WIN32 -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D -DARMV4I -D_ARMV4I_ -Darmv4i -D_ARM_ -DARM -D_M_ARM -DARM -D__arm__ -DQ_OS_WINCE_WM -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D_WIN32_WCE=0x502 -DQT_THREAD_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB  -I&quot;.\GeneratedFiles\.&quot; -I&quot;$(QTDIR)\include\.&quot; -I&quot;.\GeneratedFiles\$(ConfigurationName)\.&quot; -I&quot;$(QTDIR)\include\QtCore\.&quot; -I&quot;$(QTDIR)\include\QtGui\.&quot; -I&quot;.\..\BelugaDb\inc\config\.&quot; -I&quot;.\..\BelugaDb\inc\contact\.&quot; -I&quot;.\..\BelugaDb\inc\message\.&quot; -I&quot;.\..\BelugaDb\inc\.&quot; -I&quot;.\..\3rdParty\glib-2.12.12\glib\.&quot; -I&quot;.\..\3rdParty\glib-2.12.12\.&quot; -I&quot;.\..\BelugaContact\src\include\.&quot; -I&quot;.\.&quot; &quot;.\belugamain.h&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DUNDER_CE -DWINCE -D_WINDOWS -D_UNICODE -DUNICODE -D_WIN32 -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DARMV4I -D_ARMV4I_ -Darmv4i -D_ARM_ -DARM -D_M_ARM -DARM -D__arm__ -DQ_OS_WINCE_WM -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D_WIN32_WCE=0x502 -DQT_THREAD_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB  -I&quot;.\GeneratedFiles\.&quot; -I&quot;.\GeneratedFiles\$(ConfigurationName)\.&quot; -I&quot;$(QTDIR)\include\.&quot; -I&quot;$(QTDIR)\include\QtCore\.&quot; -I&quot;$(QTDIR)\include\QtGui\.&quot; -I&quot;.\.&quot; -I&quot;.\..\BelugaDb\inc\contact\.&quot; -I&quot;.\..\BelugaDb\inc\message\.&quot; -I&quot;.\..\BelugaDb\inc\config\.&quot; -I&quot;.\..\BelugaDb\inc\.&quot; -I&quot;.\..\3rdParty\glib-2.12.12\glib\.&quot; -I&quot;.\..\3rdParty\glib-2.12.12\.&quot; -I&quot;.\..\BelugaContact\src\include\.&quot; -I&quot;.\..\InfoInterceptor\InfoInterceptor\.&quot; -I&quot;.\..\jsoncpp\include\.&quot; -I&quot;.\..\BelugaNet\src\include\.&quot; -I&quot;.\..\3rdParty\curl\src\include\.&quot; &quot;.\belugamain.h&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -361,7 +364,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing $(InputFileName)..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DUNDER_CE -DWINCE -D_WINDOWS -D_UNICODE -DUNICODE -D_WIN32 -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D -DARMV4I -D_ARMV4I_ -Darmv4i -D_ARM_ -DARM -D_M_ARM -DARM -D__arm__ -DQ_OS_WINCE_WM -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D_WIN32_WCE=0x502 -DQT_THREAD_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB  -I&quot;.\GeneratedFiles\.&quot; -I&quot;$(QTDIR)\include\.&quot; -I&quot;.\GeneratedFiles\$(ConfigurationName)\.&quot; -I&quot;$(QTDIR)\include\QtCore\.&quot; -I&quot;$(QTDIR)\include\QtGui\.&quot; -I&quot;.\..\BelugaDb\inc\config\.&quot; -I&quot;.\..\BelugaDb\inc\contact\.&quot; -I&quot;.\..\BelugaDb\inc\message\.&quot; -I&quot;.\..\BelugaDb\inc\.&quot; -I&quot;.\..\3rdParty\glib-2.12.12\glib\.&quot; -I&quot;.\..\3rdParty\glib-2.12.12\.&quot; -I&quot;.\..\BelugaContact\src\include\.&quot; -I&quot;.\.&quot; &quot;.\belugastyle.h&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DUNDER_CE -DWINCE -D_WINDOWS -D_UNICODE -DUNICODE -D_WIN32 -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DARMV4I -D_ARMV4I_ -Darmv4i -D_ARM_ -DARM -D_M_ARM -DARM -D__arm__ -DQ_OS_WINCE_WM -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D_WIN32_WCE=0x502 -DQT_THREAD_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB  -I&quot;.\GeneratedFiles\.&quot; -I&quot;.\GeneratedFiles\$(ConfigurationName)\.&quot; -I&quot;$(QTDIR)\include\.&quot; -I&quot;$(QTDIR)\include\QtCore\.&quot; -I&quot;$(QTDIR)\include\QtGui\.&quot; -I&quot;.\.&quot; -I&quot;.\..\BelugaDb\inc\contact\.&quot; -I&quot;.\..\BelugaDb\inc\message\.&quot; -I&quot;.\..\BelugaDb\inc\config\.&quot; -I&quot;.\..\BelugaDb\inc\.&quot; -I&quot;.\..\3rdParty\glib-2.12.12\glib\.&quot; -I&quot;.\..\3rdParty\glib-2.12.12\.&quot; -I&quot;.\..\BelugaContact\src\include\.&quot; -I&quot;.\..\InfoInterceptor\InfoInterceptor\.&quot; -I&quot;.\..\jsoncpp\include\.&quot; -I&quot;.\..\BelugaNet\src\include\.&quot; -I&quot;.\..\3rdParty\curl\src\include\.&quot; &quot;.\belugastyle.h&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -387,7 +390,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing $(InputFileName)..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DUNDER_CE -DWINCE -D_WINDOWS -D_UNICODE -DUNICODE -D_WIN32 -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D -DARMV4I -D_ARMV4I_ -Darmv4i -D_ARM_ -DARM -D_M_ARM -DARM -D__arm__ -DQ_OS_WINCE_WM -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D_WIN32_WCE=0x502 -DQT_THREAD_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB  -I&quot;.\GeneratedFiles\.&quot; -I&quot;$(QTDIR)\include\.&quot; -I&quot;.\GeneratedFiles\$(ConfigurationName)\.&quot; -I&quot;$(QTDIR)\include\QtCore\.&quot; -I&quot;$(QTDIR)\include\QtGui\.&quot; -I&quot;.\..\BelugaDb\inc\config\.&quot; -I&quot;.\..\BelugaDb\inc\contact\.&quot; -I&quot;.\..\BelugaDb\inc\message\.&quot; -I&quot;.\..\BelugaDb\inc\.&quot; -I&quot;.\..\3rdParty\glib-2.12.12\glib\.&quot; -I&quot;.\..\3rdParty\glib-2.12.12\.&quot; -I&quot;.\..\BelugaContact\src\include\.&quot; -I&quot;.\.&quot; &quot;.\belugaview.h&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DUNDER_CE -DWINCE -D_WINDOWS -D_UNICODE -DUNICODE -D_WIN32 -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DARMV4I -D_ARMV4I_ -Darmv4i -D_ARM_ -DARM -D_M_ARM -DARM -D__arm__ -DQ_OS_WINCE_WM -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D_WIN32_WCE=0x502 -DQT_THREAD_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB  -I&quot;.\GeneratedFiles\.&quot; -I&quot;.\GeneratedFiles\$(ConfigurationName)\.&quot; -I&quot;$(QTDIR)\include\.&quot; -I&quot;$(QTDIR)\include\QtCore\.&quot; -I&quot;$(QTDIR)\include\QtGui\.&quot; -I&quot;.\.&quot; -I&quot;.\..\BelugaDb\inc\contact\.&quot; -I&quot;.\..\BelugaDb\inc\message\.&quot; -I&quot;.\..\BelugaDb\inc\config\.&quot; -I&quot;.\..\BelugaDb\inc\.&quot; -I&quot;.\..\3rdParty\glib-2.12.12\glib\.&quot; -I&quot;.\..\3rdParty\glib-2.12.12\.&quot; -I&quot;.\..\BelugaContact\src\include\.&quot; -I&quot;.\..\InfoInterceptor\InfoInterceptor\.&quot; -I&quot;.\..\jsoncpp\include\.&quot; -I&quot;.\..\BelugaNet\src\include\.&quot; -I&quot;.\..\3rdParty\curl\src\include\.&quot; &quot;.\belugaview.h&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -421,7 +424,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing $(InputFileName)..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DUNDER_CE -DWINCE -D_WINDOWS -D_UNICODE -DUNICODE -D_WIN32 -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D -DARMV4I -D_ARMV4I_ -Darmv4i -D_ARM_ -DARM -D_M_ARM -DARM -D__arm__ -DQ_OS_WINCE_WM -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D_WIN32_WCE=0x502 -DQT_THREAD_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB  -I&quot;.\GeneratedFiles\.&quot; -I&quot;$(QTDIR)\include\.&quot; -I&quot;.\GeneratedFiles\$(ConfigurationName)\.&quot; -I&quot;$(QTDIR)\include\QtCore\.&quot; -I&quot;$(QTDIR)\include\QtGui\.&quot; -I&quot;.\..\BelugaDb\inc\config\.&quot; -I&quot;.\..\BelugaDb\inc\contact\.&quot; -I&quot;.\..\BelugaDb\inc\message\.&quot; -I&quot;.\..\BelugaDb\inc\.&quot; -I&quot;.\..\3rdParty\glib-2.12.12\glib\.&quot; -I&quot;.\..\3rdParty\glib-2.12.12\.&quot; -I&quot;.\..\BelugaContact\src\include\.&quot; -I&quot;.\.&quot; &quot;.\newmessage.h&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DUNDER_CE -DWINCE -D_WINDOWS -D_UNICODE -DUNICODE -D_WIN32 -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DARMV4I -D_ARMV4I_ -Darmv4i -D_ARM_ -DARM -D_M_ARM -DARM -D__arm__ -DQ_OS_WINCE_WM -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D_WIN32_WCE=0x502 -DQT_THREAD_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB  -I&quot;.\GeneratedFiles\.&quot; -I&quot;.\GeneratedFiles\$(ConfigurationName)\.&quot; -I&quot;$(QTDIR)\include\.&quot; -I&quot;$(QTDIR)\include\QtCore\.&quot; -I&quot;$(QTDIR)\include\QtGui\.&quot; -I&quot;.\.&quot; -I&quot;.\..\BelugaDb\inc\contact\.&quot; -I&quot;.\..\BelugaDb\inc\message\.&quot; -I&quot;.\..\BelugaDb\inc\config\.&quot; -I&quot;.\..\BelugaDb\inc\.&quot; -I&quot;.\..\3rdParty\glib-2.12.12\glib\.&quot; -I&quot;.\..\3rdParty\glib-2.12.12\.&quot; -I&quot;.\..\BelugaContact\src\include\.&quot; -I&quot;.\..\InfoInterceptor\InfoInterceptor\.&quot; -I&quot;.\..\jsoncpp\include\.&quot; -I&quot;.\..\BelugaNet\src\include\.&quot; -I&quot;.\..\3rdParty\curl\src\include\.&quot; &quot;.\newmessage.h&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -447,7 +450,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing $(InputFileName)..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DUNDER_CE -DWINCE -D_WINDOWS -D_UNICODE -DUNICODE -D_WIN32 -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D -DARMV4I -D_ARMV4I_ -Darmv4i -D_ARM_ -DARM -D_M_ARM -DARM -D__arm__ -DQ_OS_WINCE_WM -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D_WIN32_WCE=0x502 -DQT_THREAD_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB  -I&quot;.\GeneratedFiles\.&quot; -I&quot;$(QTDIR)\include\.&quot; -I&quot;.\GeneratedFiles\$(ConfigurationName)\.&quot; -I&quot;$(QTDIR)\include\QtCore\.&quot; -I&quot;$(QTDIR)\include\QtGui\.&quot; -I&quot;.\..\BelugaDb\inc\config\.&quot; -I&quot;.\..\BelugaDb\inc\contact\.&quot; -I&quot;.\..\BelugaDb\inc\message\.&quot; -I&quot;.\..\BelugaDb\inc\.&quot; -I&quot;.\..\3rdParty\glib-2.12.12\glib\.&quot; -I&quot;.\..\3rdParty\glib-2.12.12\.&quot; -I&quot;.\..\BelugaContact\src\include\.&quot; -I&quot;.\.&quot; &quot;.\photogallery.h&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DUNDER_CE -DWINCE -D_WINDOWS -D_UNICODE -DUNICODE -D_WIN32 -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DARMV4I -D_ARMV4I_ -Darmv4i -D_ARM_ -DARM -D_M_ARM -DARM -D__arm__ -DQ_OS_WINCE_WM -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D_WIN32_WCE=0x502 -DQT_THREAD_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB  -I&quot;.\GeneratedFiles\.&quot; -I&quot;.\GeneratedFiles\$(ConfigurationName)\.&quot; -I&quot;$(QTDIR)\include\.&quot; -I&quot;$(QTDIR)\include\QtCore\.&quot; -I&quot;$(QTDIR)\include\QtGui\.&quot; -I&quot;.\.&quot; -I&quot;.\..\BelugaDb\inc\contact\.&quot; -I&quot;.\..\BelugaDb\inc\message\.&quot; -I&quot;.\..\BelugaDb\inc\config\.&quot; -I&quot;.\..\BelugaDb\inc\.&quot; -I&quot;.\..\3rdParty\glib-2.12.12\glib\.&quot; -I&quot;.\..\3rdParty\glib-2.12.12\.&quot; -I&quot;.\..\BelugaContact\src\include\.&quot; -I&quot;.\..\InfoInterceptor\InfoInterceptor\.&quot; -I&quot;.\..\jsoncpp\include\.&quot; -I&quot;.\..\BelugaNet\src\include\.&quot; -I&quot;.\..\3rdParty\curl\src\include\.&quot; &quot;.\photogallery.h&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -771,18 +774,6 @@
 			SourceControlFiles="false"
 			>
 			<File
-				RelativePath=".\GeneratedFiles\Release\moc_addredit.cpp"
-				>
-				<FileConfiguration
-					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
-					ExcludedFromBuild="true"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath=".\GeneratedFiles\Debug\moc_addredit.cpp"
 				>
 				<FileConfiguration
@@ -800,6 +791,30 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						ObjectFile="$(IntDir)/$(InputName)1.obj"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\GeneratedFiles\Release\moc_addredit.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\GeneratedFiles\Release\moc_belugadetail.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
 					/>
 				</FileConfiguration>
 			</File>
@@ -825,10 +840,10 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath=".\GeneratedFiles\Release\moc_belugadetail.cpp"
+				RelativePath=".\GeneratedFiles\Debug\moc_belugamain.cpp"
 				>
 				<FileConfiguration
-					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
+					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)"
 					ExcludedFromBuild="true"
 					>
 					<Tool
@@ -840,34 +855,8 @@
 				RelativePath=".\GeneratedFiles\Release\moc_belugamain.cpp"
 				>
 				<FileConfiguration
-					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
 					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
 					ExcludedFromBuild="true"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath=".\GeneratedFiles\Debug\moc_belugamain.cpp"
-				>
-				<FileConfiguration
-					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)"
-					ExcludedFromBuild="true"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -899,25 +888,6 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath=".\GeneratedFiles\Release\moc_belugaview.cpp"
-				>
-				<FileConfiguration
-					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
-					ExcludedFromBuild="true"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath=".\GeneratedFiles\Debug\moc_belugaview.cpp"
 				>
 				<FileConfiguration
@@ -939,7 +909,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath=".\GeneratedFiles\Release\moc_newmessage.cpp"
+				RelativePath=".\GeneratedFiles\Release\moc_belugaview.cpp"
 				>
 				<FileConfiguration
 					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
@@ -968,6 +938,18 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						ObjectFile="$(IntDir)/$(InputName)1.obj"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\GeneratedFiles\Release\moc_newmessage.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
 					/>
 				</FileConfiguration>
 			</File>
@@ -1096,11 +1078,11 @@
 		/>
 		<Global
 			Name="QtVersion"
-			Value="QT4.5.2"
+			Value="wince"
 		/>
 		<Global
 			Name="QtVersion Windows Mobile 6 Professional SDK (ARMV4I)"
-			Value="QT4.5.2"
+			Value="wince"
 		/>
 		<Global
 			Name="RccDir"
