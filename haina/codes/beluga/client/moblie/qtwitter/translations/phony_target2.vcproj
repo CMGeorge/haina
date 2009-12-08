@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding = "Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="8,00"
+	Name="phony_target2"
+	ProjectGUID="{082B27ED-03B5-3BD9-8548-2304B9CFBF86}"
+	Keyword="Qt4VSv1.0">
+	<Platforms>
+		<Platform
+			Name="Windows Mobile 6 Professional SDK (ARMV4I)"/>
+	</Platforms>
+	<Configurations>
+		<Configuration
+			Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
+			OutputDirectory="."
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			ConfigurationType="1"
+			IntermediateDirectory="debug\"
+			UseOfMfc="0">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalIncludeDirectories="&quot;..\..\qtwitter&quot;,&quot;..\tmp&quot;,e:\qt-share-wince-4.5.2\mkspecs\default"
+				AdditionalOptions="-Zm200 -w34100 -w34189 -w34100 -w34189"
+				AssemblerListingLocation="debug\"
+				BufferSecurityCheck="false"
+				DebugInformationFormat="3"
+				ExceptionHandling="0"
+				GeneratePreprocessedFile="0"
+				ObjectFile="debug\"
+				Optimization ="4"
+				PreprocessorDefinitions="DEBUG,_DEBUG,DEBUG,_DEBUG,_WINDOWS,UNDER_CE,WINCE,_WINDOWS,_UNICODE,UNICODE,_WIN32,QT_NO_PRINTER,QT_NO_PRINTDIALOG,ARMV4I,_ARMV4I_,armv4i,_ARM_,ARM,_M_ARM,ARM,__arm__,Q_OS_WINCE_WM,QT_NO_PRINTER,QT_NO_PRINTDIALOG,_WIN32_WCE=0x502,SHARE_DIR=\&quot;/usr/share/qtwitter\&quot;,HAVE_OAUTH"
+				ProgramDataBaseFileName=".\"
+				RuntimeLibrary="3"
+				SuppressStartupBanner="true"
+				TreatWChar_tAsBuiltInType="false"
+				WarningLevel="3"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="corelibc.lib"
+				AdditionalOptions="/SUBSYSTEM:WINDOWSCE,5.02 /MACHINE:THUMB /SUBSYSTEM:WINDOWSCE,5.02 /MACHINE:THUMB"
+				GenerateDebugInformation="true"
+				IgnoreDefaultLibraryNames="OLDNAMES.LIB"
+				IgnoreImportLibrary="true"
+				LinkTimeCodeGeneration="0"
+				OutputFile="..\build\loc\phony_target2.exe"
+				ProgramDatabaseFile=""
+				SubSystem="0"
+				SuppressStartupBanner="true"/>
+			<Tool
+				Name="VCMIDLTool"
+				DefaultCharType="0"
+				EnableErrorChecks="1"
+				WarningLevel="0"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="DEBUG,_DEBUG,DEBUG,_DEBUG,_WINDOWS,UNDER_CE,WINCE,_WINDOWS,_UNICODE,UNICODE,_WIN32,QT_NO_PRINTER,QT_NO_PRINTDIALOG,ARMV4I,_ARMV4I_,armv4i,_ARM_,ARM,_M_ARM,ARM,__arm__,Q_OS_WINCE_WM,QT_NO_PRINTER,QT_NO_PRINTDIALOG,_WIN32_WCE=0x502,SHARE_DIR=\&quot;/usr/share/qtwitter\&quot;,HAVE_OAUTH,_DEBUG"/>
+		</Configuration>
+		<Configuration
+			Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)"
+			OutputDirectory="."
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			ConfigurationType="1"
+			IntermediateDirectory="release\"
+			UseOfMfc="0"
+			WholeProgramOptimization="true">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalIncludeDirectories="&quot;..\..\qtwitter&quot;,&quot;..\tmp&quot;,e:\qt-share-wince-4.5.2\mkspecs\default"
+				AdditionalOptions="-Zm200 -w34100 -w34189 -w34100 -w34189"
+				AssemblerListingLocation="release\"
+				BufferSecurityCheck="false"
+				DebugInformationFormat="0"
+				ExceptionHandling="0"
+				GeneratePreprocessedFile="0"
+				ObjectFile="release\"
+				Optimization ="2"
+				PreprocessorDefinitions="QT_NO_DEBUG,NDEBUG,_WINDOWS,UNDER_CE,WINCE,_WINDOWS,_UNICODE,UNICODE,_WIN32,QT_NO_PRINTER,QT_NO_PRINTDIALOG,ARMV4I,_ARMV4I_,armv4i,_ARM_,ARM,_M_ARM,ARM,__arm__,Q_OS_WINCE_WM,QT_NO_PRINTER,QT_NO_PRINTDIALOG,_WIN32_WCE=0x502,SHARE_DIR=\&quot;/usr/share/qtwitter\&quot;,HAVE_OAUTH,NDEBUG"
+				ProgramDataBaseFileName=".\"
+				RuntimeLibrary="2"
+				SuppressStartupBanner="true"
+				TreatWChar_tAsBuiltInType="false"
+				WarningLevel="3"
+				WholeProgramOptimization="true"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="corelibc.lib"
+				AdditionalOptions="/SUBSYSTEM:WINDOWSCE,5.02 /MACHINE:THUMB /SUBSYSTEM:WINDOWSCE,5.02 /MACHINE:THUMB"
+				GenerateDebugInformation="false"
+				IgnoreDefaultLibraryNames="OLDNAMES.LIB"
+				IgnoreImportLibrary="true"
+				LinkIncremental="1"
+				LinkTimeCodeGeneration="1"
+				OutputFile="..\build\loc\phony_target2.exe"
+				ProgramDatabaseFile=""
+				SubSystem="0"
+				SuppressStartupBanner="true"/>
+			<Tool
+				Name="VCMIDLTool"
+				DefaultCharType="0"
+				EnableErrorChecks="1"
+				WarningLevel="0"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="QT_NO_DEBUG,NDEBUG,_WINDOWS,UNDER_CE,WINCE,_WINDOWS,_UNICODE,UNICODE,_WIN32,QT_NO_PRINTER,QT_NO_PRINTDIALOG,ARMV4I,_ARMV4I_,armv4i,_ARM_,ARM,_M_ARM,ARM,__arm__,Q_OS_WINCE_WM,QT_NO_PRINTER,QT_NO_PRINTDIALOG,_WIN32_WCE=0x502,SHARE_DIR=\&quot;/usr/share/qtwitter\&quot;,HAVE_OAUTH"/>
+		</Configuration>
+	</Configurations>
+	<Files>
+		<Filter
+			Name="Translation Files"
+			Filter="ts;xlf"
+			UniqueIdentifier="{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}"
+			ParseFiles="false">
+			<File
+				RelativePath="qtwitter_ca_ES.ts">
+				<FileConfiguration
+					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies=".qm-removed;E:\qt-share-wince-4.5.2\bin\lrelease;qtwitter_ca_ES.ts"
+						CommandLine="E:\qt-share-wince-4.5.2\bin\lrelease qtwitter_ca_ES.ts -qm d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_ca_ES.qm"
+						Description="LRELEASE qtwitter_ca_ES.ts"
+						Outputs="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_ca_ES.qm"
+						Path="e:\qt-share-wince-4.5.2\bin"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies=".qm-removed;E:\qt-share-wince-4.5.2\bin\lrelease;qtwitter_ca_ES.ts"
+						CommandLine="E:\qt-share-wince-4.5.2\bin\lrelease qtwitter_ca_ES.ts -qm d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_ca_ES.qm"
+						Description="LRELEASE qtwitter_ca_ES.ts"
+						Outputs="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_ca_ES.qm"
+						Path="e:\qt-share-wince-4.5.2\bin"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="qtwitter_cs_CZ.ts">
+				<FileConfiguration
+					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies=".qm-removed;E:\qt-share-wince-4.5.2\bin\lrelease;qtwitter_cs_CZ.ts"
+						CommandLine="E:\qt-share-wince-4.5.2\bin\lrelease qtwitter_cs_CZ.ts -qm d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_cs_CZ.qm"
+						Description="LRELEASE qtwitter_cs_CZ.ts"
+						Outputs="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_cs_CZ.qm"
+						Path="e:\qt-share-wince-4.5.2\bin"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies=".qm-removed;E:\qt-share-wince-4.5.2\bin\lrelease;qtwitter_cs_CZ.ts"
+						CommandLine="E:\qt-share-wince-4.5.2\bin\lrelease qtwitter_cs_CZ.ts -qm d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_cs_CZ.qm"
+						Description="LRELEASE qtwitter_cs_CZ.ts"
+						Outputs="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_cs_CZ.qm"
+						Path="e:\qt-share-wince-4.5.2\bin"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="qtwitter_de_DE.ts">
+				<FileConfiguration
+					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies=".qm-removed;E:\qt-share-wince-4.5.2\bin\lrelease;qtwitter_de_DE.ts"
+						CommandLine="E:\qt-share-wince-4.5.2\bin\lrelease qtwitter_de_DE.ts -qm d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_de_DE.qm"
+						Description="LRELEASE qtwitter_de_DE.ts"
+						Outputs="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_de_DE.qm"
+						Path="e:\qt-share-wince-4.5.2\bin"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies=".qm-removed;E:\qt-share-wince-4.5.2\bin\lrelease;qtwitter_de_DE.ts"
+						CommandLine="E:\qt-share-wince-4.5.2\bin\lrelease qtwitter_de_DE.ts -qm d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_de_DE.qm"
+						Description="LRELEASE qtwitter_de_DE.ts"
+						Outputs="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_de_DE.qm"
+						Path="e:\qt-share-wince-4.5.2\bin"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="qtwitter_es_ES.ts">
+				<FileConfiguration
+					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies=".qm-removed;E:\qt-share-wince-4.5.2\bin\lrelease;qtwitter_es_ES.ts"
+						CommandLine="E:\qt-share-wince-4.5.2\bin\lrelease qtwitter_es_ES.ts -qm d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_es_ES.qm"
+						Description="LRELEASE qtwitter_es_ES.ts"
+						Outputs="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_es_ES.qm"
+						Path="e:\qt-share-wince-4.5.2\bin"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies=".qm-removed;E:\qt-share-wince-4.5.2\bin\lrelease;qtwitter_es_ES.ts"
+						CommandLine="E:\qt-share-wince-4.5.2\bin\lrelease qtwitter_es_ES.ts -qm d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_es_ES.qm"
+						Description="LRELEASE qtwitter_es_ES.ts"
+						Outputs="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_es_ES.qm"
+						Path="e:\qt-share-wince-4.5.2\bin"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="qtwitter_fr_FR.ts">
+				<FileConfiguration
+					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies=".qm-removed;E:\qt-share-wince-4.5.2\bin\lrelease;qtwitter_fr_FR.ts"
+						CommandLine="E:\qt-share-wince-4.5.2\bin\lrelease qtwitter_fr_FR.ts -qm d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_fr_FR.qm"
+						Description="LRELEASE qtwitter_fr_FR.ts"
+						Outputs="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_fr_FR.qm"
+						Path="e:\qt-share-wince-4.5.2\bin"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies=".qm-removed;E:\qt-share-wince-4.5.2\bin\lrelease;qtwitter_fr_FR.ts"
+						CommandLine="E:\qt-share-wince-4.5.2\bin\lrelease qtwitter_fr_FR.ts -qm d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_fr_FR.qm"
+						Description="LRELEASE qtwitter_fr_FR.ts"
+						Outputs="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_fr_FR.qm"
+						Path="e:\qt-share-wince-4.5.2\bin"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="qtwitter_it_IT.ts">
+				<FileConfiguration
+					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies=".qm-removed;E:\qt-share-wince-4.5.2\bin\lrelease;qtwitter_it_IT.ts"
+						CommandLine="E:\qt-share-wince-4.5.2\bin\lrelease qtwitter_it_IT.ts -qm d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_it_IT.qm"
+						Description="LRELEASE qtwitter_it_IT.ts"
+						Outputs="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_it_IT.qm"
+						Path="e:\qt-share-wince-4.5.2\bin"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies=".qm-removed;E:\qt-share-wince-4.5.2\bin\lrelease;qtwitter_it_IT.ts"
+						CommandLine="E:\qt-share-wince-4.5.2\bin\lrelease qtwitter_it_IT.ts -qm d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_it_IT.qm"
+						Description="LRELEASE qtwitter_it_IT.ts"
+						Outputs="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_it_IT.qm"
+						Path="e:\qt-share-wince-4.5.2\bin"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="qtwitter_ja_JP.ts">
+				<FileConfiguration
+					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies=".qm-removed;E:\qt-share-wince-4.5.2\bin\lrelease;qtwitter_ja_JP.ts"
+						CommandLine="E:\qt-share-wince-4.5.2\bin\lrelease qtwitter_ja_JP.ts -qm d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_ja_JP.qm"
+						Description="LRELEASE qtwitter_ja_JP.ts"
+						Outputs="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_ja_JP.qm"
+						Path="e:\qt-share-wince-4.5.2\bin"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies=".qm-removed;E:\qt-share-wince-4.5.2\bin\lrelease;qtwitter_ja_JP.ts"
+						CommandLine="E:\qt-share-wince-4.5.2\bin\lrelease qtwitter_ja_JP.ts -qm d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_ja_JP.qm"
+						Description="LRELEASE qtwitter_ja_JP.ts"
+						Outputs="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_ja_JP.qm"
+						Path="e:\qt-share-wince-4.5.2\bin"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="qtwitter_nb_NO.ts">
+				<FileConfiguration
+					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies=".qm-removed;E:\qt-share-wince-4.5.2\bin\lrelease;qtwitter_nb_NO.ts"
+						CommandLine="E:\qt-share-wince-4.5.2\bin\lrelease qtwitter_nb_NO.ts -qm d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_nb_NO.qm"
+						Description="LRELEASE qtwitter_nb_NO.ts"
+						Outputs="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_nb_NO.qm"
+						Path="e:\qt-share-wince-4.5.2\bin"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies=".qm-removed;E:\qt-share-wince-4.5.2\bin\lrelease;qtwitter_nb_NO.ts"
+						CommandLine="E:\qt-share-wince-4.5.2\bin\lrelease qtwitter_nb_NO.ts -qm d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_nb_NO.qm"
+						Description="LRELEASE qtwitter_nb_NO.ts"
+						Outputs="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_nb_NO.qm"
+						Path="e:\qt-share-wince-4.5.2\bin"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="qtwitter_pl_PL.ts">
+				<FileConfiguration
+					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies=".qm-removed;E:\qt-share-wince-4.5.2\bin\lrelease;qtwitter_pl_PL.ts"
+						CommandLine="E:\qt-share-wince-4.5.2\bin\lrelease qtwitter_pl_PL.ts -qm d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_pl_PL.qm"
+						Description="LRELEASE qtwitter_pl_PL.ts"
+						Outputs="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_pl_PL.qm"
+						Path="e:\qt-share-wince-4.5.2\bin"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies=".qm-removed;E:\qt-share-wince-4.5.2\bin\lrelease;qtwitter_pl_PL.ts"
+						CommandLine="E:\qt-share-wince-4.5.2\bin\lrelease qtwitter_pl_PL.ts -qm d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_pl_PL.qm"
+						Description="LRELEASE qtwitter_pl_PL.ts"
+						Outputs="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_pl_PL.qm"
+						Path="e:\qt-share-wince-4.5.2\bin"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="qtwitter_pt_BR.ts">
+				<FileConfiguration
+					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies=".qm-removed;E:\qt-share-wince-4.5.2\bin\lrelease;qtwitter_pt_BR.ts"
+						CommandLine="E:\qt-share-wince-4.5.2\bin\lrelease qtwitter_pt_BR.ts -qm d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_pt_BR.qm"
+						Description="LRELEASE qtwitter_pt_BR.ts"
+						Outputs="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_pt_BR.qm"
+						Path="e:\qt-share-wince-4.5.2\bin"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies=".qm-removed;E:\qt-share-wince-4.5.2\bin\lrelease;qtwitter_pt_BR.ts"
+						CommandLine="E:\qt-share-wince-4.5.2\bin\lrelease qtwitter_pt_BR.ts -qm d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_pt_BR.qm"
+						Description="LRELEASE qtwitter_pt_BR.ts"
+						Outputs="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\build\loc\qtwitter_pt_BR.qm"
+						Path="e:\qt-share-wince-4.5.2\bin"/>
+				</FileConfiguration>
+			</File>
+		</Filter>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

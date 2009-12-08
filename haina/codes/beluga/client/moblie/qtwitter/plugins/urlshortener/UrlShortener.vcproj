@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding = "Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="8,00"
+	Name="UrlShortener"
+	ProjectGUID="{B9BFAA2D-9956-32FE-9007-DCDF482B6481}"
+	Keyword="Qt4VSv1.0">
+	<Platforms>
+		<Platform
+			Name="Windows Mobile 6 Professional SDK (ARMV4I)"/>
+	</Platforms>
+	<Configurations>
+		<Configuration
+			Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
+			OutputDirectory="."
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			ConfigurationType="2"
+			IntermediateDirectory="..\..\tmp\"
+			UseOfMfc="0">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalIncludeDirectories="&quot;e:\qt-share-wince-4.5.2\include\QtCore&quot;,&quot;e:\qt-share-wince-4.5.2\include\QtNetwork&quot;,&quot;e:\qt-share-wince-4.5.2\include\QtGui&quot;,&quot;e:\qt-share-wince-4.5.2\include\QtXml&quot;,&quot;e:\qt-share-wince-4.5.2\include&quot;,&quot;..\..\..\qtwitter&quot;,&quot;..\..\tmp&quot;,&quot;..\..\qtwitter-app\src&quot;,&quot;e:\qt-share-wince-4.5.2\include\ActiveQt&quot;,&quot;..\..\tmp&quot;,&quot;..\..\tmp&quot;,e:\qt-share-wince-4.5.2\mkspecs\default"
+				AdditionalOptions="-Zm200 -w34100 -w34189 -w34100 -w34189"
+				AssemblerListingLocation="..\..\tmp\"
+				BufferSecurityCheck="false"
+				DebugInformationFormat="3"
+				ExceptionHandling="0"
+				GeneratePreprocessedFile="0"
+				ObjectFile="..\..\tmp\"
+				Optimization ="4"
+				PreprocessorDefinitions="DEBUG,_DEBUG,DEBUG,_DEBUG,_WINDOWS,UNDER_CE,WINCE,_WINDOWS,_UNICODE,UNICODE,_WIN32,QT_NO_PRINTER,QT_NO_PRINTDIALOG,ARMV4I,_ARMV4I_,armv4i,_ARM_,ARM,_M_ARM,ARM,__arm__,Q_OS_WINCE_WM,QT_NO_PRINTER,QT_NO_PRINTDIALOG,_WIN32_WCE=0x502,SHARE_DIR=\&quot;/usr/share/qtwitter\&quot;,HAVE_OAUTH,QT_DLL,QT_PLUGIN,QT_XML_LIB,QT_GUI_LIB,QT_NETWORK_LIB,QT_CORE_LIB,QT_THREAD_SUPPORT"
+				ProgramDataBaseFileName=".\"
+				RuntimeLibrary="3"
+				SuppressStartupBanner="true"
+				TreatWChar_tAsBuiltInType="false"
+				WarningLevel="3"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="corelibc.lib e:\qt-share-wince-4.5.2\lib\QtXmld4.lib e:\qt-share-wince-4.5.2\lib\QtGuid4.lib e:\qt-share-wince-4.5.2\lib\QtNetworkd4.lib e:\qt-share-wince-4.5.2\lib\QtCored4.lib"
+				AdditionalLibraryDirectories="e:\qt-share-wince-4.5.2\lib"
+				AdditionalOptions="/SUBSYSTEM:WINDOWSCE,5.02 /MACHINE:THUMB /SUBSYSTEM:WINDOWSCE,5.02 /MACHINE:THUMB"
+				GenerateDebugInformation="true"
+				IgnoreDefaultLibraryNames="OLDNAMES.LIB"
+				IgnoreImportLibrary="true"
+				LinkTimeCodeGeneration="0"
+				OutputFile="..\..\build\plugins\UrlShortener.dll"
+				ProgramDatabaseFile=""
+				SubSystem="0"
+				SuppressStartupBanner="true"/>
+			<Tool
+				Name="VCMIDLTool"
+				DefaultCharType="0"
+				EnableErrorChecks="1"
+				WarningLevel="0"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="DEBUG,_DEBUG,DEBUG,_DEBUG,_WINDOWS,UNDER_CE,WINCE,_WINDOWS,_UNICODE,UNICODE,_WIN32,QT_NO_PRINTER,QT_NO_PRINTDIALOG,ARMV4I,_ARMV4I_,armv4i,_ARM_,ARM,_M_ARM,ARM,__arm__,Q_OS_WINCE_WM,QT_NO_PRINTER,QT_NO_PRINTDIALOG,_WIN32_WCE=0x502,SHARE_DIR=\&quot;/usr/share/qtwitter\&quot;,HAVE_OAUTH,QT_DLL,QT_PLUGIN,QT_XML_LIB,QT_GUI_LIB,QT_NETWORK_LIB,QT_CORE_LIB,QT_THREAD_SUPPORT,_DEBUG"/>
+			<DeploymentTool
+				RegisterOutput="0"
+				AdditionalFiles="QtXmld4.dll|E:\qt-share-wince-4.5.2\lib|%CSIDL_PROGRAM_FILES%\UrlShortener|0;QtGuid4.dll|E:\qt-share-wince-4.5.2\lib|%CSIDL_PROGRAM_FILES%\UrlShortener|0;QtNetworkd4.dll|E:\qt-share-wince-4.5.2\lib|%CSIDL_PROGRAM_FILES%\UrlShortener|0;QtCored4.dll|E:\qt-share-wince-4.5.2\lib|%CSIDL_PROGRAM_FILES%\UrlShortener|0;"/>
+		</Configuration>
+		<Configuration
+			Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)"
+			OutputDirectory="."
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			ConfigurationType="2"
+			IntermediateDirectory="..\..\tmp\"
+			UseOfMfc="0"
+			WholeProgramOptimization="true">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalIncludeDirectories="&quot;e:\qt-share-wince-4.5.2\include\QtCore&quot;,&quot;e:\qt-share-wince-4.5.2\include\QtNetwork&quot;,&quot;e:\qt-share-wince-4.5.2\include\QtGui&quot;,&quot;e:\qt-share-wince-4.5.2\include\QtXml&quot;,&quot;e:\qt-share-wince-4.5.2\include&quot;,&quot;..\..\..\qtwitter&quot;,&quot;..\..\tmp&quot;,&quot;..\..\qtwitter-app\src&quot;,&quot;e:\qt-share-wince-4.5.2\include\ActiveQt&quot;,&quot;..\..\tmp&quot;,&quot;..\..\tmp&quot;,e:\qt-share-wince-4.5.2\mkspecs\default"
+				AdditionalOptions="-Zm200 -w34100 -w34189 -w34100 -w34189"
+				AssemblerListingLocation="..\..\tmp\"
+				BufferSecurityCheck="false"
+				DebugInformationFormat="0"
+				ExceptionHandling="0"
+				GeneratePreprocessedFile="0"
+				ObjectFile="..\..\tmp\"
+				Optimization ="2"
+				PreprocessorDefinitions="QT_NO_DEBUG,NDEBUG,_WINDOWS,UNDER_CE,WINCE,_WINDOWS,_UNICODE,UNICODE,_WIN32,QT_NO_PRINTER,QT_NO_PRINTDIALOG,ARMV4I,_ARMV4I_,armv4i,_ARM_,ARM,_M_ARM,ARM,__arm__,Q_OS_WINCE_WM,QT_NO_PRINTER,QT_NO_PRINTDIALOG,_WIN32_WCE=0x502,SHARE_DIR=\&quot;/usr/share/qtwitter\&quot;,HAVE_OAUTH,QT_DLL,QT_NO_DEBUG,QT_PLUGIN,QT_XML_LIB,QT_GUI_LIB,QT_NETWORK_LIB,QT_CORE_LIB,QT_THREAD_SUPPORT,NDEBUG"
+				ProgramDataBaseFileName=".\"
+				RuntimeLibrary="2"
+				SuppressStartupBanner="true"
+				TreatWChar_tAsBuiltInType="false"
+				WarningLevel="3"
+				WholeProgramOptimization="true"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="corelibc.lib e:\qt-share-wince-4.5.2\lib\QtXml4.lib e:\qt-share-wince-4.5.2\lib\QtGui4.lib e:\qt-share-wince-4.5.2\lib\QtNetwork4.lib e:\qt-share-wince-4.5.2\lib\QtCore4.lib"
+				AdditionalLibraryDirectories="e:\qt-share-wince-4.5.2\lib"
+				AdditionalOptions="/SUBSYSTEM:WINDOWSCE,5.02 /MACHINE:THUMB /SUBSYSTEM:WINDOWSCE,5.02 /MACHINE:THUMB"
+				GenerateDebugInformation="false"
+				IgnoreDefaultLibraryNames="OLDNAMES.LIB"
+				IgnoreImportLibrary="true"
+				LinkIncremental="1"
+				LinkTimeCodeGeneration="1"
+				OutputFile="..\..\build\plugins\UrlShortener.dll"
+				ProgramDatabaseFile=""
+				SubSystem="0"
+				SuppressStartupBanner="true"/>
+			<Tool
+				Name="VCMIDLTool"
+				DefaultCharType="0"
+				EnableErrorChecks="1"
+				WarningLevel="0"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="QT_NO_DEBUG,NDEBUG,_WINDOWS,UNDER_CE,WINCE,_WINDOWS,_UNICODE,UNICODE,_WIN32,QT_NO_PRINTER,QT_NO_PRINTDIALOG,ARMV4I,_ARMV4I_,armv4i,_ARM_,ARM,_M_ARM,ARM,__arm__,Q_OS_WINCE_WM,QT_NO_PRINTER,QT_NO_PRINTDIALOG,_WIN32_WCE=0x502,SHARE_DIR=\&quot;/usr/share/qtwitter\&quot;,HAVE_OAUTH,QT_DLL,QT_NO_DEBUG,QT_PLUGIN,QT_XML_LIB,QT_GUI_LIB,QT_NETWORK_LIB,QT_CORE_LIB,QT_THREAD_SUPPORT"/>
+			<DeploymentTool
+				RegisterOutput="0"
+				AdditionalFiles="QtXml4.dll|E:\qt-share-wince-4.5.2\lib|%CSIDL_PROGRAM_FILES%\UrlShortener|0;QtGui4.dll|E:\qt-share-wince-4.5.2\lib|%CSIDL_PROGRAM_FILES%\UrlShortener|0;QtNetwork4.dll|E:\qt-share-wince-4.5.2\lib|%CSIDL_PROGRAM_FILES%\UrlShortener|0;QtCore4.dll|E:\qt-share-wince-4.5.2\lib|%CSIDL_PROGRAM_FILES%\UrlShortener|0;"/>
+		</Configuration>
+	</Configurations>
+	<Files>
+		<Filter
+			Name="Source Files"
+			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}">
+			<File
+				RelativePath="urlshortener.cpp"/>
+			<File
+				RelativePath="urlshortenerimplementation.cpp"/>
+			<File
+				RelativePath="urlshortenerplugin.cpp"/>
+			<File
+				RelativePath="urlshortenerwidget.cpp"/>
+		</Filter>
+		<Filter
+			Name="Header Files"
+			Filter="h;hpp;hxx;hm;inl;inc;xsd"
+			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}">
+			<File
+				RelativePath="urlshortener.h">
+				<FileConfiguration
+					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies="E:\qt-share-wince-4.5.2\bin\moc.exe;urlshortener.h"
+						CommandLine="E:\qt-share-wince-4.5.2\bin\moc.exe  -DUNDER_CE -DWINCE -D_WINDOWS -D_UNICODE -DUNICODE -D_WIN32 -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DARMV4I -D_ARMV4I_ -Darmv4i -D_ARM_ -DARM -D_M_ARM -DARM -D__arm__ -DQ_OS_WINCE_WM -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D_WIN32_WCE=0x502 -DSHARE_DIR=\&quot;/usr/share/qtwitter\&quot; -DHAVE_OAUTH -DQT_DLL -DQT_PLUGIN -DQT_XML_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I&quot;e:\qt-share-wince-4.5.2\include\QtCore&quot; -I&quot;e:\qt-share-wince-4.5.2\include\QtNetwork&quot; -I&quot;e:\qt-share-wince-4.5.2\include\QtGui&quot; -I&quot;e:\qt-share-wince-4.5.2\include\QtXml&quot; -I&quot;e:\qt-share-wince-4.5.2\include&quot; -I&quot;..\..\..\qtwitter&quot; -I&quot;..\..\tmp&quot; -I&quot;..\..\qtwitter-app\src&quot; -I&quot;e:\qt-share-wince-4.5.2\include\ActiveQt&quot; -I&quot;..\..\tmp&quot; -I&quot;..\..\tmp&quot; -Ie:\qt-share-wince-4.5.2\mkspecs\default -D_MSC_VER=1400 urlshortener.h -o d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\tmp\moc_urlshortener.cpp"
+						Description="MOC urlshortener.h"
+						Outputs="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\tmp\moc_urlshortener.cpp"
+						Path="e:\qt-share-wince-4.5.2\bin"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies="E:\qt-share-wince-4.5.2\bin\moc.exe;urlshortener.h"
+						CommandLine="E:\qt-share-wince-4.5.2\bin\moc.exe  -DUNDER_CE -DWINCE -D_WINDOWS -D_UNICODE -DUNICODE -D_WIN32 -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DARMV4I -D_ARMV4I_ -Darmv4i -D_ARM_ -DARM -D_M_ARM -DARM -D__arm__ -DQ_OS_WINCE_WM -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D_WIN32_WCE=0x502 -DSHARE_DIR=\&quot;/usr/share/qtwitter\&quot; -DHAVE_OAUTH -DQT_DLL -DQT_NO_DEBUG -DQT_PLUGIN -DQT_XML_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I&quot;e:\qt-share-wince-4.5.2\include\QtCore&quot; -I&quot;e:\qt-share-wince-4.5.2\include\QtNetwork&quot; -I&quot;e:\qt-share-wince-4.5.2\include\QtGui&quot; -I&quot;e:\qt-share-wince-4.5.2\include\QtXml&quot; -I&quot;e:\qt-share-wince-4.5.2\include&quot; -I&quot;..\..\..\qtwitter&quot; -I&quot;..\..\tmp&quot; -I&quot;..\..\qtwitter-app\src&quot; -I&quot;e:\qt-share-wince-4.5.2\include\ActiveQt&quot; -I&quot;..\..\tmp&quot; -I&quot;..\..\tmp&quot; -Ie:\qt-share-wince-4.5.2\mkspecs\default -D_MSC_VER=1400 urlshortener.h -o d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\tmp\moc_urlshortener.cpp"
+						Description="MOC urlshortener.h"
+						Outputs="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\tmp\moc_urlshortener.cpp"
+						Path="e:\qt-share-wince-4.5.2\bin"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="urlshortenerimplementation.h">
+				<FileConfiguration
+					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies="E:\qt-share-wince-4.5.2\bin\moc.exe;urlshortenerimplementation.h"
+						CommandLine="E:\qt-share-wince-4.5.2\bin\moc.exe  -DUNDER_CE -DWINCE -D_WINDOWS -D_UNICODE -DUNICODE -D_WIN32 -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DARMV4I -D_ARMV4I_ -Darmv4i -D_ARM_ -DARM -D_M_ARM -DARM -D__arm__ -DQ_OS_WINCE_WM -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D_WIN32_WCE=0x502 -DSHARE_DIR=\&quot;/usr/share/qtwitter\&quot; -DHAVE_OAUTH -DQT_DLL -DQT_PLUGIN -DQT_XML_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I&quot;e:\qt-share-wince-4.5.2\include\QtCore&quot; -I&quot;e:\qt-share-wince-4.5.2\include\QtNetwork&quot; -I&quot;e:\qt-share-wince-4.5.2\include\QtGui&quot; -I&quot;e:\qt-share-wince-4.5.2\include\QtXml&quot; -I&quot;e:\qt-share-wince-4.5.2\include&quot; -I&quot;..\..\..\qtwitter&quot; -I&quot;..\..\tmp&quot; -I&quot;..\..\qtwitter-app\src&quot; -I&quot;e:\qt-share-wince-4.5.2\include\ActiveQt&quot; -I&quot;..\..\tmp&quot; -I&quot;..\..\tmp&quot; -Ie:\qt-share-wince-4.5.2\mkspecs\default -D_MSC_VER=1400 urlshortenerimplementation.h -o d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\tmp\moc_urlshortenerimplementation.cpp"
+						Description="MOC urlshortenerimplementation.h"
+						Outputs="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\tmp\moc_urlshortenerimplementation.cpp"
+						Path="e:\qt-share-wince-4.5.2\bin"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies="E:\qt-share-wince-4.5.2\bin\moc.exe;urlshortenerimplementation.h"
+						CommandLine="E:\qt-share-wince-4.5.2\bin\moc.exe  -DUNDER_CE -DWINCE -D_WINDOWS -D_UNICODE -DUNICODE -D_WIN32 -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DARMV4I -D_ARMV4I_ -Darmv4i -D_ARM_ -DARM -D_M_ARM -DARM -D__arm__ -DQ_OS_WINCE_WM -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D_WIN32_WCE=0x502 -DSHARE_DIR=\&quot;/usr/share/qtwitter\&quot; -DHAVE_OAUTH -DQT_DLL -DQT_NO_DEBUG -DQT_PLUGIN -DQT_XML_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I&quot;e:\qt-share-wince-4.5.2\include\QtCore&quot; -I&quot;e:\qt-share-wince-4.5.2\include\QtNetwork&quot; -I&quot;e:\qt-share-wince-4.5.2\include\QtGui&quot; -I&quot;e:\qt-share-wince-4.5.2\include\QtXml&quot; -I&quot;e:\qt-share-wince-4.5.2\include&quot; -I&quot;..\..\..\qtwitter&quot; -I&quot;..\..\tmp&quot; -I&quot;..\..\qtwitter-app\src&quot; -I&quot;e:\qt-share-wince-4.5.2\include\ActiveQt&quot; -I&quot;..\..\tmp&quot; -I&quot;..\..\tmp&quot; -Ie:\qt-share-wince-4.5.2\mkspecs\default -D_MSC_VER=1400 urlshortenerimplementation.h -o d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\tmp\moc_urlshortenerimplementation.cpp"
+						Description="MOC urlshortenerimplementation.h"
+						Outputs="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\tmp\moc_urlshortenerimplementation.cpp"
+						Path="e:\qt-share-wince-4.5.2\bin"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="urlshortenerplugin.h">
+				<FileConfiguration
+					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies="E:\qt-share-wince-4.5.2\bin\moc.exe;urlshortenerplugin.h"
+						CommandLine="E:\qt-share-wince-4.5.2\bin\moc.exe  -DUNDER_CE -DWINCE -D_WINDOWS -D_UNICODE -DUNICODE -D_WIN32 -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DARMV4I -D_ARMV4I_ -Darmv4i -D_ARM_ -DARM -D_M_ARM -DARM -D__arm__ -DQ_OS_WINCE_WM -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D_WIN32_WCE=0x502 -DSHARE_DIR=\&quot;/usr/share/qtwitter\&quot; -DHAVE_OAUTH -DQT_DLL -DQT_PLUGIN -DQT_XML_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I&quot;e:\qt-share-wince-4.5.2\include\QtCore&quot; -I&quot;e:\qt-share-wince-4.5.2\include\QtNetwork&quot; -I&quot;e:\qt-share-wince-4.5.2\include\QtGui&quot; -I&quot;e:\qt-share-wince-4.5.2\include\QtXml&quot; -I&quot;e:\qt-share-wince-4.5.2\include&quot; -I&quot;..\..\..\qtwitter&quot; -I&quot;..\..\tmp&quot; -I&quot;..\..\qtwitter-app\src&quot; -I&quot;e:\qt-share-wince-4.5.2\include\ActiveQt&quot; -I&quot;..\..\tmp&quot; -I&quot;..\..\tmp&quot; -Ie:\qt-share-wince-4.5.2\mkspecs\default -D_MSC_VER=1400 urlshortenerplugin.h -o d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\tmp\moc_urlshortenerplugin.cpp"
+						Description="MOC urlshortenerplugin.h"
+						Outputs="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\tmp\moc_urlshortenerplugin.cpp"
+						Path="e:\qt-share-wince-4.5.2\bin"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies="E:\qt-share-wince-4.5.2\bin\moc.exe;urlshortenerplugin.h"
+						CommandLine="E:\qt-share-wince-4.5.2\bin\moc.exe  -DUNDER_CE -DWINCE -D_WINDOWS -D_UNICODE -DUNICODE -D_WIN32 -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DARMV4I -D_ARMV4I_ -Darmv4i -D_ARM_ -DARM -D_M_ARM -DARM -D__arm__ -DQ_OS_WINCE_WM -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D_WIN32_WCE=0x502 -DSHARE_DIR=\&quot;/usr/share/qtwitter\&quot; -DHAVE_OAUTH -DQT_DLL -DQT_NO_DEBUG -DQT_PLUGIN -DQT_XML_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I&quot;e:\qt-share-wince-4.5.2\include\QtCore&quot; -I&quot;e:\qt-share-wince-4.5.2\include\QtNetwork&quot; -I&quot;e:\qt-share-wince-4.5.2\include\QtGui&quot; -I&quot;e:\qt-share-wince-4.5.2\include\QtXml&quot; -I&quot;e:\qt-share-wince-4.5.2\include&quot; -I&quot;..\..\..\qtwitter&quot; -I&quot;..\..\tmp&quot; -I&quot;..\..\qtwitter-app\src&quot; -I&quot;e:\qt-share-wince-4.5.2\include\ActiveQt&quot; -I&quot;..\..\tmp&quot; -I&quot;..\..\tmp&quot; -Ie:\qt-share-wince-4.5.2\mkspecs\default -D_MSC_VER=1400 urlshortenerplugin.h -o d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\tmp\moc_urlshortenerplugin.cpp"
+						Description="MOC urlshortenerplugin.h"
+						Outputs="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\tmp\moc_urlshortenerplugin.cpp"
+						Path="e:\qt-share-wince-4.5.2\bin"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="urlshortenerwidget.h">
+				<FileConfiguration
+					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies="E:\qt-share-wince-4.5.2\bin\moc.exe;urlshortenerwidget.h"
+						CommandLine="E:\qt-share-wince-4.5.2\bin\moc.exe  -DUNDER_CE -DWINCE -D_WINDOWS -D_UNICODE -DUNICODE -D_WIN32 -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DARMV4I -D_ARMV4I_ -Darmv4i -D_ARM_ -DARM -D_M_ARM -DARM -D__arm__ -DQ_OS_WINCE_WM -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D_WIN32_WCE=0x502 -DSHARE_DIR=\&quot;/usr/share/qtwitter\&quot; -DHAVE_OAUTH -DQT_DLL -DQT_PLUGIN -DQT_XML_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I&quot;e:\qt-share-wince-4.5.2\include\QtCore&quot; -I&quot;e:\qt-share-wince-4.5.2\include\QtNetwork&quot; -I&quot;e:\qt-share-wince-4.5.2\include\QtGui&quot; -I&quot;e:\qt-share-wince-4.5.2\include\QtXml&quot; -I&quot;e:\qt-share-wince-4.5.2\include&quot; -I&quot;..\..\..\qtwitter&quot; -I&quot;..\..\tmp&quot; -I&quot;..\..\qtwitter-app\src&quot; -I&quot;e:\qt-share-wince-4.5.2\include\ActiveQt&quot; -I&quot;..\..\tmp&quot; -I&quot;..\..\tmp&quot; -Ie:\qt-share-wince-4.5.2\mkspecs\default -D_MSC_VER=1400 urlshortenerwidget.h -o d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\tmp\moc_urlshortenerwidget.cpp"
+						Description="MOC urlshortenerwidget.h"
+						Outputs="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\tmp\moc_urlshortenerwidget.cpp"
+						Path="e:\qt-share-wince-4.5.2\bin"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies="E:\qt-share-wince-4.5.2\bin\moc.exe;urlshortenerwidget.h"
+						CommandLine="E:\qt-share-wince-4.5.2\bin\moc.exe  -DUNDER_CE -DWINCE -D_WINDOWS -D_UNICODE -DUNICODE -D_WIN32 -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DARMV4I -D_ARMV4I_ -Darmv4i -D_ARM_ -DARM -D_M_ARM -DARM -D__arm__ -DQ_OS_WINCE_WM -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D_WIN32_WCE=0x502 -DSHARE_DIR=\&quot;/usr/share/qtwitter\&quot; -DHAVE_OAUTH -DQT_DLL -DQT_NO_DEBUG -DQT_PLUGIN -DQT_XML_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I&quot;e:\qt-share-wince-4.5.2\include\QtCore&quot; -I&quot;e:\qt-share-wince-4.5.2\include\QtNetwork&quot; -I&quot;e:\qt-share-wince-4.5.2\include\QtGui&quot; -I&quot;e:\qt-share-wince-4.5.2\include\QtXml&quot; -I&quot;e:\qt-share-wince-4.5.2\include&quot; -I&quot;..\..\..\qtwitter&quot; -I&quot;..\..\tmp&quot; -I&quot;..\..\qtwitter-app\src&quot; -I&quot;e:\qt-share-wince-4.5.2\include\ActiveQt&quot; -I&quot;..\..\tmp&quot; -I&quot;..\..\tmp&quot; -Ie:\qt-share-wince-4.5.2\mkspecs\default -D_MSC_VER=1400 urlshortenerwidget.h -o d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\tmp\moc_urlshortenerwidget.cpp"
+						Description="MOC urlshortenerwidget.h"
+						Outputs="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\tmp\moc_urlshortenerwidget.cpp"
+						Path="e:\qt-share-wince-4.5.2\bin"/>
+				</FileConfiguration>
+			</File>
+		</Filter>
+		<Filter
+			Name="Generated Files"
+			Filter="cpp;c;cxx;moc;h;def;odl;idl;res;"
+			UniqueIdentifier="{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}">
+			<File
+				RelativePath="..\..\tmp\moc_urlshortener.cpp"/>
+			<File
+				RelativePath="..\..\tmp\moc_urlshortenerimplementation.cpp"/>
+			<File
+				RelativePath="..\..\tmp\moc_urlshortenerplugin.cpp"/>
+			<File
+				RelativePath="..\..\tmp\moc_urlshortenerwidget.cpp"/>
+			<File
+				RelativePath="..\..\tmp\ui_urlshortenerwidget.h"/>
+		</Filter>
+		<Filter
+			Name="Translation Files"
+			Filter="ts;xlf"
+			UniqueIdentifier="{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}"
+			ParseFiles="false">
+			<File
+				RelativePath="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\translations\qtwitter_ca_ES.ts"/>
+			<File
+				RelativePath="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\translations\qtwitter_cs_CZ.ts"/>
+			<File
+				RelativePath="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\translations\qtwitter_de_DE.ts"/>
+			<File
+				RelativePath="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\translations\qtwitter_es_ES.ts"/>
+			<File
+				RelativePath="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\translations\qtwitter_fr_FR.ts"/>
+			<File
+				RelativePath="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\translations\qtwitter_it_IT.ts"/>
+			<File
+				RelativePath="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\translations\qtwitter_ja_JP.ts"/>
+			<File
+				RelativePath="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\translations\qtwitter_nb_NO.ts"/>
+			<File
+				RelativePath="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\translations\qtwitter_pl_PL.ts"/>
+			<File
+				RelativePath="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\translations\qtwitter_pt_BR.ts"/>
+		</Filter>
+		<Filter
+			Name="Form Files"
+			Filter="ui"
+			UniqueIdentifier="{99349809-55BA-4b9d-BF79-8FDBB0286EB3}"
+			ParseFiles="false">
+			<File
+				RelativePath="urlshortenerwidget.ui">
+				<FileConfiguration
+					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies="E:\qt-share-wince-4.5.2\bin\uic.exe;urlshortenerwidget.ui"
+						CommandLine="E:\qt-share-wince-4.5.2\bin\uic.exe urlshortenerwidget.ui -o d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\tmp\ui_urlshortenerwidget.h"
+						Description="UIC urlshortenerwidget.ui"
+						Outputs="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\tmp\ui_urlshortenerwidget.h"
+						Path="e:\qt-share-wince-4.5.2\bin"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies="E:\qt-share-wince-4.5.2\bin\uic.exe;urlshortenerwidget.ui"
+						CommandLine="E:\qt-share-wince-4.5.2\bin\uic.exe urlshortenerwidget.ui -o d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\tmp\ui_urlshortenerwidget.h"
+						Description="UIC urlshortenerwidget.ui"
+						Outputs="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\tmp\ui_urlshortenerwidget.h"
+						Path="e:\qt-share-wince-4.5.2\bin"/>
+				</FileConfiguration>
+			</File>
+		</Filter>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

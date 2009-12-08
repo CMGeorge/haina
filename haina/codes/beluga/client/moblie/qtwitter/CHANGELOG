@@ -1,0 +1,143 @@
+v0.10.0 (2009/11/01):
+- merging friends timeline with mentions (@-replies) timeline,
+- fixed notifications - now notify about new statuses (NOT unread ones) and display unread statuses count,
+- improved URL shortening (all urls at one go, customizable shortcut, pluggable),
+- automatic #hashtagging,
+- fixes in parsing links in statuses (by Stephan Beyer),
+- initial plugin architecture (subject to change),
+- improvements in build system (detecting correct libdir on *NIXes and automatic generation of translations),
+- code cleanup in Twitter API library (by Stephan Beyer).
+v0.9.2 (2009/10/01):
+- SSL encryption for connections to Twitter and Identi.ca (#75),
+- fixed incomplete Norwegian translation (#74),
+- fixed minor bug with disappearing Identi.ca URL when removing all of its accounts.
+v0.9.1 (2009/09/30):
+- in KDE4: notifications displayed using Plasma notification services,
+- on *NIX: prevented spawning multiple instances of the application (#73),
+- on OSX: now showing icon in Dock,
+- added look&feel customisation options, like visibility of the tray icon (#70)
+  and behavior of the close button,
+- added crash detection, bug reporting link and reseting configuration to the working state (#68),
+- removed (not really working well) settings compatibility with older versions,
+- removed non-OAuth app version (#66),
+- added Norwegian translation (by Egil Hanger),
+- lots of minor fixes as usual.
+v0.9.0 (2009/09/07):
+- provided support for custom StatusNet (former laconica) services (#60),
+- left/right arrow key goes to next/prev unread status (by Stephan Beyer),
+- status author's display mode made customizable (name, nick or name+nick),
+- added parsing StatusNet groups (!sth),
+- fixed unwanted 'new statuses' on the bottom of the list (#63),
+- applied system palette to status edit field (#61),
+- added Czech translation (by DragonJake - #62),
+- added b.oooom.net URL shortening (by dubkat - #57),
+- improved storing data between sessions,
+- improvements in Twitter API library,
+- numerous minor UI, performance, architectural and build system fixes.
+v0.8.3 (2009/08/07):
+- updated Twitter API library and OAuth authorization process's internals to make use of qoauth-1.0 library,
+- status lists now updated after closing settings dialog only when accounts settings were changed,
+- checking for updates enhanced by displaying the latest changelog,
+- fixed compilation errors doe to definitions in sysmacros.h on some system configurations.
+v0.8.2 (2009/07/30):
+- fixed Twitter's OAuth support according to the newest changes in Twitter,
+- added disfavoring for Identi.ca statuses (introduced in new laconi.ca),
+- fixed incorrect marking status text as URL link in some cases (#55).
+v0.8.1 (2009/07/16):
+- enabled entering Twitter OAuth PIN longer than 6 characters, to reflect change in Twitter's authorization flow.
+v0.8.0 (2009/07/12):
+- OAuth authorization scheme for Twitter accounts,
+- added storing statuses lists between sessions,
+- added automatic checking for updates,
+- added Italian translation,
+- support for migre.me URL shortening service,
+- improved look and feel - layouts, colors and fixed some unwelcome behavior.
+v0.7.1 (2009/06/13):
+- CRITICAL: Fixed parsing of statuses' ids (after Twitter statuses count reached maximum for 32-bit integer),
+- added digg.com URL shortening service,
+- minor corrections to user info popup and settings dialog.
+v0.7.0 (2009/06/08):
+- PROVIDED SUPPORT FOR IDENTI.CA using Twitter-compatible API,
+- added support for sending and deleting direct messages,
+- added support for favoring and disfavoring statuses,
+- added timestamp and 'in-reply-to' information to statuses,
+- added user info popups,
+- provided 3 context-switchable icons for common operations with statuses,
+- support for URL shortening extended by tinyarro.ws, u.nu and bit.ly,
+- provided variable length of statuses lists being downloaded,
+- huge performance and memory management improvements,
+- added basic support for freedesktop icons on X11,
+- provided an option to disable password storing,
+- accounts settings page reorganized and made more user-friendly,
+- fixed lots of minor bugs.
+v0.6.0 (2009/04/27):
+- added support for working with multiple accounts at the same time,
+- added support for shortening URLs using tr.im, is.gd, tinyurl.com and MetaMark.com,
+- the whole Twitter API interface separated from the GUI-related code by putting it into a standalone shared library,
+- added support for Unicode for TwitPic statuses - ticket #4,
+- fixed a bug of cutting status when first '&' encountered - ticket #7,
+- added the application identification for TwitPic - ticket #13,
+- changed the program icon and provided desktop integration resources for Linux and Windows - ticket #14,
+- web browser customization on Linux made global (includes links in statuses and all dialogs) - ticket #2,
+- added an icon indicating that status list update is in progress.
+v0.5.0 (2009/03/11):
+- added support for TwitPic - one-click uploading photos and posting them to Twitter,
+- posted replies now recognizable by API,
+- improved memory management,
+- fixed a bug of stacking excessive Tweets on the top of the Tweet list when main window is hidden,
+- fixed a bug of closing application when main window hidden and settings dialog closed (patch by Bryce Verdier - bryceverdier AT gmail).
+v0.4.2 (2009/03/05):
+- added a setting for customization of the amount of displayed Tweets,
+- MacOS X specific files added to repository,
+- fixed incorrect Tweets' selection updating when new Tweets arrive, 
+- fixed a bug of not downloading direct messages,
+- fixed a bug of unwanted deleting of the Tweet list when posting an update after specific combination of failed logins.
+v0.4.1 (2009/03/03):
+- fixed a bug of image downloading failure when 404 encountered,
+- fixed a bug of currently selected Tweet's highlighting lag when new updates come,
+- fixed a bug of not updating the amount of characters left when initiating a reply,
+- fixed a bug of the actual list selection not following the currently highlighted Tweet,
+- changed retweet action to allow editing before sending,
+- code thoroughly revised and documented, redundant methods, slots and signals removed.
+v0.4 (2009/02/27):
+- added support for marking Tweets as read and highlighting current selection,
+- added system tray notifications (via knotify on Linux and Growl on MacOS X),
+- enabled arrow keys navigation through the statuses list,
+- direct messages downloading made optional,
+- added username saving to settings,
+- added the login window at startup,
+- fixed bugs related to switching users on failed login and corrected memory issues.
+v0.3.1 (2009/02/21):
+- MacOS X version now built with Qt 4.5.0-rc1, working as an agent enabled - no Dock icon nor menu bar,
+- added shortcut for hiding the application, and the "about" dialog.
+- fixed a bug of not reseting the input field after posting an update,
+- fixed a bug of unnecessary synchronizing when saving settings with unchanged update interval,
+- fixed a bug of copying user's (wrong) password to authDialog after failed 
+login,
+- fixed various bugs when altering between friends and public timeline, and rejecting authDialog,
+- fixed bug of closing application when settings invoked from tray icon and 
+main window hidden.
+v0.3 (2009/02/19):
+- added support for getting direct messages,
+- added support for deleting updates,
+- fixed several bugs related to failed login, 
+- improved stability and user-friendliness,
+- provided intuitive shortcuts for common operations,
+- added color themes,
+- added User's Twitter page link to tweet menu.
+v0.2.1 (2009/02/16):
+- added browser interaction support on Linux,
+- added installation facilities for Linux to project file,
+- minor translation corrections.
+v0.2 (2009/02/14):
+- made statuses displaying independent on user images' downloading (huge speed-up in getting statuses list),
+- added replying to specific user and getting user's homepage.
+v0.1.1 (2009/02/09):
+- support for readability and accessibility for hyperlinks in statuses,
+- minor improvements to settings dialog behavior and translation.
+v0.1 (2009/02/08):
+- posting status updates to Twitter and downloading friends or public timeline,
+- in-session password storing,
+- HTTP proxy support,
+- being recognized as a source of updates,
+- translation to 4 languages in the run-time (sorry for my poor Catalan/Spanish, I appreciate any help here :) )
