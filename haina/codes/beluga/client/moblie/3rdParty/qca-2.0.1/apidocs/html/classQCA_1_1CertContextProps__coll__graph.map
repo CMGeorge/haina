@@ -1,0 +1,8 @@
+<area shape="rect" href="qt.tag$qdatetime.html" title="QDateTime" alt="" coords="325,18,413,42">
+<area shape="rect" href="qt.tag$qstring.html" title="QString" alt="" coords="337,114,401,138">
+<area shape="rect" href="qt.tag$qbytearray.html" title="QByteArray" alt="" coords="325,184,413,208">
+<area shape="rect" href="$classQCA_1_1CertificateInfoOrdered.html" title="Ordered certificate properties type." alt="" coords="277,242,461,266">
+<area shape="rect" href="qt.tag$qlist.html" title="QList\&lt; QCA::CertificateInfoPair \&gt;" alt="" coords="5,242,221,266">
+<area shape="rect" href="$classQCA_1_1BigInteger.html" title="Arbitrary precision integer." alt="" coords="312,452,427,476">
+<area shape="rect" href="qt.tag$qshareddatapointer.html" title="QSharedDataPointer\&lt; Private \&gt;" alt="" coords="11,452,216,476">
+<area shape="rect" href="qt.tag$qstringlist.html" title="QStringList" alt="" coords="327,584,412,608">

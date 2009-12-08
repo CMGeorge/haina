@@ -1,0 +1,4 @@
+<area shape="rect" href="$classQCA_1_1MemoryRegion.html" title="Array of bytes that may be optionally secured." alt="" coords="5,30,149,54">
+<area shape="rect" href="$classQCA_1_1SecureArray.html" title="Secure array of bytes." alt="" coords="199,30,327,54">
+<area shape="rect" href="$classQCA_1_1InitializationVector.html" title="Container for initialisation vectors and nonces." alt="" coords="377,6,540,30">
+<area shape="rect" href="$classQCA_1_1SymmetricKey.html" title="Container for keys for symmetric encryption algorithms." alt="" coords="387,54,531,78">
