@@ -1,0 +1,6 @@
+QMAKE_PRL_BUILD_DIR = D:/WorkSpace/haina/haina/codes/beluga/client/moblie/3rdParty/qoauth/src
+QMAKE_PRO_INPUT = src.pro
+QMAKE_PRL_TARGET = qoauth
+QMAKE_PRL_CONFIG = include_source_dir lex yacc warn_on uic resources rtti_off exceptions_off stl_off incremental_off windows static StaticBuild release ReleaseBuild StaticRelease build_pass qt warn_on release incremental flat link_prl precompile_header autogen_precompile_source copy_dir_files debug_and_release debug_and_release_target embed_manifest_dll embed_manifest_exe ltcg exceptions_off mmx iwmmxt static StaticBuild release ReleaseBuild StaticRelease build_pass crypto create_prl static_and_shared static StaticBuild release ReleaseBuild StaticRelease build_pass no_autoqmake staticlib static moc thread
+QMAKE_PRL_VERSION = 1
+QMAKE_PRL_LIBS = corelibc.lib e:\qt-share-wince-4.5.2\lib\QtNetwork4.lib e:\qt-share-wince-4.5.2\lib\QtCore4.lib 

@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "qoauth", "src\qoauth.vcproj", "{D353D0D1-0364-345B-8C9E-6F4E72199613}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Shared-Debug|Windows Mobile 6 Professional SDK (ARMV4I) = Shared-Debug|Windows Mobile 6 Professional SDK (ARMV4I)
+		Shared-Release|Windows Mobile 6 Professional SDK (ARMV4I) = Shared-Release|Windows Mobile 6 Professional SDK (ARMV4I)
+		Static-Debug|Windows Mobile 6 Professional SDK (ARMV4I) = Static-Debug|Windows Mobile 6 Professional SDK (ARMV4I)
+		Static-Release|Windows Mobile 6 Professional SDK (ARMV4I) = Static-Release|Windows Mobile 6 Professional SDK (ARMV4I)
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D353D0D1-0364-345B-8C9E-6F4E72199613}.Shared-Debug|Windows Mobile 6 Professional SDK (ARMV4I).ActiveCfg = Shared-Debug|Windows Mobile 6 Professional SDK (ARMV4I)
+		{D353D0D1-0364-345B-8C9E-6F4E72199613}.Shared-Debug|Windows Mobile 6 Professional SDK (ARMV4I).Build.0 = Shared-Debug|Windows Mobile 6 Professional SDK (ARMV4I)
+		{D353D0D1-0364-345B-8C9E-6F4E72199613}.Shared-Debug|Windows Mobile 6 Professional SDK (ARMV4I).Deploy.0 = Shared-Debug|Windows Mobile 6 Professional SDK (ARMV4I)
+		{D353D0D1-0364-345B-8C9E-6F4E72199613}.Shared-Release|Windows Mobile 6 Professional SDK (ARMV4I).ActiveCfg = Shared-Release|Windows Mobile 6 Professional SDK (ARMV4I)
+		{D353D0D1-0364-345B-8C9E-6F4E72199613}.Shared-Release|Windows Mobile 6 Professional SDK (ARMV4I).Build.0 = Shared-Release|Windows Mobile 6 Professional SDK (ARMV4I)
+		{D353D0D1-0364-345B-8C9E-6F4E72199613}.Shared-Release|Windows Mobile 6 Professional SDK (ARMV4I).Deploy.0 = Shared-Release|Windows Mobile 6 Professional SDK (ARMV4I)
+		{D353D0D1-0364-345B-8C9E-6F4E72199613}.Static-Debug|Windows Mobile 6 Professional SDK (ARMV4I).ActiveCfg = Static-Debug|Windows Mobile 6 Professional SDK (ARMV4I)
+		{D353D0D1-0364-345B-8C9E-6F4E72199613}.Static-Debug|Windows Mobile 6 Professional SDK (ARMV4I).Build.0 = Static-Debug|Windows Mobile 6 Professional SDK (ARMV4I)
+		{D353D0D1-0364-345B-8C9E-6F4E72199613}.Static-Debug|Windows Mobile 6 Professional SDK (ARMV4I).Deploy.0 = Static-Debug|Windows Mobile 6 Professional SDK (ARMV4I)
+		{D353D0D1-0364-345B-8C9E-6F4E72199613}.Static-Release|Windows Mobile 6 Professional SDK (ARMV4I).ActiveCfg = Static-Release|Windows Mobile 6 Professional SDK (ARMV4I)
+		{D353D0D1-0364-345B-8C9E-6F4E72199613}.Static-Release|Windows Mobile 6 Professional SDK (ARMV4I).Build.0 = Static-Release|Windows Mobile 6 Professional SDK (ARMV4I)
+		{D353D0D1-0364-345B-8C9E-6F4E72199613}.Static-Release|Windows Mobile 6 Professional SDK (ARMV4I).Deploy.0 = Static-Release|Windows Mobile 6 Professional SDK (ARMV4I)
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
