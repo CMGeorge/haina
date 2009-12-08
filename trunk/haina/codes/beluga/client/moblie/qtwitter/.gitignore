@@ -1,0 +1,15 @@
+.DS_Store
+*.pro.user
+qtc-gdbmacros
+Makefile*
+qtwitter.app
+*~
+tmp
+GPL-header.txt
+LGPL-header.txt
+doc
+lib*.so*
+qtwitter
+commit-message.txt
+.qm-removed
+build

@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="twitterapi"
+	ProjectGUID="{5FACA395-D7C3-37A2-8FB8-EA73DD6AD3C0}"
+	Keyword="Qt4VSv1.0"
+	>
+	<Platforms>
+		<Platform
+			Name="Windows Mobile 6 Professional SDK (ARMV4I)"
+		/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+		<Configuration
+			Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
+			OutputDirectory="."
+			IntermediateDirectory="..\tmp\"
+			ConfigurationType="2"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				WarningLevel="0"
+				DefaultCharType="0"
+				EnableErrorChecks="1"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				ExecutionBucket="7"
+				AdditionalOptions="-Zm200 -w34100 -w34189 -w34100 -w34189"
+				Optimization="4"
+				AdditionalIncludeDirectories="&quot;e:\qt-share-wince-4.5.2\include\QtCore&quot;;&quot;e:\qt-share-wince-4.5.2\include\QtNetwork&quot;;&quot;e:\qt-share-wince-4.5.2\include\QtXml&quot;;&quot;e:\qt-share-wince-4.5.2\include&quot;;..\..\qtwitter;..\tmp;.;&quot;e:\qt-share-wince-4.5.2\include\ActiveQt&quot;;&quot;e:\qt-share-wince-4.5.2\mkspecs\default&quot;;..\..\3rdParty\qoauth\include;..\..\3rdParty\openssl_wce\include\QtCrypto"
+				PreprocessorDefinitions="DEBUG,_DEBUG,DEBUG,_DEBUG,_WINDOWS,UNDER_CE,WINCE,_WINDOWS,_UNICODE,UNICODE,_WIN32,QT_NO_PRINTER,QT_NO_PRINTDIALOG,ARMV4I,_ARMV4I_,armv4i,_ARM_,ARM,_M_ARM,ARM,__arm__,Q_OS_WINCE_WM,QT_NO_PRINTER,QT_NO_PRINTDIALOG,_WIN32_WCE=0x502,SHARE_DIR=\&quot;/usr/share/qtwitter\&quot;,HAVE_OAUTH,TWITTERAPI,QT_DLL,QT_XML_LIB,QT_NETWORK_LIB,QT_CORE_LIB,QT_THREAD_SUPPORT"
+				GeneratePreprocessedFile="0"
+				ExceptionHandling="0"
+				RuntimeLibrary="3"
+				BufferSecurityCheck="false"
+				TreatWChar_tAsBuiltInType="false"
+				AssemblerListingLocation="..\tmp\"
+				ObjectFile="..\tmp\"
+				ProgramDataBaseFileName=".\"
+				WarningLevel="3"
+				SuppressStartupBanner="true"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="DEBUG,_DEBUG,DEBUG,_DEBUG,_WINDOWS,UNDER_CE,WINCE,_WINDOWS,_UNICODE,UNICODE,_WIN32,QT_NO_PRINTER,QT_NO_PRINTDIALOG,ARMV4I,_ARMV4I_,armv4i,_ARM_,ARM,_M_ARM,ARM,__arm__,Q_OS_WINCE_WM,QT_NO_PRINTER,QT_NO_PRINTDIALOG,_WIN32_WCE=0x502,SHARE_DIR=\&quot;/usr/share/qtwitter\&quot;,HAVE_OAUTH,TWITTERAPI,QT_DLL,QT_XML_LIB,QT_NETWORK_LIB,QT_CORE_LIB,QT_THREAD_SUPPORT,_DEBUG"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				IgnoreImportLibrary="true"
+				AdditionalOptions="/SUBSYSTEM:WINDOWSCE,5.02 /MACHINE:THUMB /SUBSYSTEM:WINDOWSCE,5.02 /MACHINE:THUMB"
+				AdditionalDependencies="corelibc.lib e:\qt-share-wince-4.5.2\lib\QtXmld4.lib e:\qt-share-wince-4.5.2\lib\QtNetworkd4.lib e:\qt-share-wince-4.5.2\lib\QtCored4.lib qoauthd1.lib"
+				OutputFile="..\build\twitterapi0.dll"
+				Version="0.100"
+				SuppressStartupBanner="true"
+				AdditionalLibraryDirectories="&quot;e:\qt-share-wince-4.5.2\lib&quot;;..\..\3rdParty\qoauth\lib"
+				IgnoreDefaultLibraryNames="OLDNAMES.LIB"
+				GenerateDebugInformation="true"
+				ProgramDatabaseFile=""
+				SubSystem="0"
+				LinkTimeCodeGeneration="0"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCCodeSignTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				CommandLine=""
+			/>
+			<DeploymentTool
+				ForceDirty="-1"
+				RemoteDirectory=""
+				RegisterOutput="0"
+				AdditionalFiles="QtXmld4.dll|E:\qt-share-wince-4.5.2\lib|%CSIDL_PROGRAM_FILES%\twitterapi|0;QtNetworkd4.dll|E:\qt-share-wince-4.5.2\lib|%CSIDL_PROGRAM_FILES%\twitterapi|0;QtCored4.dll|E:\qt-share-wince-4.5.2\lib|%CSIDL_PROGRAM_FILES%\twitterapi|0"
+			/>
+			<DebuggerTool
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)"
+			OutputDirectory="."
+			IntermediateDirectory="..\tmp\"
+			ConfigurationType="2"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				WarningLevel="0"
+				DefaultCharType="0"
+				EnableErrorChecks="1"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				ExecutionBucket="7"
+				AdditionalOptions="-Zm200 -w34100 -w34189 -w34100 -w34189"
+				Optimization="2"
+				WholeProgramOptimization="true"
+				AdditionalIncludeDirectories="&quot;e:\qt-share-wince-4.5.2\include\QtCore&quot;,&quot;e:\qt-share-wince-4.5.2\include\QtNetwork&quot;,&quot;e:\qt-share-wince-4.5.2\include\QtXml&quot;,&quot;e:\qt-share-wince-4.5.2\include&quot;,&quot;..\..\qtwitter&quot;,&quot;..\tmp&quot;,&quot;.&quot;,&quot;e:\qt-share-wince-4.5.2\include\ActiveQt&quot;,&quot;..\tmp&quot;,e:\qt-share-wince-4.5.2\mkspecs\default;;..\..\3rdParty\qoauth\include;..\..\3rdParty\openssl_wce\include\QtCrypto"
+				PreprocessorDefinitions="QT_NO_DEBUG;NDEBUG;_WINDOWS;UNDER_CE;WINCE;_UNICODE;UNICODE;_WIN32;QT_NO_PRINTER;QT_NO_PRINTDIALOG;ARMV4I;_ARMV4I_;armv4i;_ARM_;ARM;_M_ARM;__arm__;Q_OS_WINCE_WM;_WIN32_WCE=0x502;SHARE_DIR=\&quot;/usr/share/qtwitter\&quot;;TWITTERAPI;QT_DLL;QT_XML_LIB;QT_NETWORK_LIB;QT_CORE_LIB;QT_THREAD_SUPPORT;HAVE_OAUTH"
+				GeneratePreprocessedFile="0"
+				ExceptionHandling="0"
+				RuntimeLibrary="2"
+				BufferSecurityCheck="false"
+				TreatWChar_tAsBuiltInType="false"
+				AssemblerListingLocation="..\tmp\"
+				ObjectFile="..\tmp\"
+				ProgramDataBaseFileName=".\"
+				WarningLevel="3"
+				SuppressStartupBanner="true"
+				DebugInformationFormat="0"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="QT_NO_DEBUG,NDEBUG,_WINDOWS,UNDER_CE,WINCE,_WINDOWS,_UNICODE,UNICODE,_WIN32,QT_NO_PRINTER,QT_NO_PRINTDIALOG,ARMV4I,_ARMV4I_,armv4i,_ARM_,ARM,_M_ARM,ARM,__arm__,Q_OS_WINCE_WM,QT_NO_PRINTER,QT_NO_PRINTDIALOG,_WIN32_WCE=0x502,SHARE_DIR=\&quot;/usr/share/qtwitter\&quot;,HAVE_OAUTH,TWITTERAPI,QT_DLL,QT_NO_DEBUG,QT_XML_LIB,QT_NETWORK_LIB,QT_CORE_LIB,QT_THREAD_SUPPORT"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				IgnoreImportLibrary="true"
+				AdditionalOptions="/SUBSYSTEM:WINDOWSCE,5.02 /MACHINE:THUMB /SUBSYSTEM:WINDOWSCE,5.02 /MACHINE:THUMB"
+				AdditionalDependencies="corelibc.lib e:\qt-share-wince-4.5.2\lib\QtXml4.lib e:\qt-share-wince-4.5.2\lib\QtNetwork4.lib e:\qt-share-wince-4.5.2\lib\QtCore4.lib qoauth1.lib"
+				OutputFile="..\build\twitterapi0.dll"
+				Version="0.100"
+				LinkIncremental="1"
+				SuppressStartupBanner="true"
+				AdditionalLibraryDirectories="e:\qt-share-wince-4.5.2\lib;..\..\3rdParty\qoauth\lib"
+				IgnoreDefaultLibraryNames="OLDNAMES.LIB"
+				GenerateDebugInformation="false"
+				ProgramDatabaseFile=""
+				SubSystem="0"
+				LinkTimeCodeGeneration="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCCodeSignTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				Description="Copy twitterapi0.dll to ..\build"
+				CommandLine="copy  &quot;$(TargetPath)&quot; &quot;..\build&quot;"
+			/>
+			<DeploymentTool
+				ForceDirty="-1"
+				RemoteDirectory=""
+				RegisterOutput="0"
+				AdditionalFiles="QtXml4.dll|E:\qt-share-wince-4.5.2\lib|%CSIDL_PROGRAM_FILES%\twitterapi|0;QtNetwork4.dll|E:\qt-share-wince-4.5.2\lib|%CSIDL_PROGRAM_FILES%\twitterapi|0;QtCore4.dll|E:\qt-share-wince-4.5.2\lib|%CSIDL_PROGRAM_FILES%\twitterapi|0;"
+			/>
+			<DebuggerTool
+			/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Source Files"
+			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
+			>
+			<File
+				RelativePath="entry.cpp"
+				>
+			</File>
+			<File
+				RelativePath="twitterapi.cpp"
+				>
+			</File>
+			<File
+				RelativePath="userinfo.cpp"
+				>
+			</File>
+			<File
+				RelativePath="xmlparser.cpp"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Header Files"
+			Filter="h;hpp;hxx;hm;inl;inc;xsd"
+			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
+			>
+			<File
+				RelativePath="entry.h"
+				>
+			</File>
+			<File
+				RelativePath="twitterapi.h"
+				>
+				<FileConfiguration
+					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="MOC twitterapi.h"
+						CommandLine="E:\qt-share-wince-4.5.2\bin\moc.exe  -DUNDER_CE -DWINCE -D_WINDOWS -D_UNICODE -DUNICODE -D_WIN32 -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DARMV4I -D_ARMV4I_ -Darmv4i -D_ARM_ -DARM -D_M_ARM -DARM -D__arm__ -DQ_OS_WINCE_WM -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D_WIN32_WCE=0x502 -DSHARE_DIR=\&quot;/usr/share/qtwitter\&quot; -DHAVE_OAUTH -DTWITTERAPI -DQT_DLL -DQT_XML_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I&quot;e:\qt-share-wince-4.5.2\include\QtCore&quot; -I&quot;e:\qt-share-wince-4.5.2\include\QtNetwork&quot; -I&quot;e:\qt-share-wince-4.5.2\include\QtXml&quot; -I&quot;e:\qt-share-wince-4.5.2\include&quot; -I&quot;..\..\qtwitter&quot; -I&quot;..\tmp&quot; -I&quot;.&quot; -I&quot;e:\qt-share-wince-4.5.2\include\ActiveQt&quot; -I&quot;..\tmp&quot; -Ie:\qt-share-wince-4.5.2\mkspecs\default -D_MSC_VER=1400 twitterapi.h -o d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\tmp\moc_twitterapi.cpp&#x0D;&#x0A;"
+						AdditionalDependencies="E:\qt-share-wince-4.5.2\bin\moc.exe;twitterapi.h"
+						Outputs="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\tmp\moc_twitterapi.cpp"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="MOC twitterapi.h"
+						CommandLine="E:\qt-share-wince-4.5.2\bin\moc.exe  -DUNDER_CE -DWINCE -D_WINDOWS -D_UNICODE -DUNICODE -D_WIN32 -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DARMV4I -D_ARMV4I_ -Darmv4i -D_ARM_ -DARM -D_M_ARM -DARM -D__arm__ -DQ_OS_WINCE_WM -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D_WIN32_WCE=0x502 -DSHARE_DIR=\&quot;/usr/share/qtwitter\&quot; -DHAVE_OAUTH -DTWITTERAPI -DQT_DLL -DQT_NO_DEBUG -DQT_XML_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I&quot;e:\qt-share-wince-4.5.2\include\QtCore&quot; -I&quot;e:\qt-share-wince-4.5.2\include\QtNetwork&quot; -I&quot;e:\qt-share-wince-4.5.2\include\QtXml&quot; -I&quot;e:\qt-share-wince-4.5.2\include&quot; -I&quot;..\..\qtwitter&quot; -I&quot;..\tmp&quot; -I&quot;.&quot; -I&quot;e:\qt-share-wince-4.5.2\include\ActiveQt&quot; -I&quot;..\tmp&quot; -Ie:\qt-share-wince-4.5.2\mkspecs\default -D_MSC_VER=1400 twitterapi.h -o d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\tmp\moc_twitterapi.cpp&#x0D;&#x0A;"
+						AdditionalDependencies="E:\qt-share-wince-4.5.2\bin\moc.exe;twitterapi.h"
+						Outputs="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\tmp\moc_twitterapi.cpp"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="twitterapi_global.h"
+				>
+			</File>
+			<File
+				RelativePath="twitterapi_p.h"
+				>
+				<FileConfiguration
+					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="MOC twitterapi_p.h"
+						CommandLine="E:\qt-share-wince-4.5.2\bin\moc.exe  -DUNDER_CE -DWINCE -D_WINDOWS -D_UNICODE -DUNICODE -D_WIN32 -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DARMV4I -D_ARMV4I_ -Darmv4i -D_ARM_ -DARM -D_M_ARM -DARM -D__arm__ -DQ_OS_WINCE_WM -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D_WIN32_WCE=0x502 -DSHARE_DIR=\&quot;/usr/share/qtwitter\&quot; -DHAVE_OAUTH -DTWITTERAPI -DQT_DLL -DQT_XML_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I&quot;e:\qt-share-wince-4.5.2\include\QtCore&quot; -I&quot;e:\qt-share-wince-4.5.2\include\QtNetwork&quot; -I&quot;e:\qt-share-wince-4.5.2\include\QtXml&quot; -I&quot;e:\qt-share-wince-4.5.2\include&quot; -I&quot;..\..\qtwitter&quot; -I&quot;..\tmp&quot; -I&quot;.&quot; -I&quot;e:\qt-share-wince-4.5.2\include\ActiveQt&quot; -I&quot;..\tmp&quot; -Ie:\qt-share-wince-4.5.2\mkspecs\default -D_MSC_VER=1400 twitterapi_p.h -o d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\tmp\moc_twitterapi_p.cpp&#x0D;&#x0A;"
+						AdditionalDependencies="E:\qt-share-wince-4.5.2\bin\moc.exe;twitterapi_p.h"
+						Outputs="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\tmp\moc_twitterapi_p.cpp"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="MOC twitterapi_p.h"
+						CommandLine="E:\qt-share-wince-4.5.2\bin\moc.exe  -DUNDER_CE -DWINCE -D_WINDOWS -D_UNICODE -DUNICODE -D_WIN32 -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DARMV4I -D_ARMV4I_ -Darmv4i -D_ARM_ -DARM -D_M_ARM -DARM -D__arm__ -DQ_OS_WINCE_WM -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D_WIN32_WCE=0x502 -DSHARE_DIR=\&quot;/usr/share/qtwitter\&quot; -DHAVE_OAUTH -DTWITTERAPI -DQT_DLL -DQT_NO_DEBUG -DQT_XML_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I&quot;e:\qt-share-wince-4.5.2\include\QtCore&quot; -I&quot;e:\qt-share-wince-4.5.2\include\QtNetwork&quot; -I&quot;e:\qt-share-wince-4.5.2\include\QtXml&quot; -I&quot;e:\qt-share-wince-4.5.2\include&quot; -I&quot;..\..\qtwitter&quot; -I&quot;..\tmp&quot; -I&quot;.&quot; -I&quot;e:\qt-share-wince-4.5.2\include\ActiveQt&quot; -I&quot;..\tmp&quot; -Ie:\qt-share-wince-4.5.2\mkspecs\default -D_MSC_VER=1400 twitterapi_p.h -o d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\tmp\moc_twitterapi_p.cpp&#x0D;&#x0A;"
+						AdditionalDependencies="E:\qt-share-wince-4.5.2\bin\moc.exe;twitterapi_p.h"
+						Outputs="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\tmp\moc_twitterapi_p.cpp"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="userinfo.h"
+				>
+			</File>
+			<File
+				RelativePath="xmlparser.h"
+				>
+				<FileConfiguration
+					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="MOC xmlparser.h"
+						CommandLine="E:\qt-share-wince-4.5.2\bin\moc.exe  -DUNDER_CE -DWINCE -D_WINDOWS -D_UNICODE -DUNICODE -D_WIN32 -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DARMV4I -D_ARMV4I_ -Darmv4i -D_ARM_ -DARM -D_M_ARM -DARM -D__arm__ -DQ_OS_WINCE_WM -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D_WIN32_WCE=0x502 -DSHARE_DIR=\&quot;/usr/share/qtwitter\&quot; -DHAVE_OAUTH -DTWITTERAPI -DQT_DLL -DQT_XML_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I&quot;e:\qt-share-wince-4.5.2\include\QtCore&quot; -I&quot;e:\qt-share-wince-4.5.2\include\QtNetwork&quot; -I&quot;e:\qt-share-wince-4.5.2\include\QtXml&quot; -I&quot;e:\qt-share-wince-4.5.2\include&quot; -I&quot;..\..\qtwitter&quot; -I&quot;..\tmp&quot; -I&quot;.&quot; -I&quot;e:\qt-share-wince-4.5.2\include\ActiveQt&quot; -I&quot;..\tmp&quot; -Ie:\qt-share-wince-4.5.2\mkspecs\default -D_MSC_VER=1400 xmlparser.h -o d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\tmp\moc_xmlparser.cpp&#x0D;&#x0A;"
+						AdditionalDependencies="E:\qt-share-wince-4.5.2\bin\moc.exe;xmlparser.h"
+						Outputs="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\tmp\moc_xmlparser.cpp"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="MOC xmlparser.h"
+						CommandLine="E:\qt-share-wince-4.5.2\bin\moc.exe  -DUNDER_CE -DWINCE -D_WINDOWS -D_UNICODE -DUNICODE -D_WIN32 -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DARMV4I -D_ARMV4I_ -Darmv4i -D_ARM_ -DARM -D_M_ARM -DARM -D__arm__ -DQ_OS_WINCE_WM -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -D_WIN32_WCE=0x502 -DSHARE_DIR=\&quot;/usr/share/qtwitter\&quot; -DHAVE_OAUTH -DTWITTERAPI -DQT_DLL -DQT_NO_DEBUG -DQT_XML_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I&quot;e:\qt-share-wince-4.5.2\include\QtCore&quot; -I&quot;e:\qt-share-wince-4.5.2\include\QtNetwork&quot; -I&quot;e:\qt-share-wince-4.5.2\include\QtXml&quot; -I&quot;e:\qt-share-wince-4.5.2\include&quot; -I&quot;..\..\qtwitter&quot; -I&quot;..\tmp&quot; -I&quot;.&quot; -I&quot;e:\qt-share-wince-4.5.2\include\ActiveQt&quot; -I&quot;..\tmp&quot; -Ie:\qt-share-wince-4.5.2\mkspecs\default -D_MSC_VER=1400 xmlparser.h -o d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\tmp\moc_xmlparser.cpp&#x0D;&#x0A;"
+						AdditionalDependencies="E:\qt-share-wince-4.5.2\bin\moc.exe;xmlparser.h"
+						Outputs="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\tmp\moc_xmlparser.cpp"
+					/>
+				</FileConfiguration>
+			</File>
+		</Filter>
+		<Filter
+			Name="Generated Files"
+			Filter="cpp;c;cxx;moc;h;def;odl;idl;res;"
+			UniqueIdentifier="{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}"
+			>
+			<File
+				RelativePath="..\tmp\moc_twitterapi.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\tmp\moc_twitterapi_p.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\tmp\moc_xmlparser.cpp"
+				>
+			</File>
+			<File
+				RelativePath="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\tmp\twitterapi_resource.res"
+				>
+			</File>
+		</Filter>
+		<File
+			RelativePath="d:\WorkSpace\haina\haina\codes\beluga\client\moblie\qtwitter\twitterapi\twitterapi_resource.rc"
+			>
+		</File>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>
