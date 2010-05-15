@@ -36,6 +36,7 @@ public class UserPasswordInterceptor {
 			contactUser.setPassword(DESUtil.encrypt(contactUser.getPassword()));
 		}
 	}
+	
 
 	
 	/**
