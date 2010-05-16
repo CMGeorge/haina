@@ -1,0 +1,120 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{940A51B8-9675-4124-B4CD-B09846AE05F9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Resco.CommonControls.CF2</RootNamespace>
+    <AssemblyName>Resco.CommonControls.CF2</AssemblyName>
+    <ProjectTypeGuids>{4D628B5B-2FBC-4AA6-8C16-197242AEB884};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PlatformFamilyName>PocketPC</PlatformFamilyName>
+    <PlatformID>4118C335-430C-497f-BE48-11C3316B135E</PlatformID>
+    <OSVersion>5.01</OSVersion>
+    <DeployDirSuffix>Resco.CommonControls.CF2</DeployDirSuffix>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FormFactorID>
+    </FormFactorID>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <NativePlatformName>Windows Mobile 5.0 Pocket PC SDK</NativePlatformName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;$(PlatformFamilyName)</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <FileAlignment>512</FileAlignment>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;$(PlatformFamilyName)</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <FileAlignment>512</FileAlignment>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resco\Controls\CommonControls\AbstractToolbarRenderer.cs" />
+    <Compile Include="Resco\Controls\CommonControls\Alignment.cs" />
+    <Compile Include="Resco\Controls\CommonControls\DrawingHelper.cs" />
+    <Compile Include="Resco\Controls\CommonControls\FillDirection.cs" />
+    <Compile Include="Resco\Controls\CommonControls\GradientColor.cs" />
+    <Compile Include="Resco\Controls\CommonControls\GradientFill.cs" />
+    <Compile Include="Resco\Controls\CommonControls\HorizontalToolbarRenderer.cs" />
+    <Compile Include="Resco\Controls\CommonControls\RefreshRequiredEventHandler.cs" />
+    <Compile Include="Resco\Controls\CommonControls\RescoLicenseMessage.cs" />
+    <Compile Include="Resco\Controls\CommonControls\TabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\CommonControls\TabControlConversion.cs" />
+    <Compile Include="Resco\Controls\CommonControls\TabPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\CommonControls\TabPagesCollection.cs" />
+    <Compile Include="Resco\Controls\CommonControls\TabsDockType.cs" />
+    <Compile Include="Resco\Controls\CommonControls\ToolBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\CommonControls\ToolbarControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\CommonControls\ToolbarConversion.cs" />
+    <Compile Include="Resco\Controls\CommonControls\ToolbarDockType.cs" />
+    <Compile Include="Resco\Controls\CommonControls\ToolbarItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\CommonControls\ToolbarItemBehaviorType.cs" />
+    <Compile Include="Resco\Controls\CommonControls\ToolbarItemCollection.cs" />
+    <Compile Include="Resco\Controls\CommonControls\ToolbarItemEventArgs.cs" />
+    <Compile Include="Resco\Controls\CommonControls\ToolbarItemSizeType.cs" />
+    <Compile Include="Resco\Controls\CommonControls\VerticalToolbarRenderer.cs" />
+    <Compile Include="Resco\Controls\CommonControls\Win32Helper.cs" />
+    <Compile Include="TouchScrolling\TouchTool.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resco.Controls.CommonControls.TabControl.bmp" />
+    <Content Include="Resco.Controls.CommonControls.ToolbarControl.bmp" />
+  </ItemGroup>
+  <Import Condition="'$(TargetFrameworkVersion)' == 'v1.0'" Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.v1.targets" />
+  <Import Condition="'$(TargetFrameworkVersion)' == 'v2.0'" Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}">
+        <HostingProcess disable="1" />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <Import Condition="'$(TargetFrameworkVersion)' == 'v3.5'" Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
+</Project>
