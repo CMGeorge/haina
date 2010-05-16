@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BELUGAPHONE_H
+#define BELUGAPHONE_H
+
 #include <astdtapi.h>
 class BelugaPhone
 {
@@ -8,3 +10,5 @@ public:
 public:
 	~BelugaPhone(void);
 };
+
+#endif
