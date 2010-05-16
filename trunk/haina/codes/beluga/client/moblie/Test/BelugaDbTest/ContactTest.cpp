@@ -27,6 +27,10 @@ void ContactTest()
 #else
 	pContactDb->InitEntityDb("..\\..\\beluga.db"); /* 初始化联系人数据库 */
 #endif
+	
+	guint16 updateFlag = 0;
+	pContactDb->GetMaxPhoneDistrictUpdateFlag(&updateFlag);	
+	return;
 
 	/************************************ 1. 获取PhoneContact 列表 *****************/
 	// IMPORT_C gint32 GetAllContactsByTag(guint32 nTagId, gboolean onlyPref, CContactIterator ** ppContactIterator);
