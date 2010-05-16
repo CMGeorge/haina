@@ -1,0 +1,189 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{60BEC5BE-CC6C-4DCB-A684-9A3D8A5B5962}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Resco.AdvancedComboBox.CF2</RootNamespace>
+    <AssemblyName>Resco.AdvancedComboBox.CF2</AssemblyName>
+    <ProjectTypeGuids>{4D628B5B-2FBC-4AA6-8C16-197242AEB884};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PlatformFamilyName>PocketPC</PlatformFamilyName>
+    <PlatformID>4118C335-430C-497f-BE48-11C3316B135E</PlatformID>
+    <OSVersion>5.01</OSVersion>
+    <DeployDirSuffix>Resco.AdvancedComboBox.CF2</DeployDirSuffix>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FormFactorID>
+    </FormFactorID>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;$(PlatformFamilyName)</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <FileAlignment>512</FileAlignment>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;$(PlatformFamilyName)</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <FileAlignment>512</FileAlignment>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Global.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\AdvancedComboBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\AdvancedComboBox\AdvancedList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\AdvancedComboBox\Alignment.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\BorderType.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\BoundItem.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\ButtonCell.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\AdvancedComboBox\ButtonEventHandler.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\Cell.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\AdvancedComboBox\CellEnteredEventArgs.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\CellEnteredEventHandler.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\CellEnteredMainEventArgs.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\CellEnteredMainEventHandler.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\CellEventArgs.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\CellEventHandler.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\CellSource.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\CellSourceType.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\ColorCategory.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\ComboBoxArgs.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\ComboBoxEventArgsType.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\ComboBoxEventHandler.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\ComboBoxIndexChangedArgs.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\ComboBoxRefreshArgs.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\ComboBoxScrollArgs.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\ComboBoxUpdateRange.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\ContextMenuSupport.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\Conversion.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\CustomizeCellEventArgs.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\CustomizeCellEventHandler.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\DataConnector.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\DataLoadedEventArgs.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\DataLoadedEventHandler.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\Design\ACBXmlSerializer.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\Design\BrowsableAttribute.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\Design\CustomPropertyDescriptor.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\Design\DesignerSerializationVisibility.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\Design\DesignerSerializationVisibilityAttribute.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\Design\ReflectionHelper.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\Design\RTImageListSite.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\DrawLineData.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\DropDownEventArgs.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\DropDownHandler.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\FillDirection.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\GradientColor.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\GradientFill.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\HTCDirection.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\HTCGSensor.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\HTCGSensorData.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\HTCGyroDirectionEventArgs.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\HTCGyroDirectionHandler.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\HTCNavSensor.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\HTCNavSensorRotatedEventArgs.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\HTCNavSensorRotatedHandler.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\HTCOrientationChangedHandler.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\HTCScreenOrientation.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\HTCSensor.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\IDataConnector.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\ImageCache.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\ImageCell.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\AdvancedComboBox\ItemAddingEventArgs.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\ItemAddingEventHandler.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\ItemChangedEventHandler.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\ItemCollection.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\ItemEnteredEventArgs.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\ItemEnteredEventHandler.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\ItemEventArgs.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\ItemEventArgsType.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\ItemEventHandler.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\ItemSpecificCellProperties.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\ItemTemplate.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\AdvancedComboBox\LinkCell.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\AdvancedComboBox\LinkEventArgs.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\LinkEventHandler.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\Links.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\LinkType.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\ListItem.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\Mapping.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\NavSensorMoveHandler.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\PropertyMapping.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\RescoLicenseMessage.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\SeparatorCell.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\AdvancedComboBox\SeparatorType.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\TableMapping.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\TemplateSet.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\TextCell.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\AdvancedComboBox\ToolTip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\AdvancedComboBox\TouchScrollDirection.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\Utility.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\ValidateDataArgs.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\ValidateDataEventHandler.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\Win32Helper.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\Win32Native.cs" />
+    <Compile Include="Resco\Controls\AdvancedComboBox\WrapTextData.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resco.Controls.AdvancedComboBox.AdvancedComboBox.bmp" />
+  </ItemGroup>
+  <Import Condition="'$(TargetFrameworkVersion)' == 'v1.0'" Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.v1.targets" />
+  <Import Condition="'$(TargetFrameworkVersion)' == 'v2.0'" Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}">
+        <HostingProcess disable="1" />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

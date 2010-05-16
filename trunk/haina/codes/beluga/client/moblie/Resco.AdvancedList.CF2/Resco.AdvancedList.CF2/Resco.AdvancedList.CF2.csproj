@@ -1,0 +1,184 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A1288C5A-3625-4B4A-9166-2ED9200E25DD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Resco.AdvancedList.CF2</RootNamespace>
+    <AssemblyName>Resco.AdvancedList.CF2</AssemblyName>
+    <ProjectTypeGuids>{4D628B5B-2FBC-4AA6-8C16-197242AEB884};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PlatformFamilyName>PocketPC</PlatformFamilyName>
+    <PlatformID>4118C335-430C-497f-BE48-11C3316B135E</PlatformID>
+    <OSVersion>5.01</OSVersion>
+    <DeployDirSuffix>Resco.AdvancedList.CF2</DeployDirSuffix>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FormFactorID>
+    </FormFactorID>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;$(PlatformFamilyName)</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <FileAlignment>512</FileAlignment>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;$(PlatformFamilyName)</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <FileAlignment>512</FileAlignment>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\AdvancedList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\AdvancedList\Alignment.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\BackBufferManager.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\BackgroundType.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\BorderType.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\BoundRow.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\ButtonCell.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\AdvancedList\ButtonEventHandler.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\Cell.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\AdvancedList\CellEnteredEventArgs.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\CellEnteredEventHandler.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\CellEnteredMainEventArgs.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\CellEnteredMainEventHandler.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\CellEventArgs.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\CellEventHandler.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\CellSource.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\CellSourceType.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\ColorCategory.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\ContextMenuSupport.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\Conversion.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\CustomizeCellEventArgs.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\CustomizeCellEventHandler.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\DataConnector.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\DataLoadedEventArgs.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\DataLoadedEventHandler.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\Design\ALXmlSerializer.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\Design\BrowsableAttribute.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\Design\CustomPropertyDescriptor.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\Design\DesignerSerializationVisibility.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\Design\DesignerSerializationVisibilityAttribute.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\Design\ReflectionHelper.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\Design\RTImageListSite.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\DrawLineData.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\FillDirection.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\GradientColor.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\GradientFill.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\GridEventArgsType.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\GridEventHandler.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\HeaderRow.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\HTCDirection.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\HTCGSensor.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\HTCGSensorData.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\HTCGyroDirectionEventArgs.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\HTCGyroDirectionHandler.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\HTCNavSensor.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\HTCNavSensorRotatedEventArgs.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\HTCNavSensorRotatedHandler.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\HTCOrientationChangedHandler.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\HTCScreenOrientation.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\HTCSensor.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\IDataConnector.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\ImageCache.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\ImageCell.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\AdvancedList\LinkCell.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\AdvancedList\LinkEventArgs.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\LinkEventHandler.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\Links.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\LinkType.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\Mapping.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\NavSensorMoveHandler.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\PropertyMapping.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\RescoLicenseMessage.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\Row.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\RowAddingEventArgs.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\RowAddingEventHandler.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\RowChangedEventHandler.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\RowCollection.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\RowEnteredEventArgs.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\RowEnteredEventHandler.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\RowEventArgs.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\RowEventArgsType.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\RowEventHandler.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\RowSpecificCellProperties.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\RowTemplate.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\AdvancedList\ScrollbarWrapper.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\ScrollOrientation.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\SelectionMode.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\SeparatorCell.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\AdvancedList\SeparatorType.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\TableMapping.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\TemplateSet.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\TextCell.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\AdvancedList\ToolTip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\AdvancedList\ToolTipType.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\TouchScrollDirection.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\Utility.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\ValidateDataArgs.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\ValidateDataEventHandler.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\Win32Helper.cs" />
+    <Compile Include="Resco\Controls\AdvancedList\WrapTextData.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resco.Controls.AdvancedList.AdvancedList.bmp" />
+  </ItemGroup>
+  <Import Condition="'$(TargetFrameworkVersion)' == 'v1.0'" Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.v1.targets" />
+  <Import Condition="'$(TargetFrameworkVersion)' == 'v2.0'" Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}">
+        <HostingProcess disable="1" />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

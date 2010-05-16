@@ -1,0 +1,206 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3CA6DA4B-E8E7-4CC4-A0ED-2AE7AB3DC82C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Resco.DetailView.CF2</RootNamespace>
+    <AssemblyName>Resco.DetailView.CF2</AssemblyName>
+    <ProjectTypeGuids>{4D628B5B-2FBC-4AA6-8C16-197242AEB884};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PlatformFamilyName>PocketPC</PlatformFamilyName>
+    <PlatformID>4118C335-430C-497f-BE48-11C3316B135E</PlatformID>
+    <OSVersion>5.01</OSVersion>
+    <DeployDirSuffix>Resco.DetailView.CF2</DeployDirSuffix>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FormFactorID>
+    </FormFactorID>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;$(PlatformFamilyName)</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <FileAlignment>512</FileAlignment>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;$(PlatformFamilyName)</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <FileAlignment>512</FileAlignment>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Global.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resco\Controls\DetailView\BackBufferManager.cs" />
+    <Compile Include="Resco\Controls\DetailView\ContextMenuSupport.cs" />
+    <Compile Include="Resco\Controls\DetailView\DateTimePickerFormat.cs" />
+    <Compile Include="Resco\Controls\DetailView\Design\BrowsableAttribute.cs" />
+    <Compile Include="Resco\Controls\DetailView\Design\CustomPropertyDescriptor.cs" />
+    <Compile Include="Resco\Controls\DetailView\Design\DesignerSerializationVisibility.cs" />
+    <Compile Include="Resco\Controls\DetailView\Design\DesignerSerializationVisibilityAttribute.cs" />
+    <Compile Include="Resco\Controls\DetailView\Design\DVXmlSerializer.cs" />
+    <Compile Include="Resco\Controls\DetailView\Design\ReflectionHelper.cs" />
+    <Compile Include="Resco\Controls\DetailView\DetailView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\DetailView\DetailViewEventArgsType.cs" />
+    <Compile Include="Resco\Controls\DetailView\DetailViewEventHandler.cs" />
+    <Compile Include="Resco\Controls\DetailView\DetailViewInternal\ComboBoxEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\DetailView\DetailViewInternal\DateTimePickerEx.cs" />
+    <Compile Include="Resco\Controls\DetailView\DetailViewInternal\DateTimePickerInterface.cs" />
+    <Compile Include="Resco\Controls\DetailView\DetailViewInternal\Day.cs" />
+    <Compile Include="Resco\Controls\DetailView\DetailViewInternal\Imports.cs" />
+    <Compile Include="Resco\Controls\DetailView\DetailViewInternal\LeftRightAligment.cs" />
+    <Compile Include="Resco\Controls\DetailView\DetailViewInternal\ListBoxEx.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\DetailView\DetailViewInternal\MonthCalendarEx.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\DetailView\DetailViewInternal\TextBoxEx.cs" />
+    <Compile Include="Resco\Controls\DetailView\DetailViewInternal\TextPart.cs" />
+    <Compile Include="Resco\Controls\DetailView\DetailViewItems.cs" />
+    <Compile Include="Resco\Controls\DetailView\DVComboBox.cs" />
+    <Compile Include="Resco\Controls\DetailView\DVConversion.cs" />
+    <Compile Include="Resco\Controls\DetailView\DVDateTimePicker.cs" />
+    <Compile Include="Resco\Controls\DetailView\DVMaskedTextBox.cs" />
+    <Compile Include="Resco\Controls\DetailView\DVTextBox.cs" />
+    <Compile Include="Resco\Controls\DetailView\DVTouchDateTimePicker.cs" />
+    <Compile Include="Resco\Controls\DetailView\ErrorBackground.cs" />
+    <Compile Include="Resco\Controls\DetailView\FillDirection.cs" />
+    <Compile Include="Resco\Controls\DetailView\GradientColor.cs" />
+    <Compile Include="Resco\Controls\DetailView\GradientFill.cs" />
+    <Compile Include="Resco\Controls\DetailView\Item.cs" />
+    <Compile Include="Resco\Controls\DetailView\ItemAdvancedComboBox.cs" />
+    <Compile Include="Resco\Controls\DetailView\ItemBorder.cs" />
+    <Compile Include="Resco\Controls\DetailView\ItemCheckBox.cs" />
+    <Compile Include="Resco\Controls\DetailView\ItemComboBox.cs" />
+    <Compile Include="Resco\Controls\DetailView\ItemDateTime.cs" />
+    <Compile Include="Resco\Controls\DetailView\ItemEventArgs.cs" />
+    <Compile Include="Resco\Controls\DetailView\ItemEventHandler.cs" />
+    <Compile Include="Resco\Controls\DetailView\ItemLink.cs" />
+    <Compile Include="Resco\Controls\DetailView\ItemMaskedTextBox.cs" />
+    <Compile Include="Resco\Controls\DetailView\ItemNumeric.cs" />
+    <Compile Include="Resco\Controls\DetailView\ItemPageBreak.cs" />
+    <Compile Include="Resco\Controls\DetailView\ItemTextBox.cs" />
+    <Compile Include="Resco\Controls\DetailView\ItemTimeSpan.cs" />
+    <Compile Include="Resco\Controls\DetailView\ItemTouchDateTime.cs" />
+    <Compile Include="Resco\Controls\DetailView\ItemTouchTimeSpan.cs" />
+    <Compile Include="Resco\Controls\DetailView\ItemValidatingEventHandler.cs" />
+    <Compile Include="Resco\Controls\DetailView\Page.cs" />
+    <Compile Include="Resco\Controls\DetailView\PageChangeEventArgs.cs" />
+    <Compile Include="Resco\Controls\DetailView\PageChangingEventHandler.cs" />
+    <Compile Include="Resco\Controls\DetailView\PageCollection.cs" />
+    <Compile Include="Resco\Controls\DetailView\PageEnumerator.cs" />
+    <Compile Include="Resco\Controls\DetailView\RescoArrowStyle.cs" />
+    <Compile Include="Resco\Controls\DetailView\RescoCheckBoxLocation.cs" />
+    <Compile Include="Resco\Controls\DetailView\RescoComboBoxStyle.cs" />
+    <Compile Include="Resco\Controls\DetailView\RescoDateTimePickerStyle.cs" />
+    <Compile Include="Resco\Controls\DetailView\RescoItemStyle.cs" />
+    <Compile Include="Resco\Controls\DetailView\RescoLicenseMessage.cs" />
+    <Compile Include="Resco\Controls\DetailView\RescoLinkLocation.cs" />
+    <Compile Include="Resco\Controls\DetailView\RescoPageNumberStyle.cs" />
+    <Compile Include="Resco\Controls\DetailView\RescoPagesLocation.cs" />
+    <Compile Include="Resco\Controls\DetailView\RescoPageStyle.cs" />
+    <Compile Include="Resco\Controls\DetailView\RoundedCornerStyles.cs" />
+    <Compile Include="Resco\Controls\DetailView\ScrollbarWrapper.cs" />
+    <Compile Include="Resco\Controls\DetailView\ScrollOrientation.cs" />
+    <Compile Include="Resco\Controls\DetailView\ToolTip.cs" />
+    <Compile Include="Resco\Controls\DetailView\TouchGesture.cs" />
+    <Compile Include="Resco\Controls\DetailView\TouchGestureEventArgs.cs" />
+    <Compile Include="Resco\Controls\DetailView\TouchGestureEventHandler.cs" />
+    <Compile Include="Resco\Controls\DetailView\TouchGestureType.cs" />
+    <Compile Include="Resco\Controls\DetailView\TouchScrollDirection.cs" />
+    <Compile Include="Resco\Controls\DetailView\ValidatingEventArgs.cs" />
+    <Compile Include="Resco\Controls\DetailView\VerticalAlignment.cs" />
+    <Compile Include="Resco\Controls\DetailView\Win32Helper.cs" />
+    <Compile Include="Resco\Controls\MaskedTextBox\MaskedTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\MaskedTextBox\MaskedTextProvider.cs" />
+    <Compile Include="Resco\Controls\MaskedTextBox\MaskFormat.cs" />
+    <Compile Include="Resco\Controls\MaskedTextBox\MaskInputRejectedEventArgs.cs" />
+    <Compile Include="Resco\Controls\MaskedTextBox\MaskInputRejectedEventHandler.cs" />
+    <Compile Include="Resco\Controls\MaskedTextBox\TypeValidationEventArgs.cs" />
+    <Compile Include="Resco\Controls\MaskedTextBox\TypeValidationEventHandler.cs" />
+    <Compile Include="Resco\Controls\NumericUpDown\AdornmentType.cs" />
+    <Compile Include="Resco\Controls\NumericUpDown\NumericUpDown.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\NumericUpDown\RescoBorderStyle.cs" />
+    <Compile Include="Resco\Controls\NumericUpDown\SpinButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\NumericUpDown\SpinChangedEventArgs.cs" />
+    <Compile Include="Resco\Controls\NumericUpDown\SpinChangedEventHandler.cs" />
+    <Compile Include="Resco\Controls\NumericUpDown\UpDownAlignment.cs" />
+    <Compile Include="Resco\Controls\NumericUpDown\UpDownStyle.cs" />
+    <Compile Include="Resco\Controls\NumericUpDown\Utility\Utility.cs" />
+    <Compile Include="Resco\Controls\NumericUpDown\VisualStyle.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resco.Controls.DetailView.Bitmaps.cb_check.bmp" />
+    <Content Include="Resco.Controls.DetailView.Bitmaps.cb_null.bmp" />
+    <Content Include="Resco.Controls.DetailView.Bitmaps.d_down1.gif" />
+    <Content Include="Resco.Controls.DetailView.Bitmaps.d_left1.gif" />
+    <Content Include="Resco.Controls.DetailView.Bitmaps.d_right1.gif" />
+    <Content Include="Resco.Controls.DetailView.Bitmaps.d_up1.gif" />
+    <Content Include="Resco.Controls.DetailView.Bitmaps.e_down1.gif" />
+    <Content Include="Resco.Controls.DetailView.Bitmaps.e_left1.gif" />
+    <Content Include="Resco.Controls.DetailView.Bitmaps.e_right1.gif" />
+    <Content Include="Resco.Controls.DetailView.Bitmaps.e_up1.gif" />
+    <Content Include="Resco.Controls.DetailView.Bitmaps.tc_down.gif" />
+    <Content Include="Resco.Controls.DetailView.Bitmaps.tc_left.gif" />
+    <Content Include="Resco.Controls.DetailView.Bitmaps.tc_right.gif" />
+    <Content Include="Resco.Controls.DetailView.Bitmaps.tc_up.gif" />
+    <Content Include="Resco.Controls.DetailView.Bitmaps.tu_down.gif" />
+    <Content Include="Resco.Controls.DetailView.Bitmaps.tu_left.gif" />
+    <Content Include="Resco.Controls.DetailView.Bitmaps.tu_right.gif" />
+    <Content Include="Resco.Controls.DetailView.Bitmaps.tu_up.gif" />
+    <Content Include="Resco.Controls.DetailView.DetailView.bmp" />
+    <Content Include="Resco.Controls.MaskedTextBox.MaskedTextBox.bmp" />
+    <Content Include="Resco.Controls.NumericUpDown.NumericUpDown.bmp" />
+    <Content Include="Resco.Controls.NumericUpDown.SpinButton.bmp" />
+  </ItemGroup>
+  <Import Condition="'$(TargetFrameworkVersion)' == 'v1.0'" Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.v1.targets" />
+  <Import Condition="'$(TargetFrameworkVersion)' == 'v2.0'" Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}">
+        <HostingProcess disable="1" />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,234 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C5217087-A59F-4CCB-83E8-8C82379F2F0B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Resco.OutlookControls.CF2</RootNamespace>
+    <AssemblyName>Resco.OutlookControls.CF2</AssemblyName>
+    <ProjectTypeGuids>{4D628B5B-2FBC-4AA6-8C16-197242AEB884};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PlatformFamilyName>PocketPC</PlatformFamilyName>
+    <PlatformID>4118C335-430C-497f-BE48-11C3316B135E</PlatformID>
+    <OSVersion>5.01</OSVersion>
+    <DeployDirSuffix>Resco.OutlookControls.CF2</DeployDirSuffix>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FormFactorID>
+    </FormFactorID>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;$(PlatformFamilyName)</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <FileAlignment>512</FileAlignment>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;$(PlatformFamilyName)</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <FileAlignment>512</FileAlignment>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\AbstractRenderer.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\Alignment.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\AllDayListbox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\OutlookControls\AllDayListboxItem.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\BoldedDateType.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\BoldedDayCellEventArgs.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\BottomBarButton.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\ButtonType.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\CalendarLayout.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\Const.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\ContentsChangedEventArgs.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\ContentsChangedType.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\ControlBottomBar.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\ControlToolTip.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\OutlookControls\ConvertToGrayscaleInBackgrnd.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\CustomAppointment.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\CustomizeBoldedDayCellHandler.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\CustomizeDayCellHandler.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\CustomizeTooltipHandler.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\DateClickedEventArgs.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\DateClickedHandler.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\DateTimePickerFormat.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\DateTimePickerRow.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\Day.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\DayCell.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\DayCellCollection.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\DayCellEventArgs.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\DrawAppointmentEventHandler.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\DrawDayHeaderEventArgs.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\DrawDayHeaderEventHandler.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\DrawEventArgs.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\DrawingHelper.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\DrawTool.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\FillDirection.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\GestureDetectedHandler.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\GestureEventArgs.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\GetThumbnail.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\GradientColor.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\GradientFill.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\Group.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\GroupsCollection.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\GroupStyle.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\ImageButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\OutlookControls\InkBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\OutlookControls\InsertCompleteEventHandler.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\InsertEventArgs.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\InsertEventHandler.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\IParentControl.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\ITool.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\Layout.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\LeftRightAligment.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\ListBoxEx.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\OutlookControls\MonthChangeAfterEventArgs.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\MonthChangeAfterEventHandler.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\MonthChangeBeforeEventArgs.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\MonthChangeBeforeEventHandler.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\MonthLayout.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\MouseUtils.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\NavigatorInterval.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\Office11Renderer.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\OSBConversion.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\OutlookDateTimePicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\OutlookControls\OutlookDateTimePickerStyle.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\OutlookDateTimePickerTodayEventArgs.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\OutlookDateTimePickerTodayEventHandler.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\OutlookMonthCalendar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\OutlookControls\OutlookShortcutBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\OutlookControls\OutlookWeekCalendar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\OutlookControls\PredefinedRollers.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\RefreshRequiredEventHandler.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\RemoveCompleteEventHandler.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\RemoveEventArgs.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\RemoveEventHandler.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\RescoLicenseMessage.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\ResolveAppointmentsEventArgs.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\ResolveAppointmentsEventHandler.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\Roller.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\RollerItemCollection.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\RollerItemEventArgs.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\RollerType.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\SelectedIndexChangedEventArgs.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\SelectedIndexChangedEventHandler.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\SelectionChangedEventHandler.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\SelectionEventArgs.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\SelectionType.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\SetCompleteEventHandler.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\SetEventArgs.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\SetEventHandler.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\Shortcut.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\ShortcutsCollection.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\ShowLocation.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\TextAlignment.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\TextPart.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\TextStyle.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\ToolTip.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\OutlookControls\TooltipEventArgs.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\ToolTipInternal.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\OutlookControls\ToolTipStyle.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\TouchDateTimePicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\OutlookControls\TouchDTPRenderer.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\TouchDtpRollerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\OutlookControls\TouchNavigatorTool.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\TouchTool.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\ViewStyle.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\Win32Helper.cs" />
+    <Compile Include="Resco\Controls\OutlookControls\ZoomPercent.cs" />
+    <Compile Include="TestUtils\Tester.cs" />
+    <Compile Include="TouchScrolling\OsbTouchTool.cs" />
+    <Compile Include="TouchScrolling\TouchTool.cs" />
+    <Compile Include="Utils\Tester.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resco.Controls.OutlookControls.AllDayListbox.resources" />
+    <EmbeddedResource Include="Resco.Controls.OutlookControls.ControlBottomBar.resources" />
+    <EmbeddedResource Include="Resco.Controls.OutlookControls.ImageButton.resources" />
+    <EmbeddedResource Include="Resco.Controls.OutlookControls.InkBox.resources" />
+    <EmbeddedResource Include="Resco.Controls.OutlookControls.OutlookWeekCalendar.resources" />
+    <EmbeddedResource Include="Resco.Controls.OutlookControls.ToolTipInternal.resources" />
+    <EmbeddedResource Include="Resco.Controls.OutlookControls.TouchDtpRollerControl.resources" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resco.Controls.OutlookControls.ImageButton.bmp" />
+    <Content Include="Resco.Controls.OutlookControls.Images.Next.gif" />
+    <Content Include="Resco.Controls.OutlookControls.Images.Next_vga.gif" />
+    <Content Include="Resco.Controls.OutlookControls.Images.Prev.gif" />
+    <Content Include="Resco.Controls.OutlookControls.Images.Prev_vga.gif" />
+    <Content Include="Resco.Controls.OutlookControls.Images.Today.gif" />
+    <Content Include="Resco.Controls.OutlookControls.Images.Today_vga.gif" />
+    <Content Include="Resco.Controls.OutlookControls.InkBox.bmp" />
+    <Content Include="Resco.Controls.OutlookControls.OutlookDateTimePicker.bmp" />
+    <Content Include="Resco.Controls.OutlookControls.OutlookMonthCalendar.bmp" />
+    <Content Include="Resco.Controls.OutlookControls.OutlookShortcutBar.bmp" />
+    <Content Include="Resco.Controls.OutlookControls.OutlookWeekCalendar.bmp" />
+    <Content Include="Resco.Controls.OutlookControls.ToolTip.bmp" />
+    <Content Include="Resco.Controls.OutlookControls.TouchDateTimePicker.bmp" />
+  </ItemGroup>
+  <Import Condition="'$(TargetFrameworkVersion)' == 'v1.0'" Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.v1.targets" />
+  <Import Condition="'$(TargetFrameworkVersion)' == 'v2.0'" Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}">
+        <HostingProcess disable="1" />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
