@@ -24,7 +24,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-//#include <errno.h>
+//#include <glib_errno.h>
 
 #include "glib.h"
 #include "glibintl.h"
@@ -559,13 +559,13 @@ unescape_text_state_after_charref_hash (UnescapeContext *ucontext,
           gulong l;
           gchar *end = NULL;
                     
-          errno = 0;
+          glib_errno = 0;
           if (is_hex)
             l = strtoul (start, &end, 16);
           else
             l = strtoul (start, &end, 10);
 
-          if (end != p || errno != 0)
+          if (end != p || glib_errno != 0)
             {
               set_unescape_error (ucontext->context, error,
                                   start, ucontext->text_end,

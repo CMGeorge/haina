@@ -767,8 +767,8 @@ extern __typeof (g_build_path) g_build_path __attribute((alias("IA__g_build_path
 #undef g_build_pathv 
 extern __typeof (g_build_pathv) g_build_pathv __attribute((alias("IA__g_build_pathv"), visibility("default")));
 
-#undef g_file_error_from_errno 
-extern __typeof (g_file_error_from_errno) g_file_error_from_errno __attribute((alias("IA__g_file_error_from_errno"), visibility("default")));
+#undef g_file_error_from_glib_errno 
+extern __typeof (g_file_error_from_glib_errno) g_file_error_from_glib_errno __attribute((alias("IA__g_file_error_from_glib_errno"), visibility("default")));
 
 #undef g_file_error_quark 
 extern __typeof (g_file_error_quark) g_file_error_quark __attribute((alias("IA__g_file_error_quark"), visibility("default")));
@@ -952,8 +952,8 @@ extern __typeof (g_io_add_watch_full) g_io_add_watch_full __attribute((alias("IA
 #undef g_io_create_watch 
 extern __typeof (g_io_create_watch) g_io_create_watch __attribute((alias("IA__g_io_create_watch"), visibility("default")));
 
-#undef g_io_channel_error_from_errno 
-extern __typeof (g_io_channel_error_from_errno) g_io_channel_error_from_errno __attribute((alias("IA__g_io_channel_error_from_errno"), visibility("default")));
+#undef g_io_channel_error_from_glib_errno 
+extern __typeof (g_io_channel_error_from_glib_errno) g_io_channel_error_from_glib_errno __attribute((alias("IA__g_io_channel_error_from_glib_errno"), visibility("default")));
 
 #undef g_io_channel_error_quark 
 extern __typeof (g_io_channel_error_quark) g_io_channel_error_quark __attribute((alias("IA__g_io_channel_error_quark"), visibility("default")));

@@ -51,7 +51,7 @@ typedef enum
 
 typedef enum
 {
-  /* Derived from errno */
+  /* Derived from glib_errno */
   G_IO_CHANNEL_ERROR_FBIG,
   G_IO_CHANNEL_ERROR_INVAL,
   G_IO_CHANNEL_ERROR_IO,
@@ -271,7 +271,7 @@ GIOChannel* g_io_channel_new_file         (const gchar  *filename,
 /* Error handling */
 
 GQuark          g_io_channel_error_quark      (void);
-GIOChannelError g_io_channel_error_from_errno (gint en);
+GIOChannelError g_io_channel_error_from_glib_errno (gint en);
 
 /* On Unix, IO channels created with this function for any file
  * descriptor or socket.

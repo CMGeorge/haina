@@ -37,7 +37,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <locale.h>
-//#include <errno.h>
+//#include <glib_errno.h>
 #include <ctype.h>		/* For tolower() */
 #if !defined (HAVE_STRSIGNAL) || !defined(NO_SYS_SIGLIST_DECL)
 //#include <signal.h>
@@ -53,7 +53,7 @@
 #include <windows.h>
 #endif
 
-int errno = 0; // scott
+int glib_errno = 0; // scott
 /* do not include <unistd.h> in this place since it
  * interferes with g_strsignal() on some OSes
  */
@@ -318,10 +318,10 @@ g_strtod (const gchar *nptr,
  *
  * If the correct value would cause overflow, plus or minus %HUGE_VAL
  * is returned (according to the sign of the value), and %ERANGE is
- * stored in %errno. If the correct value would cause underflow,
- * zero is returned and %ERANGE is stored in %errno.
+ * stored in %glib_errno. If the correct value would cause underflow,
+ * zero is returned and %ERANGE is stored in %glib_errno.
  * 
- * This function resets %errno before calling strtod() so that
+ * This function resets %glib_errno before calling strtod() so that
  * you can reliably detect overflow and underflow.
  *
  * Return value: the #gdouble value.
@@ -337,7 +337,7 @@ g_ascii_strtod (const gchar *nptr,
   int decimal_point_len;
   const char *p, *decimal_point_pos;
   const char *end = NULL; /* Silence gcc */
-  int strtod_errno;
+  int strtod_glib_errno;
 
   g_return_val_if_fail (nptr != NULL, 0);
 
@@ -427,9 +427,9 @@ g_ascii_strtod (const gchar *nptr,
       c += end - (decimal_point_pos + 1);
       *c = 0;
 
-      errno = 0;
+      glib_errno = 0;
       val = strtod (copy, &fail_pos);
-      strtod_errno = errno;
+      strtod_glib_errno = glib_errno;
 
       if (fail_pos)
 	{
@@ -450,9 +450,9 @@ g_ascii_strtod (const gchar *nptr,
       memcpy (copy, nptr, end - nptr);
       *(copy + (end - (char *)nptr)) = 0;
       
-      errno = 0;
+      glib_errno = 0;
       val = strtod (copy, &fail_pos);
-      strtod_errno = errno;
+      strtod_glib_errno = glib_errno;
 
       if (fail_pos)
 	{
@@ -463,15 +463,15 @@ g_ascii_strtod (const gchar *nptr,
     }
   else
     {
-      errno = 0;
+      glib_errno = 0;
       val = strtod (nptr, &fail_pos);
-      strtod_errno = errno;
+      strtod_glib_errno = glib_errno;
     }
 
   if (endptr)
     *endptr = fail_pos;
 
-  errno = strtod_errno;
+  glib_errno = strtod_glib_errno;
 
   return val;
 }
@@ -625,7 +625,7 @@ g_parse_long_long (const gchar *nptr,
   
   if (base == 1 || base > 36)
     {
-      errno = EINVAL;
+      glib_errno = EINVAL;
       return 0;
     }
   
@@ -701,7 +701,7 @@ g_parse_long_long (const gchar *nptr,
   
   if (G_UNLIKELY (overflow))
     {
-      errno = ERANGE;
+      glib_errno = ERANGE;
       return G_MAXUINT64;
     }
 
@@ -743,9 +743,9 @@ g_parse_long_long (const gchar *nptr,
  * locale-sensitive system strtoull() function.
  *
  * If the correct value would cause overflow, %G_MAXUINT64
- * is returned, and %ERANGE is stored in %errno.  If the base is
+ * is returned, and %ERANGE is stored in %glib_errno.  If the base is
  * outside the valid range, zero is returned, and %EINVAL is stored
- * in %errno.  If the string conversion fails, zero is returned, and
+ * in %glib_errno.  If the string conversion fails, zero is returned, and
  * @endptr returns @nptr (if @endptr is non-%NULL).
  *
  * Return value: the #guint64 value or zero on error.
@@ -785,9 +785,9 @@ g_ascii_strtoull (const gchar *nptr,
  * locale-sensitive system strtoll() function.
  *
  * If the correct value would cause overflow, %G_MAXINT64 or %G_MININT64
- * is returned, and %ERANGE is stored in %errno.  If the base is
+ * is returned, and %ERANGE is stored in %glib_errno.  If the base is
  * outside the valid range, zero is returned, and %EINVAL is stored
- * in %errno.  If the string conversion fails, zero is returned, and
+ * in %glib_errno.  If the string conversion fails, zero is returned, and
  * @endptr returns @nptr (if @endptr is non-%NULL).
  *
  * Return value: the #gint64 value or zero on error.
@@ -806,12 +806,12 @@ g_ascii_strtoll (const gchar *nptr,
 
   if (negative && result > (guint64) G_MININT64)
     {
-      errno = ERANGE;
+      glib_errno = ERANGE;
       return G_MININT64;
     }
   else if (!negative && result > (guint64) G_MAXINT64)
     {
-      errno = ERANGE;
+      glib_errno = ERANGE;
       return G_MAXINT64;
     }
   else if (negative)
@@ -825,7 +825,7 @@ g_strerror (gint errnum)
 {
   static GStaticPrivate msg_private = G_STATIC_PRIVATE_INIT;
   char *msg;
-  int saved_errno = errno;
+  int saved_glib_errno = glib_errno;
 
 #ifdef HAVE_STRERROR
   const char *msg_locale;
@@ -833,7 +833,7 @@ g_strerror (gint errnum)
   msg_locale = strerror (errnum);
   if (g_get_charset (NULL))
     {
-      errno = saved_errno;
+      glib_errno = saved_glib_errno;
       return msg_locale;
     }
   else
@@ -847,7 +847,7 @@ g_strerror (gint errnum)
 	  g_free (msg_utf8);
 	  
 	  msg_utf8 = (gchar *) g_quark_to_string (msg_quark);
-	  errno = saved_errno;
+	  glib_errno = saved_glib_errno;
 	  return msg_utf8;
 	}
     }
@@ -1283,7 +1283,7 @@ g_strerror (gint errnum)
 
   _g_sprintf (msg, "unknown error (%d)", errnum);
 
-  errno = saved_errno;
+  glib_errno = saved_glib_errno;
   return msg;
 }
 

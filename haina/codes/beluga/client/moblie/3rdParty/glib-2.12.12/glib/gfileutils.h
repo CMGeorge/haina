@@ -71,7 +71,7 @@ typedef enum
 
 GQuark     g_file_error_quark      (void);
 /* So other code can generate a GFileError */
-GFileError g_file_error_from_errno (gint err_no);
+GFileError g_file_error_from_glib_errno (gint err_no);
 
 #ifdef G_OS_WIN32
 #define g_file_test g_file_test_utf8

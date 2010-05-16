@@ -29,7 +29,7 @@
 
 #include <string.h>
 #include <stdlib.h>
-//#include <errno.h>
+//#include <glib_errno.h>
 
 #define TRANSLATE(group, str) (((group)->translate_func ? (* (group)->translate_func) ((str), (group)->translate_data) : (str)))
 
@@ -734,7 +734,7 @@ parse_int (const gchar *arg_name,
   gchar *end;
   glong tmp;
 
-  errno = 0;
+  glib_errno = 0;
   tmp = strtol (arg, &end, 0);
   
   if (*arg == '\0' || *end != '\0')
@@ -747,7 +747,7 @@ parse_int (const gchar *arg_name,
     }
 
   *result = tmp;
-  if (*result != tmp || errno == ERANGE)
+  if (*result != tmp || glib_errno == ERANGE)
     {
       g_set_error (error,
 		   G_OPTION_ERROR, G_OPTION_ERROR_BAD_VALUE,
@@ -769,7 +769,7 @@ parse_double (const gchar *arg_name,
   gchar *end;
   gdouble tmp;
 
-  errno = 0;
+  glib_errno = 0;
   tmp = g_strtod (arg, &end);
   
   if (*arg == '\0' || *end != '\0')
@@ -780,7 +780,7 @@ parse_double (const gchar *arg_name,
 		   arg, arg_name);
       return FALSE;
     }
-  if (errno == ERANGE)
+  if (glib_errno == ERANGE)
     {
       g_set_error (error,
 		   G_OPTION_ERROR, G_OPTION_ERROR_BAD_VALUE,
@@ -804,7 +804,7 @@ parse_int64 (const gchar *arg_name,
   gchar *end;
   gint64 tmp;
 
-  errno = 0;
+  glib_errno = 0;
   tmp = g_ascii_strtoll (arg, &end, 0);
 
   if (*arg == '\0' || *end != '\0')
@@ -815,7 +815,7 @@ parse_int64 (const gchar *arg_name,
 		   arg, arg_name);
       return FALSE;
     }
-  if (errno == ERANGE)
+  if (glib_errno == ERANGE)
     {
       g_set_error (error,
 		   G_OPTION_ERROR, G_OPTION_ERROR_BAD_VALUE,

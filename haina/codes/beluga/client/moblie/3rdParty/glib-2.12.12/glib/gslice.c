@@ -29,7 +29,7 @@
 #endif
 #include <stdlib.h>             /* posix_memalign() */
 #include <string.h>
-//#include <errno.h>
+//#include <glib_errno.h>
 #include "gmem.h"               /* gslice.h */
 #include "gthreadprivate.h"
 #include "glib.h"
@@ -940,7 +940,7 @@ allocator_add_slab (Allocator *allocator,
     {
       const gchar *syserr = "unknown error";
 #if HAVE_STRERROR
-      syserr = strerror (errno);
+      syserr = strerror (glib_errno);
 #endif
       mem_error ("failed to allocate %u bytes (alignment: %u): %s\n",
                  (guint) (page_size - NATIVE_MALLOC_PADDING), (guint) page_size, syserr);
@@ -1064,13 +1064,13 @@ allocator_memalign (gsize alignment,
 #if     HAVE_COMPLIANT_POSIX_MEMALIGN
   err = posix_memalign (&aligned_memory, alignment, memsize);
 #elif   HAVE_MEMALIGN
-  errno = 0;
+  glib_errno = 0;
   aligned_memory = memalign (alignment, memsize);
-  err = errno;
+  err = glib_errno;
 #elif   HAVE_VALLOC
-  errno = 0;
+  glib_errno = 0;
   aligned_memory = valloc (memsize);
-  err = errno;
+  err = glib_errno;
 #else
   /* simplistic non-freeing page allocator */
   mem_assert (alignment == sys_page_size);
@@ -1079,7 +1079,7 @@ allocator_memalign (gsize alignment,
     {
       const guint n_pages = 16;
       guint8 *mem = malloc (n_pages * sys_page_size);
-      err = errno;
+      err = glib_errno;
       if (mem)
         {
           gint i = n_pages;
@@ -1093,7 +1093,7 @@ allocator_memalign (gsize alignment,
   aligned_memory = g_trash_stack_pop (&compat_valloc_trash);
 #endif
   if (!aligned_memory)
-    errno = err;
+    glib_errno = err;
   return aligned_memory;
 }
 

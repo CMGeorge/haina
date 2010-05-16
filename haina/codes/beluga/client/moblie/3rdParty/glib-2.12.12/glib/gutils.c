@@ -39,7 +39,7 @@
 #include <locale.h>
 #include <string.h>
 #include <ctype.h>		/* For tolower() */
-//#include <errno.h>
+//#include <glib_errno.h>
 #ifdef HAVE_PWD_H
 #include <pwd.h>
 #endif
@@ -260,21 +260,21 @@ g_atexit (GVoidFunc func)
 #ifdef	G_NATIVE_ATEXIT
   result = ATEXIT (func);
   if (result)
-    error = g_strerror (errno);
+    error = g_strerror (glib_errno);
 #elif defined (HAVE_ATEXIT)
 #  ifdef NeXT /* @#%@! NeXTStep */
   result = !atexit ((void (*)(void)) func);
   if (result)
-    error = g_strerror (errno);
+    error = g_strerror (glib_errno);
 #  else
   result = atexit ((void (*)(void)) func);
   if (result)
-    error = g_strerror (errno);
+    error = g_strerror (glib_errno);
 #  endif /* NeXT */
 #elif defined (HAVE_ON_EXIT)
   result = on_exit ((void (*)(int, void *)) func, NULL);
   if (result)
-    error = g_strerror (errno);
+    error = g_strerror (glib_errno);
 #else
   result = 0;
   error = "no implementation";

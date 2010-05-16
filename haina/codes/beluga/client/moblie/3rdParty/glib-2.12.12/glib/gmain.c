@@ -60,7 +60,7 @@
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif /* HAVE_UNISTD_H */
-//#include <errno.h>
+//#include <glib_errno.h>
 
 #ifdef G_OS_WIN32
 #define STRICT
@@ -498,7 +498,7 @@ g_main_context_init_pipe (GMainContext *context)
     return;
   if (pipe (context->wake_up_pipe) < 0)
     g_error ("Cannot create pipe main loop wake-up: %s\n",
-	     g_strerror (errno));
+	     g_strerror (glib_errno));
   
   context->wake_up_rec.fd = context->wake_up_pipe[0];
   context->wake_up_rec.events = G_IO_IN;
@@ -2801,11 +2801,11 @@ g_main_context_poll (GMainContext *context,
       poll_func = context->poll_func;
       
       UNLOCK_CONTEXT (context);
-      if ((*poll_func) (fds, n_fds, timeout) < 0 && errno != EINTR)
+      if ((*poll_func) (fds, n_fds, timeout) < 0 && glib_errno != EINTR)
 	{
 #ifndef G_OS_WIN32
 	  g_warning ("poll(2) failed due to: %s.",
-		     g_strerror (errno));
+		     g_strerror (glib_errno));
 #else
 	  /* If g_poll () returns -1, it has already called g_warning() */
 #endif
@@ -3556,7 +3556,7 @@ g_child_watch_source_init_multi_threaded (void)
   g_assert (g_thread_supported());
 
   if (pipe (child_watch_wake_up_pipe) < 0)
-    g_error ("Cannot create wake up pipe: %s\n", g_strerror (errno));
+    g_error ("Cannot create wake up pipe: %s\n", g_strerror (glib_errno));
   fcntl (child_watch_wake_up_pipe[1], F_SETFL, O_NONBLOCK | fcntl (child_watch_wake_up_pipe[1], F_GETFL));
 
   /* We create a helper thread that polls on the wakeup pipe indefinitely */
