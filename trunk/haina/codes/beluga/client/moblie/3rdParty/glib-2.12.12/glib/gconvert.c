@@ -23,7 +23,7 @@
 #include "config.h"
 
 #include <iconv.h>
-//#include <errno.h>
+//#include <glib_errno.h>
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -63,7 +63,7 @@ try_conversion (const char *to_codeset,
 {
   *cd = iconv_open (to_codeset, from_codeset);
 
-  if (*cd == (iconv_t)-1 && errno == EINVAL)
+  if (*cd == (iconv_t)-1 && glib_errno == EINVAL)
     return FALSE;
   else
     return TRUE;
@@ -418,7 +418,7 @@ open_converter (const gchar *to_codeset,
   /* Something went wrong.  */
   if (error)
     {
-      if (errno == EINVAL)
+      if (glib_errno == EINVAL)
 	g_set_error (error, G_CONVERT_ERROR, G_CONVERT_ERROR_NO_CONVERSION,
 		     _("Conversion from character set '%s' to '%s' is not supported"),
 		     from_codeset, to_codeset);
@@ -496,7 +496,7 @@ open_converter (const gchar *to_codeset,
       /* Something went wrong.  */
       if (error)
 	{
-	  if (errno == EINVAL)
+	  if (glib_errno == EINVAL)
 	    g_set_error (error, G_CONVERT_ERROR, G_CONVERT_ERROR_NO_CONVERSION,
 			 _("Conversion from character set '%s' to '%s' is not supported"),
 			 from_codeset, to_codeset);
@@ -598,7 +598,7 @@ g_convert_with_iconv (const gchar *str,
 
       if (err == (size_t) -1)
 	{
-	  switch (errno)
+	  switch (glib_errno)
 	    {
 	    case EINVAL:
 	     
@@ -625,7 +625,7 @@ g_convert_with_iconv (const gchar *str,
 	      if (error)
 		g_set_error (error, G_CONVERT_ERROR, G_CONVERT_ERROR_FAILED,
 			     _("Error during conversion: %s"),
-			     g_strerror (errno));
+			     g_strerror (glib_errno));
 	      have_error = TRUE;
 	      break;
 	    }
@@ -886,7 +886,7 @@ g_convert_with_fallback (const gchar *str,
 
       if (err == (size_t) -1)
 	{
-	  switch (errno)
+	  switch (glib_errno)
 	    {
 	    case EINVAL:
 	      g_assert_not_reached();
@@ -935,7 +935,7 @@ g_convert_with_fallback (const gchar *str,
 	    default:
 	      g_set_error (error, G_CONVERT_ERROR, G_CONVERT_ERROR_FAILED,
 			   _("Error during conversion: %s"),
-			   g_strerror (errno));
+			   g_strerror (glib_errno));
 	      have_error = TRUE;
 	      break;
 	    }

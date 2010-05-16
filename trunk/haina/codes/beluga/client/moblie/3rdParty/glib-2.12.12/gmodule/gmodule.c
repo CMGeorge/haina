@@ -35,7 +35,7 @@
 #include	"gstdio.h"
 #include	"gmodule.h"
 #include	"gmoduleconf.h"
-//#include	<errno.h>
+//#include	<glib_errno.h>
 #include	<string.h>
 //#include 	<sys/types.h>
 //#include 	<sys/stat.h>
@@ -133,7 +133,7 @@ static inline void
 g_module_set_error_unduped (gchar *error)
 {
   g_static_private_set (&module_error_private, error, g_free);
-  errno = 0;
+  glib_errno = 0;
 }
 
 static inline void
@@ -643,4 +643,4 @@ g_module_build_path (const gchar *directory,
 }
 
 //scott
-int errno=0;
+//int glib_errno=0;

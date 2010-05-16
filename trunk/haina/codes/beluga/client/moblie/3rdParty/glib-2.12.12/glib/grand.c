@@ -39,7 +39,7 @@
 #include "config.h"
 
 #include <math.h>
-//#include <errno.h>
+//#include <glib_errno.h>
 #include <stdio.h>
 #include <string.h>
 //#include <sys/types.h>
@@ -172,10 +172,10 @@ g_rand_new (void)
 
       do
         {
-	  errno = 0;
+	  glib_errno = 0;
 	  dev_urandom = fopen("/dev/urandom", "rb");
 	}
-      while G_UNLIKELY (errno == EINTR);
+      while G_UNLIKELY (glib_errno == EINTR);
 
       if (dev_urandom)
 	{
@@ -183,10 +183,10 @@ g_rand_new (void)
 
 	  do
 	    {
-	      errno = 0;
+	      glib_errno = 0;
 	      r = fread (seed, sizeof (seed), 1, dev_urandom);
 	    }
-	  while G_UNLIKELY (errno == EINTR);
+	  while G_UNLIKELY (glib_errno == EINTR);
 
 	  if (r != 1)
 	    dev_urandom_exists = FALSE;

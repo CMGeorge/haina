@@ -37,7 +37,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <wchar.h>
-//#include <errno.h>
+//#include <glib_errno.h>
 
 #define STRICT			/* Strict typing, please */
 #include <windows.h>
@@ -45,7 +45,7 @@
 #ifndef G_WITH_CYGWIN
 //#include <direct.h>
 #endif
-//#include <errno.h>
+//#include <glib_errno.h>
 #include <ctype.h>
 #if defined(_MSC_VER) || defined(__DMC__)
 //#  include <io.h>

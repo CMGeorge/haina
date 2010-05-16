@@ -39,7 +39,7 @@
 #endif
 //#include <signal.h>
 #include <locale.h>
-//#include <errno.h>
+//#include <glib_errno.h>
 
 #include "glib.h"
 #include "gdebug.h"

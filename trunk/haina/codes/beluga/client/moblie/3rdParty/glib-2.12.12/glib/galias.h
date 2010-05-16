@@ -764,8 +764,8 @@ extern __typeof (g_build_path) IA__g_build_path __attribute((visibility("hidden"
 extern __typeof (g_build_pathv) IA__g_build_pathv __attribute((visibility("hidden"))) G_GNUC_MALLOC;
 #define g_build_pathv IA__g_build_pathv
 
-extern __typeof (g_file_error_from_errno) IA__g_file_error_from_errno __attribute((visibility("hidden")));
-#define g_file_error_from_errno IA__g_file_error_from_errno
+extern __typeof (g_file_error_from_glib_errno) IA__g_file_error_from_glib_errno __attribute((visibility("hidden")));
+#define g_file_error_from_glib_errno IA__g_file_error_from_glib_errno
 
 extern __typeof (g_file_error_quark) IA__g_file_error_quark __attribute((visibility("hidden")));
 #define g_file_error_quark IA__g_file_error_quark
@@ -949,8 +949,8 @@ extern __typeof (g_io_add_watch_full) IA__g_io_add_watch_full __attribute((visib
 extern __typeof (g_io_create_watch) IA__g_io_create_watch __attribute((visibility("hidden")));
 #define g_io_create_watch IA__g_io_create_watch
 
-extern __typeof (g_io_channel_error_from_errno) IA__g_io_channel_error_from_errno __attribute((visibility("hidden")));
-#define g_io_channel_error_from_errno IA__g_io_channel_error_from_errno
+extern __typeof (g_io_channel_error_from_glib_errno) IA__g_io_channel_error_from_glib_errno __attribute((visibility("hidden")));
+#define g_io_channel_error_from_glib_errno IA__g_io_channel_error_from_glib_errno
 
 extern __typeof (g_io_channel_error_quark) IA__g_io_channel_error_quark __attribute((visibility("hidden")));
 #define g_io_channel_error_quark IA__g_io_channel_error_quark

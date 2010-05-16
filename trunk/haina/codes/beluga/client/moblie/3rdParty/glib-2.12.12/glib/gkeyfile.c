@@ -25,7 +25,7 @@
 
 #include "gkeyfile.h"
 
-//#include <errno.h>
+//#include <glib_errno.h>
 //#include <fcntl.h>
 #include <locale.h>
 #include <string.h>
@@ -447,8 +447,8 @@ g_key_file_load_from_fd (GKeyFile       *key_file,
   if (fstat (fd, &stat_buf) < 0)
     {
       g_set_error (error, G_FILE_ERROR,
-                   g_file_error_from_errno (errno),
-                   "%s", g_strerror (errno));
+                   g_file_error_from_glib_errno (glib_errno),
+                   "%s", g_strerror (glib_errno));
       return FALSE;
     }
 
@@ -485,12 +485,12 @@ g_key_file_load_from_fd (GKeyFile       *key_file,
 
       if (bytes_read < 0)
         {
-          if (errno == EINTR || errno == EAGAIN)
+          if (glib_errno == EINTR || glib_errno == EAGAIN)
             continue;
 
           g_set_error (error, G_FILE_ERROR,
-                       g_file_error_from_errno (errno),
-                       "%s", g_strerror (errno));
+                       g_file_error_from_glib_errno (glib_errno),
+                       "%s", g_strerror (glib_errno));
           return FALSE;
         }
 
@@ -560,12 +560,12 @@ g_key_file_load_from_fd (GKeyFile       *key_file,
 
       if (bytes_read < 0)
         {
-          if (errno == EINTR || errno == EAGAIN)
+          if (glib_errno == EINTR || glib_errno == EAGAIN)
             continue;
 
           g_set_error (error, G_FILE_ERROR,
-                       g_file_error_from_errno (errno),
-                       "%s", g_strerror (errno));
+                       g_file_error_from_glib_errno (glib_errno),
+                       "%s", g_strerror (glib_errno));
           return FALSE;
         }
 
@@ -625,8 +625,8 @@ g_key_file_load_from_file (GKeyFile       *key_file,
   if (fd < 0)
     {
       g_set_error (error, G_FILE_ERROR,
-                   g_file_error_from_errno (errno),
-                   "%s", g_strerror (errno));
+                   g_file_error_from_glib_errno (glib_errno),
+                   "%s", g_strerror (glib_errno));
       return FALSE;
     }
 
@@ -660,8 +660,8 @@ g_key_file_load_from_file (GKeyFile       *key_file,
   if (fd < 0)
     {
       g_set_error (error, G_FILE_ERROR,
-                   g_file_error_from_errno (errno),
-                   "%s", g_strerror (errno));
+                   g_file_error_from_glib_errno (glib_errno),
+                   "%s", g_strerror (glib_errno));
       return FALSE;
     }
 
@@ -3793,7 +3793,7 @@ g_key_file_parse_value_as_integer (GKeyFile     *key_file,
   glong long_value;
   gint int_value;
 
-  errno = 0;
+  glib_errno = 0;
   long_value = strtol (value, &end_of_valid_int, 10);
 
   if (*value == '\0' || *end_of_valid_int != '\0')
@@ -3809,7 +3809,7 @@ g_key_file_parse_value_as_integer (GKeyFile     *key_file,
     }
 
   int_value = long_value;
-  if (int_value != long_value || errno == ERANGE)
+  if (int_value != long_value || glib_errno == ERANGE)
     {
       gchar *value_utf8 = _g_utf8_make_valid (value);
       g_set_error (error,

@@ -30,7 +30,7 @@
 #include <stdlib.h>
 #include <stdarg.h>
 #include <string.h>
-//#include <errno.h>
+//#include <glib_errno.h>
 //#include <sys/types.h>
 //#include <sys/stat.h>
 //#include <fcntl.h>
@@ -66,7 +66,7 @@ static gint create_temp_file (gchar *tmpl,
  * parent directories as needed, too.
  *
  * Returns: 0 if the directory already exists, or was successfully
- * created. Returns -1 if an error occurred, with errno set.
+ * created. Returns -1 if an error occurred, with glib_errno set.
  *
  * Since: 2.8
  */
@@ -78,7 +78,7 @@ g_mkdir_with_parents (const gchar *pathname,
 
   if (pathname == NULL || *pathname == '\0')
     {
-      errno = EINVAL;
+      glib_errno = EINVAL;
       return -1;
     }
 
@@ -103,16 +103,16 @@ g_mkdir_with_parents (const gchar *pathname,
 	{
 	  if (g_mkdir (fn, mode) == -1)
 	    {
-	      int errno_save = errno;
+	      int glib_errno_save = glib_errno;
 	      g_free (fn);
-	      errno = errno_save;
+	      glib_errno = glib_errno_save;
 	      return -1;
 	    }
 	}
       else if (!g_file_test (fn, G_FILE_TEST_IS_DIR))
 	{
 	  g_free (fn);
-	  errno = ENOTDIR;
+	  glib_errno = ENOTDIR;
 	  return -1;
 	}
       if (p)
@@ -365,22 +365,22 @@ g_file_error_quark (void)
 }
 
 /**
- * g_file_error_from_errno:
- * @err_no: an "errno" value
+ * g_file_error_from_glib_errno:
+ * @err_no: an "glib_errno" value
  * 
- * Gets a #GFileError constant based on the passed-in @errno.
+ * Gets a #GFileError constant based on the passed-in @glib_errno.
  * For example, if you pass in %EEXIST this function returns
- * #G_FILE_ERROR_EXIST. Unlike @errno values, you can portably
+ * #G_FILE_ERROR_EXIST. Unlike @glib_errno values, you can portably
  * assume that all #GFileError values will exist.
  *
  * Normally a #GFileError value goes into a #GError returned
  * from a function that manipulates files. So you would use
- * g_file_error_from_errno() when constructing a #GError.
+ * g_file_error_from_glib_errno() when constructing a #GError.
  * 
- * Return value: #GFileError corresponding to the given @errno
+ * Return value: #GFileError corresponding to the given @glib_errno
  **/
 GFileError
-g_file_error_from_errno (gint err_no)
+g_file_error_from_glib_errno (gint err_no)
 {
   switch (err_no)
     {
@@ -552,10 +552,10 @@ get_contents_stdio (const gchar *display_filename,
 
   while (!feof (f))
     {
-      gint save_errno;
+      gint save_glib_errno;
 
       bytes = fread (buf, 1, sizeof (buf), f);
-      save_errno = errno;
+      save_glib_errno = glib_errno;
 
       while ((total_bytes + bytes + 1) > total_allocated)
         {
@@ -585,10 +585,10 @@ get_contents_stdio (const gchar *display_filename,
         {
           g_set_error (error,
                        G_FILE_ERROR,
-                       g_file_error_from_errno (save_errno),
+                       g_file_error_from_glib_errno (save_glib_errno),
                        _("Error reading file '%s': %s"),
                        display_filename,
-		       g_strerror (save_errno));
+		       g_strerror (save_glib_errno));
 
           goto error;
         }
@@ -660,17 +660,17 @@ get_contents_regfile (const gchar *display_filename,
 
       if (rc < 0)
         {
-          if (errno != EINTR) 
+          if (glib_errno != EINTR) 
             {
-	      int save_errno = errno;
+	      int save_glib_errno = glib_errno;
 
               g_free (buf);
               g_set_error (error,
                            G_FILE_ERROR,
-                           g_file_error_from_errno (save_errno),
+                           g_file_error_from_glib_errno (save_glib_errno),
                            _("Failed to read from file '%s': %s"),
                            display_filename, 
-			   g_strerror (save_errno));
+			   g_strerror (save_glib_errno));
 
 	      goto error;
             }
@@ -714,14 +714,14 @@ get_contents_posix (const gchar *filename,
 
   if (fd < 0)
     {
-      int save_errno = errno;
+      int save_glib_errno = glib_errno;
 
       g_set_error (error,
                    G_FILE_ERROR,
-                   g_file_error_from_errno (save_errno),
+                   g_file_error_from_glib_errno (save_glib_errno),
                    _("Failed to open file '%s': %s"),
                    display_filename, 
-		   g_strerror (save_errno));
+		   g_strerror (save_glib_errno));
       g_free (display_filename);
 
       return FALSE;
@@ -730,15 +730,15 @@ get_contents_posix (const gchar *filename,
   /* I don't think this will ever fail, aside from ENOMEM, but. */
   if (fstat (fd, &stat_buf) < 0)
     {
-      int save_errno = errno;
+      int save_glib_errno = glib_errno;
 
       close (fd);
       g_set_error (error,
                    G_FILE_ERROR,
-                   g_file_error_from_errno (save_errno),
+                   g_file_error_from_glib_errno (save_glib_errno),
                    _("Failed to get attributes of file '%s': fstat() failed: %s"),
                    display_filename, 
-		   g_strerror (save_errno));
+		   g_strerror (save_glib_errno));
       g_free (display_filename);
 
       return FALSE;
@@ -765,14 +765,14 @@ get_contents_posix (const gchar *filename,
       
       if (f == NULL)
         {
-	  int save_errno = errno;
+	  int save_glib_errno = glib_errno;
 
           g_set_error (error,
                        G_FILE_ERROR,
-                       g_file_error_from_errno (save_errno),
+                       g_file_error_from_glib_errno (save_glib_errno),
                        _("Failed to open file '%s': fdopen() failed: %s"),
                        display_filename, 
-		       g_strerror (save_errno));
+		       g_strerror (save_glib_errno));
           g_free (display_filename);
 
           return FALSE;
@@ -796,19 +796,19 @@ get_contents_win32 (const gchar *filename,
   FILE *f;
   gboolean retval;
   gchar *display_filename = g_filename_display_name (filename);
-  int save_errno;
+  int save_glib_errno;
   
   f = g_fopen (filename, "rb");
-  save_errno = errno;
+  save_glib_errno = glib_errno;
 
   if (f == NULL)
     {
       g_set_error (error,
                    G_FILE_ERROR,
-                   g_file_error_from_errno (save_errno),
+                   g_file_error_from_glib_errno (save_glib_errno),
                    _("Failed to open file '%s': %s"),
                    display_filename,
-		   g_strerror (save_errno));
+		   g_strerror (save_glib_errno));
       g_free (display_filename);
 
       return FALSE;
@@ -894,20 +894,20 @@ rename_file (const char *old_name,
 	     const char *new_name,
 	     GError **err)
 {
-  errno = 0;
+  glib_errno = 0;
   if (g_rename (old_name, new_name) == -1)
     {
-      int save_errno = errno;
+      int save_glib_errno = glib_errno;
       gchar *display_old_name = g_filename_display_name (old_name);
       gchar *display_new_name = g_filename_display_name (new_name);
 
       g_set_error (err,
 		   G_FILE_ERROR,
-		   g_file_error_from_errno (save_errno),
+		   g_file_error_from_glib_errno (save_glib_errno),
 		   _("Failed to rename file '%s' to '%s': g_rename() failed: %s"),
 		   display_old_name,
 		   display_new_name,
-		   g_strerror (save_errno));
+		   g_strerror (save_glib_errno));
 
       g_free (display_old_name);
       g_free (display_new_name);
@@ -929,39 +929,39 @@ write_to_temp_file (const gchar *contents,
   gchar *retval;
   FILE *file;
   gint fd;
-  int save_errno;
+  int save_glib_errno;
 
   retval = NULL;
   
   tmp_name = g_strdup_printf ("%s.XXXXXX", template);
 
-  errno = 0;
+  glib_errno = 0;
   fd = create_temp_file (tmp_name, 0666);
   display_name = g_filename_display_name (tmp_name);
       
   if (fd < 0)
     {
-      save_errno = errno;
+      save_glib_errno = glib_errno;
       g_set_error (err,
 		   G_FILE_ERROR,
-		   g_file_error_from_errno (save_errno),
+		   g_file_error_from_glib_errno (save_glib_errno),
 		   _("Failed to create file '%s': %s"),
-		   display_name, g_strerror (save_errno));
+		   display_name, g_strerror (save_glib_errno));
       
       goto out;
     }
 
-  errno = 0;
+  glib_errno = 0;
   file =(FILE*)_wfdopen(fd,L"wb");// fdopen (fd, "wb");
   if (!file)
     {
-      save_errno = errno;
+      save_glib_errno = glib_errno;
       g_set_error (err,
 		   G_FILE_ERROR,
-		   g_file_error_from_errno (save_errno),
+		   g_file_error_from_glib_errno (save_glib_errno),
 		   _("Failed to open file '%s' for writing: fdopen() failed: %s"),
 		   display_name,
-		   g_strerror (save_errno));
+		   g_strerror (save_glib_errno));
 
       fclose ( file );
       g_unlink (tmp_name);
@@ -973,20 +973,20 @@ write_to_temp_file (const gchar *contents,
     {
       size_t n_written;
       
-      errno = 0;
+      glib_errno = 0;
 
       n_written = fwrite (contents, 1, length, file);
 
       if (n_written < length)
 	{
-	  save_errno = errno;
+	  save_glib_errno = glib_errno;
       
  	  g_set_error (err,
 		       G_FILE_ERROR,
-		       g_file_error_from_errno (save_errno),
+		       g_file_error_from_glib_errno (save_glib_errno),
 		       _("Failed to write file '%s': fwrite() failed: %s"),
 		       display_name,
-		       g_strerror (save_errno));
+		       g_strerror (save_glib_errno));
 
 	  fclose (file);
 	  g_unlink (tmp_name);
@@ -995,17 +995,17 @@ write_to_temp_file (const gchar *contents,
 	}
     }
    
-  errno = 0;
+  glib_errno = 0;
   if (fclose (file))
     { 
-      save_errno = 0;
+      save_glib_errno = 0;
       
       g_set_error (err,
 		   G_FILE_ERROR,
-		   g_file_error_from_errno (save_errno),
+		   g_file_error_from_glib_errno (save_glib_errno),
 		   _("Failed to close file '%s': fclose() failed: %s"),
 		   display_name, 
-		   g_strerror (save_errno));
+		   g_strerror (save_glib_errno));
 
       g_unlink (tmp_name);
       
@@ -1116,14 +1116,14 @@ g_file_set_contents (const gchar *filename,
 	{
           gchar *display_filename = g_filename_display_name (filename);
 
-	  int save_errno = errno;
+	  int save_glib_errno = glib_errno;
 	  
 	  g_set_error (error,
 		       G_FILE_ERROR,
-		       g_file_error_from_errno (save_errno),
+		       g_file_error_from_glib_errno (save_glib_errno),
 		       _("Existing file '%s' could not be removed: g_unlink() failed: %s"),
 		       display_filename,
-		       g_strerror (save_errno));
+		       g_strerror (save_glib_errno));
 
 	  g_free (display_filename);
 	  g_unlink (tmp_filename);
@@ -1170,7 +1170,7 @@ create_temp_file (gchar *tmpl,
 
   if (!XXXXXX || strncmp (XXXXXX, "XXXXXX", 6))
     {
-      errno = EINVAL;
+      glib_errno = EINVAL;
       return -1;
     }
 
@@ -1200,7 +1200,7 @@ create_temp_file (gchar *tmpl,
 
       if (fd >= 0)
 	return fd;
-      else if (errno != EEXIST)
+      else if (glib_errno != EEXIST)
 	/* Any other error will apply also to other names we might
 	 *  try, and there are 2^32 or so of them, so give up now.
 	 */
@@ -1208,7 +1208,7 @@ create_temp_file (gchar *tmpl,
     }
 
   /* We got out of the loop because we ran out of combinations to try.  */
-  errno = EEXIST;
+  glib_errno = EEXIST;
   return -1;
 }
 
@@ -1262,7 +1262,7 @@ g_mkstemp (gchar *tmpl)
 
   if (!XXXXXX || strcmp (XXXXXX, "XXXXXX"))
     {
-      errno = EINVAL;
+      glib_errno = EINVAL;
       return -1;
     }
 
@@ -1295,7 +1295,7 @@ g_mkstemp (gchar *tmpl)
 
       if (fd >=0)
 	return fd;
-      else if (errno != EEXIST)
+      else if (glib_errno != EEXIST)
 	/* Any other error will apply also to other names we might
 	 *  try, and there are 2^32 or so of them, so give up now.
 	 */
@@ -1303,7 +1303,7 @@ g_mkstemp (gchar *tmpl)
     }
 
   /* We got out of the loop because we ran out of combinations to try.  */
-  errno = EEXIST;
+  glib_errno = EEXIST;
   return -1;
 }
 
@@ -1398,14 +1398,14 @@ g_file_open_tmp (const gchar *tmpl,
 
   if (retval == -1)
     {
-      int save_errno = errno;
+      int save_glib_errno = glib_errno;
       gchar *display_fulltemplate = g_filename_display_name (fulltemplate);
 
       g_set_error (error,
 		   G_FILE_ERROR,
-		   g_file_error_from_errno (save_errno),
+		   g_file_error_from_glib_errno (save_glib_errno),
 		   _("Failed to create file '%s': %s"),
-		   display_fulltemplate, g_strerror (save_errno));
+		   display_fulltemplate, g_strerror (save_glib_errno));
       g_free (display_fulltemplate);
       g_free (fulltemplate);
       return -1;
@@ -1847,16 +1847,16 @@ g_file_read_link (const gchar *filename,
     {
       read_size = readlink (filename, buffer, size);
       if (read_size < 0) {
-	int save_errno = errno;
+	int save_glib_errno = glib_errno;
 	gchar *display_filename = g_filename_display_name (filename);
 
 	g_free (buffer);
 	g_set_error (error,
 		     G_FILE_ERROR,
-		     g_file_error_from_errno (save_errno),
+		     g_file_error_from_glib_errno (save_glib_errno),
 		     _("Failed to read the symbolic link '%s': %s"),
 		     display_filename, 
-		     g_strerror (save_errno));
+		     g_strerror (save_glib_errno));
 	g_free (display_filename);
 	
 	return NULL;

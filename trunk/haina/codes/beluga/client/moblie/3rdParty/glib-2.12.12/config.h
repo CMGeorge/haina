@@ -552,8 +552,9 @@
 #define ACCESS_MODE_READ 4
 #define ACCESS_MODE_READWRITE 6
 
-
+#ifndef S_ISREG
 #define S_ISREG(p) (1)
+#endif
 
 #define FILENAME_MAX	128
 
@@ -562,7 +563,7 @@
 #define abort()	MessageBox (NULL, L"FATAL ERROR ,ABORT()", NULL,MB_ICONERROR|MB_SETFOREGROUND);
 #define getenv(v) ""
 
-extern int errno;
+extern int glib_errno;
 
 #undef write
 

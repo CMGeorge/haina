@@ -33,7 +33,7 @@
 
 #include "config.h"
 
-//#include	<errno.h>
+//#include	<glib_errno.h>
 #include	<stdlib.h>
 #include	<stdarg.h>
 #include	<string.h>
@@ -719,7 +719,7 @@ g_scanner_peek_next_char (GScanner *scanner)
 	  //count = read (scanner->input_fd, buffer, READ_BUFFER_SIZE);
 		count = fread (buffer,1,READ_BUFFER_SIZE, _wfdopen( scanner->input_fd,L"r") );
 	}
-      while (count == -1 && (errno == EINTR || errno == EAGAIN));
+      while (count == -1 && (glib_errno == EINTR || glib_errno == EAGAIN));
 
       if (count < 1)
 	{
@@ -764,7 +764,7 @@ g_scanner_sync_file_offset (GScanner *scanner)
 	  scanner->text_end = NULL;
 	}
       else
-	errno = 0;
+	glib_errno = 0;
     }
 }
 
@@ -788,7 +788,7 @@ g_scanner_get_char (GScanner	*scanner,
 	  //count = read (scanner->input_fd, buffer, READ_BUFFER_SIZE);
 		count = fread (buffer,1,READ_BUFFER_SIZE,_wfdopen(scanner->input_fd,L"r")); // scott
 	}
-      while (count == -1 && (errno == EINTR || errno == EAGAIN));
+      while (count == -1 && (glib_errno == EINTR || glib_errno == EAGAIN));
 
       if (count < 1)
 	{
@@ -1212,7 +1212,7 @@ g_scanner_get_token_i (GScanner	*scanner,
 	value_p->v_float = value_p->v_int;
     }
   
-  errno = 0;
+  glib_errno = 0;
 }
 
 static void

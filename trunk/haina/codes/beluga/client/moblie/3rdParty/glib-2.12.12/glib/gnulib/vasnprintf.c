@@ -36,7 +36,7 @@
 #include <stdio.h>	/* snprintf(), sprintf() */
 #include <stdlib.h>	/* abort(), malloc(), realloc(), free() */
 #include <string.h>	/* memcpy(), strlen() */
-//#include <errno.h>	/* errno */
+//#include <glib_errno.h>	/* glib_errno */
 #include <limits.h>	/* CHAR_BIT */
 #include <float.h>	/* DBL_MAX_EXP, LDBL_MAX_EXP */
 #include "printf-parse.h"
@@ -251,7 +251,7 @@ vasnprintf (char *resultbuf, size_t *lengthp, const char *format, va_list args)
 
   if (printf_parse (format, &d, &a) < 0)
     {
-      errno = EINVAL;
+      glib_errno = EINVAL;
       return NULL;
     }
 
@@ -263,7 +263,7 @@ vasnprintf (char *resultbuf, size_t *lengthp, const char *format, va_list args)
   if (printf_fetchargs (args, &a) < 0)
     {
       CLEANUP ();
-      errno = EINVAL;
+      glib_errno = EINVAL;
       return NULL;
     }
 
@@ -312,7 +312,7 @@ vasnprintf (char *resultbuf, size_t *lengthp, const char *format, va_list args)
 	      free (result);						\
 	    freea (buf);						\
 	    CLEANUP ();							\
-	    errno = ENOMEM;						\
+	    glib_errno = ENOMEM;						\
 	    return NULL;						\
 	  }								\
 	if (result == resultbuf && length > 0)				\
@@ -610,7 +610,7 @@ vasnprintf (char *resultbuf, size_t *lengthp, const char *format, va_list args)
 			  free (result);
 			freea (buf);
 			CLEANUP ();
-			errno = ENOMEM;
+			glib_errno = ENOMEM;
 			return NULL;
 		      }
 		  }
@@ -1005,7 +1005,7 @@ vasnprintf (char *resultbuf, size_t *lengthp, const char *format, va_list args)
 			  free (result);
 			freea (buf);
 			CLEANUP ();
-			errno = EINVAL;
+			glib_errno = EINVAL;
 			return NULL;
 		      }
 
