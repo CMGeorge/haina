@@ -12,7 +12,6 @@ import com.sihus.core.model.VersionalModel;
  * @hibernate.class table="PhoneDistrict"
  * @hibernate.cache usage="read-write"
  */
-@Component
 public class PhoneDistrict extends VersionalModel {
 
 	private static final long serialVersionUID = -8573934053645649408L;

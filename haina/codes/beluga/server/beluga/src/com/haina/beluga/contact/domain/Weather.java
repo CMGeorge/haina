@@ -12,7 +12,6 @@ import com.sihus.core.model.VersionalModel;
  * @hibernate.class table="Weather"
  * @hibernate.cache usage="read-write"
  */
-@Component
 public class Weather extends VersionalModel {
 
 	private static final long serialVersionUID = -326286128859607526L;

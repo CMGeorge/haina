@@ -13,7 +13,6 @@ import com.sihus.core.model.VersionalModel;
  * @hibernate.class table="LOG"
  * @hibernate.cache usage="read-write"
  */
- @Component
 public class Log extends VersionalModel{
 
 	 // Fields    
