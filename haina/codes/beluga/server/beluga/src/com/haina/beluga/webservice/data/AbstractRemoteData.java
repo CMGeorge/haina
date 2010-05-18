@@ -2,7 +2,7 @@ package com.haina.beluga.webservice.data;
 
 import com.haina.beluga.webservice.IStatusCode;
 import com.haina.beluga.webservice.flexjson.JSON;
-import com.haina.core.dto.IDto;
+import com.sihus.core.dto.IDto;
 
 
 /**

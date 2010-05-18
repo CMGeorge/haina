@@ -8,7 +8,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.springframework.stereotype.Component;
 
 import com.haina.beluga.contact.domain.enumerate.SexEnum;
-import com.haina.core.model.VersionalModel;
+import com.sihus.core.model.VersionalModel;
 
 /**
  * 用户详细信息表的领域模型类。<br/>

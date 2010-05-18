@@ -15,8 +15,8 @@ import com.haina.beluga.contact.service.IContactUserHessianService;
 import com.haina.beluga.contact.service.IPassportService;
 import com.haina.beluga.contact.service.LoginPassport;
 import com.haina.beluga.webservice.data.hessian.HessianRemoteReturning;
-import com.haina.core.util.DESUtil;
-import com.haina.core.util.StringUtils;
+import com.sihus.core.util.DESUtil;
+import com.sihus.core.util.StringUtils;
 
 /**
  * 个人服务Api接口实现类。<br/>

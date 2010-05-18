@@ -5,7 +5,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.springframework.stereotype.Component;
 
-import com.haina.core.model.VersionalModel;
+import com.sihus.core.model.VersionalModel;
 
 /**
  * 

@@ -2,7 +2,7 @@ package com.haina.beluga;
 
 import java.util.ResourceBundle;
 
-import com.haina.core.util.StringUtils;
+import com.sihus.core.util.StringUtils;
 
 /**
  * 全局配置类。

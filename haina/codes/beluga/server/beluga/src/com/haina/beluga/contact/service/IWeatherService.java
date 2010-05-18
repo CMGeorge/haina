@@ -3,7 +3,7 @@ package com.haina.beluga.contact.service;
 import com.haina.beluga.contact.dao.IWeatherDao;
 import com.haina.beluga.contact.domain.Weather;
 import com.haina.beluga.webservice.data.hessian.HessianRemoteReturning;
-import com.haina.core.service.IBaseSerivce;
+import com.sihus.core.service.IBaseSerivce;
 
 public interface IWeatherService extends IBaseSerivce<IWeatherDao,Weather,String> {
 

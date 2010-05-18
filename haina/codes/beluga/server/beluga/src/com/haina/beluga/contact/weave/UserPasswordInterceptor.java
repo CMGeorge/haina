@@ -7,7 +7,7 @@ import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Before;
 
 import com.haina.beluga.contact.domain.ContactUser;
-import com.haina.core.util.DESUtil;
+import com.sihus.core.util.DESUtil;
 
 
 /**

@@ -9,7 +9,7 @@ import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.stereotype.Component;
 
 import com.haina.beluga.contact.domain.Weather;
-import com.haina.core.dao.BaseDao;
+import com.sihus.core.dao.BaseDao;
 @Component
 public class WeatherDao extends BaseDao<Weather,String> implements IWeatherDao {
 

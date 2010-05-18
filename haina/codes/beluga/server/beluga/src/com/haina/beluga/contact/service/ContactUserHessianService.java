@@ -13,10 +13,10 @@ import com.haina.beluga.contact.domain.enumerate.SexEnum;
 import com.haina.beluga.contact.dto.ContactUserDto;
 import com.haina.beluga.webservice.IStatusCode;
 import com.haina.beluga.webservice.data.hessian.HessianRemoteReturning;
-import com.haina.core.service.BaseSerivce;
-import com.haina.core.util.DESUtil;
-import com.haina.core.util.DateUtil;
-import com.haina.core.util.StringUtils;
+import com.sihus.core.service.BaseSerivce;
+import com.sihus.core.util.DESUtil;
+import com.sihus.core.util.DateUtil;
+import com.sihus.core.util.StringUtils;
 
 /**
  * 联系人用户hessian协议业务处理接口实现类。<br/>

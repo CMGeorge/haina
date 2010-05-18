@@ -6,7 +6,7 @@ import java.util.List;
 import org.hibernate.criterion.DetachedCriteria;
 
 import com.haina.beluga.contact.domain.ContactUser;
-import com.haina.core.dao.IBaseDao;
+import com.sihus.core.dao.IBaseDao;
 
 /**
  * 联系人用户领域模型类Dao访问接口。<br/>

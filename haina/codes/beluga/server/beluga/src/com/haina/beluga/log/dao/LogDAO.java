@@ -7,8 +7,8 @@ import org.hibernate.Session;
 import org.springframework.stereotype.Component;
 
 import com.haina.beluga.log.domain.Log;
-import com.haina.core.dao.BaseDao;
-import com.haina.core.util.StringUtils;
+import com.sihus.core.dao.BaseDao;
+import com.sihus.core.util.StringUtils;
 /**
  * @author:付翔.
  * @createDate:2007-7-16.

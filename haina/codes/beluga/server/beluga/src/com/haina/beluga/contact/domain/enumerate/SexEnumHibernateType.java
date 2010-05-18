@@ -1,6 +1,7 @@
 package com.haina.beluga.contact.domain.enumerate;
 
-import com.haina.core.enumerate.hibernate.EnumIntegerType;
+import com.sihus.core.enumerate.hibernate.EnumIntegerType;
+
 
 /**
  * 性别枚举的Hibernate映射类型。<br/>

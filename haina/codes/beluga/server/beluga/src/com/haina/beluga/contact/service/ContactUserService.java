@@ -11,8 +11,8 @@ import com.haina.beluga.contact.domain.ContactUser;
 import com.haina.beluga.contact.domain.UserProfile;
 import com.haina.beluga.contact.domain.UserProfileExt;
 import com.haina.beluga.contact.domain.enumerate.SexEnum;
-import com.haina.core.service.BaseSerivce;
-import com.haina.core.util.StringUtils;
+import com.sihus.core.service.BaseSerivce;
+import com.sihus.core.util.StringUtils;
 
 /**
  * 联系人用户业务处理接口实现类。<br/>
