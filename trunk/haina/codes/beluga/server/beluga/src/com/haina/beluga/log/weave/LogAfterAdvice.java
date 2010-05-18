@@ -11,9 +11,8 @@ import org.springframework.stereotype.Component;
 
 import com.haina.beluga.log.dao.ILogDAO;
 import com.haina.beluga.log.domain.Log;
-import com.haina.core.util.Constants;
-import com.haina.core.util.DateUtil;
-import com.haina.core.util.SafeMapUtil;
+import com.sihus.core.util.DateUtil;
+import com.sihus.core.util.SafeMapUtil;
 
 
 /**
@@ -52,14 +51,14 @@ public class LogAfterAdvice implements AfterReturningAdvice {
 //			}
 			log.setInfoClass(className);
 			log.setLogTime(DateUtil.formatDateTime(pattern));
-			if(null == SafeMapUtil.get(Constants.STARTTIME)){
-				log.setRemark("unCheck");
-			}else{
-				long startTime = (Long) SafeMapUtil.get(Constants.STARTTIME);
-				long endTime = System.currentTimeMillis();
-				long useTime =  endTime - startTime;
-				log.setRemark(""+useTime);
-			}
+//			if(null == SafeMapUtil.get(Constants.STARTTIME)){
+//				log.setRemark("unCheck");
+//			}else{
+//				long startTime = (Long) SafeMapUtil.get(Constants.STARTTIME);
+//				long endTime = System.currentTimeMillis();
+//				long useTime =  endTime - startTime;
+//				log.setRemark(""+useTime);
+//			}
 			logdao.create(log);
 			handleName="submit";
 			//debugInfo

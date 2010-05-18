@@ -22,9 +22,9 @@ import org.springframework.orm.hibernate3.SessionHolder;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import com.haina.beluga.contact.domain.PhoneDistrict;
-import com.haina.core.util.FileUtil;
 import com.showji.api.Locating.MobileLocator;
 import com.showji.api.Locating.MobileSoap;
+import com.sihus.core.util.FileUtil;
 
 /**
  * Simple test of the PersonDao

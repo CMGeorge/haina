@@ -5,7 +5,7 @@ import java.util.List;
 import com.haina.beluga.log.dao.ILogDAO;
 import com.haina.beluga.log.domain.Log;
 import com.haina.beluga.log.mvc.LogCommand;
-import com.haina.core.service.IBaseSerivce;
+import com.sihus.core.service.IBaseSerivce;
 
 /**
  * @author:付翔.

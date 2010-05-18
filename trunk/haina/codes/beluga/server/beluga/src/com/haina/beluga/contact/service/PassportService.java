@@ -11,8 +11,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.haina.beluga.contact.domain.ContactUser;
-import com.haina.core.util.DESUtil;
-import com.haina.core.util.StringUtils;
+import com.sihus.core.util.DESUtil;
+import com.sihus.core.util.StringUtils;
 
 /**
  * 用户验证护照业务处理接口实现类。<br/>

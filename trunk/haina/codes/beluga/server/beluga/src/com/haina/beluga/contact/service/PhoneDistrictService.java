@@ -10,7 +10,7 @@ import com.haina.beluga.contact.dao.IPhoneDistrictDao;
 import com.haina.beluga.contact.domain.PhoneDistrict;
 import com.haina.beluga.contact.dto.PhoneDistrictDto;
 import com.haina.beluga.webservice.data.hessian.HessianRemoteReturning;
-import com.haina.core.service.BaseSerivce;
+import com.sihus.core.service.BaseSerivce;
 
 @Component
 public class PhoneDistrictService extends

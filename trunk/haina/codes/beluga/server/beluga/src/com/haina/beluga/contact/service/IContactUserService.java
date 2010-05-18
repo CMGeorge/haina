@@ -8,7 +8,7 @@ import com.haina.beluga.contact.dao.IContactUserDao;
 import com.haina.beluga.contact.domain.ContactUser;
 import com.haina.beluga.contact.domain.UserProfile;
 import com.haina.beluga.contact.domain.UserProfileExt;
-import com.haina.core.service.IBaseSerivce;
+import com.sihus.core.service.IBaseSerivce;
 
 /**
  * 联系人用户业务处理接口。<br/>

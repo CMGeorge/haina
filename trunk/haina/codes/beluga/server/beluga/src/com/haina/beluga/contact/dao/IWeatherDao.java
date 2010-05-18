@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import com.haina.beluga.contact.domain.Weather;
-import com.haina.core.dao.IBaseDao;
+import com.sihus.core.dao.IBaseDao;
 
 public interface IWeatherDao extends IBaseDao<Weather, String>{
 	/**

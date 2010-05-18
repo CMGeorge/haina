@@ -10,7 +10,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
-import com.haina.core.util.StringUtils;
+import com.sihus.core.util.StringUtils;
 
 /**
  * Spring上下文实用类。<br/>
