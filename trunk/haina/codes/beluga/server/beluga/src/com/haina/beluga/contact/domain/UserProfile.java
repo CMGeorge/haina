@@ -19,7 +19,6 @@ import com.sihus.core.model.VersionalModel;
  * @hibernate.class table="UserProfile" optimistic-lock="version"
  * @hibernate.cache usage="read-write"
  */
-@Component
 public class UserProfile extends VersionalModel {
 
 	private static final long serialVersionUID = -5866939969778808915L;

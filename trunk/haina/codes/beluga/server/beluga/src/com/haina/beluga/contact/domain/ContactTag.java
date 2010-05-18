@@ -19,7 +19,6 @@ import com.sihus.core.model.VersionalModel;
  * @hibernate.cache usage="read-write"
  */
 
-@Component
 public class ContactTag extends VersionalModel {
 
 	private static final long serialVersionUID = 7124161663842810931L;
