@@ -1,6 +1,6 @@
-alter table ContactTag drop constraint FK7F280B7A39AFF238;
-alter table UserProfile drop constraint FK3EFA133EB62F7597;
-alter table UserProfileExt drop constraint FKAF864E03B62F7597;
+alter table ContactTag drop constraint FK7F280B7ADC71FAC6;
+alter table UserProfile drop constraint FK3EFA133E58F17E25;
+alter table UserProfileExt drop constraint FKAF864E0358F17E25;
 drop table ContactTag;
 drop table ContactUser;
 drop table LOG;
@@ -12,9 +12,9 @@ create table ContactTag (id char(32) not null, version int8 not null, name varch
 create table ContactUser (id char(32) not null, version int8 not null, loginName varchar(64) not null unique, password varchar(256) not null, userStatus int4 not null, registerTime timestamp, mobile varchar(64) not null unique, lastLoginTime timestamp, lastUpdateTime timestamp, loginNumber int default 0, lastLoginIp varchar(64), validFlag bool not null, description varchar(2000), remark varchar(2000), primary key (id));
 create table LOG (ID varchar(255) not null, VERSION int8 not null, HANDLE varchar(20), INFOCLASS varchar(50), IP varchar(20), LOGTIME varchar(20), REMARK varchar(200), ROLENAME varchar(20), primary key (ID));
 create table PhoneDistrict (id char(32) not null, VERSION int8 not null, districtNumber varchar(20), range varchar(45000), feeType varchar(20), districtCity varchar(20), districtProvince varchar(20), updateFlg int4, pingyinCity varchar(20), weatherCityCode varchar(20), primary key (id));
-create table UserProfile (id char(32) not null, version int8 not null, nickName varchar(64), name varchar(64), age int4, photo varchar(128), identification varchar(128), brithday date, url varchar(2000), signature varchar(128), emailPref varchar(256), telPref varchar(80), imPref varchar(256), ring varchar(128), org varchar(128), title varchar(128), note varchar(1000), userId char(32) not null, remark varchar(1000), sex smallint, primary key (id));
+create table UserProfile (id char(32) not null, version int8 not null, nickName varchar(64), name varchar(64), age int4, photo varchar(128), identification varchar(128), brithday timestamp, url varchar(2000), signature varchar(128), emailPref varchar(256), telPref varchar(80), imPref varchar(256), ring varchar(128), org varchar(128), title varchar(128), note varchar(1000), userId char(32) not null, remark varchar(1000), sex smallint, primary key (id));
 create table UserProfileExt (id char(32) not null, version int8 not null, commKey smallint, commValue varchar(256), userId char(32), remark varchar(1000), primary key (id));
 create table Weather (id char(32) not null, VERSION int8 not null, date varchar(20), weatherCityCode varchar(20), weatherType varchar(50), high int4, low int4, wind varchar(30), icon varchar(30), isNight bool, issuetime varchar(10), primary key (id));
-alter table ContactTag add constraint FK7F280B7A39AFF238 foreign key (createUser) references ContactUser;
-alter table UserProfile add constraint FK3EFA133EB62F7597 foreign key (userId) references ContactUser;
-alter table UserProfileExt add constraint FKAF864E03B62F7597 foreign key (userId) references ContactUser;
+alter table ContactTag add constraint FK7F280B7ADC71FAC6 foreign key (createUser) references ContactUser;
+alter table UserProfile add constraint FK3EFA133E58F17E25 foreign key (userId) references ContactUser;
+alter table UserProfileExt add constraint FKAF864E0358F17E25 foreign key (userId) references ContactUser;

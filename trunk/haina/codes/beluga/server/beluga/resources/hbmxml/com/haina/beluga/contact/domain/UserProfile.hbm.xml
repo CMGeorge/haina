@@ -95,7 +95,7 @@
 
             <column
                 name="brithday" 
-                sql-type="date"
+                sql-type="timestamp"
             />
 
         </property>

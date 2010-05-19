@@ -6,7 +6,6 @@ import java.util.Set;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
-import org.springframework.stereotype.Component;
 
 import com.sihus.core.model.VersionalModel;
 
@@ -113,8 +112,8 @@ public class ContactUser extends VersionalModel {
 	}
 	
 	/**
-	 * @hibernate.property not-null="true" type="timestamp"
-	 * @hibernate.column name="registerTime" sql-type="timestamp"
+	 * @hibernate.property not-null="true" 
+	 * @hibernate.column name="registerTime" 
 	 */
 	public Date getRegisterTime() {
 		return registerTime;
@@ -136,8 +135,7 @@ public class ContactUser extends VersionalModel {
 	}
 
 	/**
-	 * @hibernate.property type="timestamp"
-	 * @hibernate.column name="lastLoginTime" sql-type="timestamp"
+	 * @hibernate.property name="lastLoginTime"
 	 */
 	public Date getLastLoginTime() {
 		return lastLoginTime;
@@ -147,8 +145,7 @@ public class ContactUser extends VersionalModel {
 		this.lastLoginTime = lastLoginTime;
 	}
 	/**
-	 * @hibernate.property type="timestamp"
-	 * @hibernate.column name="lastUpdateTime" sql-type="timestamp"
+	 * @hibernate.property name="lastUpdateTime" 
 	 */
 	public Date getLastUpdateTime() {
 		return lastUpdateTime;

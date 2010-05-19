@@ -76,13 +76,11 @@
 
         <property
             name="registerTime"
-                    type="timestamp"
                 not-null="true"
         >
 
             <column
                 name="registerTime" 
-                sql-type="timestamp"
             />
 
         </property>
@@ -100,25 +98,13 @@
 
         <property
             name="lastLoginTime"
-                    type="timestamp"
         >
-
-            <column
-                name="lastLoginTime" 
-                sql-type="timestamp"
-            />
 
         </property>
 
         <property
             name="lastUpdateTime"
-                    type="timestamp"
         >
-
-            <column
-                name="lastUpdateTime" 
-                sql-type="timestamp"
-            />
 
         </property>
 
