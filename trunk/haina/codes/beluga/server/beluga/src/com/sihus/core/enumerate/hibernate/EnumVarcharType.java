@@ -9,6 +9,7 @@ import java.sql.Types;
 import org.hibernate.HibernateException;
 import org.hibernate.usertype.UserType;
 
+import com.sihus.core.enumerate.StringEnumAbbr;
 import com.sihus.core.enumerate.StringEnumHelper;
 
 /**
@@ -25,7 +26,7 @@ public abstract class EnumVarcharType implements UserType {
 
 	}
 
-	public Class returnedClass() {
+	public Class<? extends StringEnumAbbr> returnedClass() {
 		return getEnumClass();
 	}
 
@@ -71,7 +72,7 @@ public abstract class EnumVarcharType implements UserType {
 	}
 
 	
-	public abstract Class getEnumClass();
+	public abstract Class<? extends StringEnumAbbr> getEnumClass();
 
 	public Serializable disassemble(Object arg0) throws HibernateException {
 		return (Serializable) deepCopy(arg0);
