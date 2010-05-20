@@ -8,7 +8,7 @@ import com.haina.beluga.contact.domain.ContactUser;
 /**
  * 用户验证护照业务处理接口。<br/>
  * @author huangyongqiang
- * @version 1.0
+ * //@Version 1.0
  * @since 1.0
  * @data 2009-07-11
  *

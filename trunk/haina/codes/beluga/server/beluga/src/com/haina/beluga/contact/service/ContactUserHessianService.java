@@ -22,7 +22,7 @@ import com.sihus.core.util.StringUtils;
  * 联系人用户hessian协议业务处理接口实现类。<br/>
  * 
  * @author huangyongqiang
- * @version 1.0
+ * //@Version 1.0
  * @since 1.0
  * @date 2009-07-05
  */

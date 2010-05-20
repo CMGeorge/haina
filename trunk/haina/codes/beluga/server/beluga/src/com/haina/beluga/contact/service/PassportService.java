@@ -17,7 +17,7 @@ import com.sihus.core.util.StringUtils;
 /**
  * 用户验证护照业务处理接口实现类。<br/>
  * @author huangyongqiang
- * @version 1.0
+ * //@Version 1.0
  * @since 1.0
  * @data 2009-07-11
  *
@@ -254,7 +254,7 @@ public class PassportService implements IPassportService {
 //	/**
 //	 * 用户验证护照监视器。<br/>
 //	 * @author huangyongqiang
-//	 * @version 1.0
+//	 * //@Version 1.0
 //	 * @since 1.0
 //	 * @data 2009-07-11
 //	 *
