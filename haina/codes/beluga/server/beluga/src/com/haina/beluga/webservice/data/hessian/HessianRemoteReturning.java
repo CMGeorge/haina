@@ -9,7 +9,7 @@ import com.haina.beluga.webservice.data.AbstractRemoteReturning;
 /**
  * 基于Hessian协议的远程调用返回值类。<br/>
  * @author huangyongqiang
- * @version 1.0
+ * //@Version 1.0
  * @since 1.0
  * @date 2009-06-17
  */
