@@ -8,7 +8,7 @@ import com.sihus.core.dto.IDto;
 /**
  * 联系人信息传输类。<br/>
  * @author huangyongqiang
- * @version 1.0
+ * //@Version 1.0
  * @since 1.0
  * @date 2009-07-18
  */
