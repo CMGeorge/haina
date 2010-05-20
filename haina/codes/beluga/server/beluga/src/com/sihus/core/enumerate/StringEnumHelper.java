@@ -19,7 +19,7 @@ public class StringEnumHelper {
 
 	public static final StringEnumAbbr valueOf(Class<? extends StringEnumAbbr> clazz,String name) {
 		StringEnumAbbr result=null;
-		if(clazz!=null && !StringUtils.isNullOrEmpty(name)) {
+		if(clazz!=null && !StringUtils.isNull(name)) {
 			if(Enum.class.isAssignableFrom(clazz)) {
 				if(StringEnumAbbr.class.isAssignableFrom(clazz)) {
 					Object[] objs =clazz.getEnumConstants();
@@ -40,7 +40,7 @@ public class StringEnumHelper {
 	
 	public static final StringEnumAbbr valueOfAbbr(Class<? extends StringEnumAbbr> clazz,String abbr) {
 		StringEnumAbbr result=null;
-		if(clazz!=null && !StringUtils.isNullOrEmpty(abbr)) {
+		if(clazz!=null && !StringUtils.isNull(abbr)) {
 			if(Enum.class.isAssignableFrom(clazz)) {
 				if(StringEnumAbbr.class.isAssignableFrom(clazz)) {
 					Object[] objs =clazz.getEnumConstants();
