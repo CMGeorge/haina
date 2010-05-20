@@ -33,15 +33,16 @@ public class TestPriService extends TestCase {
 		HessianRemoteReturning h = getPriService().register("testuser6", "123456", "13503280999");
 		System.out.println(h);
 	}
-	public void testLogin() throws Exception {
-		HessianRemoteReturning h = getPriService().login("testuser6", "12345");
-		System.out.println(h);
-	}
+//	@Ignore
+//	public void testLogin() throws Exception {
+//		HessianRemoteReturning h = getPriService().login("testuser6", "12345");
+//		System.out.println(h);
+//	}
 	public void testLogin1() throws Exception {
 		HessianRemoteReturning h = getPriService().login("testuser6", "123456");
 		System.out.println(h);
-		HessianRemoteReturning h1 = getPriService().logoutByPsssport(h.getValue().toString());
-		System.out.println(h1);
+		HessianRemoteReturning h2 = getPriService().login("testuser6", "123456");
+		System.out.println(h2);
 	}
 //	public void testLogout() throws Exception {
 //		HessianRemoteReturning h = getPriService().logoutByPsssport("testuser6");
