@@ -5,7 +5,6 @@ import java.util.Date;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
-import org.springframework.stereotype.Component;
 
 import com.haina.beluga.contact.domain.enumerate.SexEnum;
 import com.sihus.core.model.VersionalModel;
