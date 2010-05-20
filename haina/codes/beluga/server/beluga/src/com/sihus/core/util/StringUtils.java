@@ -3,13 +3,6 @@ package com.sihus.core.util;
 import java.util.Random;
 
 public final class StringUtils {
-
-	public static boolean isNullOrEmpty(String s) {
-		if (null == s || s.trim().length()<1) {
-			return true;
-		}
-		return false;
-	}
 	
 	public static String htmlEncode(String s) {
 		if (s == null)
@@ -39,7 +32,7 @@ public final class StringUtils {
 	}
 
 	public static boolean isNull(String str) {
-		return (str == null || str.equals("") || str.equals("null")) ? true
+		return (str == null || str.trim().length()<1 || str.equals("null")) ? true
 				: false;
 	}
 
