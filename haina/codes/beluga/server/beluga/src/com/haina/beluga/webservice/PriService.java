@@ -21,7 +21,7 @@ import com.sihus.core.util.StringUtils;
 /**
  * 个人服务Api接口实现类。<br/>
  * @author huangyongqiang
- * @version 1.0
+ * //@Version 1.0
  * @since 1.0
  * @date 2009-06-29
  */
@@ -272,7 +272,7 @@ public class PriService implements IPriService, InitializingBean {
 	/**
 	 * 用户验证护照监视器。<br/>
 	 * @author huangyongqiang
-	 * @version 1.0
+	 * //@Version 1.0
 	 * @since 1.0
 	 * @data 2009-07-11
 	 *

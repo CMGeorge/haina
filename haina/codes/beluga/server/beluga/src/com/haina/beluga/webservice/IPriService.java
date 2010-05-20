@@ -7,7 +7,7 @@ import com.haina.beluga.webservice.data.hessian.HessianRemoteReturning;
 /**
  * 个人服务Api接口。<br/>
  * @author huangyongqiang
- * @version 1.0
+ * //@Version 1.0
  * @since 1.0
  * @date 2009-06-29
  */
