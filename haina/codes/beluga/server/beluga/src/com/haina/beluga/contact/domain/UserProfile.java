@@ -13,7 +13,7 @@ import com.sihus.core.model.VersionalModel;
 /**
  * 用户详细信息表的领域模型类。<br/>
  * @author huangyongqiang
- * @version 1.0
+ * //@Version 1.0
  * @since 1.0
  * @date 2009-07-01
  * @hibernate.class table="UserProfile" optimistic-lock="version"
