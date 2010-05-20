@@ -11,7 +11,7 @@ import com.sihus.core.dao.IBaseDao;
 /**
  * 联系人用户领域模型类Dao访问接口。<br/>
  * @author huangyongqiang
- * @version 1.0
+ * //@Version 1.0
  * @since 1.0
  * @date 2009-06-29
  */
