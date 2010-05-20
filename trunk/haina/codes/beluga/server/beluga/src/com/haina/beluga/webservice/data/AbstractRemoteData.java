@@ -8,7 +8,7 @@ import com.sihus.core.dto.IDto;
 /**
  * 远程调用传递数据的基类。<br/>
  * @author huangyongqiang
- * @version 1.0
+ * //@Version 1.0
  * @since 1.0
  * @date 2009-06-17
  */
