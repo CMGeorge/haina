@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.haina.beluga.contact.domain.ContactUplink;
-import com.haina.core.dao.BaseDao;
-import com.haina.core.util.StringUtils;
+import com.sihus.core.dao.BaseDao;
+import com.sihus.core.util.StringUtils;
 
 /**
  * 联系人上行领域模型类Dao访问接口实现类。<br/>

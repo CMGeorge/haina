@@ -3,7 +3,7 @@ package com.haina.beluga.contact.dao;
 import java.util.List;
 
 import com.haina.beluga.contact.domain.ContactUplink;
-import com.haina.core.dao.IBaseDao;
+import com.sihus.core.dao.IBaseDao;
 
 /**
  * 联系人上行领域模型类Dao访问接口。<br/>
