@@ -9,6 +9,7 @@ import java.sql.Types;
 import org.hibernate.HibernateException;
 import org.hibernate.usertype.UserType;
 
+import com.sihus.core.enumerate.IntegerEnumAbbr;
 import com.sihus.core.enumerate.IntegerEnumHelper;
 
 /**
@@ -25,7 +26,7 @@ public abstract class EnumByteType implements UserType {
 
 	}
 
-	public Class returnedClass() {
+	public Class<? extends IntegerEnumAbbr> returnedClass() {
 		return getEnumClass();
 	}
 
@@ -67,7 +68,7 @@ public abstract class EnumByteType implements UserType {
 	}
 
 	
-	public abstract Class getEnumClass();
+	public abstract Class<? extends IntegerEnumAbbr> getEnumClass();
 
 	public Serializable disassemble(Object arg0) throws HibernateException {
 		return (Serializable) deepCopy(arg0);
