@@ -12,7 +12,7 @@ import com.sihus.core.model.VersionalModel;
 /**
  * 联系人标签的领域模型类。<br/>
  * @author huangyongqiang
- * @version 1.0
+ * //@Version 1.0
  * @since 1.0
  * @date 2009-06-26
  * @hibernate.class table="ContactTag" optimistic-lock="version"

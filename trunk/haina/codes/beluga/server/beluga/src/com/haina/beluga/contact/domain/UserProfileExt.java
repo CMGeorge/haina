@@ -7,7 +7,7 @@ import com.sihus.core.model.VersionalModel;
 /**
  * 联系人扩展信息的领域模型类。<br/>
  * @author huangyongqiang
- * @version 1.0
+ * //@Version 1.0
  * @since 1.0
  * @date 2009-07-02
  * @hibernate.class table="UserProfileExt" optimistic-lock="version"
