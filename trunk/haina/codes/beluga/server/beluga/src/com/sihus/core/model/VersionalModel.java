@@ -11,13 +11,15 @@ package com.sihus.core.model;
  * 
  */
 public abstract class VersionalModel extends BaseModel {
-
+	
+	private static final long serialVersionUID = 4298693759262776965L;
+	
 	protected long version=0;
 	
 	public abstract long getVersion();
 	
 
-	private void setVersion(long version) {
+	public void setVersion(long version) {
 //		this.logger.warn("version column is used for database lock only,it can not be set.");
 	}
 
