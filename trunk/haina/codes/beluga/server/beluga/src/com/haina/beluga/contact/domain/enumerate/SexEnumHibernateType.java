@@ -6,7 +6,7 @@ import com.sihus.core.enumerate.hibernate.EnumIntegerType;
 /**
  * 性别枚举的Hibernate映射类型。<br/>
  * @author huangyongqiang
- * @version 1.0
+ * //@Version 1.0
  * @since 1.0
  * @date 2009-07-01
  */
