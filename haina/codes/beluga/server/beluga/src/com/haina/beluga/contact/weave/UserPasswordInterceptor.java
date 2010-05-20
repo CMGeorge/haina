@@ -13,7 +13,7 @@ import com.sihus.core.util.DESUtil;
 /**
  * 用户密码编码解码AOP拦截器。<br/>
  * @author huangyongqiang
- * @version 1.0
+ * //@Version 1.0
  * @since 1.0
  * @date 2009-06-15
  */
