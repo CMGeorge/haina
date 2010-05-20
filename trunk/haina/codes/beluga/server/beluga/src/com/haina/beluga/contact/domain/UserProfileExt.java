@@ -1,7 +1,5 @@
 package com.haina.beluga.contact.domain;
 
-import org.springframework.stereotype.Component;
-
 import com.sihus.core.model.VersionalModel;
 
 /**
