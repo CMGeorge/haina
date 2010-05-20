@@ -5,7 +5,7 @@ import java.util.Date;
 import com.haina.beluga.contact.dao.ContactUplinkDao;
 import com.haina.beluga.contact.domain.ContactUplink;
 import com.haina.beluga.webservice.data.hessian.HessianRemoteReturning;
-import com.haina.core.service.IBaseSerivce;
+import com.sihus.core.service.IBaseSerivce;
 
 /**
  * 联系人上行信息hessian协议业务处理接口。<br/>
