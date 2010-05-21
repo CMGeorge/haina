@@ -15,14 +15,8 @@ public abstract class VersionalModel extends BaseModel {
 	private static final long serialVersionUID = 4298693759262776965L;
 	
 	protected long version=0;	
-	
-	/**
-	 * @hibernate.version
-	 * @hibernate.column name="version" type="long"
-	 */
-	public long getVersion() {
-		return this.version;
-	}
+
+	public abstract long getVersion();
 	
 	public void setVersion(long version) {
 //		this.logger.warn("version column is used for database lock only,it can not be set.");
