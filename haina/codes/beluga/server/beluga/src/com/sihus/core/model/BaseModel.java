@@ -32,10 +32,6 @@ public abstract class BaseModel implements IModel {
 	public boolean isNew() {
 		return id == null;
 	}
-	
-	public Boolean getDeleteFlag() {
-		return deleteFlag;
-	}
 
 	public void setDeleteFlag(Boolean deleteFlag) {
 		this.deleteFlag = (deleteFlag!=null ? deleteFlag : Boolean.FALSE);
