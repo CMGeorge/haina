@@ -27,7 +27,15 @@ public abstract class BaseModel implements IModel {
 		}
 	}
 	
-	public abstract String getId();
+	/**
+	 * 
+	 * @hibernate.id unsaved-value="null" type = "java.lang.String" length="32"
+	 * @hibernate.column name="id" sql-type="char(32)"
+	 * @hibernate.generator class="uuid.hex"
+	 */
+	public String getId() {
+		return this.id;
+	}
 	
 	public boolean isNew() {
 		return id == null;
