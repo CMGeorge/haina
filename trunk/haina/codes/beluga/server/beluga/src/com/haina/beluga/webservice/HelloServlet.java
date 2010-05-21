@@ -10,9 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.caucho.hessian.micro.MicroHessianInput;
-import com.caucho.hessian.micro.MicroHessianOutput;
-
 public class HelloServlet extends HttpServlet {
 	/**
 	 * 
