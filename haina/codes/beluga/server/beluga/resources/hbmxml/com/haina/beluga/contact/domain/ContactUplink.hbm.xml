@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+
+>
+
+    <class
+            name="com.haina.beluga.contact.domain.ContactUplink"
+            table="ContactUplink"
+            optimistic-lock="version"
+    >
+
+        <cache 
+            usage="read-write"
+        />
+
+    <id
+        name="id"
+                type="java.lang.String"
+            length="32"
+            unsaved-value="null"
+    >
+
+            <column
+                name="id" 
+                sql-type="char(32)"
+            />
+
+    <generator
+        class="uuid.hex"
+    >
+
+    </generator>
+
+    </id>
+
+        <version
+            name="version"
+            column="version"
+            type="long"
+        />
+
+        <property
+            name="owner"
+                    type="string"
+                length="32"
+                not-null="true"
+        >
+
+            <column
+                name="owner" 
+                sql-type="char(32)"
+            />
+
+        </property>
+
+        <property
+            name="mobile"
+                    type="java.lang.String"
+                    column="mobile"
+                length="64"
+                not-null="true"
+                unique="true"
+        >
+
+        </property>
+
+        <property
+            name="name"
+                    type="string"
+                    column="name"
+                length="64"
+        >
+
+        </property>
+
+        <property
+            name="age"
+                    type="integer"
+                    column="age"
+        >
+
+        </property>
+
+        <property
+            name="brithday"
+                    type="timestamp"
+        >
+
+            <column
+                name="brithday" 
+                sql-type="timestamp"
+            />
+
+        </property>
+
+        <property
+            name="url"
+                    type="string"
+                    column="url"
+                length="2000"
+        >
+
+        </property>
+
+        <property
+            name="emailPref"
+                    type="string"
+                    column="emailPref"
+                length="256"
+        >
+
+        </property>
+
+        <property
+            name="telPref"
+                    type="string"
+                    column="telPref"
+                length="80"
+        >
+
+        </property>
+
+        <property
+            name="imPref"
+                    type="string"
+                    column="imPref"
+                length="256"
+        >
+
+        </property>
+
+        <property
+            name="org"
+                    type="string"
+                    column="org"
+                length="128"
+        >
+
+        </property>
+
+        <property
+            name="title"
+                    type="string"
+                    column="title"
+                length="128"
+        >
+
+        </property>
+
+        <property
+            name="sex"
+                    type="com.haina.beluga.contact.domain.enumerate.SexEnumHibernateType"
+        >
+
+            <column
+                name="sex" 
+                sql-type="smallint"
+            />
+
+        </property>
+
+        <property
+            name="remark"
+                    type="java.lang.String"
+                    column="remark"
+                length="2000"
+        >
+
+        </property>
+
+        <property
+            name="registerFlag"
+                    type="boolean"
+                    column="registerFlag"
+                not-null="true"
+        >
+
+        </property>
+
+    </class>    
+
+</hibernate-mapping>
+
