@@ -75,7 +75,7 @@ public class ContactUplink extends VersionalModel {
 
 	/**
 	 * @hibernate.property length="32" not-null="true" type = "string"
-	 * @hibernate.column name="id" sql-type="char(32)"
+	 * @hibernate.column name="owner" sql-type="char(32)"
 	 */
 	public String getOwner() {
 		return owner;
