@@ -1,5 +1,7 @@
 package com.haina.base.domain;
 
+import java.util.Date;
+
 import com.sihus.core.model.VersionalModel;
 
 /**
@@ -25,6 +27,11 @@ public abstract class AbstractPicture extends VersionalModel {
 	 * 图片原始文件名
 	 */
 	protected String oriFileName;
+	
+	/**
+	 * 创建时间
+	 */
+	protected Date createTime;
 	
 	/**
 	 * @hibernate.property not-null="true" type = "string"
@@ -62,4 +69,15 @@ public abstract class AbstractPicture extends VersionalModel {
 		this.filePath = filePath;
 	}
 	
+	/**
+	 * @hibernate.property not-null="true"
+	 * @hibernate.column name="createTime"
+	 */
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}	
 }
