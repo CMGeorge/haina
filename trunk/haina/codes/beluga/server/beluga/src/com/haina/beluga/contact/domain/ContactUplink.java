@@ -2,8 +2,6 @@ package com.haina.beluga.contact.domain;
 
 import java.util.Date;
 
-import org.springframework.stereotype.Component;
-
 import com.haina.beluga.contact.domain.enumerate.SexEnum;
 import com.sihus.core.model.VersionalModel;
 
@@ -16,7 +14,6 @@ import com.sihus.core.model.VersionalModel;
  * @hibernate.class table="ContactUplink" optimistic-lock="version"
  * @hibernate.cache usage="read-write"
  */
-@Component
 public class ContactUplink extends VersionalModel {
 	
 	private static final long serialVersionUID = 484539818638173778L;
