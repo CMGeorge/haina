@@ -1,5 +1,7 @@
 package com.haina.beluga.webservice.data;
 
+import java.io.Serializable;
+
 import com.haina.beluga.webservice.flexjson.JSONSerializer;
 
 /**
@@ -12,10 +14,14 @@ import com.haina.beluga.webservice.flexjson.JSONSerializer;
  */
 public abstract class AbstractRemoteReturning extends AbstractRemoteData {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3768217656560995261L;
 	/* 返回值。 */
-	protected String value;
+	protected Serializable value;
 
-	public String getValue() {
+	public Serializable getValue() {
 		return value;
 	}
 
