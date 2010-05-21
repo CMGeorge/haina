@@ -7,12 +7,12 @@ import java.util.HashMap;
 
 public abstract class AbstractSkeleton
  {
-	private Class _apiClass;
-	private Class _homeClass;
-	private Class _objectClass;
+	private Class<?> _apiClass;
+	private Class<?> _homeClass;
+	private Class<?> _objectClass;
 	private HashMap<String,Method> _methodMap = new HashMap<String,Method>();
 
-	protected AbstractSkeleton(Class apiClass) {
+	protected AbstractSkeleton(Class<?> apiClass) {
 		this._apiClass = apiClass;
 
 		Method[] methodList = apiClass.getMethods();
@@ -23,7 +23,7 @@ public abstract class AbstractSkeleton
 			if (this._methodMap.get(method.getName()) == null) {
 				this._methodMap.put(method.getName(), methodList[i]);
 			}
-			Class[] param = method.getParameterTypes();
+			Class<?>[] param = method.getParameterTypes();
 			String mangledName = method.getName() + "__" + param.length;
 			this._methodMap.put(mangledName, methodList[i]);
 
@@ -42,7 +42,7 @@ public abstract class AbstractSkeleton
 		return getAPIClassName();
 	}
 
-	public void setHomeClass(Class homeAPI) {
+	public void setHomeClass(Class<?> homeAPI) {
 		this._homeClass = homeAPI;
 	}
 
@@ -53,7 +53,7 @@ public abstract class AbstractSkeleton
 		return getAPIClassName();
 	}
 
-	public void setObjectClass(Class objectAPI) {
+	public void setObjectClass(Class<?> objectAPI) {
 		this._objectClass = objectAPI;
 	}
 
@@ -66,7 +66,7 @@ public abstract class AbstractSkeleton
 
 		sb.append(method.getName());
 
-		Class[] params = method.getParameterTypes();
+		Class<?>[] params = method.getParameterTypes();
 		for (int i = 0; i < params.length; ++i) {
 			sb.append('_');
 			sb.append(mangleClass(params[i], isFull));
@@ -75,7 +75,7 @@ public abstract class AbstractSkeleton
 		return sb.toString();
 	}
 
-	public static String mangleClass(Class cl, boolean isFull) {
+	public static String mangleClass(Class<?> cl, boolean isFull) {
 		String name = cl.getName();
 
 		if ((name.equals("boolean")) || (name.equals("java.lang.Boolean")))
