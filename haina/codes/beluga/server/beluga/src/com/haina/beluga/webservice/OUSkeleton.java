@@ -6,7 +6,6 @@ import java.lang.reflect.Method;
 
 import org.apache.log4j.Logger;
 
-import com.caucho.services.server.AbstractSkeleton;
 import com.haina.beluga.webservice.flexjson.JSONDeserializer;
 import com.haina.beluga.webservice.flexjson.JSONSerializer;
 

@@ -13,7 +13,6 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/dom4j-1.6.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/ehcache-1.4.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/haina_thirdpart_api.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hessian-3.1.6.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate3.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/javassist.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jaxrpc.jar"/>
