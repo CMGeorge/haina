@@ -1,5 +1,7 @@
 package test;
 
+import java.util.List;
+
 import junit.framework.TestCase;
 
 import org.hibernate.Session;
@@ -11,9 +13,11 @@ import org.springframework.orm.hibernate3.SessionFactoryUtils;
 import org.springframework.orm.hibernate3.SessionHolder;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
+import com.haina.beluga.contact.dto.WeatherDto;
 import com.haina.beluga.contact.service.IWeatherService;
 import com.haina.beluga.contact.service.WeatherService;
 import com.haina.beluga.log.service.LogService;
+import com.haina.beluga.webservice.data.hessian.HessianRemoteReturning;
 
 public class PubJunitTest  extends TestCase
 {
@@ -83,14 +87,10 @@ public class PubJunitTest  extends TestCase
 ////    	logService.findAll(true);
 //    }
     public void testWeather() throws Exception {
-    	getWeatherService().getLiveWeather("56672");
 //    	getWeatherService().findAll(true);
     	
-//    	List<WeatherDto> list = getWeatherService().get7Weatherdatas("112020");
-//    	getWeatherService().get7Weatherdatas("112020");
-//    	for(WeatherDto  dto:list){
-//    		System.out.println(dto.getDate()+":"+dto.getWeatherType()+":"+dto.getHigh());
-//    	}
+    	HessianRemoteReturning hessianRemoteReturning  =  getWeatherService().get7Weatherdatas("112020");
+    	System.out.println(hessianRemoteReturning.getValue());
     }
     protected void setUp() throws Exception
     {
