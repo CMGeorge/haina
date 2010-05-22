@@ -22,7 +22,6 @@ import com.sihus.core.util.StringUtils;
 @Repository(value="contactUserDao")
 public class ContactUserDao extends BaseDao<ContactUser,String> implements IContactUserDao {
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public ContactUser getValidUserByLoginName(String loginName) {
 		ContactUser contactUser=null;
@@ -41,7 +40,7 @@ public class ContactUserDao extends BaseDao<ContactUser,String> implements ICont
 		return contactUser;
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public ContactUser getValidUserByMobile(String mobile) {
 		ContactUser contactUser=null;
@@ -60,7 +59,7 @@ public class ContactUserDao extends BaseDao<ContactUser,String> implements ICont
 		return contactUser;
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public ContactUser getValidUserByPwdAndLoginName(String password,String loginName) {
 		ContactUser contactUser=null;
@@ -80,7 +79,7 @@ public class ContactUserDao extends BaseDao<ContactUser,String> implements ICont
 		return contactUser;
 	}
 	
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public ContactUser getInvalidUserByPwdAndLoginName(String password,String loginName) {
 		ContactUser contactUser=null;
@@ -109,7 +108,7 @@ public class ContactUserDao extends BaseDao<ContactUser,String> implements ICont
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public ContactUser getInvalidUserByLoginName(String loginName) {
 		ContactUser contactUser=null;
@@ -128,7 +127,7 @@ public class ContactUserDao extends BaseDao<ContactUser,String> implements ICont
 		return contactUser;
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public List<ContactUser> getUserByMobileOrLoginName(String mobile, String loginName) {
 		List<ContactUser> list=null;
@@ -144,7 +143,7 @@ public class ContactUserDao extends BaseDao<ContactUser,String> implements ICont
 		return list;
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public List<ContactUser> getInvalidUserByMobileOrLoginName(String mobile, String loginName) {
 		List<ContactUser> list=null;
@@ -157,7 +156,7 @@ public class ContactUserDao extends BaseDao<ContactUser,String> implements ICont
 		return list;
 	}
 	
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public List<ContactUser> getUserByHibernateCriteria(DetachedCriteria criteria,int begin, int count) {
 		int first=begin;
@@ -175,7 +174,7 @@ public class ContactUserDao extends BaseDao<ContactUser,String> implements ICont
 		return list;
 	}
 	
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public List<ContactUser> getUserByHibernateCriteria(DetachedCriteria criteria) {
 		List<ContactUser> list=null;
@@ -185,6 +184,7 @@ public class ContactUserDao extends BaseDao<ContactUser,String> implements ICont
 		return list;
 	}
 
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ContactUser> getUserByExample(ContactUser contactUser) {
