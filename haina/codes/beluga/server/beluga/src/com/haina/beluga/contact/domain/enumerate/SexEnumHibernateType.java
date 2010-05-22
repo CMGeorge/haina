@@ -1,5 +1,6 @@
 package com.haina.beluga.contact.domain.enumerate;
 
+import com.sihus.core.enumerate.IntegerEnumAbbr;
 import com.sihus.core.enumerate.hibernate.EnumIntegerType;
 
 
@@ -13,7 +14,7 @@ import com.sihus.core.enumerate.hibernate.EnumIntegerType;
 public class SexEnumHibernateType extends EnumIntegerType {
 
 	@Override
-	public Class getEnumClass() {
+	public Class<? extends IntegerEnumAbbr> getEnumClass() {
 		return SexEnum.class;
 	}
 
