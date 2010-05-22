@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.LockMode;
 import org.hibernate.Query;
@@ -358,24 +359,135 @@ public class BaseDao<T extends IModel, PK extends Serializable> extends
 		return resultList;
 	}
 
+	@Override
+	public Iterator<?> getIteratorByHQLAndParam(String hql, Map<String,Object> args, PagingData page) {
+		Session session = this.getSession();
+		// 查询总件数
+		StringBuffer counterHql = new StringBuffer();
+		int fromIndex = hql.toUpperCase().indexOf("FROM");
+		counterHql.append("SELECT count(*) ").append(hql.substring(fromIndex)).append("");
+		Query counterQuery = session.createQuery(counterHql.toString());
+		counterQuery.setCacheable(true);
+		prepareQuery(counterQuery, args);
+		Long counter = (Long) counterQuery.iterate().next();
+		
+		// 更新分页信息
+		if(page!=null) {
+			page.setRowsCount(counter.intValue());
+			page.setPagesCount();
+		}
+		
+		// 执行查询
+		Query query = session.createQuery(hql);
+		query.setCacheable(true);
+		prepareQuery(query, args);
+		if(page!=null) {
+			query.setFirstResult(page.getCurrentPage() * page.getRowsPerPage()-page.getShift());
+			query.setMaxResults(page.getRowsPerPage());
+		}
+		Iterator<?> resultList = query.iterate();
+		
+		this.releaseSession(session);
+		return resultList;
+	}
+	
+	@Override
+	public List<?> getResultByHQLAndParam(String hql, Map<String,Object> args, PagingData page) {
+		Session session = this.getSession();
+		// 查询总件数
+		StringBuffer counterHql = new StringBuffer();
+		int fromIndex = hql.toUpperCase().indexOf("FROM");
+		counterHql.append("SELECT count(*) ").append(hql.substring(fromIndex)).append("");
+		Query counterQuery = session.createQuery(counterHql.toString());
+		counterQuery.setCacheable(true);
+		prepareQuery(counterQuery, args);
+		Long counter = (Long) counterQuery.iterate().next();
+		
+		// 更新分页信息
+		page.setRowsCount(counter.intValue());
+		page.setPagesCount();
+		
+		// 执行查询
+		Query query = session.createQuery(hql);
+		query.setCacheable(true);
+		prepareQuery(query, args);
+		if(page!=null) {
+			query.setFirstResult(page.getCurrentPage() * page.getRowsPerPage());
+			query.setMaxResults(page.getRowsPerPage());
+		}
+		List<?> resultList = query.list();
+		
+		this.releaseSession(session);
+		return resultList;
+	}
+	
+	@Override
+	public Iterator<?> getIteratorByHQLAndParamNoUpdate(String hql, Map<String,Object> args, PagingData page) {
+		Session session = this.getSession();
+		
+		// 执行查询
+		Query query = session.createQuery(hql);
+		query.setCacheable(true);
+		prepareQuery(query, args);
+		if(page!=null) {
+			query.setFirstResult(page.getCurrentPage() * page.getRowsPerPage());
+			query.setMaxResults(page.getRowsPerPage());
+		}
+		Iterator<?> resultList = query.iterate();
+		
+		this.releaseSession(session);
+		return resultList;
+	}
+	
+	@Override
+	public List<?> getResultByHQLAndParamNoUpdate(String hql, Map<String,Object> args, PagingData page) {
+		Session session = this.getSession();
+		
+		// 执行查询
+		Query query = session.createQuery(hql);
+		query.setCacheable(true);
+		prepareQuery(query, args);
+		if(page!=null) {
+			query.setFirstResult(page.getCurrentPage() * page.getRowsPerPage());
+			query.setMaxResults(page.getRowsPerPage());
+		}
+		List<?> resultList = query.list();
+		
+		this.releaseSession(session);
+		return resultList;
+	}
+	
 	/**
 	 * 填充参数
 	 * @param query 查询
 	 * @param args 参数
 	 */
 	private void prepareQuery(Query query, Object[] args) {
-		int i = 0;
-		if(args != null)
-			for (Object o : args) {
-				query.setParameter(i, o);
-				i++;
+		if(args != null && args.length>0 && query!=null) {
+			for (int i=0;i<args.length;i++) {
+				query.setParameter(i, args[i]);
 			}
-
+		}
 	}
 
+	/**
+	 * 填充参数
+	 * @param query 查询
+	 * @param args 参数
+	 */
+	private void prepareQuery(Query query, Map<String,Object> args) {
+		if(args != null && args.size()>0 && query!=null) {
+			Iterator<String> keys=args.keySet().iterator();
+			String key=null;
+			while(keys.hasNext()) {
+				key=keys.next();
+				query.setParameter(key, args.get(key));
+			}
+		}
+	}
+	
 	@Override
 	public Session getCurrentSession() {
 		return getSession();
 	}
-
 }
