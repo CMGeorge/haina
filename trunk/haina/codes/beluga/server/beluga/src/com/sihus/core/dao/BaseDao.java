@@ -273,15 +273,19 @@ public class BaseDao<T extends IModel, PK extends Serializable> extends
 		Long counter = (Long) counterQuery.iterate().next();
 		
 		// 更新分页信息
-		page.setRowsCount(counter.intValue());
-		page.setPagesCount();
+		if(page!=null) {
+			page.setRowsCount(counter.intValue());
+			page.setPagesCount();
+		}
 		
 		// 执行查询
 		Query query = session.createQuery(hql);
 		query.setCacheable(true);
 		prepareQuery(query, object);
-		query.setFirstResult(page.getCurrentPage() * page.getRowsPerPage()-page.getShift());
-		query.setMaxResults(page.getRowsPerPage());
+		if(page!=null) {
+			query.setFirstResult(page.getCurrentPage() * page.getRowsPerPage()-page.getShift());
+			query.setMaxResults(page.getRowsPerPage());
+		}
 		Iterator<?> resultList = query.iterate();
 		
 		this.releaseSession(session);
@@ -308,8 +312,10 @@ public class BaseDao<T extends IModel, PK extends Serializable> extends
 		Query query = session.createQuery(hql);
 		query.setCacheable(true);
 		prepareQuery(query, object);
-		query.setFirstResult(page.getCurrentPage() * page.getRowsPerPage());
-		query.setMaxResults(page.getRowsPerPage());
+		if(page!=null) {
+			query.setFirstResult(page.getCurrentPage() * page.getRowsPerPage());
+			query.setMaxResults(page.getRowsPerPage());
+		}
 		List<?> resultList = query.list();
 		
 		this.releaseSession(session);
@@ -324,8 +330,10 @@ public class BaseDao<T extends IModel, PK extends Serializable> extends
 		Query query = session.createQuery(hql);
 		query.setCacheable(true);
 		prepareQuery(query, object);
-		query.setFirstResult(page.getCurrentPage() * page.getRowsPerPage());
-		query.setMaxResults(page.getRowsPerPage());
+		if(page!=null) {
+			query.setFirstResult(page.getCurrentPage() * page.getRowsPerPage());
+			query.setMaxResults(page.getRowsPerPage());
+		}
 		Iterator<?> resultList = query.iterate();
 		
 		this.releaseSession(session);
@@ -340,8 +348,10 @@ public class BaseDao<T extends IModel, PK extends Serializable> extends
 		Query query = session.createQuery(hql);
 		query.setCacheable(true);
 		prepareQuery(query, object);
-		query.setFirstResult(page.getCurrentPage() * page.getRowsPerPage());
-		query.setMaxResults(page.getRowsPerPage());
+		if(page!=null) {
+			query.setFirstResult(page.getCurrentPage() * page.getRowsPerPage());
+			query.setMaxResults(page.getRowsPerPage());
+		}
 		List<?> resultList = query.list();
 		
 		this.releaseSession(session);
