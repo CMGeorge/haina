@@ -84,17 +84,17 @@
 	<!--基本事务定义,使用transactionManager作事务管理,默认的设置请参考Spring文档事务一章. -->
 	<tx:advice id="belugaAdvice" transaction-manager="txManager">
 		<tx:attributes>
-			<tx:method name="save*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
-			<tx:method name="add*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+			<tx:method name="save*" propagation="REQUIRED" rollback-for="java.lang.Throwable"/>
+			<tx:method name="add*" propagation="REQUIRED" rollback-for="java.lang.Throwable"/>
 			<tx:method name="load*" propagation="REQUIRED"
 				isolation="READ_COMMITTED" />
-			<tx:method name="creat*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
-			<tx:method name="remove*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
-			<tx:method name="del*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
-			<tx:method name="up*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
-			<tx:method name="login*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
-			<tx:method name="logout*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
-			<tx:method name="register*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+			<tx:method name="creat*" propagation="REQUIRED" rollback-for="java.lang.Throwable"/>
+			<tx:method name="remove*" propagation="REQUIRED" rollback-for="java.lang.Throwable"/>
+			<tx:method name="del*" propagation="REQUIRED" rollback-for="java.lang.Throwable"/>
+			<tx:method name="up*" propagation="REQUIRED" rollback-for="java.lang.Throwable"/>
+			<tx:method name="login*" propagation="REQUIRED" rollback-for="java.lang.Throwable"/>
+			<tx:method name="logout*" propagation="REQUIRED" rollback-for="java.lang.Throwable"/>
+			<tx:method name="register*" propagation="REQUIRED" rollback-for="java.lang.Throwable"/>
 			<tx:method name="*" read-only="true" />
 		</tx:attributes>
 	</tx:advice>
