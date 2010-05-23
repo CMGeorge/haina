@@ -73,6 +73,7 @@ public class PriService implements IPriService, InitializingBean {
 		//$2 修改登录名
 		LoginPassport loginPassport=passportService.getLoginPassport(passport);
 		if(null==loginPassport) {
+			ret = new HessianRemoteReturning();
 			ret.setStatusCode(IStatusCode.INVALID_LOGIN_PASSPORT);
 			return ret;
 		}
