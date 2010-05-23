@@ -9,20 +9,20 @@ package com.haina.beluga.contact.service;
  */
 public interface IAuthenticationService {
 	
-	public String getProxyLoginUrl();
+	String getProxyLoginUrl();
 
-	public String getProxyRegisterUrl();
+	String getProxyRegisterUrl();
 
-	public String getLoginUrl();
+	String getLoginUrl();
 
-	public String getRegisterUrl();
+	String getRegisterUrl();
 
-	public String getProxyLogoutUrl();
+	String getProxyLogoutUrl();
 
-	public String getLogoutUrl();
+	String getLogoutUrl();
 
-	public String getAppCode();
+	String getAppCode();
 	
-	public void proxyRegister(String email, String password, String mobile,
+	void proxyRegister(String email, String password, String mobile,
 			String description, String registerIp,String lang);
 }
