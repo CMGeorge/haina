@@ -23,7 +23,7 @@ public interface IPriService extends Serializable {
 	 * 		2.登录名或密码无效 statusCode = 1002
 	 * 		value值为护照，只有成功才有
 	 */
-	public HessianRemoteReturning login(String loginName, String password);
+	HessianRemoteReturning login(String loginName, String password);
 	
 	/**
 	 * 联系人用户注册。<br/>
@@ -36,7 +36,7 @@ public interface IPriService extends Serializable {
 	 * 		2.无效的手机号码 statusCode = 1010
 	 * 		value:护照，只有成功才有
 	 */
-	public HessianRemoteReturning register(String loginName, String password, String mobile);
+	HessianRemoteReturning register(String loginName, String password, String mobile);
 	
 	/**
 	 * 联系人用户通过护照退出。<br/>
@@ -48,7 +48,7 @@ public interface IPriService extends Serializable {
 	 * 		4.用户不存在或用户未激活 statusCode = 1007
 	 * 		5.登录名或手机号码已存在 statusCode = 1007
 	 */
-	public HessianRemoteReturning logoutByPsssport(String passport);
+	HessianRemoteReturning logoutByPsssport(String passport);
 	
 	/**
 	 * 联系人用户通过登录名退出。<br/>
@@ -58,7 +58,7 @@ public interface IPriService extends Serializable {
 	 * 		2.无效的登录名称 statusCode = 1009
 	 * 		4.用户不存在或用户未激活 statusCode = 1007
 	 */
-	public HessianRemoteReturning logoutByLoginName(String loginName);
+	HessianRemoteReturning logoutByLoginName(String loginName);
 	
 	/**
 	 * 修改密码。<br/>
@@ -67,7 +67,7 @@ public interface IPriService extends Serializable {
 	 * @param oldPassword 旧密码
 	 * @param neoPassword 新密码
 	 */
-	public HessianRemoteReturning editPassword(String passport, String oldPassword, String neoPassword);
+	HessianRemoteReturning editPassword(String passport, String oldPassword, String neoPassword);
 
 	/**
 	 * 修改手机号码。<br/>
@@ -75,7 +75,7 @@ public interface IPriService extends Serializable {
 	 * @param passport 登录护照
 	 * @param neoMobile 新手机号码
 	 */
-	public HessianRemoteReturning editMobile(String passport, String neoMobile);
+	HessianRemoteReturning editMobile(String passport, String neoMobile);
 	
 	/**
 	 * 修改登录名（同时修改电子邮件）。<br/>
@@ -83,12 +83,12 @@ public interface IPriService extends Serializable {
 	 * @param neoEmail 新的登录名
 	 * @return 操作结果
 	 */
-	public HessianRemoteReturning editLoginName(String passport, String neoEmail);
+	HessianRemoteReturning editLoginName(String passport, String neoEmail);
 	
 	/**
 	 * 护照的保持心跳功能。<br/>
 	 * @param passport 登录护照
 	 * @return 操作结果
 	 */
-	public HessianRemoteReturning editPassportToKeepHeart(String passport);
+	HessianRemoteReturning editPassportToKeepHeart(String passport);
 }
