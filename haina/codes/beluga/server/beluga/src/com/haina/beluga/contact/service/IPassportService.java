@@ -20,7 +20,7 @@ public interface IPassportService {
 	 * @param contactUser 联系人用户
 	 * @return
 	 */
-	public LoginPassport addPassport(ContactUser contactUser);
+	LoginPassport addPassport(ContactUser contactUser);
 	
 	/**
 	 * 添加护照。<br/>
@@ -29,14 +29,14 @@ public interface IPassportService {
 	 * @param loginTime 登录时间
 	 * @return
 	 */
-	public LoginPassport addPassport(String loginName,String password,Date loginTime);
+	LoginPassport addPassport(String loginName,String password,Date loginTime);
 	
 	/**
 	 * 更新护照。<br/>
 	 * @param passport 护照
 	 * @return
 	 */
-	public LoginPassport updatePassport(String passport);
+	LoginPassport updatePassport(String passport);
 	
 	/**
 	 * 保持护照。<br/>
@@ -44,79 +44,79 @@ public interface IPassportService {
 	 * @param passport 护照
 	 * @return
 	 */
-	public LoginPassport keepPassport(String passport);
+	LoginPassport keepPassport(String passport);
 	
 	/**
 	 * 取得登录护照对象。<br/>
 	 * @param passport 护照
 	 * @return
 	 */
-	public LoginPassport getLoginPassport(String passport);
+	LoginPassport getLoginPassport(String passport);
 	
 	/**
 	 * 是否过期的护照。<br/>
 	 * @param passport 护照
 	 * @return
 	 */
-	public boolean isExpiredPassport(String passport);
+	boolean isExpiredPassport(String passport);
 	
 	/**
 	 * 是否过期的护照。<br/>
 	 * @param loginPassport 护照对象
 	 * @return
 	 */
-	public boolean isExpiredPassport(LoginPassport loginPassport); 
+	boolean isExpiredPassport(LoginPassport loginPassport); 
 	
 	/**
 	 * 删除单个护照。<br/>
 	 * @param passport 护照
 	 * @return
 	 */
-	public boolean removePassport(String passport);
+	boolean removePassport(String passport);
 	
 	/**
 	 * 删除所有护照。<br/>
 	 * @return
 	 */
-	public boolean removeAllPassport();
+	boolean removeAllPassport();
 	
 	/**
 	 * 是否过期的登录。<br/>
 	 * @param passport 登录名
 	 * @return
 	 */
-	public boolean isExpiredLogin(String passport);
+	boolean isExpiredLogin(String passport);
 	
 	/**
 	 * 使登录失效。<br/>
 	 * @param passport
 	 * @return
 	 */
-	public boolean expireLogin(String passport);
+	boolean expireLogin(String passport);
 	
 	/**
 	 * 通过登录名取得登录护照对象。<br/>
 	 * @param loginName
 	 * @return
 	 */
-	public LoginPassport getLoginPassportByLoginName(String loginName);
+	LoginPassport getLoginPassportByLoginName(String loginName);
 	
 	/**
 	 * 通过登录名和密码取得登录护照对象。<br/>
 	 * @param loginName
 	 * @return
 	 */
-	public LoginPassport getLoginPassportByLoginNameAndPwd(String loginName,String password);
+	LoginPassport getLoginPassportByLoginNameAndPwd(String loginName,String password);
 	
 	/**
 	 * 取得目前的护照数量。<br/>
 	 * @return
 	 */
-	public int getPassportQuantity();
+	int getPassportQuantity();
 	
 	/**
 	 * 清楚超期的护照。<br/>
 	 * @return 被清除了护照的登录名
 	 */
-	public List<String> clearExpiredPassport();
+	List<String> clearExpiredPassport();
 }
