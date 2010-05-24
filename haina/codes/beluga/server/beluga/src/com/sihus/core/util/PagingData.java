@@ -31,7 +31,7 @@ public class PagingData {
 	}
 
 	public void setPagesCount(int pagesCount) {
-		this.pagesCount = pagesCount;
+		this.pagesCount = (pagesCount<1 || pagesCount>Integer.MAX_VALUE ? 1 : pagesCount);
 	}
 
 	public int getRowsCount() {
@@ -39,7 +39,7 @@ public class PagingData {
 	}
 
 	public void setRowsCount(int rowsCount) {
-		this.rowsCount = rowsCount;
+		this.rowsCount = (rowsCount<1 || rowsCount>Integer.MAX_VALUE ? 1 : rowsCount);
 	}
 
 	public int getCurrentPage() {
@@ -47,7 +47,7 @@ public class PagingData {
 	}
 
 	public void setCurrentPage(int currentPage) {
-		this.currentPage = currentPage;
+		this.currentPage = (currentPage<1 || currentPage>Integer.MAX_VALUE ? 1 : currentPage);
 	}
 
 	public int getCurrentRow() {
@@ -55,7 +55,7 @@ public class PagingData {
 	}
 
 	public void setCurrentRow(int currentRow) {
-		this.currentRow = currentRow;
+		this.currentRow = (currentRow<1 || currentRow>Integer.MAX_VALUE ? 1 : currentRow);
 	}
 
 	public int getRowsPerPage() {
@@ -63,7 +63,7 @@ public class PagingData {
 	}
 
 	public void setRowsPerPage(int rowsPerPage) {
-		this.rowsPerPage = rowsPerPage;
+		this.rowsPerPage = (rowsPerPage<1 || rowsPerPage>Integer.MAX_VALUE ? 1 : rowsPerPage);
 	}
 	/**
 	 * 获取偏移量
