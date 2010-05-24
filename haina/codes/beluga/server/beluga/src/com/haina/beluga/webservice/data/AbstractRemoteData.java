@@ -8,12 +8,12 @@ import com.sihus.core.dto.IDto;
 /**
  * 远程调用传递数据的基类。<br/>
  * @author huangyongqiang
- * //@Version 1.0
- * @since 1.0
- * @date 2009-06-17
+ * @since 2009-06-17
  */
 public abstract class AbstractRemoteData implements IDto {
 	
+	private static final long serialVersionUID = -5866417232813646935L;
+
 	/*状态码。*/
 	protected int statusCode;
 	
