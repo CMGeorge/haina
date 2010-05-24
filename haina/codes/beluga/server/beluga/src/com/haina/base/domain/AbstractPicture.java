@@ -29,6 +29,11 @@ public abstract class AbstractPicture extends VersionalModel {
 	protected String oriFileName;
 	
 	/**
+	 * 图片显示的url
+	 */
+	protected String picUrl;
+	
+	/**
 	 * 创建时间
 	 */
 	protected Date createTime;
@@ -69,6 +74,18 @@ public abstract class AbstractPicture extends VersionalModel {
 		this.filePath = filePath;
 	}
 	
+	/**
+	 * @hibernate.property not-null="true" type = "string"
+	 * @hibernate.column name="picUrl" sql-type="varchar(1000)"
+	 */	
+	public String getPicUrl() {
+		return picUrl;
+	}
+
+	public void setPicUrl(String picUrl) {
+		this.picUrl = picUrl;
+	}
+
 	/**
 	 * @hibernate.property not-null="true"
 	 * @hibernate.column name="createTime"
