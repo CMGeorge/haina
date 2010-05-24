@@ -25,9 +25,9 @@ import com.sihus.core.util.PagingData;
  * FinderIntroductionInterceptor
  */
 @SuppressWarnings("unchecked")
-//
 public class BaseDao<T extends IModel, PK extends Serializable> extends
 		HibernateDaoSupport implements IBaseDao<T, PK> {
+	
 	@Autowired
 	@Qualifier("sessionFactory")
 	public SessionFactory sessionFactory;
