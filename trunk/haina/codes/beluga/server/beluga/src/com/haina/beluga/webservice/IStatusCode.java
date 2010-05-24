@@ -89,6 +89,13 @@ public interface IStatusCode {
 	 */
 	int INVALID_LOGINNAME_OR_MOBILE=1014;
 	
-	
+	/**
+	 * 请求相册列表出现异常。<br/>
+	 */
 	int REQUEST_USER_ALBUM_LIST_ERROR=3000;
+	
+	/**
+	 * 无效的相册名称。<br/>
+	 */
+	int INVALID_ALBUM=3001;
 }
