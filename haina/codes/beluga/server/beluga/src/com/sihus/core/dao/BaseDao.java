@@ -306,8 +306,10 @@ public class BaseDao<T extends IModel, PK extends Serializable> extends
 		Long counter = (Long) counterQuery.iterate().next();
 		
 		// 更新分页信息
-		page.setRowsCount(counter.intValue());
-		page.setPagesCount();
+		if(page!=null) {
+			page.setRowsCount(counter.intValue());
+			page.setPagesCount();
+		}
 		
 		// 执行查询
 		Query query = session.createQuery(hql);
@@ -404,8 +406,10 @@ public class BaseDao<T extends IModel, PK extends Serializable> extends
 		Long counter = (Long) counterQuery.iterate().next();
 		
 		// 更新分页信息
-		page.setRowsCount(counter.intValue());
-		page.setPagesCount();
+		if(page!=null) {
+			page.setRowsCount(counter.intValue());
+			page.setPagesCount();
+		}
 		
 		// 执行查询
 		Query query = session.createQuery(hql);
