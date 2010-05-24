@@ -1,83 +1,590 @@
 package com.sihus.core.util;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileInputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
-public class FileUtil {
+public final class FileUtil {
+	
+	private static final CommonLog COMMLOG_LOG=CommonLog.getLog(FileUtil.class);
+	
+	public static final int DEFAULT_FILE_IO_BUFFER_SIZE=8192;
 
-public static void main(String[] args) {
-      write("F:\\123.txt", "hello");
-      read("F:\\123.txt");
-}
+	/**
+	 * 读取文件。<br/>
+	 * 
+	 * @param fileFullPathName
+	 *            文件完整路径
+	 * @return
+	 */
+	public static String readFileForString(String fileFullPathName) {
+		if (StringUtils.isNull(fileFullPathName)) {
+			return "";
+		}
+		FileInputStream fis = null;
+		File file = null;
+		try {
+			file = new File(fileFullPathName);
+			fis = new FileInputStream(file);
+			byte[] buf = new byte[DEFAULT_FILE_IO_BUFFER_SIZE];
+			int i = fis.read(buf);
+			StringBuffer buffer=new StringBuffer();
+			while(i>0) {
+				buffer.append(new String(buf));
+				fis.read(buf);
+			}
+			return buffer.toString();
+		} catch (Exception ex) {
+			COMMLOG_LOG.error("读取文件{0}出错", ex,
+					new Object[] { fileFullPathName });
+			return "";
+		} finally {
+			if (fis != null) {
+				try {
+					fis.close();
+				} catch (IOException e) {
+					COMMLOG_LOG.error("关闭文件{0}输入流流出错", e,
+							new Object[] { fileFullPathName });
+				}
+				fis = null;
+			}
+			file = null;
+		}
+	}
 
-public static void write(String path, String content) {
-      String s = new String();
-      String s1 = new String();
-      try {
-       File f = new File(path);
-       if (f.exists()) {
-//        System.out.println("文件存在");
-       } else {
-        System.out.println("文件不存在，正在创建...");
-        if (f.createNewFile()) {
-         System.out.println("文件创建成功！");
-        } else {
-         System.out.println("文件创建失败！");
-        }
+	/**
+	 * 读取文件。<br/>
+	 * 
+	 * @param fileFullPathName
+	 *            文件完整路径
+	 * @return
+	 */
+	public static byte[] readFileForByte(String fileFullPathName) {
+		if (StringUtils.isNull(fileFullPathName)) {
+			return null;
+		}
+		FileInputStream fis = null;
+		File file = null;
+		try {
+			file = new File(fileFullPathName);
+			fis = new FileInputStream(file);
+			byte[] buf = new byte[DEFAULT_FILE_IO_BUFFER_SIZE];
+			int i = fis.read(buf);
+			byte[] ret=new byte[0];
+			byte[] temp=null;
+			while(i>0) {
+				temp=ret;
+				ret=new byte[temp.length+i];
+				System.arraycopy(temp, 0, ret, 0, temp.length);
+				System.arraycopy(buf, 0, ret, temp.length, temp.length);
+			}
+			return ret;
+		} catch (Exception ex) {
+			COMMLOG_LOG.error("读取文件{0}出错", ex,
+					new Object[] { fileFullPathName });
+			return null;
+		} finally {
+			if (fis != null) {
+				try {
+					fis.close();
+				} catch (IOException e) {
+					COMMLOG_LOG.error("关闭文件{0}输入流流出错", e,
+							new Object[] { fileFullPathName });
+				}
+				fis = null;
+			}
+			file = null;
+		}
+	}
+	
+	/**
+	 * 向文件写内容。<br/>
+	 * 
+	 * @param fileFullPathName
+	 *            文件完整路径
+	 * @param content
+	 *            写入的内容
+	 * @param cover
+	 *            是否覆盖存在的文件
+	 */
+	public static void writeFile(String fileFullPathName, byte[] content,
+			boolean cover) {
+		/* Logger log = Logger.getLogger("FileUtils.writeFile"); */
+		if (StringUtils.isNull(fileFullPathName) || null == content
+				|| 0 == content.length) {
+			return;
+		}
+		writeFile(fileFullPathName, new String(content), cover);
+	}
 
-       }
-       BufferedReader input = new BufferedReader(new FileReader(f));
+	public static void writeFile(String fileFullPathName, String content,
+			boolean cover) {
+		writeFile(fileFullPathName, content, Constants.DEFAULT_CHARSET, cover);
+	}
 
-       while ((s = input.readLine()) != null) {
-        s1 += s + "\n";
-       }
-//       System.out.println("文件内容：" + s1);
-       input.close();
-       s1 += content;
+	public static synchronized void writeFile(String fileFullPathName,
+			String content, String encoding, boolean cover) {
+		if (StringUtils.isNull(fileFullPathName)
+				|| StringUtils.isNull(content)
+				|| StringUtils.isNull(encoding)) {
+			return;
+		}
+		createPath(fileFullPathName, cover);
+		PrintWriter pw = null;
+		try {
+			pw = new PrintWriter(fileFullPathName, encoding.trim());
+			pw.write(content);
+			pw.close();
+			// fos = new FileOutputStream(fileFullPathName);
+			// fos.write(content);
+			// fos.flush();
+			// fos.close();
+		} catch (Exception ex) {
+			COMMLOG_LOG
+					.error("写文件{0}出错", ex, new Object[] { fileFullPathName });
+		} finally {
+			/*
+			 * if(fos!=null) { try { fos.close(); } catch (IOException e) {
+			 * 
+			 * } fos=null; }
+			 */
+			if (pw != null) {
+				pw.close();
+				pw = null;
+			}
+		}
+	}
 
-       BufferedWriter output = new BufferedWriter(new FileWriter(f));
-       output.write(s1);
-       output.close();
-      } catch (Exception e) {
-       e.printStackTrace();
-      }
-}
+	/**
+	 * 生成文件路径
+	 * 
+	 * @param fullFileName
+	 *            文件路径
+	 * @param cover
+	 *            是否覆盖
+	 */
+	public static synchronized void createPath(String fullFileName,
+			boolean cover) {
+		if (StringUtils.isNull(fullFileName)) {
+			return;
+		}
+		String path = null;
+		File filePath = null;
+		try {
+			int index = 0;
+			index = fullFileName.lastIndexOf("/");
+			if (index >= 0) {
+				path = fullFileName.substring(0, index);
+				filePath = new File(path);
+				if (!filePath.exists()) {
+					filePath.mkdirs();
+				}
+				createFile(fullFileName, Constants.DEFAULT_CHARSET, cover);
+			}
+		} catch (Exception e) {
+			COMMLOG_LOG.error("创建文件{0}出错", e, new Object[] { fullFileName });
+		} finally {
+			path = null;
+			filePath = null;
+		}
+	}
 
+	public static void createFile(String fullFileName, String charset,
+			boolean cover) {
+		if (StringUtils.isNull(fullFileName)
+				|| StringUtils.isNull(charset)) {
+			return;
+		}
+		createFile(fullFileName, "", charset, cover);
+	}
 
+	public static synchronized void createFile(String fullFileName,
+			String fileContent, String charset, boolean cover) {
+		if (StringUtils.isNull(fullFileName)
+				|| StringUtils.isNull(charset)
+				|| StringUtils.isNull(fileContent)) {
+			return;
+		}
+		File file = null;
+		String path = null;
+		try {
+			int index = 0;
+			index = fullFileName.lastIndexOf("/");
+			if (fullFileName.length() == index) {/* 目录路径，不是文件路径。 */
+				return;
+			} else {
+				path = fullFileName.substring(0, index);
+				file = new File(path);
+				if (!file.exists()) {
+					file.mkdirs();
+				}
+				file = new File(fullFileName);
+				if (file.exists() && cover) {
+					file.delete();
+				} else {
+					return;
+				}
+				PrintWriter pw = new PrintWriter(fullFileName, charset);
+				pw.write(fileContent);
+				pw.close();
+				pw = null;
+			}
+		} catch (Exception e) {
+			COMMLOG_LOG.error("创建文件{0}出错", e, new Object[] { fullFileName });
+		} finally {
+			file = null;
+			path = null;
+		}
+	}
 
+	public static void createFile(String fullFileName, InputStream in,
+			boolean trimCRLF) {
+		createFile(fullFileName, in, Constants.DEFAULT_CHARSET, trimCRLF);
+	}
 
-///**
-//   * @param args
-//   */
-//public static void main(String[] args) {
-//   read("E:\\123.txt");
-//}
+	public static synchronized void createFile(String fullFileName,
+			InputStream in, String charset, boolean trimCRLF) {
+		if (StringUtils.isNull(fullFileName)
+				|| StringUtils.isNull(charset) || null == in) {
+			return;
+		}
+		File file = null;
+		String temp = null;
+		PrintWriter pw = null;
+		BufferedReader breader = null;
+		StringBuffer content = new StringBuffer();
+		fullFileName.replace("\\", "/");
+		try {
+			int index = fullFileName.lastIndexOf("/");
+			if (fullFileName.length() == index) {/* 目录路径，不是文件路径。 */
+				return;
+			} else {
+				temp = fullFileName.substring(0, index);
+				file = new File(temp);
+				if (!file.exists()) {
+					file.mkdirs();
+				}
+				file = new File(fullFileName);
+				if (file.exists()) {
+					file.delete();
+				}
+				pw = new PrintWriter(fullFileName, charset.trim());
+				breader = new BufferedReader(new InputStreamReader(in, charset
+						.trim()));
+				while ((temp = breader.readLine()) != null) {
+					if (trimCRLF) {
+						temp = temp.trim().replace("\r", "").replace("\n", "");
+					}
+					content.append(temp);
+				}
+				pw.write(content.toString());
+				pw.close();
+			}
+			/*
+			 * reader = new InputStreamReader(in ,charset.trim()); //out = new
+			 * OutputStreamWriter(new
+			 * FileOutputStream(fullFileName.trim()),charset.trim()); int
+			 * charsRead = 0; char[] buffer = new
+			 * char[DEFAULT_FILE_IO_BUFFER_SIZE]; while ((charsRead =
+			 * reader.read(buffer, 0, DEFAULT_FILE_IO_BUFFER_SIZE)) != -1) {
+			 * out.write(buffer, 0, charsRead); } out.flush(); out.close();
+			 * reader.close();
+			 */
+		} catch (FileNotFoundException fnfEx) {
+			COMMLOG_LOG.error("文件{0}不存在", fnfEx, new Object[] { fullFileName });
+		} catch (IOException ioEx) {
+			COMMLOG_LOG.error("创建文件{0}出错", ioEx, new Object[] { fullFileName });
+		}
+		pw = null;
+		breader = null;
+		temp = null;
+		content = null;
+		file = null;
+	}
 
-public static void read(String file) {
-   String s = null;
-   StringBuffer sb = new StringBuffer();
-   File f = new File(file);
-   if (f.exists()) {
-    System.out.println("文件存在");
+	public static synchronized void createFile(String fullFileName,
+			URL urlPath, String charset, boolean trimCRLF) {
+		if (StringUtils.isNull(fullFileName)
+				|| StringUtils.isNull(charset) || null == urlPath) {
+			return;
+		}
+		HttpURLConnection connection = null;
+		InputStream in = null;
+		try {
+			connection = (HttpURLConnection) urlPath.openConnection();
+			connection.connect();
+			in = connection.getInputStream();
+			createFile(fullFileName, in, charset, trimCRLF);
+		} catch (IOException ioEx) {
+			COMMLOG_LOG.error("写文件{0}出错", ioEx, new Object[] { fullFileName });
+		}
+		in = null;
+		connection = null;
+	}
 
-    try {
-     BufferedReader br = new BufferedReader(new InputStreamReader(
-       new FileInputStream(f)));
+	public static synchronized int moveFile(String fullFileName,
+			String filePath1, String filePath2) {
+		if (StringUtils.isNull(fullFileName)
+				|| StringUtils.isNull(filePath1)
+				|| StringUtils.isNull(filePath2)) {
+			return 0;
+		}
+		File file = new File(filePath1, fullFileName);
+		File folder = null;
+		File newFile = null;
+		if (file.exists()) {
+			folder = new File(filePath2);
+			if (!folder.exists()) {
+				folder.mkdirs();
+			}
+			newFile = new File(filePath2, fullFileName);
+			if (file.renameTo(newFile)) {
+				newFile = null;
+				file = null;
+				folder = null;
+				return 1;
+			} else {
+				newFile = null;
+				file = null;
+				folder = null;
+				return -1;
+			}
+		} else {
+			file = null;
+			return 0;
+		}
 
-     while ((s = br.readLine()) != null) {
-      sb.append(s);
-     }
-     System.out.println(sb);
-    } catch (Exception e) {
-     e.printStackTrace();
-    }
-   }else{
-    System.out.println("文件不存在!");
-   }
-}
+	}
+
+	public static synchronized int moveFile(String filePath1, String filePath2) {
+		if (StringUtils.isNull(filePath2)
+				|| StringUtils.isNull(filePath2)) {
+			return 0;
+		}
+		File file = new File(filePath1);
+		File newFile = null;
+		File folder = null;
+		if (file.exists()) {
+			newFile = new File(filePath2);
+			folder = new File(newFile.getParent());
+			if (!folder.exists()) {
+				folder.mkdirs();
+			}
+			if (file.renameTo(newFile)) {
+				file = null;
+				newFile = null;
+				folder = null;
+				return 1;
+			} else {
+				file = null;
+				newFile = null;
+				folder = null;
+				return -1;
+			}
+		} else {
+			file = null;
+			return 0;
+		}
+	}
+
+	public static int copyFile(String fullFileName, String filePath1,
+			String filePath2) {
+		if (StringUtils.isNull(fullFileName)
+				|| StringUtils.isNull(filePath1)
+				|| StringUtils.isNull(filePath2)) {
+			return 0;
+		}
+		File file = new File(filePath1, fullFileName);
+		File newFile = null;
+		FileInputStream fin = null;
+		FileOutputStream fout = null;
+		try {
+			if (file.exists()) {
+				newFile = new File(filePath2, fullFileName);
+				if (!newFile.getParentFile().exists()) {
+					newFile.getParentFile().mkdirs();
+				}
+
+				byte[] buffer = new byte[DEFAULT_FILE_IO_BUFFER_SIZE];
+				int bytesRead = 0;
+				fin = new FileInputStream(file);
+				fout = new FileOutputStream(newFile);
+				while ((bytesRead = fin.read(buffer)) != -1) {
+					fout.write(buffer, 0, bytesRead);
+				}
+				fin.close();
+				fout.close();
+
+				fin = null;
+				fout = null;
+				newFile = null;
+				file = null;
+				return 1;
+			} else {
+				file = null;
+				return 0;
+			}
+		} catch (Exception e) {
+			COMMLOG_LOG.error("拷贝{0}出错", e, new Object[] { fullFileName });
+			return -1;
+		} finally {
+			if (fout != null) {
+				try {
+					fout.close();
+				} catch (IOException e) {
+					COMMLOG_LOG.error("关闭文件{0}输出流出错", e,
+							new Object[] { fullFileName });
+				}
+				fout = null;
+			}
+			if (fin != null) {
+				try {
+					fin.close();
+				} catch (IOException e) {
+					COMMLOG_LOG.error("关闭文件{0}输入流出错", e,
+							new Object[] { fullFileName });
+				}
+				fin = null;
+			}
+			newFile = null;
+			file = null;
+		}
+	}
+
+	public static synchronized void deleteFile(String filePathName) {
+		if (StringUtils.isNull(filePathName)) {
+			return;
+		}
+		File file = new File(filePathName);
+		if (file.isFile() && file.exists()) {
+			file.delete();
+		}
+		file = null;
+	}
+
+	public static synchronized void deleteFile(File file) {
+		if (!file.exists()) {
+			return;
+		}
+		if (file.isFile()) {
+			file.delete();
+		} else {
+			File[] files = file.listFiles();
+			for (int i = 0; i < files.length; i++) {
+				deleteFile(files[i]);
+			}
+			file.delete();
+			files = null;
+		}
+	}
+
+	/**
+	 * 删除目录，如果目录下还存在目录的话同样删除
+	 * 
+	 * @param path
+	 *            要删除的目录
+	 * @param flag
+	 *            true 如果目录中存在文件的话同样删除目录 false 如果目录中存在文件则不删除目录
+	 */
+	public static synchronized boolean deletePath(String path, boolean flag) {
+		if (StringUtils.isNull(path)) {
+			return true;
+		}
+		File file = new File(path);
+		if (file.exists()) {
+			File[] files = file.listFiles();
+
+			for (int i = 0; i < files.length; i++) {
+				if (files[i].isDirectory()) {
+					if (!deletePath(files[i].toString(), flag)) {
+						files = null;
+						file = null;
+						return false;
+					}
+				}
+				if (files[i].isFile()) {
+					if (flag) {
+						files[i].delete();
+					} else {
+						files = null;
+						file = null;
+						return false;
+					}
+				}
+			}
+			files = null;
+			file.delete();
+		}
+		file = null;
+		return true;
+	}
+
+	/**
+	 * 删除目录，如果目录下还存在目录的话同样删除
+	 * 
+	 * @param path
+	 *            要删除的目录
+	 */
+	public static synchronized void deleteFolder(String path) {
+		File folder = new File(path);
+		if (folder.exists()) {
+			File[] files = folder.listFiles();
+			for (int i = 0; i < files.length; i++) {
+				if (files[i].isFile())
+					files[i].delete();
+				if (files[i].isDirectory())
+					deleteFolder(files[i].getPath());
+			}
+			files = null;
+			folder.delete();
+		}
+		folder = null;
+	}
+
+	public static List<File> getListFile(String path) throws Exception {
+		if (StringUtils.isNull(path)) {
+			return null;
+		}
+		List<File> fileList = new ArrayList<File>();
+
+		listFile(path, fileList);
+
+		return fileList;
+	}
+
+	private static void listFile(String path, List<File> fileList)
+			throws Exception {
+		if (StringUtils.isNull(path) || fileList == null
+				|| fileList.size() < 1) {
+			return;
+		}
+		File file = new File(path);
+		File list[] = file.listFiles(new FileFilter() {
+			public boolean accept(File pathname) {
+				String tmp = pathname.getName().toLowerCase();
+				if ((pathname.isDirectory()) || (tmp.endsWith(".xml"))) {
+					return true;
+				}
+				return false;
+			}
+		});
+		for (int i = 0; i < list.length; i++) {
+			if (list[i].isDirectory()) {
+				listFile(list[i].toString(), fileList);
+			} else {
+				fileList.add(list[i]);
+			}
+		}
+	}
 }
