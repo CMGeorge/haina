@@ -3,12 +3,11 @@ package com.sihus.core.service;
 import java.io.Serializable;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.sihus.core.dao.IBaseDao;
 import com.sihus.core.model.IModel;
+import com.sihus.core.util.CommonLog;
 /**
  *  基本的Service层实现.
  * @author X_FU.
@@ -18,7 +17,7 @@ import com.sihus.core.model.IModel;
 
 public  class BaseSerivce<D extends IBaseDao<T,PK>,T extends IModel,PK extends Serializable> implements IBaseSerivce<D,T,PK> {
 	
-	protected Log log=LogFactory.getLog(this.getClass());
+	protected CommonLog log=CommonLog.getLog(this.getClass());
 	
 	private D baseDao;
 	
