@@ -88,4 +88,7 @@ public interface IStatusCode {
 	 * 无效的登录名称或手机号码。<br/>
 	 */
 	int INVALID_LOGINNAME_OR_MOBILE=1014;
+	
+	
+	int REQUEST_USER_ALBUM_LIST_ERROR=3000;
 }
