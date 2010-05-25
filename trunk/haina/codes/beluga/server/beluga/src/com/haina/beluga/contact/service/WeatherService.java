@@ -32,7 +32,7 @@ import com.sihus.core.util.MfTime;
 public class WeatherService extends BaseSerivce<IWeatherDao,Weather,String> implements IWeatherService,InitializingBean {
 	@Autowired(required=true)
 	private IPhoneDistrictDao phoneDistrictDao;
-	private final static String ACode="A5670629785";//，A3432136345
+	private final static String ACode="A3432136345";//，A3432136345
 	private static Map<String,WeatherDto> liveWeatherPool = new HashMap<String,WeatherDto>(); 
 	 static Logger logger = Logger.getLogger(WeatherService.class.getName());
 	 private static WeatherBugWebServicesSoap   weatherBugWebServicesSoap ;
@@ -56,8 +56,10 @@ public class WeatherService extends BaseSerivce<IWeatherDao,Weather,String> impl
 		String[] codes = phoneDistrictDao.getWeatherCityCodes();
 		List<Weather> weatherList = new ArrayList<Weather>();
 		logger.info("loadWeatherDatasByApiSize:"+codes.length);
+		int i = 0;
 		for(String cityCode:codes){
 			loadWDbyCityCode(cityCode,weatherList,0);
+			logger.info("loadWeatherDatas at :"+(i++));
 		}
 		getBaseDao().saveAll(weatherList);
 		//所有更新后的天气加载到缓存
