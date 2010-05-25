@@ -22,7 +22,7 @@ public class RomeTest {
 //		for(int i =0;i<=176;i++)
 //			getIconWeather(i);
 		System.out.println(MfTime.toNow());;
-		testRome();
+//		testRome();
 	}
 	/**
 	 * 10000<QQ<=1425000000;
@@ -94,7 +94,7 @@ public class RomeTest {
 		}
 		return 0;
 	}
-	public static void testRome(){
+	public void testRome(){
 		URL feedUrl;
 		try {
 			feedUrl = new URL("http://news.baidu.com/n?cmd=7&loc=0&name=上海&tn=rss");
