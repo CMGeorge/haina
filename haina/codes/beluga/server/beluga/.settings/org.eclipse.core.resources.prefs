@@ -1,5 +1,21 @@
-#Fri May 21 23:43:58 CST 2010
+#Tue May 25 13:55:18 CST 2010
 eclipse.preferences.version=1
 encoding//resources/configs/log4j.properties=UTF-8
 encoding//resources/res/com/haina/beluga/i18n/message_zh_CN.properties=UTF-8
+encoding//src/net/wxbug/api/ApiAlertData.java=UTF-8
+encoding//src/net/wxbug/api/ApiAlertIssueData.java=UTF-8
+encoding//src/net/wxbug/api/ApiForecastData.java=UTF-8
+encoding//src/net/wxbug/api/ApiForecastIssueData.java=UTF-8
+encoding//src/net/wxbug/api/ApiLocationData.java=UTF-8
+encoding//src/net/wxbug/api/ApiStationData.java=UTF-8
+encoding//src/net/wxbug/api/LiveCompactWeatherData.java=UTF-8
+encoding//src/net/wxbug/api/LiveWeatherData.java=UTF-8
+encoding//src/net/wxbug/api/LocationUSWorldCityData.java=UTF-8
+encoding//src/net/wxbug/api/UnitType.java=UTF-8
+encoding//src/net/wxbug/api/WeatherBugWebServices.java=UTF-8
+encoding//src/net/wxbug/api/WeatherBugWebServicesLocator.java=UTF-8
+encoding//src/net/wxbug/api/WeatherBugWebServicesSoap.java=UTF-8
+encoding//src/net/wxbug/api/WeatherBugWebServicesSoap12Stub.java=UTF-8
+encoding//src/net/wxbug/api/WeatherBugWebServicesSoapStub.java=UTF-8
+encoding//src/test/TestServiceImpl.java=UTF-8
 encoding/<project>=UTF-8

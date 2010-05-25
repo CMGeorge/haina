@@ -32,7 +32,7 @@ import com.sihus.core.util.MfTime;
 public class WeatherService extends BaseSerivce<IWeatherDao,Weather,String> implements IWeatherService,InitializingBean {
 	@Autowired(required=true)
 	private IPhoneDistrictDao phoneDistrictDao;
-	private final static String ACode="A3432136345";
+	private final static String ACode="A5670629785";//，A3432136345
 	private static Map<String,WeatherDto> liveWeatherPool = new HashMap<String,WeatherDto>(); 
 	 static Logger logger = Logger.getLogger(WeatherService.class.getName());
 	 private static WeatherBugWebServicesSoap   weatherBugWebServicesSoap ;
