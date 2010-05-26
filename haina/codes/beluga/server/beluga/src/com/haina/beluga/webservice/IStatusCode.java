@@ -97,5 +97,25 @@ public interface IStatusCode {
 	/**
 	 * 无效的相册名称。<br/>
 	 */
-	int INVALID_ALBUM=3001;
+	int INVALID_ALBUM_NAME=3001;
+	
+	/**
+	 * 无效的相册id。<br/>
+	 */
+	int INVALID_ALBUM_ID=3002;
+	
+	/**
+	 * 新增相册出现异常。<br/>
+	 */
+	int ADD_USER_ALBUM_ERROR=3003;
+	
+	/**
+	 * 编辑相册出现异常。<br/>
+	 */
+	int EDIT_USER_ALBUM_ERROR=3004;
+	
+	/**
+	 * 部分相册id无效。<br/>
+	 */
+	int INVALID_PARTIAL_ALBUM_ID=3005;
 }
