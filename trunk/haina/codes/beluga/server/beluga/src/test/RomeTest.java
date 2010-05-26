@@ -22,7 +22,7 @@ public class RomeTest {
 //		for(int i =0;i<=176;i++)
 //			getIconWeather(i);
 		System.out.println(MfTime.toNow());;
-//		testRome();
+		testQQstatus(25310890);
 	}
 	/**
 	 * 10000<QQ<=1425000000;
