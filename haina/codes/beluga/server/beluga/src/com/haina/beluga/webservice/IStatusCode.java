@@ -120,7 +120,12 @@ public interface IStatusCode {
 	int INVALID_PARTIAL_ALBUM_ID=3005;
 	
 	/**
-	 * 请求相册列表出现异常。<br/>
+	 * 请求相片列表出现异常。<br/>
 	 */
 	int REQUEST_USER_PHOTO_LIST_ERROR=3005;
+	
+	/**
+	 * 无效的相片id。<br/>
+	 */
+	int INVALID_PHOTO_ID=3006;
 }
