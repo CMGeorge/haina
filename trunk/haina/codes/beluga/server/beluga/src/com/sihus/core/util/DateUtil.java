@@ -12,12 +12,28 @@ import java.util.Locale;
 /**
  * ����������
  */
-public class DateUtil {
+public final class DateUtil {
+	
+	public static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
 	
 	private DateUtil() {
 		// util class, prevent from new instance
 	}
 
+	public static String toString(Date source, String format) {
+		String dateStr = null;
+		if (source != null) {
+			DateFormat df = new SimpleDateFormat(StringUtils
+					.isNull(format) ? DEFAULT_DATE_FORMAT : format.trim());
+			dateStr = df.format(source);
+		}
+		return dateStr;
+	}
+
+	public static String toDefaultString(Date source) {
+		return toString(source, null);
+	}
+	
     /**
      * ��ʽ����ǰʱ��.
      * @param pattern - ���ڸ�ʽ
