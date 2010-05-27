@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+
+>
+
+    <class
+            name="com.haina.beluga.contact.domain.Weather"
+            table="Weather"
+    >
+
+        <cache 
+            usage="read-write"
+        />
+
+    <id
+        name="id"
+            length="32"
+            unsaved-value="null"
+    >
+
+            <column
+                name="id" 
+                sql-type="char(32)"
+            />
+
+    <generator
+        class="uuid.hex"
+    >
+
+    </generator>
+
+    </id>
+
+        <version
+            name="version"
+            column="VERSION"
+            type="long"
+        />
+
+        <property
+            name="date"
+                    column="date"
+                length="20"
+        >
+
+        </property>
+
+        <property
+            name="weatherCityCode"
+                    column="weatherCityCode"
+                length="20"
+        >
+
+        </property>
+
+        <property
+            name="weatherType"
+                    column="weatherType"
+                length="50"
+        >
+
+        </property>
+
+        <property
+            name="high"
+                    column="high"
+        >
+
+        </property>
+
+        <property
+            name="low"
+                    column="low"
+        >
+
+        </property>
+
+        <property
+            name="wind"
+                    column="wind"
+                length="30"
+        >
+
+        </property>
+
+        <property
+            name="icon"
+                    column="icon"
+                length="30"
+        >
+
+        </property>
+
+        <property
+            name="night"
+                    column="isNight"
+        >
+
+        </property>
+
+        <property
+            name="issuetime"
+                    column="issuetime"
+                length="10"
+        >
+
+        </property>
+
+    </class>    
+
+</hibernate-mapping>
+
