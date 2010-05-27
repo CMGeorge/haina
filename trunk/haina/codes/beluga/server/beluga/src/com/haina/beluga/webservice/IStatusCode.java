@@ -128,4 +128,9 @@ public interface IStatusCode {
 	 * 无效的相片id。<br/>
 	 */
 	int INVALID_PHOTO_ID=3006;
+	
+	/**
+	 * 请求相片出现异常。<br/>
+	 */
+	int REQUEST_USER_PHOTO_ERROR=3006;
 }
