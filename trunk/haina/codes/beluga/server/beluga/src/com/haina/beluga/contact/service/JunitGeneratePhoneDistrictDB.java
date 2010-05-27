@@ -113,7 +113,7 @@ public class JunitGeneratePhoneDistrictDB extends TestCase
 				//e1.printStackTrace();
 			}
 			System.out.println("reload:"+phoneCode);
-			FileUtil.writeFile("F:\\124.txt", "reload:"+phoneCode, true);
+			FileUtil.writeFile("F:\\124.txt", "reload:"+phoneCode, true,false);
 			return getStrByNet(phoneCode);
 			 
 		}
