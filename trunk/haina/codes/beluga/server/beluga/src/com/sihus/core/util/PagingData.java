@@ -7,6 +7,17 @@ package com.sihus.core.util;
  * 2009-8-27 下午09:23:17
  */
 public class PagingData {
+	
+	/**
+	 * 默认当前页
+	 */
+	public static final int DEFAULT_CURRENT_PAGE=1;
+	
+	/**
+	 * 默认每页数量
+	 */
+	public static final int DEFAULT_ROWS_PER_PAGE=10;
+	
 	// 总页数
 	private int pagesCount;
 	
@@ -47,7 +58,7 @@ public class PagingData {
 	}
 
 	public void setCurrentPage(int currentPage) {
-		this.currentPage = (currentPage<1 || currentPage>Integer.MAX_VALUE ? 1 : currentPage);
+		this.currentPage = (currentPage<1 || currentPage>Integer.MAX_VALUE ? DEFAULT_CURRENT_PAGE : currentPage);
 	}
 
 	public int getCurrentRow() {
@@ -63,7 +74,7 @@ public class PagingData {
 	}
 
 	public void setRowsPerPage(int rowsPerPage) {
-		this.rowsPerPage = (rowsPerPage<1 || rowsPerPage>Integer.MAX_VALUE ? 1 : rowsPerPage);
+		this.rowsPerPage = (rowsPerPage<1 || rowsPerPage>Integer.MAX_VALUE ? DEFAULT_ROWS_PER_PAGE : rowsPerPage);
 	}
 	/**
 	 * 获取偏移量
