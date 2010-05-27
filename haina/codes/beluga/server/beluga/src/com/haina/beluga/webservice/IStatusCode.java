@@ -118,4 +118,9 @@ public interface IStatusCode {
 	 * 部分相册id无效。<br/>
 	 */
 	int INVALID_PARTIAL_ALBUM_ID=3005;
+	
+	/**
+	 * 请求相册列表出现异常。<br/>
+	 */
+	int REQUEST_USER_PHOTO_LIST_ERROR=3005;
 }
