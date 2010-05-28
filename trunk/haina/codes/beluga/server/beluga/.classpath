@@ -40,8 +40,5 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-transaction-1.2.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-codec-1.2.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hessian-3.1.6.jar"/>
-	<classpathentry kind="lib" path="C:/eclipse/plugins/javax.xml.soap_1.2.0.v200806030421/lib/saaj.jar"/>
-	<classpathentry kind="lib" path="C:/eclipse/plugins/javax.wsdl_1.5.1.v200806030408.jar"/>
-	<classpathentry kind="lib" path="C:/eclipse/plugins/org.apache.commons.logging_1.0.4.v20080605-1930.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>
