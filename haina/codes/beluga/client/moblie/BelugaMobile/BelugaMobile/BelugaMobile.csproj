@@ -138,6 +138,7 @@
   <ItemGroup>
     <Folder Include="Data\Cache\" />
     <Folder Include="Data\Db\" />
+    <Folder Include="Img\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>
