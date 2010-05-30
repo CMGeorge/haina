@@ -85,6 +85,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Db\Xsd\msgface.xsc">
       <DependentUpon>msgface.xsd</DependentUpon>
     </None>
@@ -112,6 +113,31 @@
     <None Include="Db\Xsd\userconfig.xss">
       <DependentUpon>userconfig.xsd</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Data\Msgface\mantou_001.png" />
+    <Content Include="Data\Msgface\mantou_002.png" />
+    <Content Include="Data\Msgface\mantou_003.png" />
+    <Content Include="Data\Msgface\mantou_004.png" />
+    <Content Include="Data\Msgface\mantou_005.png" />
+    <Content Include="Data\Msgface\mantou_006.png" />
+    <Content Include="Data\Msgface\mantou_007.png" />
+    <Content Include="Data\Msgface\mantou_008.png" />
+    <Content Include="Data\Msgface\mantou_009.png" />
+    <Content Include="Data\Msgface\mantou_010.png" />
+    <Content Include="Data\Msgface\mantou_011.png" />
+    <Content Include="Data\Msgface\mantou_012.png" />
+    <Content Include="Data\Msgface\mantou_013.png" />
+    <Content Include="Data\Msgface\mantou_014.png" />
+    <Content Include="Data\Msgface\mantou_015.png" />
+    <Content Include="Data\Msgface\mantou_016.png" />
+    <Content Include="Data\Msgface\mantou_017.png" />
+    <Content Include="Data\Msgface\mantou_018.png" />
+    <Content Include="Data\Msgface\mantou_019.png" />
+    <Content Include="Data\Msgface\mantou_020.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\Db\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>
