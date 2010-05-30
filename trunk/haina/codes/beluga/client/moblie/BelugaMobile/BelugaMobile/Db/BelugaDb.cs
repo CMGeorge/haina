@@ -23,7 +23,7 @@ namespace BelugaMobile.Db
         public string imei;
         public string username;
         public string mobile;
-        public bool sex; /* 1: male 0: female */
+        public string sex; 
         public string photo;
         public string signature;
         public string home_tel;
@@ -318,7 +318,7 @@ namespace BelugaMobile.Db
         {
             Contact contact = GetContact(contact_id);
             SQLiteCommand cmd = _Connection.CreateCommand("update t_contact set dst_user_id = @user_id, dst_user_mobile = @mobile, " +
-                "name = @name, name_spell = @name_spell, photo = @photo where cid = @contact_id;");;
+                "name = @name, name_spell = @name_spell, photo = @photo where cid = @contact_id;");
 
             if (string.IsNullOrEmpty(contact["dst_user_id"].ToString()) || contact["dst_user_mobile"].ToString().Equals(mobile))
                 cmd.Parameters.Add("@dst_user_id", DbType.String).Value = user_id;

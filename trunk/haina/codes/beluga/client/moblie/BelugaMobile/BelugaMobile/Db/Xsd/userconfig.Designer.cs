@@ -554,8 +554,8 @@ namespace BelugaMobile.Db.Xsd
                         string user_id, 
                         string imei, 
                         string username, 
-                        string mobile, 
-                        bool sex, 
+                        string mobile,
+                        string sex, 
                         string photo, 
                         string signature, 
                         string home_tel, 
@@ -682,7 +682,7 @@ namespace BelugaMobile.Db.Xsd
                 base.Columns.Add(this.columnusername);
                 this.columnmobile = new global::System.Data.DataColumn("mobile", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnmobile);
-                this.columnsex = new global::System.Data.DataColumn("sex", typeof(bool), null, global::System.Data.MappingType.Element);
+                this.columnsex = new global::System.Data.DataColumn("sex", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnsex);
                 this.columnphoto = new global::System.Data.DataColumn("photo", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnphoto);
@@ -927,10 +927,10 @@ namespace BelugaMobile.Db.Xsd
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool sex {
+            public string sex {
                 get {
                     try {
-                        return ((bool)(this[this.tableuser_config.sexColumn]));
+                        return ((string)(this[this.tableuser_config.sexColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'sex\' in table \'user_config\' is DBNull.", e);
