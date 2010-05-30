@@ -48,11 +48,24 @@
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLiteClient, Version=1.0.3802.29353, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\TargetLib\System.Data.SQLiteClient.dll</HintPath>
+    </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Db\BelugaDb.cs" />
+    <Compile Include="Db\Contact.cs" />
+    <Compile Include="Db\Han2Pinyin.cs" />
+    <Compile Include="Db\Message.cs" />
+    <Compile Include="Db\PhoneDistrict.cs" />
+    <Compile Include="Db\RecentCall.cs" />
+    <Compile Include="Db\Xsd\msgface.Designer.cs" />
+    <Compile Include="Db\Xsd\quickmsg.Designer.cs" />
+    <Compile Include="Db\Xsd\userconfig.Designer.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +83,35 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Db\Xsd\msgface.xsc">
+      <DependentUpon>msgface.xsd</DependentUpon>
+    </None>
+    <None Include="Db\Xsd\msgface.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Db\Xsd\msgface.xss">
+      <DependentUpon>msgface.xsd</DependentUpon>
+    </None>
+    <None Include="Db\Xsd\quickmsg.xsc">
+      <DependentUpon>quickmsg.xsd</DependentUpon>
+    </None>
+    <None Include="Db\Xsd\quickmsg.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Db\Xsd\quickmsg.xss">
+      <DependentUpon>quickmsg.xsd</DependentUpon>
+    </None>
+    <None Include="Db\Xsd\userconfig.xsc">
+      <DependentUpon>userconfig.xsd</DependentUpon>
+    </None>
+    <None Include="Db\Xsd\userconfig.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Db\Xsd\userconfig.xss">
+      <DependentUpon>userconfig.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>
