@@ -85,7 +85,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
     <None Include="Db\Xsd\msgface.xsc">
       <DependentUpon>msgface.xsd</DependentUpon>
     </None>
@@ -137,6 +136,7 @@
     <Content Include="Data\Msgface\mantou_020.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Data\Cache\" />
     <Folder Include="Data\Db\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
