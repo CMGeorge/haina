@@ -148,7 +148,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions=" /subsystem:windowsce,5.02"
-				OutputFile="$(OutDir)/SQLite3.dll"
+				OutputFile="..\..\TargetLib\SQLite3.dll"
 				LinkIncremental="2"
 				ModuleDefinitionFile="$(InputDir)\sqlite3.def"
 				DelayLoadDLLs="$(NOINHERIT)"
