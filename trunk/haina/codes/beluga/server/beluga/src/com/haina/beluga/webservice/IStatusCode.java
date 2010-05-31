@@ -115,7 +115,7 @@ public interface IStatusCode {
 	int EDIT_USER_ALBUM_ERROR=3004;
 	
 	/**
-	 * 部分相册id无效。<br/>
+	 * 部分相册id无效或相片不存在。<br/>
 	 */
 	int INVALID_PARTIAL_ALBUM_ID=3005;
 	
@@ -125,7 +125,7 @@ public interface IStatusCode {
 	int REQUEST_USER_PHOTO_LIST_ERROR=3005;
 	
 	/**
-	 * 无效的相片id。<br/>
+	 * 无效的相片id或相片不存在。<br/>
 	 */
 	int INVALID_PHOTO_ID=3006;
 	
