@@ -68,7 +68,7 @@
 		</property>
 		<property name="validatedMethod">
 			<map>
-     			<entry key="/pri">
+     			<entry key="/pri.do">
      				<list>
      					<value>editLoginName</value>
 			     		<value>editMobile</value>
