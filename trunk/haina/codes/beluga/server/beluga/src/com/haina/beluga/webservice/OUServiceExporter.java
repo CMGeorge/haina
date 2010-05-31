@@ -53,12 +53,12 @@ public class OUServiceExporter implements HttpRequestHandler, InitializingBean {
 			out.println("<h1>OUCenter -OU中心 Requires POST</h1>");
 			return;
 		}
-		InputStream is = req.getInputStream();
-		OutputStream os = res.getOutputStream();
+//		InputStream is = req.getInputStream();
+//		OutputStream os = res.getOutputStream();
 		String _method = req.getParameter(getMethod());
-		MicroHessianInput hessianInput = new MicroHessianInput(is);
+//		MicroHessianInput hessianInput = new MicroHessianInput(is);
 		// hessianInput.readString();
-		MicroHessianOutput hessianOutput = new MicroHessianOutput(os);
+//		MicroHessianOutput hessianOutput = new MicroHessianOutput(os);
 		String urlPath=this.getRequestPath(req);
 		boolean need=this.needLogin(_method, urlPath);
 		if(need) {
@@ -67,11 +67,11 @@ public class OUServiceExporter implements HttpRequestHandler, InitializingBean {
 				HessianRemoteReturning ret = new HessianRemoteReturning();
 				ret.setStatusCode(IStatusCode.INVALID_LOGIN_PASSPORT);
 				String rs=jsonSerializer.deepSerialize(ret);
-				hessianOutput.writeString(rs);
+				res.getWriter().write(rs);
 				return ;
 			}
 		}
-		uuSkeleton.invoke(_method, hessianInput, hessianOutput);
+		uuSkeleton.invoke(_method, req, res);
 
 	}
 
