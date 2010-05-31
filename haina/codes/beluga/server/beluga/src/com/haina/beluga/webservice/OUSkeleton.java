@@ -4,6 +4,9 @@ package com.haina.beluga.webservice;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.log4j.Logger;
 
 import com.haina.beluga.webservice.flexjson.JSONDeserializer;
@@ -39,7 +42,7 @@ public class OUSkeleton extends AbstractSkeleton {
              
 	 }
 	@SuppressWarnings("unchecked")
-	public void invoke(String method, MicroHessianInput in, MicroHessianOutput out) throws IOException{
+	public void invoke(String method, HttpServletRequest in, HttpServletResponse out) throws IOException{
     
 	    Method _method = getMothodByClass(intface,method);
 	
@@ -54,8 +57,9 @@ public class OUSkeleton extends AbstractSkeleton {
 	    	logger.info(args.length + ":Parameters in "+_method.getName());
 		    values = new Object[args.length];
 		    for (int i = 0; i < args.length; i++) {
+		    	Object[] pKey = in.getParameterMap().keySet().toArray();
 		    	Object js =  new JSONDeserializer().use(null, args[i])
-					.deserialize(in.readString());
+					.deserialize(in.getParameter(pKey[i+1].toString()));
 		    	if(!js.getClass().equals(args[i])){
 		    		values[i] = js.toString();
 		    	}else{
@@ -69,7 +73,7 @@ public class OUSkeleton extends AbstractSkeleton {
 	    	Object result = _method.invoke(service, values);
 			long t2 = System.currentTimeMillis();
 			String rs=new JSONSerializer().deepSerialize(result);
-			out.writeString(rs);
+			out.getWriter().write(rs);
 //			logger.info("JSON:"+rs);
 			logger.info(_method.getName() + ":" + (t2 - t1));
 	    } catch (Throwable e) {

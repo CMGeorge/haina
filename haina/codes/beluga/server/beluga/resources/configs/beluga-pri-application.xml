@@ -52,7 +52,7 @@
 	</bean>
 	
 	<!--Hessian调用 -->	
-	<bean name="/pri"
+	<bean name="/pri.do"
 		class="com.haina.beluga.webservice.OUServiceExporter">
 		<property name="method">
 			<value>call</value>

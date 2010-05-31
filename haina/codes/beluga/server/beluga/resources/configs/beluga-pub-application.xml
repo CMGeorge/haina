@@ -73,8 +73,7 @@
 
 	
 	<!--Hessian调用 -->
-	<!--
-	<bean name="/pub"
+	<bean name="/pub.do"
 		class="com.haina.beluga.webservice.OUServiceExporter">
 		<property name="method">
 			<value>call</value>
@@ -86,12 +85,13 @@
 			<ref bean="pubService" />
 		</property>
 	</bean>
-	-->
+	<!--
 	<bean name="/pub"
 		class="org.springframework.remoting.caucho.HessianServiceExporter">
 		<property name="serviceInterface" value="com.haina.beluga.webservice.IPubService" />
 		<property name="service" ref="pubService" />
 	</bean>
+	-->
 </beans>
 
 
