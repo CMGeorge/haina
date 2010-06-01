@@ -35,7 +35,7 @@ public class AppException extends Exception {
 
     protected ErrorLevel errorLevel;
 
-    protected Object[] arguments;
+    protected String excepitonId;
 
     public AppException() {
         super();
@@ -77,10 +77,10 @@ public class AppException extends Exception {
      * @param arguments
      *            The arguments replaced the agruments of error message             
      */
-    public AppException(String message, ErrorLevel errorLevel,Object[] arguments) {
+    public AppException(String message, ErrorLevel errorLevel,String excepitonId) {
         super(message);
         this.errorLevel = errorLevel;
-        this.arguments=arguments;
+        this.excepitonId=excepitonId;
     }
 
     /**
@@ -107,6 +107,14 @@ public class AppException extends Exception {
         return errorLevel;
     }
 
+	public String getExcepitonId() {
+		return excepitonId;
+	}
+
+	public void setExcepitonId(String excepitonId) {
+		this.excepitonId = excepitonId;
+	}
+
     // /**
     // * Set error level
     // * @param errorLevel The errorLevel to set for this AppException
@@ -115,19 +123,6 @@ public class AppException extends Exception {
     // this.errorLevel = errorLevel;
     // }
 
-    /**
-     * @return Returns the arguments.
-     */
-    public Object[] getArguments() {
-        return arguments;
-    }
-
-    /**
-     * @param arguments
-     *            The arguments to set.
-     */
-    public void setArguments(Object[] arguments) {
-        this.arguments = arguments;
-    }
+   
 
 }
