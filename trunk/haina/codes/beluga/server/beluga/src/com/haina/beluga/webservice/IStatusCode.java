@@ -153,4 +153,9 @@ public interface IStatusCode {
 	 * 请求相片评论出现异常。<br/>
 	 */
 	int DELETE_USER_PHOTO_COMMENT_ERROR=3012;
+	
+	/**
+	 * 无效的相片评论。<br/>
+	 */
+	int INVALID_PHOTO_COMMENT=3013;
 }
