@@ -42,7 +42,7 @@ public final class DateUtil {
      */
 	public static String formatDateTime(String pattern) {
 		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat(pattern);
-		String now = sdf.format(new java.util.Date());
+		String now = sdf.format(new Date());
 		return now;
 	}
 
@@ -53,7 +53,7 @@ public final class DateUtil {
      * @return the formatted date-time string
      * @see java.text.SimpleDateFormat
      */
-    public static String formatDateTime(String pattern, java.util.Date date) {
+    public static String formatDateTime(String pattern, Date date) {
         String strDate = null;
         String strFormat = pattern;
         SimpleDateFormat dateFormat = null;
@@ -74,7 +74,7 @@ public final class DateUtil {
      * @return the formatted date-time string
      * @see java.text.SimpleDateFormat
      */
-    public static String formatDateTime(String pattern, java.util.Date date, Locale locale) {
+    public static String formatDateTime(String pattern, Date date, Locale locale) {
         String strDate = null;
         String strFormat = pattern;
         SimpleDateFormat dateFormat = null;
@@ -93,8 +93,8 @@ public final class DateUtil {
      * @param strDateTime - the string to be parsed
      * @return A Date parsed from the string. In case of error, returns null.
      */
-    public static java.util.Date parse(String pattern, String strDateTime) {
-        java.util.Date date = null;
+    public static Date parse(String pattern, String strDateTime) {
+        Date date = null;
         if (strDateTime == null || pattern == null) return null;
         try {
             SimpleDateFormat formatter = new SimpleDateFormat(pattern);
@@ -204,9 +204,9 @@ public final class DateUtil {
 	public static boolean dateCompare(String str) {
 		boolean bea = false;
 		SimpleDateFormat sdf_d = new SimpleDateFormat("yyyy-MM-dd");
-		String isDate = sdf_d.format(new java.util.Date());
-		java.util.Date date1;
-		java.util.Date date0;
+		String isDate = sdf_d.format(new Date());
+		Date date1;
+		Date date0;
 		try {
 			date1 = sdf_d.parse(str);
 			date0 = sdf_d.parse(isDate);
@@ -226,9 +226,9 @@ public final class DateUtil {
 	public static boolean monthCompare(String str) {
 		boolean bea = false;
 		SimpleDateFormat sdf_m = new SimpleDateFormat("yyyy-MM");
-		String isMonth = sdf_m.format(new java.util.Date());
-		java.util.Date date1;
-		java.util.Date date0;
+		String isMonth = sdf_m.format(new Date());
+		Date date1;
+		Date date0;
 		try {
 			date1 = sdf_m.parse(str);
 			date0 = sdf_m.parse(isMonth);
@@ -248,9 +248,9 @@ public final class DateUtil {
 	public static boolean secondCompare(String str) {
 		boolean bea = false;
 		SimpleDateFormat sdf_d = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String isDate = sdf_d.format(new java.util.Date());
-		java.util.Date date1;
-		java.util.Date date0;
+		String isDate = sdf_d.format(new Date());
+		Date date1;
+		Date date0;
 		try {
 			date1 = sdf_d.parse(str);
 			date0 = sdf_d.parse(isDate);
@@ -274,8 +274,8 @@ public final class DateUtil {
 	public static boolean secondCompare(String str1, String str2) {
 		boolean bea = false;
 		SimpleDateFormat sdf_d = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		java.util.Date date1;
-		java.util.Date date0;
+		Date date1;
+		Date date0;
 		try {
 			date1 = sdf_d.parse(str1);
 			date0 = sdf_d.parse(str2);
