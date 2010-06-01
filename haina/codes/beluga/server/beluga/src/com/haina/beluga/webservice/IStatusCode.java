@@ -122,15 +122,20 @@ public interface IStatusCode {
 	/**
 	 * 请求相片列表出现异常。<br/>
 	 */
-	int REQUEST_USER_PHOTO_LIST_ERROR=3005;
+	int REQUEST_USER_PHOTO_LIST_ERROR=3006;
 	
 	/**
 	 * 无效的相片id或相片不存在。<br/>
 	 */
-	int INVALID_PHOTO_ID=3006;
+	int INVALID_PHOTO_ID=3007;
 	
 	/**
 	 * 请求相片出现异常。<br/>
 	 */
-	int REQUEST_USER_PHOTO_ERROR=3006;
+	int REQUEST_USER_PHOTO_ERROR=3008;
+	
+	/**
+	 * 部分相片id无效或相片不存在。<br/>
+	 */
+	int INVALID_PARTIAL_PHOTO_ID=3009;
 }
