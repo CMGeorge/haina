@@ -34,7 +34,7 @@
 			<value>haina_beluga</value>
 		</property>
 	</bean>
-	
+	<!--
 	<bean id="passportService"
 		class="com.haina.beluga.contact.service.PassportService">
 		<property name="loginExpiry">
@@ -50,15 +50,15 @@
 			<value>10000</value>
 		</property>
 	</bean>
-	
-	<!--Hessian调用 -->	
+	-->
+	<!--Hessian调用 
 	<bean name="/pri.do"
 		class="com.haina.beluga.webservice.OUServiceExporter">
 		<property name="method">
 			<value>call</value>
 		</property>
 		<property name="serverAPI">
-			<value>com.haina.beluga.webservice.IPriService</value>
+			<value>com.haina.beluga.webservice.pri.IPriService</value>
 		</property>
 		<property name="serverImpl">
 			<ref bean="priService" />
@@ -81,7 +81,7 @@
     		</map>
 		</property>
 	</bean>
-		
+		-->	
 	<!--
 	<bean id="contactUserDaoAroundAdvice" class="com.haina.beluga.weave.ContactUserDaoAroundAdvice">
 		<property name="encryptPasswordMethod">

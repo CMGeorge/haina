@@ -12,7 +12,7 @@ import com.haina.beluga.contact.domain.UserProfile;
 import com.haina.beluga.contact.domain.enumerate.SexEnum;
 import com.haina.beluga.contact.dto.ContactUserDto;
 import com.haina.beluga.webservice.IStatusCode;
-import com.haina.beluga.webservice.data.hessian.HessianRemoteReturning;
+import com.haina.beluga.webservice.data.Returning;
 import com.sihus.core.service.BaseSerivce;
 import com.sihus.core.util.DESUtil;
 import com.sihus.core.util.DateUtil;
@@ -33,9 +33,9 @@ public class ContactUserHessianService extends BaseSerivce<IContactUserDao,Conta
 
 	
 	@Override
-	public HessianRemoteReturning addContactUser(String loginName, String password,
+	public Returning addContactUser(String loginName, String password,
 			String mobile,Integer userStatus,String userIp, Date time) {
-		HessianRemoteReturning ret=new HessianRemoteReturning();
+		Returning ret=new Returning();
 		if(StringUtils.isNull(loginName)) {
 			ret.setStatusCode(IStatusCode.INVALID_LOGINNAME);
 			return ret;
@@ -95,8 +95,8 @@ public class ContactUserHessianService extends BaseSerivce<IContactUserDao,Conta
 	}
 
 	@Override
-	public HessianRemoteReturning editContactUserToValid(ContactUser contactUser) {
-		HessianRemoteReturning ret=new HessianRemoteReturning();
+	public Returning editContactUserToValid(ContactUser contactUser) {
+		Returning ret=new Returning();
 		if(null==contactUser || contactUser.isNew()) {
 			ret.setStatusCode(IStatusCode.INVALID_CONTACT_USER);
 			return ret;
@@ -120,9 +120,9 @@ public class ContactUserHessianService extends BaseSerivce<IContactUserDao,Conta
 	}
 	
 	@Override
-	public HessianRemoteReturning editContactUserToValid(String loginName, String password,
+	public Returning editContactUserToValid(String loginName, String password,
 			String mobile,Integer userStatus,String userIp) {
-		HessianRemoteReturning ret=new HessianRemoteReturning();
+		Returning ret=new Returning();
 		if(StringUtils.isNull(loginName) || StringUtils.isNull(password) ||
 				StringUtils.isNull(mobile)) {
 			ret.setStatusCode(IStatusCode.INVALID_LOGINNAME_OR_PASSWORD);
@@ -152,8 +152,8 @@ public class ContactUserHessianService extends BaseSerivce<IContactUserDao,Conta
 	}
 	
 	@Override
-	public HessianRemoteReturning getContactUser(int first, int maxSize) {
-		HessianRemoteReturning ret=new HessianRemoteReturning();
+	public Returning getContactUser(int first, int maxSize) {
+		Returning ret=new Returning();
 		List<ContactUserDto> userDtoList=new ArrayList<ContactUserDto>();
 		List<ContactUser> list=getBaseDao().getModelByPage(null, first, maxSize);
 		if(null==list || list.isEmpty()) {
@@ -170,8 +170,8 @@ public class ContactUserHessianService extends BaseSerivce<IContactUserDao,Conta
 	}
 
 	@Override
-	public HessianRemoteReturning getContactUserById(String userId) {
-		HessianRemoteReturning ret=new HessianRemoteReturning();
+	public Returning getContactUserById(String userId) {
+		Returning ret=new Returning();
 		ContactUser contactUser=getBaseDao().read(userId);
 		if(null!=contactUser) {
 			ret.setStatusCode(IStatusCode.SUCCESS);
@@ -186,8 +186,8 @@ public class ContactUserHessianService extends BaseSerivce<IContactUserDao,Conta
 	}
 
 	@Override
-	public HessianRemoteReturning getContactUserByLoginName(String loginName) {
-		HessianRemoteReturning ret=new HessianRemoteReturning();
+	public Returning getContactUserByLoginName(String loginName) {
+		Returning ret=new Returning();
 		ContactUser contactUser=getBaseDao().getValidUserByLoginName(loginName);
 		if(null!=contactUser) {
 			ret.setStatusCode(IStatusCode.SUCCESS);
@@ -202,8 +202,8 @@ public class ContactUserHessianService extends BaseSerivce<IContactUserDao,Conta
 	}
 
 	@Override
-	public HessianRemoteReturning getInvalidContactUser(int first, int maxSize) {
-		HessianRemoteReturning ret=new HessianRemoteReturning();
+	public Returning getInvalidContactUser(int first, int maxSize) {
+		Returning ret=new Returning();
 		ContactUser contactUser=new ContactUser();
 		contactUser.setValidFlag(Boolean.FALSE);
 		List<ContactUserDto> userDtoList=new ArrayList<ContactUserDto>();
@@ -222,8 +222,8 @@ public class ContactUserHessianService extends BaseSerivce<IContactUserDao,Conta
 	}
 
 	@Override
-	public HessianRemoteReturning getValidContactUser(int first, int maxSize) {
-		HessianRemoteReturning ret=new HessianRemoteReturning();
+	public Returning getValidContactUser(int first, int maxSize) {
+		Returning ret=new Returning();
 		ContactUser contactUser=new ContactUser();
 		contactUser.setValidFlag(Boolean.TRUE);
 		List<ContactUserDto> userDtoList=new ArrayList<ContactUserDto>();
@@ -242,8 +242,8 @@ public class ContactUserHessianService extends BaseSerivce<IContactUserDao,Conta
 	}
 
 	@Override
-	public HessianRemoteReturning editContactUserToOffline(ContactUser contactUser) {
-		HessianRemoteReturning ret=new HessianRemoteReturning();
+	public Returning editContactUserToOffline(ContactUser contactUser) {
+		Returning ret=new Returning();
 		ContactUser user=contactUser;
 		int result=0;
 		if(null!=user && user.isValid()) {
@@ -258,9 +258,9 @@ public class ContactUserHessianService extends BaseSerivce<IContactUserDao,Conta
 	}
 
 	@Override
-	public HessianRemoteReturning editContactUserToOnline(String loginName, String password,
+	public Returning editContactUserToOnline(String loginName, String password,
 			String userLoginIp,Date onlineTime) {
-		HessianRemoteReturning ret=new HessianRemoteReturning();
+		Returning ret=new Returning();
 		if(StringUtils.isNull(loginName) || StringUtils.isNull(password)) {
 			ret.setStatusCode(IStatusCode.INVALID_LOGINNAME_OR_PASSWORD);
 			return ret;
@@ -275,8 +275,8 @@ public class ContactUserHessianService extends BaseSerivce<IContactUserDao,Conta
 	}
 
 	@Override
-	public HessianRemoteReturning editContactUserToOffline(String loginName) {
-		HessianRemoteReturning ret=new HessianRemoteReturning();
+	public Returning editContactUserToOffline(String loginName) {
+		Returning ret=new Returning();
 		if(StringUtils.isNull(loginName)) {
 			ret.setStatusCode(IStatusCode.INVALID_LOGINNAME);
 			return ret;
@@ -291,8 +291,8 @@ public class ContactUserHessianService extends BaseSerivce<IContactUserDao,Conta
 	}
 	
 	@Override
-	public HessianRemoteReturning editContactUserToOffline(List<String> loginNames) {
-		HessianRemoteReturning ret=new HessianRemoteReturning();
+	public Returning editContactUserToOffline(List<String> loginNames) {
+		Returning ret=new Returning();
 		if(null==loginNames || loginNames.isEmpty()) {
 			ret.setStatusCode(IStatusCode.INVALID_LOGINNAME);
 			return ret;
@@ -307,8 +307,8 @@ public class ContactUserHessianService extends BaseSerivce<IContactUserDao,Conta
 	}
 	
 	@Override
-	public HessianRemoteReturning addContactUserLoginNumber(ContactUser contactUser) {
-		HessianRemoteReturning ret=new HessianRemoteReturning();
+	public Returning addContactUserLoginNumber(ContactUser contactUser) {
+		Returning ret=new Returning();
 		ContactUser user=contactUser;
 		if(null!=user && user.isValid()) {
 			user.setLoginNumber(user.getLoginNumber()!=null ? user.getLoginNumber()+1 : 1);
@@ -319,8 +319,8 @@ public class ContactUserHessianService extends BaseSerivce<IContactUserDao,Conta
 	}
 
 	@Override
-	public HessianRemoteReturning editLoginName(String loginName, String newLoginName) {
-		HessianRemoteReturning ret=new HessianRemoteReturning();
+	public Returning editLoginName(String loginName, String newLoginName) {
+		Returning ret=new Returning();
 		if(StringUtils.isNull(loginName) || StringUtils.isNull(newLoginName)) {
 			ret.setStatusCode(IStatusCode.INVALID_LOGINNAME);
 			return ret;
@@ -343,8 +343,8 @@ public class ContactUserHessianService extends BaseSerivce<IContactUserDao,Conta
 	}
 
 	@Override
-	public HessianRemoteReturning editMobile(String loginName, String neoMobile) {
-		HessianRemoteReturning ret=new HessianRemoteReturning();
+	public Returning editMobile(String loginName, String neoMobile) {
+		Returning ret=new Returning();
 		if(StringUtils.isNull(loginName) || StringUtils.isNull(neoMobile)) {
 			ret.setStatusCode(IStatusCode.INVALID_MOBILE);
 			return ret;
@@ -367,8 +367,8 @@ public class ContactUserHessianService extends BaseSerivce<IContactUserDao,Conta
 	}
 
 	@Override
-	public HessianRemoteReturning editPassword(String loginName, String oldPassword, String neoPassword) {
-		HessianRemoteReturning ret=new HessianRemoteReturning();
+	public Returning editPassword(String loginName, String oldPassword, String neoPassword) {
+		Returning ret=new Returning();
 		if(StringUtils.isNull(loginName) || StringUtils.isNull(oldPassword) 
 				|| StringUtils.isNull(neoPassword)) {
 			ret.setStatusCode(IStatusCode.INVALID_LOGINNAME_OR_PASSWORD);
@@ -407,12 +407,12 @@ public class ContactUserHessianService extends BaseSerivce<IContactUserDao,Conta
 	}
 
 	@Override
-	public HessianRemoteReturning editUserProfile(String loginName,
+	public Returning editUserProfile(String loginName,
 			String nickName, String name, Integer age, Integer sex,
 			byte[] photo, String identification, Date brithday, String url,
 			String signature, String emailPref, String telPref, String imPref,
 			byte[] ring, String org, String title, String note) {
-		HessianRemoteReturning ret=new HessianRemoteReturning();
+		Returning ret=new Returning();
 		if(StringUtils.isNull(loginName)) {
 			ret.setStatusCode(IStatusCode.INVALID_LOGINNAME);
 			return ret;

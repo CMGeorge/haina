@@ -1,5 +1,6 @@
 package com.sihus.core.exception;
 
+
 /**
  * The class <code>AppException</code> and its subclasses are a form of
  * application exception that indicates conditions that current system might
@@ -40,10 +41,16 @@ public class AppException extends Exception {
     public AppException() {
         super();
     }
-
-    public AppException(String message) {
-        super(message);
+    public AppException(String excepitonId) {
+        super();
+        this.excepitonId=excepitonId;
     }
+
+    public AppException(String excepitonId,String message) {
+        super(message);
+        this.excepitonId=excepitonId;
+    }
+    
 
     public AppException(Throwable cause) {
         super(cause);

@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.haina.beluga.contact.dao.IContactUserDao;
 import com.haina.beluga.contact.domain.ContactUser;
-import com.haina.beluga.webservice.data.hessian.HessianRemoteReturning;
+import com.haina.beluga.webservice.data.Returning;
 import com.sihus.core.service.IBaseSerivce;
 
 /**
@@ -28,7 +28,7 @@ public interface IContactUserHessianService extends IBaseSerivce<IContactUserDao
 	 * @param time 添加的时间
 	 * @return
 	 */
-	HessianRemoteReturning addContactUser(String loginName, String password, String mobile,Integer userStatus
+	Returning addContactUser(String loginName, String password, String mobile,Integer userStatus
 			,String userIp, Date time);
 	
 	/**
@@ -36,7 +36,7 @@ public interface IContactUserHessianService extends IBaseSerivce<IContactUserDao
 	 * @param contactUser 用户对象
 	 * @return
 	 */
-	HessianRemoteReturning editContactUserToValid(ContactUser contactUser);
+	Returning editContactUserToValid(ContactUser contactUser);
 	
 	/**
 	 * 编辑用户详细信息。<br/>
@@ -59,7 +59,7 @@ public interface IContactUserHessianService extends IBaseSerivce<IContactUserDao
 	 * @param note 个人说明
 	 * @return
 	 */
-	HessianRemoteReturning editUserProfile(String loginName, String nickName, String name,Integer age,
+	Returning editUserProfile(String loginName, String nickName, String name,Integer age,
 			Integer sex, byte[] photo, String identification, Date brithday, String url, String signature,
 			String emailPref, String telPref, String imPref, byte[] ring, String org, String title, String note);
 	
@@ -73,7 +73,7 @@ public interface IContactUserHessianService extends IBaseSerivce<IContactUserDao
 	 * @param userIp 用户IP地址
 	 * @return
 	 */
-	HessianRemoteReturning editContactUserToValid(String loginName, String password,
+	Returning editContactUserToValid(String loginName, String password,
 			String mobile,Integer userStatus,String userIp);
 	
 	/**
@@ -81,14 +81,14 @@ public interface IContactUserHessianService extends IBaseSerivce<IContactUserDao
 	 * @param userId
 	 * @return
 	 */
-	HessianRemoteReturning getContactUserById(String userId);
+	Returning getContactUserById(String userId);
 	
 	/**
 	 * 通过登录名称取得联系人用户信息。<br/>
 	 * @param loginName
 	 * @return
 	 */
-	HessianRemoteReturning getContactUserByLoginName(String loginName);
+	Returning getContactUserByLoginName(String loginName);
 	
 	/**
 	 * 取得一定范围内的联系人用户。<br/>
@@ -96,7 +96,7 @@ public interface IContactUserHessianService extends IBaseSerivce<IContactUserDao
 	 * @param maxSize 最大数量
 	 * @return
 	 */
-	HessianRemoteReturning getContactUser(int first, int maxSize);
+	Returning getContactUser(int first, int maxSize);
 	
 	/**
 	 * 取得一定范围内的有效联系人用户。<br/>
@@ -104,7 +104,7 @@ public interface IContactUserHessianService extends IBaseSerivce<IContactUserDao
 	 * @param maxSize 最大数量
 	 * @return
 	 */
-	HessianRemoteReturning getValidContactUser(int first, int maxSize);
+	Returning getValidContactUser(int first, int maxSize);
 	
 	/**
 	 * 取得一定范围内的无效联系人用户。<br/>
@@ -112,21 +112,21 @@ public interface IContactUserHessianService extends IBaseSerivce<IContactUserDao
 	 * @param maxSize 最大数量
 	 * @return
 	 */
-	HessianRemoteReturning getInvalidContactUser(int first, int maxSize);
+	Returning getInvalidContactUser(int first, int maxSize);
 	
 	/**
 	 * 设置用户为离线状态。<br/>
 	 * @param contactUser
 	 * @return
 	 */
-	HessianRemoteReturning editContactUserToOffline(ContactUser contactUser);
+	Returning editContactUserToOffline(ContactUser contactUser);
 	
 	/**
 	 * 设置用户为离线状态。<br/>
 	 * @param loginName
 	 * @return
 	 */
-	HessianRemoteReturning editContactUserToOffline(String loginName);
+	Returning editContactUserToOffline(String loginName);
 	
 	/**
 	 * 设置用户为在线状态。<br/>
@@ -136,14 +136,14 @@ public interface IContactUserHessianService extends IBaseSerivce<IContactUserDao
 	 * @param onlineTime
 	 * @return
 	 */
-	HessianRemoteReturning editContactUserToOnline(String loginName, String password, String userLoginIp,Date onlineTime);
+	Returning editContactUserToOnline(String loginName, String password, String userLoginIp,Date onlineTime);
 	
 	/**
 	 * 用户登录次数增加一次。<br/>
 	 * @param contactUser
 	 * @return
 	 */
-	HessianRemoteReturning addContactUserLoginNumber(ContactUser contactUser);
+	Returning addContactUserLoginNumber(ContactUser contactUser);
 	
 	/**
 	 * 修改登录名称即修改电子邮件。<br/>
@@ -151,7 +151,7 @@ public interface IContactUserHessianService extends IBaseSerivce<IContactUserDao
 	 * @param newLoginName 新的登录名
 	 * @return
 	 */
-	HessianRemoteReturning editLoginName(String loginName, String newLoginName);
+	Returning editLoginName(String loginName, String newLoginName);
 	
 	/**
 	 * 修改手机号码。<br/>
@@ -159,7 +159,7 @@ public interface IContactUserHessianService extends IBaseSerivce<IContactUserDao
 	 * @param newMobile 新的手机号码
 	 * @return
 	 */
-	HessianRemoteReturning editMobile(String loginName, String neoMobile);
+	Returning editMobile(String loginName, String neoMobile);
 	
 	/**
 	 * 修改密码。<br/>
@@ -168,14 +168,14 @@ public interface IContactUserHessianService extends IBaseSerivce<IContactUserDao
 	 * @param neoPassword 新的密码
 	 * @return
 	 */
-	HessianRemoteReturning editPassword(String loginName, String oldPassword, String neoPassword);
+	Returning editPassword(String loginName, String oldPassword, String neoPassword);
 	
 	/**
 	 * 设置多个用户为离线状态。<br/>
 	 * @param loginNames
 	 * @return
 	 */
-	HessianRemoteReturning editContactUserToOffline(List<String> loginNames);
+	Returning editContactUserToOffline(List<String> loginNames);
 	
 	
 }

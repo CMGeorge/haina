@@ -3,6 +3,7 @@ package com.haina.beluga.contact.service;
 import java.util.Date;
 import java.util.List;
 
+import com.haina.beluga.aspect.LoginPassport;
 import com.haina.beluga.contact.domain.ContactUser;
 
 /**

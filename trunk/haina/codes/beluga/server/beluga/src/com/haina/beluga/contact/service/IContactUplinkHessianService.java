@@ -4,7 +4,7 @@ import java.util.Date;
 
 import com.haina.beluga.contact.dao.ContactUplinkDao;
 import com.haina.beluga.contact.domain.ContactUplink;
-import com.haina.beluga.webservice.data.hessian.HessianRemoteReturning;
+import com.haina.beluga.webservice.data.Returning;
 import com.sihus.core.service.IBaseSerivce;
 
 /**
@@ -33,6 +33,6 @@ public interface IContactUplinkHessianService extends IBaseSerivce<ContactUplink
 	 * @param title 职位
 	 * @return
 	 */
-	public HessianRemoteReturning addContactUplink(String owner,String mobile, String name,Integer age, Integer sex, Date brithday,
+	public Returning addContactUplink(String owner,String mobile, String name,Integer age, Integer sex, Date brithday,
 			String url,String emailPref, String telPref, String imPref, String org, String title);
 }

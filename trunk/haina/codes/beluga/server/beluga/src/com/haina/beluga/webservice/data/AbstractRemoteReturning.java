@@ -2,8 +2,6 @@ package com.haina.beluga.webservice.data;
 
 import java.io.Serializable;
 
-import com.haina.beluga.webservice.flexjson.JSONSerializer;
-
 /**
  * 远程调用返回值的基类。<br/>
  * 
@@ -26,6 +24,6 @@ public abstract class AbstractRemoteReturning extends AbstractRemoteData {
 	}
 
 	public void setValue(Object value) {
-		this.value = new JSONSerializer().deepSerialize(value);
+		this.value = net.sf.json.JSONSerializer.toJSON(value);
 	}
 }

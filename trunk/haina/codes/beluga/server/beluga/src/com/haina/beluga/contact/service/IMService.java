@@ -7,12 +7,12 @@ import java.net.URL;
 import org.springframework.stereotype.Component;
 
 import com.haina.beluga.webservice.Constant;
-import com.haina.beluga.webservice.data.hessian.HessianRemoteReturning;
+import com.haina.beluga.webservice.data.Returning;
 @Component
 public class IMService implements IIMService{
 
-	public HessianRemoteReturning getQQStatus(String qqCode){
-		HessianRemoteReturning hrr = new HessianRemoteReturning();
+	public Returning getQQStatus(String qqCode){
+		Returning hrr = new Returning();
 		if(Integer.valueOf(qqCode) <= 10000 || Integer.valueOf(qqCode) >1425000000){
 			hrr.setStatusCode(Constant.QQ_ARG_ERROE);
 			return hrr;

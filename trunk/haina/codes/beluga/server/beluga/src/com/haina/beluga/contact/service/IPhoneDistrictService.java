@@ -2,13 +2,13 @@ package com.haina.beluga.contact.service;
 
 import com.haina.beluga.contact.dao.IPhoneDistrictDao;
 import com.haina.beluga.contact.domain.PhoneDistrict;
-import com.haina.beluga.webservice.data.hessian.HessianRemoteReturning;
+import com.haina.beluga.webservice.data.Returning;
 import com.sihus.core.service.IBaseSerivce;
 
 public interface IPhoneDistrictService extends
 		IBaseSerivce<IPhoneDistrictDao, PhoneDistrict, String> {
 
-	public HessianRemoteReturning getOrUpdatePhoneDistricts(int updateFlg);
+	public Returning getOrUpdatePhoneDistricts(int updateFlg);
 
 	/**
 	 * @author north0808@gmail.com
@@ -19,7 +19,7 @@ public interface IPhoneDistrictService extends
 	 * @param count
 	 * @return HessianRemoteReturning
 	 */
-	public HessianRemoteReturning getOrUpdatePhoneDistricts(int updateFlg,
+	public Returning getOrUpdatePhoneDistricts(int updateFlg,
 			int begin, int count);
 
 	/**
@@ -29,5 +29,5 @@ public interface IPhoneDistrictService extends
 	 * @param updateFlg
 	 * @return HessianRemoteReturning
 	 */
-	public HessianRemoteReturning getOrUpdatePhoneDistrictsCount(int updateFlg);
+	public Returning getOrUpdatePhoneDistrictsCount(int updateFlg);
 }

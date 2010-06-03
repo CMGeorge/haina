@@ -5,17 +5,34 @@
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
-           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
-           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd"
            default-autowire="byName">
-
+	<context:annotation-config /> 
+	<aop:aspectj-autoproxy /> 
+	
 	<context:component-scan base-package="com.sihus.core">
 	</context:component-scan>
 	
 	<context:component-scan base-package="com.haina.beluga">
 	</context:component-scan>
+	
+<!-- ②：启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
 
+    <!-- ③：对模型视图名称的解析，即在模型视图名称添加前后缀  
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
+	    	<property name="prefix">
+		    <value>/</value>
+		   </property>
+		   <property name="suffix">
+		    <value>.jsp</value>
+		   </property>
+		    </bean>-->
+		   <bean  name="viewResolver" class="org.springframework.web.servlet.view.ResourceBundleViewResolver" />
+   
+        
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName">
@@ -99,6 +116,34 @@
 		</tx:attributes>
 	</tx:advice>
 
+
+
+	<!--异常处理 -->
+		<bean id="exceptionResolver"
+		
+			class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		
+			<property name="defaultErrorView">
+			
+			<value>showError</value>
+			
+			</property>
+			
+			<property name="exceptionMappings">
+			
+				<props>
+				
+					<prop key="java.sql.SQLException">showError</prop>
+				
+					<prop key="java.lang.RuntimeException">showError</prop>
+					
+					<prop key="com.sihus.core.exception.AppException">showError</prop>
+				
+				</props>
+			
+			</property>
+		
+		</bean>
 
 </beans>
 
