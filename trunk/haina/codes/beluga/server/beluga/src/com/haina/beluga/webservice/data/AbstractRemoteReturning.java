@@ -24,6 +24,6 @@ public abstract class AbstractRemoteReturning extends AbstractRemoteData {
 	}
 
 	public void setValue(Object value) {
-		this.value = net.sf.json.JSONSerializer.toJSON(value);
+		this.value = (Serializable) value;
 	}
 }
