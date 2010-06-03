@@ -31,5 +31,9 @@ public class Constant {
 	public static final String Friday = "Friday";
 	public static final String Saturday = "Saturday";
 	public static final String Sunday = "Sunday";
+	/***
+	 * Json跳转View
+	 */
+	public static final String JSON_VIEW = "jsonView";
 	
 }

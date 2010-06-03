@@ -2,7 +2,7 @@ package test;
 
 import java.util.List;
 
-import com.haina.beluga.webservice.flexjson.JSONSerializer;
+import net.sf.json.JSONSerializer;
 
 
 
@@ -49,7 +49,7 @@ public class Person {
 		 JSONSerializer serializer = new JSONSerializer();
 		 Person p = new Person();
 		 p.setC("\"");
-		 System.out.println(serializer.deepSerialize(p));
+//		 System.out.println(serializer.deepSerialize(p));
 	}
 
 }

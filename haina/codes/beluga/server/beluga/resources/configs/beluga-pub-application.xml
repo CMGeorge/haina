@@ -72,19 +72,19 @@
 	</bean>
 
 	
-	<!--Hessian调用 -->
+	<!--Hessian调用
 	<bean name="/pub.do"
 		class="com.haina.beluga.webservice.OUServiceExporter">
 		<property name="method">
 			<value>call</value>
 		</property>
 		<property name="serverAPI">
-			<value>com.haina.beluga.webservice.IPubService</value>
+			<value>com.haina.beluga.webservice.pub.IPubService</value>
 		</property>
 		<property name="serverImpl">
 			<ref bean="pubService" />
 		</property>
-	</bean>
+	</bean> -->
 	<!--
 	<bean name="/pub"
 		class="org.springframework.remoting.caucho.HessianServiceExporter">

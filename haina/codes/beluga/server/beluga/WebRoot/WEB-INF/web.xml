@@ -64,16 +64,6 @@
 		</listener-class>
 	</listener>
 
-	<!-- test-->
-	<servlet>
-		<servlet-name>hello</servlet-name>
-		<servlet-class>com.haina.beluga.webservice.HelloServlet</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>hello</servlet-name>
-		<url-pattern>/hello</url-pattern>
-	</servlet-mapping>
 	
 	<mime-mapping>
         <extension>abs</extension>

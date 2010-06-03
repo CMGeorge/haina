@@ -10,6 +10,10 @@ package com.haina.beluga.webservice;
 public interface IStatusCode {
 
 	/**
+	 * 异常<br/>
+	 */
+	int ERROR=-1;
+	/**
 	 * 成功。<br/>
 	 */
 	int SUCCESS=0;

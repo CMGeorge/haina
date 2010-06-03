@@ -24,7 +24,7 @@ import com.haina.beluga.contact.dao.IWeatherDao;
 import com.haina.beluga.contact.domain.Weather;
 import com.haina.beluga.contact.dto.WeatherDto;
 import com.haina.beluga.webservice.Constant;
-import com.haina.beluga.webservice.data.hessian.HessianRemoteReturning;
+import com.haina.beluga.webservice.data.Returning;
 import com.sihus.core.service.BaseSerivce;
 import com.sihus.core.util.MfDate;
 import com.sihus.core.util.MfTime;
@@ -83,8 +83,8 @@ public class WeatherService extends BaseSerivce<IWeatherDao,Weather,String> impl
 		logger.info("loadLiveDatasByApi-complete:"+(t2-t1));
 	}
 	@Override
-	public HessianRemoteReturning getLiveWeather(String cityCode) {
-		HessianRemoteReturning hrr = new HessianRemoteReturning();
+	public Returning getLiveWeather(String cityCode) {
+		Returning hrr = new Returning();
 		WeatherDto livePoolData = liveWeatherPool.get(cityCode);
 		if(livePoolData!=null){
 			hrr.setValue(livePoolData);
@@ -115,14 +115,14 @@ public class WeatherService extends BaseSerivce<IWeatherDao,Weather,String> impl
 		return dto;
 	}
 	@Override
-	public HessianRemoteReturning get7Weatherdatas(String cityCode) {
+	public Returning get7Weatherdatas(String cityCode) {
 		List<WeatherDto> list = new ArrayList<WeatherDto>();
 		Iterator<Weather> iterator = getBaseDao().get7WeatherDatas(cityCode);
 		while(iterator.hasNext()){
 			Weather w = iterator.next();
 			list.add(WeatherDto.valueof(w));
 		}
-		HessianRemoteReturning hrr = new HessianRemoteReturning(list);
+		Returning hrr = new Returning(list);
 			hrr.setValue(list);
 		return hrr;
 	}

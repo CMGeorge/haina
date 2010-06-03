@@ -2,7 +2,7 @@ package com.haina.beluga.webservice;
 
 import java.io.Serializable;
 
-import com.haina.beluga.webservice.data.hessian.HessianRemoteReturning;
+import com.haina.beluga.webservice.data.Returning;
 /**
  * 公共服务api.
  * @author Administrator
@@ -19,7 +19,7 @@ public interface IPubService extends Serializable {
 	 * WeatherDto对象.
 	 * 
 	 */
-	public HessianRemoteReturning getLiveWeather(String cityCode);
+	public Returning getLiveWeather(String cityCode);
 	/**
 	 * 状态包括：
 	 * 1.成功 statusCode=0
@@ -28,7 +28,7 @@ public interface IPubService extends Serializable {
 	 * List集合，集合对象为WeatherDto.
 	 * 
 	 */
-	public HessianRemoteReturning get7Weatherdatas(String cityCode);
+	public Returning get7Weatherdatas(String cityCode);
 	/**
 	 * 状态包括：
 	 * 1.成功 statusCode=0
@@ -40,7 +40,7 @@ public interface IPubService extends Serializable {
 	 * 2.不在线 value=10001
 	 * 
 	 */
-	public HessianRemoteReturning getQQStatus(String qqCode);
+	public Returning getQQStatus(String qqCode);
 	/**
 	 * 状态包括：
 	 * 1.成功 statusCode=0
@@ -58,7 +58,7 @@ public interface IPubService extends Serializable {
 	 * List集合，集合对象为PhoneDistrictDto.
 	 * 
 	 */
-	public HessianRemoteReturning getOrUpdatePD(int updateFlg, int begin,
+	public Returning getOrUpdatePD(int updateFlg, int begin,
 			int count);
 	/**
 	 * 状态包括：
@@ -67,9 +67,9 @@ public interface IPubService extends Serializable {
 	 * value值为：Long
 	 * 
 	 */
-	public HessianRemoteReturning getOrUpdatePDCount(int updateFlg);
+	public Returning getOrUpdatePDCount(int updateFlg);
 	
-	public HessianRemoteReturning testCN(String cn);
+	public Returning testCN(String cn);
 	
 
 }

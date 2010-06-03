@@ -1,4 +1,4 @@
-package com.haina.beluga.contact.service;
+package com.haina.beluga.aspect;
 
 import java.io.Serializable;
 

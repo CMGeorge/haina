@@ -11,7 +11,7 @@ import org.springframework.orm.hibernate3.SessionHolder;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import com.haina.beluga.webservice.PriService;
-import com.haina.beluga.webservice.data.hessian.HessianRemoteReturning;
+import com.haina.beluga.webservice.data.Returning;
 
 /**
  * Simple test of the PersonDao
@@ -26,11 +26,11 @@ public class TestPriService extends TestCase {
 	}
 
 	public void testRegister() throws Exception {
-		HessianRemoteReturning h = getPriService().register("testuser6", "123456", "13503280999");
+		Returning h = getPriService().register("testuser6", "123456", "13503280999");
 		System.out.println(h);
 	}
 	public void testRegister1() throws Exception {
-		HessianRemoteReturning h = getPriService().register("testuser6", "123456", "13503280999");
+		Returning h = getPriService().register("testuser6", "123456", "13503280999");
 		System.out.println(h);
 	}
 //	@Ignore
@@ -39,9 +39,9 @@ public class TestPriService extends TestCase {
 //		System.out.println(h);
 //	}
 	public void testLogin1() throws Exception {
-		HessianRemoteReturning h = getPriService().login("testuser6", "123456");
+		Returning h = getPriService().login("testuser6", "123456");
 		System.out.println(h);
-		HessianRemoteReturning h2 = getPriService().login("testuser6", "123456");
+		Returning h2 = getPriService().login("testuser6", "123456");
 		System.out.println(h2);
 	}
 //	public void testLogout() throws Exception {

@@ -1,13 +1,8 @@
 package com.haina.beluga.util;
 
-import java.io.File;
-
 import org.apache.commons.transaction.file.FileResourceManager;
 import org.apache.commons.transaction.file.ResourceIdToPathMapper;
-import org.apache.commons.transaction.file.ResourceManagerException;
-import org.apache.commons.transaction.file.ResourceManagerSystemException;
 import org.apache.commons.transaction.file.TransactionIdToPathMapper;
-import org.apache.commons.transaction.util.FileHelper;
 import org.apache.commons.transaction.util.LoggerFacade;
 
 public class FileTxManager extends FileResourceManager {

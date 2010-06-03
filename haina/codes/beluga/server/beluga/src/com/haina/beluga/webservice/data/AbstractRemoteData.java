@@ -1,7 +1,5 @@
 package com.haina.beluga.webservice.data;
 
-import com.haina.beluga.webservice.IStatusCode;
-import com.haina.beluga.webservice.flexjson.JSON;
 import com.sihus.core.dto.IDto;
 
 
@@ -20,8 +18,8 @@ public abstract class AbstractRemoteData implements IDto {
 	/*状态文字。*/
 	protected String statusText;
 	
-	/*操作码。*/
-	protected int operationCode;
+//	/*操作码。*/
+//	protected int operationCode;
 	
 	public Integer getStatusCode() {
 		return statusCode;
@@ -31,13 +29,13 @@ public abstract class AbstractRemoteData implements IDto {
 		this.statusCode = statusCode;
 	}
 
-	public Integer getOperationCode() {
-		return operationCode;
-	}
-
-	public void setOperationCode(Integer operationCode) {
-		this.operationCode = operationCode;
-	}
+//	public Integer getOperationCode() {
+//		return operationCode;
+//	}
+//
+//	public void setOperationCode(Integer operationCode) {
+//		this.operationCode = operationCode;
+//	}
 
 	public String getStatusText() {
 		return statusText;
@@ -47,12 +45,12 @@ public abstract class AbstractRemoteData implements IDto {
 		this.statusText = statusText;
 	}
 	
-	/**
-	 * 是否是成功状态。<br/>
-	 * @return
-	 */
-	@JSON(include=false)
-	public boolean isSuccessStatus() {
-		return this.statusCode==IStatusCode.SUCCESS;
-	}
+//	/**
+//	 * 是否是成功状态。<br/>
+//	 * @return
+//	 */
+//	@JSON(include=false)
+//	public boolean isSuccessStatus() {
+//		return this.statusCode==IStatusCode.SUCCESS;
+//	}
 }
