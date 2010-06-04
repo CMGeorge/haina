@@ -101,12 +101,12 @@ public interface IStatusCode {
 	/**
 	 * 无效的相册名称。<br/>
 	 */
-	int INVALID_ALBUM_NAME=3001;
+	int INVALID_USER_ALBUM_NAME=3001;
 	
 	/**
 	 * 无效的相册id。<br/>
 	 */
-	int INVALID_ALBUM_ID=3002;
+	int INVALID_USER_ALBUM_ID=3002;
 	
 	/**
 	 * 新增相册出现异常。<br/>
@@ -121,7 +121,7 @@ public interface IStatusCode {
 	/**
 	 * 部分相册id无效或相片不存在。<br/>
 	 */
-	int INVALID_PARTIAL_ALBUM_ID=3005;
+	int INVALID_PARTIAL_USER_ALBUM_ID=3005;
 	
 	/**
 	 * 请求相片列表出现异常。<br/>
@@ -131,7 +131,7 @@ public interface IStatusCode {
 	/**
 	 * 无效的相片id或相片不存在。<br/>
 	 */
-	int INVALID_PHOTO_ID=3007;
+	int INVALID_USER_PHOTO_ID=3007;
 	
 	/**
 	 * 请求相片出现异常。<br/>
@@ -141,7 +141,7 @@ public interface IStatusCode {
 	/**
 	 * 部分相片id无效或相片不存在。<br/>
 	 */
-	int INVALID_PARTIAL_PHOTO_ID=3009;
+	int INVALID_PARTIAL_USER_PHOTO_ID=3009;
 	
 	/**
 	 * 请求相片出现异常。<br/>
@@ -151,7 +151,7 @@ public interface IStatusCode {
 	/**
 	 * 无效的相片评论内容。<br/>
 	 */
-	int INVALID_PHOTO_COMMENT_CONTENT=3011;
+	int INVALID_USER_PHOTO_COMMENT_CONTENT=3011;
 	
 	/**
 	 * 请求相片评论出现异常。<br/>
@@ -161,5 +161,10 @@ public interface IStatusCode {
 	/**
 	 * 无效的相片评论。<br/>
 	 */
-	int INVALID_PHOTO_COMMENT=3013;
+	int INVALID_USER_PHOTO_COMMENT=3013;
+	
+	/**
+	 * 无效的用户相片评论id或评论不存在。<br/>
+	 */
+	int INVALID_PHOTO_COMMENT_ID=3007;
 }
