@@ -4,8 +4,8 @@
  * licensing@extjs.com
  * http://www.extjs.com/license
  */
-Ext.onReady(function() {
-    var form = new Ext.form.FormPanel({
+//Ext.onReady(function() {
+    var loginForm = new Ext.form.FormPanel({
         baseCls: 'x-plain',
         labelWidth: 35,
         url:'save-form.php',
@@ -25,17 +25,17 @@ Ext.onReady(function() {
         }]
     });
 
-    var window = new Ext.Window({
+      var loginWindow = new Ext.Window({
         title: 'Beluga',
         width: 250,
-        height:140,
+        height:150,
         minWidth: 250,
         minHeight: 140,
         layout: 'fit',
         plain:true,
         bodyStyle:'padding:5px;',
         buttonAlign:'center',
-        items: form,
+        items: loginForm,
 
         buttons: [{
             text: '登录',
@@ -45,13 +45,15 @@ Ext.onReady(function() {
 				Ext.Ajax.request({
 				   url: 'login.do?method=login',
 				   success: function(response, opts) {  
-						Ext.MessageBox.alert('提示',"操作成功，" +response.responseText);  
+					//	Ext.MessageBox.alert('提示',"操作成功，" +response.responseText);  
+					     Ext.example.msg('服务端返回', response.responseText);
 					}, 
 				   failure: function(response, opts){  
-						Ext.MessageBox.alert('提示','操作失败，' + response.responseText);                    
+					//	Ext.MessageBox.alert('提示','操作失败，' + response.responseText);         
+					     Ext.example.msg('服务端返回',  response.responseText);
 					} ,
 				   params: { loginName: Ext.fly('loginName').getValue(),
-									password:Ext.fly('password').getValue(),
+									password:Ext.fly('password').getValue()
 								}
 				});
 
@@ -78,10 +80,10 @@ Ext.onReady(function() {
 				Ext.Ajax.request({
 				   url: 'login.do?method=register',
 				   success: function(response, opts) {  
-						Ext.MessageBox.alert('提示',"操作成功，" +response.responseText);  
+						Ext.MessageBox.alert('提示',"操作成功"+response.responseText);  
 					}, 
 				   failure: function(response, opts){  
-						Ext.MessageBox.alert('提示','操作失败，' + response.responseText);                    
+						Ext.MessageBox.alert('提示',"操作失败"+response.responseText);                    
 					} ,
 				   params: { loginName: Ext.fly('loginName').getValue(),
 									password:Ext.fly('password').getValue(),
@@ -104,5 +106,5 @@ Ext.onReady(function() {
         }]
     });
 
-    window.show();
-});
+
+//});
