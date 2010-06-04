@@ -139,7 +139,7 @@ public interface IStatusCode {
 	int REQUEST_USER_PHOTO_ERROR=3008;
 	
 	/**
-	 * 部分相片id无效或相片不存在。<br/>
+	 * 部分用户相片id无效或相片不存在。<br/>
 	 */
 	int INVALID_PARTIAL_USER_PHOTO_ID=3009;
 	
@@ -154,9 +154,9 @@ public interface IStatusCode {
 	int INVALID_USER_PHOTO_COMMENT_CONTENT=3011;
 	
 	/**
-	 * 请求相片评论出现异常。<br/>
+	 * 添加相片评论出现异常。<br/>
 	 */
-	int DELETE_USER_PHOTO_COMMENT_ERROR=3012;
+	int ADD_USER_PHOTO_COMMENT_ERROR=3012;
 	
 	/**
 	 * 无效的相片评论。<br/>
@@ -166,5 +166,15 @@ public interface IStatusCode {
 	/**
 	 * 无效的用户相片评论id或评论不存在。<br/>
 	 */
-	int INVALID_PHOTO_COMMENT_ID=3007;
+	int INVALID_PHOTO_COMMENT_ID=3014;
+	
+	/**
+	 * 删除片评论出现异常。<br/>
+	 */
+	int DELETE_USER_PHOTO_COMMENT_ERROR=3015;
+	
+	/**
+	 * 部分用户相片评论id无效或相片不存在。<br/>
+	 */
+	int INVALID_PARTIAL_USER_PHOTO_COMMENT_ID=3016;
 }
