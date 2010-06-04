@@ -8,7 +8,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 
 /**
- * 基于Hessian协议的远程调用返回值类。<br/>
+ * 远程调用返回值类。<br/>
  * @author huangyongqiang
  * //@Version 1.0
  * @since 1.0
