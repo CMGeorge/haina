@@ -119,7 +119,7 @@ public interface IStatusCode {
 	int EDIT_USER_ALBUM_ERROR=3004;
 	
 	/**
-	 * 部分相册id无效或相片不存在。<br/>
+	 * 部分用户相册id无效或相片不存在。<br/>
 	 */
 	int INVALID_PARTIAL_USER_ALBUM_ID=3005;
 	
