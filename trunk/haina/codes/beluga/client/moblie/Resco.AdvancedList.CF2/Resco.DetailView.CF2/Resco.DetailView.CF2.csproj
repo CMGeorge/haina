@@ -22,7 +22,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\TargetLib\</OutputPath>
     <DefineConstants>DEBUG;TRACE;$(PlatformFamilyName)</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
@@ -71,7 +71,9 @@
     <Compile Include="Resco\Controls\DetailView\DetailViewInternal\ComboBoxEx.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Resco\Controls\DetailView\DetailViewInternal\DateTimePickerEx.cs" />
+    <Compile Include="Resco\Controls\DetailView\DetailViewInternal\DateTimePickerEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Resco\Controls\DetailView\DetailViewInternal\DateTimePickerInterface.cs" />
     <Compile Include="Resco\Controls\DetailView\DetailViewInternal\Day.cs" />
     <Compile Include="Resco\Controls\DetailView\DetailViewInternal\Imports.cs" />
@@ -82,15 +84,27 @@
     <Compile Include="Resco\Controls\DetailView\DetailViewInternal\MonthCalendarEx.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Resco\Controls\DetailView\DetailViewInternal\TextBoxEx.cs" />
+    <Compile Include="Resco\Controls\DetailView\DetailViewInternal\TextBoxEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Resco\Controls\DetailView\DetailViewInternal\TextPart.cs" />
     <Compile Include="Resco\Controls\DetailView\DetailViewItems.cs" />
-    <Compile Include="Resco\Controls\DetailView\DVComboBox.cs" />
+    <Compile Include="Resco\Controls\DetailView\DVComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Resco\Controls\DetailView\DVConversion.cs" />
-    <Compile Include="Resco\Controls\DetailView\DVDateTimePicker.cs" />
-    <Compile Include="Resco\Controls\DetailView\DVMaskedTextBox.cs" />
-    <Compile Include="Resco\Controls\DetailView\DVTextBox.cs" />
-    <Compile Include="Resco\Controls\DetailView\DVTouchDateTimePicker.cs" />
+    <Compile Include="Resco\Controls\DetailView\DVDateTimePicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\DetailView\DVMaskedTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\DetailView\DVTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Resco\Controls\DetailView\DVTouchDateTimePicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Resco\Controls\DetailView\ErrorBackground.cs" />
     <Compile Include="Resco\Controls\DetailView\FillDirection.cs" />
     <Compile Include="Resco\Controls\DetailView\GradientColor.cs" />
@@ -130,7 +144,9 @@
     <Compile Include="Resco\Controls\DetailView\RoundedCornerStyles.cs" />
     <Compile Include="Resco\Controls\DetailView\ScrollbarWrapper.cs" />
     <Compile Include="Resco\Controls\DetailView\ScrollOrientation.cs" />
-    <Compile Include="Resco\Controls\DetailView\ToolTip.cs" />
+    <Compile Include="Resco\Controls\DetailView\ToolTip.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Resco\Controls\DetailView\TouchGesture.cs" />
     <Compile Include="Resco\Controls\DetailView\TouchGestureEventArgs.cs" />
     <Compile Include="Resco\Controls\DetailView\TouchGestureEventHandler.cs" />
