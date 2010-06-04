@@ -1,16 +1,70 @@
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+ <meta http-equiv="Content-Type" content="application/json; charset=utf-8">
 <title>Beluga</title>
-<link rel="stylesheet" type="text/css" href="js/ext-3/resources/css/ext-all.css" />
+	<link rel="stylesheet" type="text/css" href="js/ext-3/resources/css/ext-all.css" />
+<link rel="stylesheet" type="text/css" href="css/examples.css" />
     <!-- GC -->
  	<!-- LIBS -->
+
  <script type="text/javascript" src="js/ext-3/adapter/ext/ext-base.js"></script>
 	<!-- ENDLIBS -->
   <script type="text/javascript" src="js/ext-3/ext-all.js"></script>
 
-<script type="text/javascript" src="js/login.js"></script>
-<div id="form-ct"></div>
+  <script type="text/javascript" src="js/login.js"></script>
+  
+    <script type="text/javascript" src="js/examples.js"></script>
+
+     <style type="text/css">
+        html, body {
+            font: normal 11px verdana;
+        }
+        #main-panel td {
+            padding:5px;
+        }
+    </style>
+    <script type="text/javascript">
+        Ext.onReady(function() {
+            var panel = new Ext.Panel({
+                id:'main-panel',
+                baseCls:'x-plain',
+                renderTo: Ext.getBody(),
+                layout:'table',
+                layoutConfig: {columns:3},
+                // applied to child components
+                defaults: {frame:true, width:200, height: 200},
+                items:[{
+                   // title:'loginWindow',
+					items:loginWindow,
+					width:300
+                },{
+                    title:'Item 2'
+                },{
+                    title:'Item 3'
+                },{
+                    title:'Item 4',
+                    width:410,
+                    colspan:2
+                },{
+                    title:'Item 5'
+                },{
+                    title:'Item 6'
+                },{
+                    title:'Item 7',
+                    width:410,
+                    colspan:2
+                },{
+                    title:'Item 8'
+                }]
+            });
+			loginWindow.show();
+        });
+    </script>
+</head>
+<body>
+
+
 
 </body>
+
 </html>
