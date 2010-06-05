@@ -64,7 +64,7 @@
         >
 
             <column
-                name="photoName" 
+                name="photoDescription" 
                 sql-type="varchar(128)"
             />
 
