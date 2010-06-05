@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+
+>
+
+    <class
+            name="com.haina.beluga.album.domain.UserPhotoInfo"
+            table="UserPhotoInfo"
+            optimistic-lock="version"
+    >
+
+        <cache 
+            usage="read-write"
+        />
+
+    <id
+        name="id"
+                type="java.lang.String"
+            length="32"
+            unsaved-value="null"
+    >
+
+            <column
+                name="id" 
+                sql-type="char(32)"
+            />
+
+    <generator
+        class="uuid.hex"
+    >
+
+    </generator>
+
+    </id>
+
+        <version
+            name="version"
+            column="version"
+            type="long"
+        />
+
+        <property
+            name="photoName"
+                    type="string"
+                not-null="true"
+        >
+
+            <column
+                name="photoName" 
+                sql-type="varchar(128)"
+            />
+
+        </property>
+
+        <property
+            name="photoDescription"
+                    type="string"
+                not-null="false"
+        >
+
+            <column
+                name="photoName" 
+                sql-type="varchar(128)"
+            />
+
+        </property>
+
+        <property
+            name="createUserId"
+                    type="string"
+                not-null="true"
+        >
+
+            <column
+                name="createUser_id" 
+                sql-type="char(32)"
+            />
+
+        </property>
+
+        <property
+            name="lastUpdateUserId"
+                    type="string"
+                not-null="true"
+        >
+
+            <column
+                name="lastUpdateUser_id" 
+                sql-type="char(32)"
+            />
+
+        </property>
+
+        <property
+            name="lastUpdateTime"
+                not-null="true"
+        >
+
+            <column
+                name="lastUpdateTime" 
+            />
+
+        </property>
+
+        <property
+            name="userAlbumInfoId"
+                    type="string"
+                not-null="true"
+        >
+
+            <column
+                name="userAlbumInfo_id" 
+                unique-key="uk_userAlbumInfoId_seqNumber"
+                sql-type="char(32)"
+            />
+
+        </property>
+
+        <property
+            name="deleteFlag"
+                    type="java.lang.Boolean"
+                not-null="true"
+        >
+
+            <column
+                name="deleteFlag" 
+                sql-type="int"
+            />
+
+        </property>
+
+        <property
+            name="seqNumber"
+        >
+
+            <column
+                name="seqNumber" 
+                unique-key="uk_userAlbumInfoId_seqNumber"
+                sql-type="int"
+            />
+
+        </property>
+
+        <property
+            name="photoSize"
+                    type="com.haina.beluga.album.domain.enumerate.UserPhotoSizeEnumHibernateType"
+                not-null="true"
+        >
+
+            <column
+                name="photoSize" 
+                sql-type="smallint"
+            />
+
+        </property>
+
+        <property
+            name="coverFlag"
+                    type="java.lang.Boolean"
+                not-null="true"
+        >
+
+            <column
+                name="coverFlag" 
+            />
+
+        </property>
+
+        <property
+            name="mime"
+                    type="string"
+                not-null="true"
+        >
+
+            <column
+                name="mime" 
+                sql-type="varchar(64)"
+            />
+
+        </property>
+
+        <property
+            name="oriFileName"
+                    type="string"
+                not-null="true"
+        >
+
+            <column
+                name="oriFileName" 
+                sql-type="varchar(512)"
+            />
+
+        </property>
+
+        <property
+            name="filePath"
+                    type="string"
+                not-null="true"
+        >
+
+            <column
+                name="filePath" 
+                sql-type="varchar(2000)"
+            />
+
+        </property>
+
+        <property
+            name="picUrl"
+                    type="string"
+                not-null="true"
+        >
+
+            <column
+                name="picUrl" 
+                sql-type="varchar(1000)"
+            />
+
+        </property>
+
+        <property
+            name="createTime"
+                not-null="true"
+        >
+
+            <column
+                name="createTime" 
+            />
+
+        </property>
+
+    </class>    
+
+</hibernate-mapping>
+
