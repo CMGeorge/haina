@@ -138,7 +138,7 @@
         >
 
             <column
-                name="content" 
+                name="title" 
                 sql-type="varchar(100)"
             />
 
