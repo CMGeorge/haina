@@ -151,7 +151,7 @@ public class UserPhotoInfo extends AbstractPicture {
 
 	/**
 	 * @hibernate.property not-null="true" type = "string"
-	 * @hibernate.column name="userAlbumInfo_id" sql-type="char(32)"
+	 * @hibernate.column name="userAlbumInfo_id" sql-type="char(32)"  unique-key="uk_userAlbumInfoId_seqNumber"
 	 */
 	public String getUserAlbumInfoId() {
 		return userAlbumInfoId;
@@ -162,7 +162,8 @@ public class UserPhotoInfo extends AbstractPicture {
 	}
 
 	/**
-	 * @hibernate.property column="deleteFlag" type="java.lang.Boolean" not-null="true"
+	 * @hibernate.property type="java.lang.Boolean" not-null="true"
+	 * @hibernate.column name="deleteFlag" sql-type="int"
 	 * @return
 	 */
 	public Boolean getDeleteFlag() {
@@ -171,7 +172,7 @@ public class UserPhotoInfo extends AbstractPicture {
 	
 	/**
 	 * @hibernate.property
-	 * @hibernate.column name="seqNumber" sql-type="int default 1"
+	 * @hibernate.column name="seqNumber" sql-type="int" unique-key="uk_userAlbumInfoId_seqNumber"
 	 */
 	public Integer getSeqNumber() {
 		return seqNumber;
@@ -194,8 +195,8 @@ public class UserPhotoInfo extends AbstractPicture {
 	}
 
 	/**
-	 * @hibernate.property column="coverFlag" type="java.lang.Boolean" not-null="true"
-	 * @hibernate.column
+	 * @hibernate.property type="java.lang.Boolean" not-null="true"
+	 * @hibernate.column name="coverFlag"
 	 * @return
 	 */
 	public Boolean getCoverFlag() {
