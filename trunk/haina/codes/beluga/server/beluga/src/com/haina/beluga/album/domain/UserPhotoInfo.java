@@ -103,7 +103,7 @@ public class UserPhotoInfo extends AbstractPicture {
 
 	/**
 	 * @hibernate.property not-null="false" type = "string"
-	 * @hibernate.column name="photoName" sql-type="varchar(128)"
+	 * @hibernate.column name="photoDescription" sql-type="varchar(128)"
 	 */
 	public String getPhotoDescription() {
 		return photoDescription;
