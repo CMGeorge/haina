@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+
+>
+
+    <class
+            name="com.haina.beluga.album.domain.UserPhotoComment"
+            table="UserPhotoComment"
+            optimistic-lock="version"
+    >
+
+        <cache 
+            usage="read-write"
+        />
+
+    <id
+        name="id"
+                type="java.lang.String"
+            length="32"
+            unsaved-value="null"
+    >
+
+            <column
+                name="id" 
+                sql-type="char(32)"
+            />
+
+    <generator
+        class="uuid.hex"
+    >
+
+    </generator>
+
+    </id>
+
+        <version
+            name="version"
+            column="version"
+            type="long"
+        />
+
+        <property
+            name="deleteFlag"
+                    type="java.lang.Boolean"
+                    column="deleteFlag"
+                not-null="true"
+        >
+
+        </property>
+
+        <property
+            name="createUserId"
+                    type="string"
+                not-null="true"
+        >
+
+            <column
+                name="createUser_id" 
+                sql-type="char(32)"
+            />
+
+        </property>
+
+        <property
+            name="createTime"
+                not-null="true"
+        >
+
+            <column
+                name="createTime" 
+            />
+
+            <column
+                name="createTime" 
+            />
+
+        </property>
+
+        <property
+            name="lastUpdateUserId"
+                    type="string"
+                not-null="true"
+        >
+
+            <column
+                name="lastUpdateUser_id" 
+                sql-type="char(32)"
+            />
+
+        </property>
+
+        <property
+            name="lastUpdateTime"
+                not-null="true"
+        >
+
+            <column
+                name="lastUpdateTime" 
+            />
+
+        </property>
+
+        <property
+            name="userPhotoInfoId"
+                    type="string"
+                not-null="true"
+        >
+
+            <column
+                name="userPhotoInfo_id" 
+                sql-type="char(32)"
+            />
+
+        </property>
+
+        <property
+            name="content"
+                    type="string"
+                not-null="true"
+        >
+
+            <column
+                name="content" 
+                sql-type="varchar(2000)"
+            />
+
+        </property>
+
+        <property
+            name="title"
+                    type="string"
+                not-null="true"
+        >
+
+            <column
+                name="content" 
+                sql-type="varchar(100)"
+            />
+
+        </property>
+
+    </class>    
+
+</hibernate-mapping>
+
