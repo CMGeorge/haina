@@ -172,7 +172,7 @@ public class UserPhotoInfo extends AbstractPicture {
 	
 	/**
 	 * @hibernate.property
-	 * @hibernate.column name="seqNumber" sql-type="int" unique-key="uk_userAlbumInfoId_seqNumber"
+	 * @hibernate.column name="seqNumber" sql-type="int default 1" unique-key="uk_userAlbumInfoId_seqNumber"
 	 */
 	public Integer getSeqNumber() {
 		return seqNumber;
