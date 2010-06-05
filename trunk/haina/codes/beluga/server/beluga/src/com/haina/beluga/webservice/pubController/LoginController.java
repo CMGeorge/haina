@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.haina.beluga.webservice.Constant;
 import com.haina.beluga.webservice.IPriService;
@@ -15,7 +14,7 @@ import com.haina.beluga.webservice.data.Returning;
  *
  */
 @Controller
-@RequestMapping(value={"/login.do"},method={RequestMethod.POST})
+@RequestMapping(value={"/login.do"})
 public class LoginController {
 	
 	@Autowired(required = true)
