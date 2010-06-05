@@ -141,7 +141,7 @@
             <column
                 name="seqNumber" 
                 unique-key="uk_userAlbumInfoId_seqNumber"
-                sql-type="int"
+                sql-type="int default 1"
             />
 
         </property>
