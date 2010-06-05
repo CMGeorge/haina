@@ -46,11 +46,13 @@
 				   url: 'login.do?method=login',
 				   success: function(response, opts) {  
 					//	Ext.MessageBox.alert('提示',"操作成功，" +response.responseText);  
-					     Ext.example.msg('服务端返回', response.responseText);
+					     Ext.example.msg('提示', "URL:"+opts.url+"<br>参数:"+
+					     Ext.util.JSON.encode(opts.params)+"<br>服务端返回："+response.responseText);
 					}, 
 				   failure: function(response, opts){  
-					//	Ext.MessageBox.alert('提示','操作失败，' + response.responseText);         
-					     Ext.example.msg('服务端返回',  response.responseText);
+					Ext.MessageBox.alert('提示','操作失败，' + response.responseText);         
+					   // Ext.example.msg('Info', "URL:"+opts.url+"<br>Parms:"+
+					   //  opts.params.toString()+"<br>服务端返回："+response.responseText);
 					} ,
 				   params: { loginName: Ext.fly('loginName').getValue(),
 									password:Ext.fly('password').getValue()
@@ -80,7 +82,9 @@
 				Ext.Ajax.request({
 				   url: 'login.do?method=register',
 				   success: function(response, opts) {  
-						Ext.MessageBox.alert('提示',"操作成功"+response.responseText);  
+						//Ext.MessageBox.alert('提示',"操作成功"+response.responseText);  
+						Ext.example.msg('提示', "URL:"+opts.url+"<br>参数:"+
+					     Ext.util.JSON.encode(opts.params)+"<br>服务端返回："+response.responseText);
 					}, 
 				   failure: function(response, opts){  
 						Ext.MessageBox.alert('提示',"操作失败"+response.responseText);                    
