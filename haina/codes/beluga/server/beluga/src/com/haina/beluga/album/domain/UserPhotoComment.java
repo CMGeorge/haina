@@ -142,7 +142,7 @@ public class UserPhotoComment extends AbstractPostsComment {
 
 	/**
 	 * @hibernate.property not-null="true" type = "string"
-	 * @hibernate.column name="content" sql-type="varchar(100)"
+	 * @hibernate.column name="title" sql-type="varchar(100)"
 	 */
 	public String getTitle() {
 		return title;
