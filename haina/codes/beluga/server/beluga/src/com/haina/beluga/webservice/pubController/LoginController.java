@@ -9,7 +9,7 @@ import com.haina.beluga.webservice.Constant;
 import com.haina.beluga.webservice.IPriService;
 import com.haina.beluga.webservice.data.Returning;
 /**
- * 登陆注册控制器
+ * 登录注册控制器
  * @author fuxiang
  *
  */
