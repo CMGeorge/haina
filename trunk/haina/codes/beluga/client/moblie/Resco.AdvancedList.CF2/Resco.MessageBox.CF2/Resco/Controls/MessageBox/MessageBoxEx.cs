@@ -13,7 +13,7 @@
         {
             if (((Environment.OSVersion.Platform != PlatformID.Win32NT) && (Environment.OSVersion.Platform != PlatformID.Win32S)) && (Environment.OSVersion.Platform != PlatformID.Win32Windows))
             {
-                RescoLicenseMessage.ShowEvaluationMessage(typeof(MessageBoxEx), "");
+                //RescoLicenseMessage.ShowEvaluationMessage(typeof(MessageBoxEx), "");
             }
         }
 
