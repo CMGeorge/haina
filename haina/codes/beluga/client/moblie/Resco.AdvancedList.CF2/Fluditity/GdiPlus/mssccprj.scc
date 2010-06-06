@@ -1,0 +1,9 @@
+SCC = This is a Source Code Control file
+
+[OpenNETCF.GDIPlus.csproj]
+SCC_Aux_Path = "\\phoenix\SourceSafe"
+SCC_Project_Name = "$/GDIPlusWrapper.root/GDIPlusWrapper/GDIPlusWrapper", KTBAAAAA
+
+[System.Drawing.GdiPlus.csproj]
+SCC_Aux_Path = "\\phoenix\SourceSafe"
+SCC_Project_Name = "$/GDIPlusWrapper.root/GDIPlusWrapper/GDIPlusWrapper", KTBAAAAA
