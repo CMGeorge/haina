@@ -212,4 +212,19 @@ public class UserPhotoInfoDao extends BaseDao<UserPhotoInfo, String> implements
 		return ret;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public int getMaxPhotoSeqNumberOfUserAlbum(String userAlbumInfoId) {
+		int ret=0;
+		if(!StringUtils.isNull(userAlbumInfoId)) {
+			Map<String, Object> params=new HashMap<String, Object>();
+			List<Integer> list=(List<Integer>)getResultByHQLAndParamNoUpdate("select max(seqNumber) from UserPhotoInfo where deleteFlag = false and userAlbumInfoId = :userAlbumInfoId", 
+					params, null);
+			if(list!=null && list.size()>0) {
+				ret=list.get(0);
+			}
+		}
+		return ret;
+	}
+
 }

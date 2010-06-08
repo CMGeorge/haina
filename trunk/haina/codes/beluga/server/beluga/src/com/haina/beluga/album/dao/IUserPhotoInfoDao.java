@@ -88,4 +88,11 @@ public interface IUserPhotoInfoDao extends IBaseDao<UserPhotoInfo, String> {
 	 * @return
 	 */
 	int deleteUserPhotoComment(String[] ids, String photoId, String deleteUserId);
+	
+	/**
+	 * 取得相册内相片的最大序列号
+	 * @param userAlbumInfoId
+	 * @return
+	 */
+	int getMaxPhotoSeqNumberOfUserAlbum(String userAlbumInfoId);
 }
