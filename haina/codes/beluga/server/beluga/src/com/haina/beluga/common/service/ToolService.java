@@ -23,6 +23,11 @@ public class ToolService implements IToolService {
 	}
 
 	@Override
+	public void createLocalFileString(String filePath, byte[] fileData) {
+		FileUtil.createFile(filePath, fileData, true);
+	}
+	
+	@Override
 	public byte[] geFtpFileForByte(String filePath) {
 		// TODO Auto-generated method stub
 		return null;
