@@ -312,6 +312,47 @@ public final class FileUtil {
 		file =null;
     }
     
+    public static synchronized void createFile(String fullFileName,byte[] data,boolean cover) {
+    	if(StringUtils.isNull(fullFileName) 
+    			|| data.length<1 || null==data) {
+    		return;
+    	}
+    	File file =null;
+        String temp=null;
+        OutputStream pw = null;
+		fullFileName.replace("\\", "/");
+		try {
+			int index = fullFileName.lastIndexOf("/");
+            if (fullFileName.length()==index) {/*目录路径，不是文件路径。*/
+               return;
+            } else {
+            	temp = fullFileName.substring(0, index);
+            	file = new File(temp);
+            	if(file.exists()) {
+            		if(cover) {
+            			file.delete();
+            		} else {
+            			return;
+            		}
+            		
+            	} else {
+            		file.mkdirs();
+            	}
+            	file = new File(fullFileName);
+            	pw = new FileOutputStream(fullFileName);
+            	pw.write(data);
+    		    pw.close();
+            }
+		} catch (FileNotFoundException fnfEx) {
+			COMMLOG_LOG.error("文件{0}不存在",fnfEx,new Object[]{fullFileName});
+		} catch (IOException ioEx) {
+			COMMLOG_LOG.error("创建文件{0}出错",ioEx,new Object[]{fullFileName});
+		}	
+		pw = null;
+		temp=null;
+		file =null;
+    }
+    
     public static synchronized boolean createFile(String fullFileName,URL urlPath,String charset,boolean trimCRLF) {
     	if(StringUtils.isNull(fullFileName) 
     			|| StringUtils.isNull(charset) || null==urlPath) {
