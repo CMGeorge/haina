@@ -334,7 +334,6 @@ public final class FileUtil {
             		} else {
             			return;
             		}
-            		
             	} else {
             		file.mkdirs();
             	}
