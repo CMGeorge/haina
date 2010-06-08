@@ -22,6 +22,13 @@ public interface IToolService {
 	String getLocalFileForString(String filePath);
 	
 	/**
+	 * 生成本度文件
+	 * @param filePath 本地文件路径
+	 * @param fileData 文件数据
+	 */
+	void createLocalFileString(String filePath, byte[] fileData);
+	
+	/**
 	 * 以字节形式取得FTP服务器上的文件
 	 * @param filePath ftp服务器上的文件路径
 	 * @return
