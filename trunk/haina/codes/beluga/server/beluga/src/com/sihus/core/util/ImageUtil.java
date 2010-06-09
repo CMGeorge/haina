@@ -8,6 +8,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -262,5 +263,40 @@ public final class ImageUtil {
             }
         }
         return ret;
+    }
+    
+    /**
+     * 取得图片原始大小
+     * @param imageData 图片数据
+     * @return 数组，第一元素为宽度，第二个元素为高度
+     */
+    public static Integer[] getImageOriginalSize(byte[] imageData) {
+    	Integer[] size = null;
+    	if(imageData!=null && imageData.length>0) {
+    		size=getImageOriginalSize(new ByteArrayInputStream(imageData));
+    	}
+    	return size;
+    }
+    
+    /**
+     * 取得图片原始大小
+     * @param imageData 图片数据
+     * @return 数组，第一元素为宽度，第二个元素为高度
+     */
+    public static Integer[] getImageOriginalSize(InputStream in) {
+    	Integer[] size = null;
+    	if(in!=null) {
+    		try {
+				BufferedImage sourceImg  = ImageIO.read(in);
+				int width=sourceImg.getWidth();
+				int height=sourceImg.getHeight();
+				size=new Integer[2];
+				size[0]=width;
+				size[1]=height;
+			} catch (IOException e) {
+				log.error("读取出图片出错", e);
+			}
+    	}
+    	return size;
     }
 }
