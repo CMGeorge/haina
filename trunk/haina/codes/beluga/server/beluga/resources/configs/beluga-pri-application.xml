@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:tx="http://www.springframework.org/schema/tx"
@@ -116,6 +117,24 @@
      </bean>
 	-->
 	
+	<bean id="userConfig" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="location">
+			<value>classpath:configs/user-config.properties</value>
+		</property>
+		<qualifier value="userConfig"/>
+	</bean>
+	
+	<bean id="userPhotoFileType" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="properties">
+			<props>
+				<prop key="image/jpeg">jpg</prop>
+				<prop key="image/pjpeg">jpg</prop>
+				<prop key="image/gif">gif</prop>
+				<prop key="image/png">png</prop>
+			</props>
+		</property>
+		<qualifier value="userPhotoFileType"/>
+	</bean>
 </beans>
 
 

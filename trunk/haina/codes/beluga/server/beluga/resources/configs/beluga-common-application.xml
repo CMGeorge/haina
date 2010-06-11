@@ -119,32 +119,30 @@
 
 
 	<!--异常处理 -->
-		<bean id="exceptionResolver"
+	<bean id="exceptionResolver"
+	
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+	
+		<property name="defaultErrorView">
 		
-			class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<value>showError</value>
 		
-			<property name="defaultErrorView">
-			
-			<value>showError</value>
-			
-			</property>
-			
-			<property name="exceptionMappings">
-			
-				<props>
-				
-					<prop key="java.sql.SQLException">showError</prop>
-				
-					<prop key="java.lang.RuntimeException">showError</prop>
-					
-					<prop key="com.sihus.core.exception.AppException">showError</prop>
-				
-				</props>
-			
-			</property>
+		</property>
 		
-		</bean>
-
+		<property name="exceptionMappings">
+		
+			<props>
+			
+				<prop key="java.sql.SQLException">showError</prop>
+			
+				<prop key="java.lang.RuntimeException">showError</prop>
+				
+				<prop key="com.sihus.core.exception.AppException">showError</prop>
+			
+			</props>
+		
+		</property>
+	</bean>
 </beans>
 
 
