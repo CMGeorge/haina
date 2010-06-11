@@ -30,15 +30,23 @@ public interface IUserPhotoInfoHessianService extends IBaseSerivce<IUserPhotoInf
 	 * @param pageSize 评论每页显示的数量
 	 * @return
 	 */
-	AbstractRemoteReturning getUserPhoto(String photoId, String albumId, int curPage, int pageSize);
+	AbstractRemoteReturning getUserPhotos(String photoId, String albumId, int curPage, int pageSize);
 	
 	/**
 	 * 添加相片
 	 * @param albumId 相片所属相册id
-	 * @param createUserEmail 相片所属用户登录邮箱
+	 * @param email 相片所属用户登录邮箱
+	 * @param createTime 添加时间
+	 * @param photoName 相片名称
+	 * @param photoDescription 相片描述
+	 * @param mime 相片的MIME类型
+	 * @param oriFileName 相片原始文件名称
+	 * @param photoData 相片数据
 	 * @return
 	 */
-	AbstractRemoteReturning addUserPhotoInfo(String albumId, String createUserEmail);
+	AbstractRemoteReturning addUserPhotoInfo(String albumId, String email,
+			String createTime, String photoName,
+			String photoDescription, String mime, String oriFileName, byte[] photoData);
 	
 	/**
 	 * 删除用户相片

@@ -1,12 +1,14 @@
 package com.haina.beluga.album.service;
 
 
+import java.text.MessageFormat;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,6 +43,12 @@ public class UserPhotoInfoHessianService extends BaseSerivce<IUserPhotoInfoDao, 
 
 	@Autowired(required=true)
 	private IToolService toolService;
+	
+	@Autowired(required=true)
+	private Properties userConfig;
+	
+	@Autowired(required=true)
+	private Map<String, String> fileTypesMap;
 	
 	@Override
 	public AbstractRemoteReturning getPhotosOfUserAlbum(String albumId,
@@ -89,7 +97,7 @@ public class UserPhotoInfoHessianService extends BaseSerivce<IUserPhotoInfoDao, 
 	}
 
 	@Override
-	public AbstractRemoteReturning getUserPhoto(String photoId, String albumId,
+	public AbstractRemoteReturning getUserPhotos(String photoId, String albumId,
 			int curPage, int pageSize) {
 		AbstractRemoteReturning ret=new Returning();
 		if(StringUtils.isNull(photoId)) {
@@ -142,11 +150,117 @@ public class UserPhotoInfoHessianService extends BaseSerivce<IUserPhotoInfoDao, 
 		return ret;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public AbstractRemoteReturning addUserPhotoInfo(String albumId,
-			String createUserEmail) {
-		// TODO Auto-generated method stub
-		return null;
+	public AbstractRemoteReturning addUserPhotoInfo(String albumId, String email, 
+			String createTime, String photoName, String photoDescription, 
+			String mime, String oriFileName, byte[] photoData) {
+		AbstractRemoteReturning ret=new Returning();
+		if(StringUtils.isNull(albumId)) {
+			ret.setStatusCode(IStatusCode.INVALID_USER_ALBUM_ID);
+			return ret;
+		}
+		if(StringUtils.isNull(email)) {
+			ret.setStatusCode(IStatusCode.INVALID_LOGINNAME);
+			return ret;
+		}
+		if(StringUtils.isNull(photoName)) {
+			ret.setStatusCode(IStatusCode.INVALID_USER_PHOTO_NAME);
+			return ret;
+		}
+		if(StringUtils.isNull(mime)) {
+			ret.setStatusCode(IStatusCode.INVALID_USER_PHOTO_MIME);
+			return ret;
+		}
+		String extName=fileTypesMap.get(mime.trim());
+		if(StringUtils.isNull(extName)) {
+			/*不合法的MIME，没有对应的扩展名*/
+			ret.setStatusCode(IStatusCode.INVALID_USER_PHOTO_MIME);
+			return ret;
+		}
+		if(StringUtils.isNull(oriFileName)) {
+			ret.setStatusCode(IStatusCode.INVALID_USER_PHOTO_NAME);
+			return ret;
+		}
+		if(null==photoData || photoData.length<1) {
+			ret.setStatusCode(IStatusCode.INVALID_USER_PHOTO_DATA);
+			return ret;
+		}
+		try {
+			Map<String,Object> params=new HashMap<String, Object>();
+			params.put("loginName", email);
+			List<String> idList=(List<String>)getBaseDao().getResultByHQLAndParam(
+					"select id from ContactUser where loginName = :loginName and validFlag = true ", 
+					params, null);
+			String userId=null;
+			if(idList==null || idList.size()<1) {
+				ret.setStatusCode(IStatusCode.INVALID_LOGINNAME);
+				return ret;
+			}
+			userId=idList.get(0);
+			if(StringUtils.isNull(userId)) {
+				ret.setStatusCode(IStatusCode.INVALID_LOGINNAME);
+				return ret;
+			}
+			params.clear();
+			params.put(albumId, albumId);
+			idList=(List<String>)getBaseDao().getResultByHQLAndParam(
+					"select id from UserAlbumInfo where id = :albumId and deleteFlag = false ", 
+					params, null);
+			if(idList==null || idList.size()<1) {
+				ret.setStatusCode(IStatusCode.INVALID_USER_ALBUM_ID);
+				return ret;
+			}
+			Date time=StringUtils.isNull(createTime)?new Date():DateUtil.parse(DateUtil.DEFAULT_DATE_FORMAT, createTime);
+			
+			/*$1生成相册本身文件*/
+			String fileName=MessageFormat.format(userConfig.getProperty("com.haina.beluga.album.photo.file.name.format"),
+					StringUtils.getRandom(32),extName);
+			String filePath=MessageFormat.format(userConfig.getProperty("com.haina.beluga.album.photo.file.path"),
+					fileName);
+			String photoUrl=MessageFormat.format(userConfig.getProperty("com.haina.beluga.album.photo.url.format"), 
+					fileName);
+			this.toolService.createLocalFileString(filePath, photoData);
+			
+			/*$2生成相册缩略图文件*/
+			
+			/*$3相册本身信息插入数据库*/
+			int seqNum=this.getBaseDao().getMaxPhotoSeqNumberOfUserAlbum(albumId)+1;
+			UserPhotoInfo userPhotoInfo=new UserPhotoInfo();
+			userPhotoInfo.setCreateTime(time);
+			userPhotoInfo.setCreateUserId(userId);
+			userPhotoInfo.setFilePath(filePath);
+			userPhotoInfo.setLastUpdateTime(time);
+			userPhotoInfo.setLastUpdateUserId(userId);
+			userPhotoInfo.setMime(mime);
+			userPhotoInfo.setOriFileName(oriFileName);
+			userPhotoInfo.setPhotoDescription(photoDescription);
+			userPhotoInfo.setPhotoSize(UserPhotoSizeEnum.normal);
+			userPhotoInfo.setPicUrl(photoUrl);
+			userPhotoInfo.setSeqNumber(seqNum);
+			userPhotoInfo.setUserAlbumInfoId(albumId);
+			
+			/*$4相册缩略图信息插入数据库*/
+			UserPhotoInfo userPhotoInfo2=new UserPhotoInfo();
+			userPhotoInfo2.setCreateTime(time);
+			userPhotoInfo2.setCreateUserId(userId);
+			userPhotoInfo2.setFilePath(filePath);
+			userPhotoInfo2.setLastUpdateTime(time);
+			userPhotoInfo2.setLastUpdateUserId(userId);
+			userPhotoInfo2.setMime(mime);
+			userPhotoInfo2.setOriFileName(oriFileName);
+			userPhotoInfo2.setPhotoDescription(photoDescription);
+			userPhotoInfo2.setPhotoSize(UserPhotoSizeEnum.genMini);
+			userPhotoInfo2.setPicUrl(photoUrl);
+			userPhotoInfo2.setSeqNumber(seqNum);
+			userPhotoInfo2.setUserAlbumInfoId(albumId);
+			return ret;
+		} catch (Throwable t) {
+			this.log.error("添加相片出错", t);
+			ret.setStatusText("添加相片出现异常，请稍候再试");
+			ret.setStatusCode(IStatusCode.ADD_USER_PHOTO_ERROR);
+			return ret;
+		}
 	}
 
 	@SuppressWarnings("unchecked")
