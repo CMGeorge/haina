@@ -22,11 +22,22 @@ public interface IToolService {
 	String getLocalFileForString(String filePath);
 	
 	/**
-	 * 生成本度文件
+	 * 生成本地文件
 	 * @param filePath 本地文件路径
 	 * @param fileData 文件数据
 	 */
-	void createLocalFileString(String filePath, byte[] fileData);
+	void createLocalFile(String filePath, byte[] fileData);
+	
+	/**
+	 * 生成本地缩略图文件
+	 * @param sourceData 原始图片数据
+	 * @param targetFilePath 目标文件存放路径
+	 * @param targetWidth 目标宽度
+	 * @param targetHeight 目标高度
+	 * @throws Exception
+	 */
+	void createLocalThumbnailFile(byte[] sourceData, String targetFilePath, 
+			int targetWidth, int targetHeight) throws Exception;
 	
 	/**
 	 * 以字节形式取得FTP服务器上的文件

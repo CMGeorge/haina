@@ -3,6 +3,7 @@ package com.haina.beluga.common.service;
 import org.springframework.stereotype.Service;
 
 import com.sihus.core.util.FileUtil;
+import com.sihus.core.util.ImageUtil;
 
 /**
  * 工具操作业务接口实现类。<br/>
@@ -23,8 +24,14 @@ public class ToolService implements IToolService {
 	}
 
 	@Override
-	public void createLocalFileString(String filePath, byte[] fileData) {
+	public void createLocalFile(String filePath, byte[] fileData) {
 		FileUtil.createFile(filePath, fileData, true);
+	}
+	
+	@Override
+	public void createLocalThumbnailFile(byte[] sourceData, String targetFilePath,
+			int targetWidth, int targetHeight) throws Exception {
+		ImageUtil.saveImageAsJpg(sourceData, targetFilePath, targetWidth, targetHeight);
 	}
 	
 	@Override
