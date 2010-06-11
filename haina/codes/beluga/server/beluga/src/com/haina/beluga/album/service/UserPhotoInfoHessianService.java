@@ -1,6 +1,5 @@
 package com.haina.beluga.album.service;
 
-
 import java.text.MessageFormat;
 import java.util.Collection;
 import java.util.Date;
@@ -216,18 +215,29 @@ public class UserPhotoInfoHessianService extends BaseSerivce<IUserPhotoInfoDao, 
 			}
 			Date time=StringUtils.isNull(createTime)?new Date():DateUtil.parse(DateUtil.DEFAULT_DATE_FORMAT, createTime);
 			
-			/*$1生成相册本身文件*/
+			/*$1生成相册本身文件和缩略图*/
 			String fileName=MessageFormat.format(userConfig.getProperty("com.haina.beluga.album.photo.file.name.format"),
 					StringUtils.getRandom(32),extName);
 			String filePath=MessageFormat.format(userConfig.getProperty("com.haina.beluga.album.photo.file.path"),
 					fileName);
 			String photoUrl=MessageFormat.format(userConfig.getProperty("com.haina.beluga.album.photo.url.format"), 
 					fileName);
-			this.toolService.createLocalFileString(filePath, photoData);
 			
-			/*$2生成相册缩略图文件*/
+			String fileName2=MessageFormat.format(userConfig.getProperty("com.haina.beluga.album.photo.file.name.format"),
+					StringUtils.getRandom(32),extName);
+			String filePath2=MessageFormat.format(userConfig.getProperty("com.haina.beluga.album.photo.file.path"),
+					fileName2);
+			String photoUrl2=MessageFormat.format(userConfig.getProperty("com.haina.beluga.album.photo.url.format"), 
+					fileName2);
+			int thumbnailWidth=Integer.valueOf(
+					userConfig.getProperty("com.haina.beluga.album.photo.thumbnail.width"));/*缩略图宽度*/
+			int thumbnailHeight=Integer.valueOf(
+					userConfig.getProperty("com.haina.beluga.album.photo.thumbnail.height"));/*缩略图高度*/
 			
-			/*$3相册本身信息插入数据库*/
+			this.toolService.createLocalFile(filePath, photoData);
+			this.toolService.createLocalThumbnailFile(photoData, filePath2, thumbnailWidth, thumbnailHeight);
+			
+			/*$2相册本身信息插入数据库*/
 			int seqNum=this.getBaseDao().getMaxPhotoSeqNumberOfUserAlbum(albumId)+1;
 			UserPhotoInfo userPhotoInfo=new UserPhotoInfo();
 			userPhotoInfo.setCreateTime(time);
@@ -243,20 +253,23 @@ public class UserPhotoInfoHessianService extends BaseSerivce<IUserPhotoInfoDao, 
 			userPhotoInfo.setSeqNumber(seqNum);
 			userPhotoInfo.setUserAlbumInfoId(albumId);
 			
-			/*$4相册缩略图信息插入数据库*/
+			/*$3相册缩略图信息插入数据库*/
 			UserPhotoInfo userPhotoInfo2=new UserPhotoInfo();
 			userPhotoInfo2.setCreateTime(time);
 			userPhotoInfo2.setCreateUserId(userId);
-			userPhotoInfo2.setFilePath(filePath);
+			userPhotoInfo2.setFilePath(filePath2);
 			userPhotoInfo2.setLastUpdateTime(time);
 			userPhotoInfo2.setLastUpdateUserId(userId);
 			userPhotoInfo2.setMime(mime);
 			userPhotoInfo2.setOriFileName(oriFileName);
 			userPhotoInfo2.setPhotoDescription(photoDescription);
 			userPhotoInfo2.setPhotoSize(UserPhotoSizeEnum.genMini);
-			userPhotoInfo2.setPicUrl(photoUrl);
+			userPhotoInfo2.setPicUrl(photoUrl2);
 			userPhotoInfo2.setSeqNumber(seqNum);
 			userPhotoInfo2.setUserAlbumInfoId(albumId);
+			
+			this.getBaseDao().create(userPhotoInfo2);
+			this.getBaseDao().create(userPhotoInfo);
 			return ret;
 		} catch (Throwable t) {
 			this.log.error("添加相片出错", t);
