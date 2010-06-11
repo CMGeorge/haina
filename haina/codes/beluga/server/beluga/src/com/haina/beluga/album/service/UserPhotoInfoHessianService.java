@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.haina.beluga.album.dao.IUserPhotoInfoDao;
@@ -45,10 +46,12 @@ public class UserPhotoInfoHessianService extends BaseSerivce<IUserPhotoInfoDao, 
 	private IToolService toolService;
 	
 	@Autowired(required=true)
+	@Qualifier(value="userConfig")
 	private Properties userConfig;
 	
 	@Autowired(required=true)
-	private Map<String, String> fileTypesMap;
+	@Qualifier(value="userPhotoFileType")
+	private Properties fileTypesMap;
 	
 	@Override
 	public AbstractRemoteReturning getPhotosOfUserAlbum(String albumId,
@@ -172,7 +175,7 @@ public class UserPhotoInfoHessianService extends BaseSerivce<IUserPhotoInfoDao, 
 			ret.setStatusCode(IStatusCode.INVALID_USER_PHOTO_MIME);
 			return ret;
 		}
-		String extName=fileTypesMap.get(mime.trim());
+		String extName=fileTypesMap.getProperty(mime.trim());
 		if(StringUtils.isNull(extName)) {
 			/*不合法的MIME，没有对应的扩展名*/
 			ret.setStatusCode(IStatusCode.INVALID_USER_PHOTO_MIME);
