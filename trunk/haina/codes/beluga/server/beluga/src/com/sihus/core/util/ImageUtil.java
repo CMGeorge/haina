@@ -43,6 +43,34 @@ public final class ImageUtil {
 	 *            缩放目标高度
 	 * @return
 	 */
+	public static BufferedImage resize(byte[] source, int targetWidth,
+			int targetHeight) {
+		BufferedImage ret = null;
+		if (source != null && source.length>0
+				&& targetWidth > 0 && targetHeight > 0) {
+			BufferedImage sourceImg=null;;
+			try {
+				sourceImg = ImageIO.read(new ByteArrayInputStream(source));
+				ret=resize(sourceImg,targetWidth,targetHeight);
+			} catch (IOException e) {
+				COMMON_LOG.error("读取图片出错", e);
+			}
+			
+		}
+		return ret;
+	}
+	
+	/**
+	 * 实现图像的等比缩放
+	 * 
+	 * @param source
+	 *            原图片数据
+	 * @param targetWidth
+	 *            缩放目标宽度
+	 * @param targetHeight
+	 *            缩放目标高度
+	 * @return
+	 */
 	public static BufferedImage resize(BufferedImage source, int targetWidth,
 			int targetHeight) {
 		BufferedImage ret = null;
@@ -147,6 +175,68 @@ public final class ImageUtil {
 		in.close();
 	}
 
+	/**
+	 * 实现图像的等比缩放和缩放后的截取
+	 * 
+	 * @param inFilePath
+	 *            要截取文件的路径
+	 * @param outFilePath
+	 *            截取后输出的路径
+	 * @param width
+	 *            要截取宽度
+	 * @param hight
+	 *            要截取的高度
+	 * @param proportion
+	 * @throws Exception
+	 */
+	public static synchronized void saveImageAsJpg(byte[] sourceImage, String outFilePath,
+			int width, int hight) throws Exception {
+		if (null==sourceImage || sourceImage.length<0 || StringUtils.isNull(outFilePath)) {
+			return;
+		}
+		File saveFile = new File(outFilePath);
+		if(!saveFile.isFile()) {
+			return;
+		}
+		saveFile.deleteOnExit();
+		InputStream in = new ByteArrayInputStream(sourceImage);
+		BufferedImage srcImage = ImageIO.read(in);
+		if (width > 0 || hight > 0) {
+			// 原图的大小
+			int sw = srcImage.getWidth();
+			int sh = srcImage.getHeight();
+			// 如果原图像的大小小于要缩放的图像大小，直接将要缩放的图像复制过去
+			if (sw > width && sh > hight) {
+				srcImage = resize(srcImage, width, hight);
+			} else {
+				String fileName = saveFile.getName();
+				String formatName = fileName.substring(fileName
+						.lastIndexOf('.') + 1);
+				ImageIO.write(srcImage, formatName, saveFile);
+				return;
+			}
+		}
+		// 缩放后的图像的宽和高
+		int w = srcImage.getWidth();
+		int h = srcImage.getHeight();
+		// 如果缩放后的图像和要求的图像宽度一样，就对缩放的图像的高度进行截取
+		if (w == width) {
+			// 计算X轴坐标
+			int x = 0;
+			int y = h / 2 - hight / 2;
+			writeImage(srcImage, new Rectangle(x, y, width, hight),
+					saveFile);
+		} else if (h == hight) {
+			// 否则如果是缩放后的图像的高度和要求的图像高度一样，就对缩放后的图像的宽度进行截取
+			// 计算X轴坐标
+			int x = w / 2 - width / 2;
+			int y = 0;
+			writeImage(srcImage, new Rectangle(x, y, width, hight),
+					saveFile);
+		}
+		in.close();
+	}
+	
 	/**
 	 * 存储缩放后的截图
 	 * 
