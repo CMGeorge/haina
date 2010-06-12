@@ -20,7 +20,7 @@ import com.sihus.core.util.StringUtils;
  * @data 2009-07-11
  *
  */
-public  class PassportManager  {
+public class PassportManager  {
 	
 
 	/*用户护照的存储池。*/
