@@ -185,7 +185,7 @@ public  class PassportManager  {
 	}
 
 	public boolean isExpiredLogin(String passport) {
-		if(passport==null || !passportPool.containsKey(passport)) {
+		if(StringUtils.isNull(passport) || !passportPool.containsKey(passport)) {
 			return true;
 		}
 		LoginPassport loginPassport=passportPool.get(passport);
