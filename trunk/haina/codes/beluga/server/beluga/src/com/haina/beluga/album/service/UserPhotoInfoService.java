@@ -38,8 +38,8 @@ import com.sihus.core.util.StringUtils;
  * @since 2010-05-27
  */
 @Service(value="userPhotoInfoHessianService")
-public class UserPhotoInfoHessianService extends BaseSerivce<IUserPhotoInfoDao, UserPhotoInfo, String> implements
-		IUserPhotoInfoHessianService {
+public class UserPhotoInfoService extends BaseSerivce<IUserPhotoInfoDao, UserPhotoInfo, String> implements
+		IUserPhotoInfoService {
 
 	@Autowired(required=true)
 	private IToolService toolService;

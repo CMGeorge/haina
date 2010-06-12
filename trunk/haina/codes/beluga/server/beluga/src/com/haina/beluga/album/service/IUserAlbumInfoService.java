@@ -10,7 +10,7 @@ import com.sihus.core.service.IBaseSerivce;
  * @author huangyongqiang
  * @since 2010-05-23
  */
-public interface IUserAlbumInfoHessianService extends IBaseSerivce<IUserAlbumInfoDao, UserAlbumInfo, String> {
+public interface IUserAlbumInfoService extends IBaseSerivce<IUserAlbumInfoDao, UserAlbumInfo, String> {
 
 	/**
 	 * 获取用户相册

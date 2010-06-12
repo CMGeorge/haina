@@ -32,8 +32,8 @@ import com.sihus.core.util.StringUtils;
  * @since 2010-05-23
  */
 @Service(value="userAlbumInfoHessianService")
-public class UserAlbumInfoHessianService extends BaseSerivce<IUserAlbumInfoDao, UserAlbumInfo, String>
-		implements IUserAlbumInfoHessianService {
+public class UserAlbumInfoService extends BaseSerivce<IUserAlbumInfoDao, UserAlbumInfo, String>
+		implements IUserAlbumInfoService {
 	
 	@Autowired(required=true)
 	private IToolService toolService;
