@@ -10,7 +10,7 @@ import com.sihus.core.service.IBaseSerivce;
  * @author huangyongqiang
  * @since 2010-05-27
  */
-public interface IUserPhotoInfoHessianService extends IBaseSerivce<IUserPhotoInfoDao, UserPhotoInfo, String> {
+public interface IUserPhotoInfoService extends IBaseSerivce<IUserPhotoInfoDao, UserPhotoInfo, String> {
 
 	/**
 	 * 获取用户相册的相片列表
