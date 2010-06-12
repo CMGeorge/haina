@@ -49,18 +49,23 @@ public class PassportManager  {
 //	private Thread passportMonitorThread=new Thread(passportMonitor);
 	
 	/*监控执行标志。*/
-	private boolean monitoringFlag=true;
+	private static boolean monitoringFlag=true;
 	
 	/*监控执行周期。默认604800000毫秒，即一周。*/
-	private long monitoringCycle=604800000l;
+	private static long monitoringCycle=604800000l;
 	
-	private PassportMonitor passportMonitor=new PassportMonitor();
+	private static PassportMonitor passportMonitor=new PassportMonitor();
 	
-	private Thread passportMonitorThread=new Thread(passportMonitor);
+	private static Thread passportMonitorThread=new Thread(passportMonitor);
 
-	public PassportManager() {
+	
+	static{
 		startMonitoring();
 	}
+	
+//	public PassportManager() {
+//		
+//	}
 	
 	
 	public static LoginPassport addPassport(ContactUser contactUser) {
@@ -240,7 +245,7 @@ public class PassportManager  {
 //		}
 //	}
 	
-	public List<String> clearExpiredPassport() {
+	public static List<String> clearExpiredPassport() {
 		List<String> expiredLoginName=new ArrayList<String>();
 		if(passportPool.size()>0) {
 			Iterator<String> keys=passportPool.keySet().iterator();
@@ -263,7 +268,7 @@ public class PassportManager  {
 	 * @data 2009-07-11
 	 *
 	 */
-	private class PassportMonitor implements Runnable {
+	private  static class PassportMonitor implements Runnable {
 
 		@SuppressWarnings("static-access")
 		@Override
@@ -283,14 +288,14 @@ public class PassportManager  {
 	
 
 	
-	private void startMonitoring() {
+	private static void startMonitoring() {
 		if(passportMonitorThread.getState().equals(State.NEW)) {
 			passportMonitorThread.start();
 //			LOG.info(">>>>>>>>>>>>>>>>>>>>>PassportMonitor started>>>>>>>>>>>>>>>>>>>");
 		}
 	}
 	
-	private void removeExpiredLoginUser() {
+	private static void removeExpiredLoginUser() {
 //		LOG.info(">>>>>>>>>>>>>>>>>>PassportMonitor start clear expired login user>>>>>>>>>>>>>>>>>>>>>");
 		List<String> expiredLoginName=clearExpiredPassport();
 		/*暂时不修改数据库状态。*/
