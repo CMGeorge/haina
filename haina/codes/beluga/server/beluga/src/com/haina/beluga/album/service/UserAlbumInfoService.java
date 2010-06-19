@@ -189,7 +189,7 @@ public class UserAlbumInfoService extends BaseSerivce<IUserAlbumInfoDao, UserAlb
 	}
 
 	@Override
-	public AbstractRemoteReturning getUserAlbumInfos(String email,
+	public AbstractRemoteReturning getUserAlbumInfoList(String email,
 			String mobile, int curPage, int pageSize) {
 		AbstractRemoteReturning ret=new Returning();
 		Collection<UserAlbumInfoDto> albumDtos=null;
