@@ -20,7 +20,7 @@ public interface IUserPhotoInfoService extends IBaseSerivce<IUserPhotoInfoDao, U
 	 * @param pageSize 每页显示的数量
 	 * @return
 	 */
-	AbstractRemoteReturning getPhotosOfUserAlbum(String albumId, String email, int curPage, int pageSize);
+	AbstractRemoteReturning getUserPhotoInfoList(String albumId, String email, int curPage, int pageSize);
 	
 	/**
 	 * 获取用户相片信息

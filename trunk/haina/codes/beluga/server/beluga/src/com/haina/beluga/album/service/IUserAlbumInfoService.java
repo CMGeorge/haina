@@ -20,7 +20,7 @@ public interface IUserAlbumInfoService extends IBaseSerivce<IUserAlbumInfoDao, U
 	 * @param pageSize 每页显示的数量
 	 * @return
 	 */
-	AbstractRemoteReturning getUserAlbumInfos(String email,String mobile,int curPage,
+	AbstractRemoteReturning getUserAlbumInfoList(String email,String mobile,int curPage,
 			int pageSize);
 	
 	/**

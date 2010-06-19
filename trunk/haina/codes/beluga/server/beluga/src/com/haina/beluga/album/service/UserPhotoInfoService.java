@@ -53,7 +53,7 @@ public class UserPhotoInfoService extends BaseSerivce<IUserPhotoInfoDao, UserPho
 	private Properties fileTypesMap;
 	
 	@Override
-	public AbstractRemoteReturning getPhotosOfUserAlbum(String albumId,
+	public AbstractRemoteReturning getUserPhotoInfoList(String albumId,
 			String email, int curPage, int pageSize) {
 		AbstractRemoteReturning ret=new Returning();
 		if(StringUtils.isNull(albumId)) {
