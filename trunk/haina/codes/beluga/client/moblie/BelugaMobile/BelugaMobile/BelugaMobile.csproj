@@ -57,6 +57,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+
+    <Compile Include="BaseControl\BForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+
     <Compile Include="Db\BelugaDb.cs" />
     <Compile Include="Db\Contact.cs" />
     <Compile Include="Db\Han2Pinyin.cs" />
@@ -66,6 +71,7 @@
     <Compile Include="Db\Xsd\msgface.Designer.cs" />
     <Compile Include="Db\Xsd\quickmsg.Designer.cs" />
     <Compile Include="Db\Xsd\userconfig.Designer.cs" />
+
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
