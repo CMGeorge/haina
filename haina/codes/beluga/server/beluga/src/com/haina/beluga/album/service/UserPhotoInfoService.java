@@ -99,7 +99,7 @@ public class UserPhotoInfoService extends BaseSerivce<IUserPhotoInfoDao, UserPho
 	}
 
 	@Override
-	public AbstractRemoteReturning getUserPhotos(String photoId, String albumId,
+	public AbstractRemoteReturning getUserPhotoInfo(String photoId, String albumId,
 			int curPage, int pageSize) {
 		AbstractRemoteReturning ret=new Returning();
 		if(StringUtils.isNull(photoId)) {
