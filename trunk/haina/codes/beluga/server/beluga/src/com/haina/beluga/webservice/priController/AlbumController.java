@@ -213,4 +213,23 @@ public class AlbumController extends BaseController {
 		model.addAttribute(ret);
 		return Constant.JSON_VIEW;
 	}
+	
+	/**
+	 * 删除用户相片评论
+	 * @param photoId 相片id
+	 * @param commentIds 评论id
+	 * @param passport 登录令牌
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(params = "method=deleteUserPhotoComment")
+	public String deleteUserPhotoComment(@RequestParam(required=false,value="photoId") String photoId,
+			@RequestParam(required=true,value="commentIds") String[] commentIds,
+			@RequestParam(required=true,value="passport") String passport, ModelMap model) {
+		AbstractRemoteReturning ret=null;
+		String loginName = this.getLoginNameOfPassport(passport);
+		ret=userPhotoInfoService.deleteUserPhotoComment(commentIds, photoId, loginName);
+		model.addAttribute(ret);
+		return Constant.JSON_VIEW;
+	}
 }
