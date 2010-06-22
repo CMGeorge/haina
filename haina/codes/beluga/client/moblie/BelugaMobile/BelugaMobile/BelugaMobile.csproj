@@ -57,13 +57,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseControl\BDetailForm.cs">
+    <Compile Include="BaseControl\SecondaryForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BaseControl\BForm.cs">
+    <Compile Include="BaseControl\BaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BaseControl\BListForm.cs">
+    <Compile Include="BaseControl\IntegratedForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Db\BelugaDb.cs" />
@@ -83,8 +83,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="BaseControl\BDetailForm.resx">
-      <DependentUpon>BDetailForm.cs</DependentUpon>
+    <EmbeddedResource Include="BaseControl\SecondaryForm.resx">
+      <DependentUpon>SecondaryForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseControl\IntegratedForm.resx">
+      <DependentUpon>IntegratedForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
