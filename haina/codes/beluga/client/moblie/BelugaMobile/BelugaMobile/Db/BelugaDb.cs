@@ -238,6 +238,9 @@ namespace BelugaMobile.Db
         /* 根据电话号码匹配最精确的联系人以获取其姓名 */
         public Contact FindContact(string tel)
         {
+            char[] sql = new char[640];
+            int nBaseLen = 7, nLimitLen = 12;
+
             SQLiteCommand cmd = _Connection.CreateCommand("select * from t_contact where dst_user_mobile = '@tel' or cid in " + 
                                                     "(select cid from t_contact_detail where home_tel = '@tel' or work_tel = '@tel' or other_tel = '@tel');");
             cmd.Parameters.Add("@tel", DbType.String).Value = tel;
