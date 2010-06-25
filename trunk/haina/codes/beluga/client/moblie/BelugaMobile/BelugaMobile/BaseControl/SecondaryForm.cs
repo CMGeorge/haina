@@ -10,6 +10,11 @@ namespace BelugaMobile.BaseControl
         private System.Windows.Forms.Panel pnl_Contents;
         private System.Windows.Forms.Panel pnl_top;
 
+        public SecondaryForm()
+       {
+           InitializeComponent();
+       }
+
         private void InitializeComponent()
         {
             this.pnl_top = new System.Windows.Forms.Panel();
