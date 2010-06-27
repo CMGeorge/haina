@@ -1,10 +1,11 @@
 package test;
 
-import junit.framework.TestCase;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Ignore;
+import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.orm.hibernate3.SessionFactoryUtils;
@@ -19,20 +20,26 @@ import com.haina.beluga.webservice.data.Returning;
 /**
  * Simple test of the PersonDao
  */
-public class TestPriService extends TestCase {
+public class TestPriService {
 	private ApplicationContext factory;
 
-	public TestPriService(String s) {
-		super(s);
+//	public TestPriService(String s) {
+//		super(s);
+//		factory = new ClassPathXmlApplicationContext(
+//				"test/test-applicationContext.xml");
+//	}
+
+	public TestPriService() {
 		factory = new ClassPathXmlApplicationContext(
 				"test/test-applicationContext.xml");
 	}
-
+	
 	/**
 	 * 测试注册
 	 * @throws Exception
 	 */
-	@Ignore
+	@Ignore(value="")
+	@Test(expected=Throwable.class)
 	public void testRegister() throws Exception {
 		Returning h = getPriService().register("paul008@163.com", "123456", "13503280999");
 		System.out.println(h);
@@ -42,7 +49,8 @@ public class TestPriService extends TestCase {
 	 * 测试注册
 	 * @throws Exception
 	 */
-	@Ignore
+	@Ignore(value="")
+	@Test(expected=Throwable.class)
 	public void testRegister1() throws Exception {
 		Returning h = getPriService().register("luke_huang@163.com", "123456", "13503280900");
 		System.out.println(h);
@@ -52,7 +60,9 @@ public class TestPriService extends TestCase {
 	 * 测试添加用户相册
 	 * @throws Exception
 	 */
-	public void testaddUserAlbumInfo() throws Exception {
+	@Ignore(value="已经测试过")
+	@Test(expected=Throwable.class)
+	public void testAddUserAlbumInfo() throws Exception {
 		AbstractRemoteReturning h=this.getUserAlbumInfoService().addUserAlbumInfo("paul008@163.com", "测试相册名1", "测试相册描述1");
 		System.out.println(h);
 		h=this.getUserAlbumInfoService().addUserAlbumInfo("luke_huang@163.com", "测试相册名2", "测试相册描述2");
@@ -119,24 +129,40 @@ public class TestPriService extends TestCase {
 		System.out.println(h);
 	}
 	
-//	public void testGetUserAlbumInfoList() throws Exception {
-//		AbstractRemoteReturning h=this.getUserAlbumInfoService().getUserAlbumInfoList("luke_huang@163.com", null, 1, 11);
-//		System.out.println(h);
-//	}
+	/**
+	 * 测试获取相册列表
+	 * @throws Exception
+	 */
+	@Ignore(value="")
+	@Test(expected=Throwable.class)
+	public void testGetUserAlbumInfoList() throws Exception {
+		AbstractRemoteReturning h=this.getUserAlbumInfoService().getUserAlbumInfoList("luke_huang@163.com", null, 1, 11);
+		System.out.println(h);
+	}
 	
-//	@Ignore
-//	public void testLogin() throws Exception {
-//		HessianRemoteReturning h = getPriService().login("testuser6", "12345");
-//		System.out.println(h);
-//	}
+	@Test(expected=Throwable.class)
+	public void testDeleteUserAlbumInfo() throws Exception {
+		String[] ids=new String[]{"402881e7297776ca01297776dcde0003","402881e7297776ca01297776dcde0005"};
+		AbstractRemoteReturning h=this.getUserAlbumInfoService().deleteUserAlbumInfo(ids, null, "luke_huang@163.com");
+		System.out.println(h);
+	}
 	
-//	@Ignore
-//	public void testLogin1() throws Exception {
-//		Returning h = getPriService().login("testuser6", "123456");
-//		System.out.println(h);
-//		Returning h2 = getPriService().login("testuser6", "123456");
-//		System.out.println(h2);
-//	}
+	@Ignore(value="")
+	@Test(expected=Throwable.class)
+	public void testLogin() throws Exception {
+		AbstractRemoteReturning h = getPriService().login("testuser6", "12345");
+		System.out.println(h);
+	}
+	
+	@Ignore(value="")
+	@Test(expected=Throwable.class)
+	public void testLogin1() throws Exception {
+		AbstractRemoteReturning h = getPriService().login("testuser6", "123456");
+		System.out.println(h);
+		Returning h2 = getPriService().login("testuser6", "123456");
+		System.out.println(h2);
+	}
+	
 //	public void testLogout() throws Exception {
 //		HessianRemoteReturning h = getPriService().logoutByPsssport("testuser6");
 //		System.out.println(h);
@@ -147,12 +173,13 @@ public class TestPriService extends TestCase {
 //		System.out.println(h);
 //	}
 
-	protected void setUp() throws Exception {
-
+	@Before
+	public void setUp() throws Exception {
 		openSession();
 	}
 
-	protected void tearDown() throws Exception {
+	@After
+	public void tearDown() throws Exception {
 		closeSession();
 	}
 
