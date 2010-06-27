@@ -37,7 +37,7 @@ import com.sihus.core.util.StringUtils;
  * @author huangyongqiang
  * @since 2010-05-27
  */
-@Service(value="userPhotoInfoHessianService")
+@Service(value="userPhotoInfoService")
 public class UserPhotoInfoService extends BaseSerivce<IUserPhotoInfoDao, UserPhotoInfo, String> implements
 		IUserPhotoInfoService {
 
