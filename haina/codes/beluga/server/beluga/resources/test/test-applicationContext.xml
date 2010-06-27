@@ -10,7 +10,6 @@
            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd"
             default-autowire="byName">
 
-
 	<context:component-scan base-package="com.sihus.core">
 	</context:component-scan>
 	
@@ -60,6 +59,7 @@
 
 	</bean>
 	
+	<!--
 	<bean id="passportService"
 		class="com.haina.beluga.contact.service.PassportService">
 		<property name="loginExpiry">
@@ -75,6 +75,7 @@
 			<value>10000</value>
 		</property>
 	</bean>
+	-->
 	
 	<!--
 	<bean id="contactUserDaoAroundAdvice"
@@ -153,6 +154,8 @@
 			<value>true</value>
 		</property>
 	</bean>
+	
+	<import resource="test-pri-applicationContext.xml"/>
 </beans>
 
 
