@@ -47,7 +47,6 @@ namespace BelugaMobile.BaseControl
            // main_Toolbar
            // 
            this.main_Toolbar.BackgroundImage = ((System.Drawing.Bitmap)(resources.GetObject("main_Toolbar.BackgroundImage")));
-           this.main_Toolbar.BackgroundImageVGA = ((System.Drawing.Bitmap)(resources.GetObject("main_Toolbar.BackgroundImageVGA")));
            this.main_Toolbar.Items.Add(this.tbi_contact);
            this.main_Toolbar.Items.Add(this.tbi_profile);
            this.main_Toolbar.Items.Add(this.tbi_news);
@@ -64,9 +63,7 @@ namespace BelugaMobile.BaseControl
            // 
            this.tbi_contact.CustomSize = new System.Drawing.Size(0, 0);
            this.tbi_contact.ImageDefault = ((System.Drawing.Bitmap)(resources.GetObject("tbi_contact.ImageDefault")));
-           this.tbi_contact.ImageDefaultVGA = ((System.Drawing.Bitmap)(resources.GetObject("tbi_contact.ImageDefaultVGA")));
            this.tbi_contact.ImagePressed = ((System.Drawing.Bitmap)(resources.GetObject("tbi_contact.ImagePressed")));
-           this.tbi_contact.ImagePressedVGA = ((System.Drawing.Bitmap)(resources.GetObject("tbi_contact.ImagePressedVGA")));
            this.tbi_contact.Name = "tbi_contact";
            this.tbi_contact.StretchImage = true;
            // 
@@ -74,9 +71,7 @@ namespace BelugaMobile.BaseControl
            // 
            this.tbi_profile.CustomSize = new System.Drawing.Size(0, 0);
            this.tbi_profile.ImageDefault = ((System.Drawing.Bitmap)(resources.GetObject("tbi_profile.ImageDefault")));
-           this.tbi_profile.ImageDefaultVGA = ((System.Drawing.Bitmap)(resources.GetObject("tbi_profile.ImageDefaultVGA")));
            this.tbi_profile.ImagePressed = ((System.Drawing.Bitmap)(resources.GetObject("tbi_profile.ImagePressed")));
-           this.tbi_profile.ImagePressedVGA = ((System.Drawing.Bitmap)(resources.GetObject("tbi_profile.ImagePressedVGA")));
            this.tbi_profile.Name = "tbi_profile";
            this.tbi_profile.StretchImage = true;
            // 
@@ -85,9 +80,7 @@ namespace BelugaMobile.BaseControl
            this.tbi_news.CustomSize = new System.Drawing.Size(0, 0);
            this.tbi_news.ImageAlignment = Resco.Controls.CommonControls.Alignment.MiddleLeft;
            this.tbi_news.ImageDefault = ((System.Drawing.Bitmap)(resources.GetObject("tbi_news.ImageDefault")));
-           this.tbi_news.ImageDefaultVGA = ((System.Drawing.Bitmap)(resources.GetObject("tbi_news.ImageDefaultVGA")));
            this.tbi_news.ImagePressed = ((System.Drawing.Bitmap)(resources.GetObject("tbi_news.ImagePressed")));
-           this.tbi_news.ImagePressedVGA = ((System.Drawing.Bitmap)(resources.GetObject("tbi_news.ImagePressedVGA")));
            this.tbi_news.Name = "tbi_news";
            this.tbi_news.StretchImage = true;
            // 
@@ -95,9 +88,7 @@ namespace BelugaMobile.BaseControl
            // 
            this.tbi_msg.CustomSize = new System.Drawing.Size(0, 0);
            this.tbi_msg.ImageDefault = ((System.Drawing.Bitmap)(resources.GetObject("tbi_msg.ImageDefault")));
-           this.tbi_msg.ImageDefaultVGA = ((System.Drawing.Bitmap)(resources.GetObject("tbi_msg.ImageDefaultVGA")));
            this.tbi_msg.ImagePressed = ((System.Drawing.Bitmap)(resources.GetObject("tbi_msg.ImagePressed")));
-           this.tbi_msg.ImagePressedVGA = ((System.Drawing.Bitmap)(resources.GetObject("tbi_msg.ImagePressedVGA")));
            this.tbi_msg.Name = "tbi_msg";
            this.tbi_msg.StretchImage = true;
            // 
@@ -105,9 +96,7 @@ namespace BelugaMobile.BaseControl
            // 
            this.tbi_app.CustomSize = new System.Drawing.Size(0, 0);
            this.tbi_app.ImageDefault = ((System.Drawing.Bitmap)(resources.GetObject("tbi_app.ImageDefault")));
-           this.tbi_app.ImageDefaultVGA = ((System.Drawing.Bitmap)(resources.GetObject("tbi_app.ImageDefaultVGA")));
            this.tbi_app.ImagePressed = ((System.Drawing.Bitmap)(resources.GetObject("tbi_app.ImagePressed")));
-           this.tbi_app.ImagePressedVGA = ((System.Drawing.Bitmap)(resources.GetObject("tbi_app.ImagePressedVGA")));
            this.tbi_app.Name = "tbi_app";
            this.tbi_app.StretchImage = true;
            // 
