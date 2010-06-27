@@ -27,16 +27,16 @@ public class PassportManager  {
 	private static Map<String,LoginPassport> passportPool=new ConcurrentHashMap<String,LoginPassport>();
 	
 	/*登录超期时间。默认604800000毫秒，即一周。*/
-	private static long loginExpiry;
+	private static long loginExpiry=604800000;
 	
 	/*登录超期时间偏移，考虑到网络传输时延。默认10000毫秒，即十秒。*/
-	private static long loginExpiryTimeOff;
+	private static long loginExpiryTimeOff=10000;
 	
 	/*护照超期时间。默认1800000毫秒，即半小时。*/
-	private static long passportExpiry;
+	private static long passportExpiry=1800000;
 	
 	/*护照超期时间偏移，考虑到网络传输时延。默认30000毫秒，即半分钟。*/
-	private static long passportExpiryTimeOff;
+	private static long passportExpiryTimeOff=30000;
 	
 	/*监控执行周期。默认604800000毫秒，即一周。*/
 //	private Long monitoringCycle=604800000l;
