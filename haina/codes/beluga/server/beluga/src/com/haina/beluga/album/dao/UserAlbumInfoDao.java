@@ -1,11 +1,16 @@
 package com.haina.beluga.album.dao;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.stereotype.Repository;
 
 import com.haina.beluga.album.domain.UserAlbumInfo;
@@ -34,10 +39,10 @@ public class UserAlbumInfoDao extends BaseDao<UserAlbumInfo, String> implements
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public int deleteUserAlbumInfoByIds(String[] ids,String deleteUserId) {
+	public int deleteUserAlbumInfoByIds(String[] ids, final String deleteUserId) {
 		int ret=0;
 		if(null!=ids && ids.length>0 && !StringUtils.isNull(deleteUserId)) {
-			Collection<String> idList=new ArrayList<String>();
+			final List<String> idList=new ArrayList<String>();
 			for(int i=0;i<ids.length;i++) {
 				if(!StringUtils.isNull(ids[i])) {
 					idList.add(ids[i]);
@@ -45,9 +50,23 @@ public class UserAlbumInfoDao extends BaseDao<UserAlbumInfo, String> implements
 			}
 			if(idList.size()>0) {
 				/*$1 删除相册本身*/
-				ret=this.getHibernateTemplate().bulkUpdate(
-						"update UserAlbumInfo uai set uai.deleteFlag = true where uai.deleteFlag = false and uai.createUserId = ? and uai.id in( ? ) ",
-						new Object[]{deleteUserId, idList});
+				ret=(Integer)this.getHibernateTemplate().execute(new HibernateCallback() {
+					@Override
+					public Object doInHibernate(Session session)
+							throws HibernateException, SQLException {
+						Query query=session.createQuery(
+								"update UserAlbumInfo set deleteFlag = true where deleteFlag = false and createUserId = :userId and id in ( :ids )");
+						query.setParameter("userId", deleteUserId);
+						query.setParameter("ids", idList);
+						int result=query.executeUpdate();
+						return result;
+					}
+					
+				});
+				
+//				ret=this.getHibernateTemplate().bulkUpdate(
+//						"update UserAlbumInfo set deleteFlag = true where deleteFlag = false and createUserId = ? and id in ( ? ) ",
+//						new Object[]{deleteUserId, idList});
 				
 				/*$2 删除相册的相片*/
 				Map<String,Object> params=new HashMap<String, Object>();
@@ -57,7 +76,7 @@ public class UserAlbumInfoDao extends BaseDao<UserAlbumInfo, String> implements
 				List<String> photoIdList=(List<String>)getResultByHQLAndParam("select id from UserPhotoInfo where upi.deleteFlag = false and upi.createUserId = :createUserId and userAlbumInfoId in ( :userAlbumInfoIds )", 
 						params,null);
 				if(photoIdList!=null && photoIdList.size()>0) {
-					getHibernateTemplate().bulkUpdate("update UserPhotoInfo upi set upi.deleteFlag = true where upi.deleteFlag = false and upi.id in ( ? ) ",
+					getHibernateTemplate().bulkUpdate("update UserPhotoInfo set deleteFlag = true where deleteFlag = false and id in ( ? ) ",
 							new Object[]{deleteUserId, photoIdList});
 					
 					/*3 删除相片评论*/
@@ -91,7 +110,7 @@ public class UserAlbumInfoDao extends BaseDao<UserAlbumInfo, String> implements
 		}
 		
 		hql.append(" where uai.deleteFlag = false and upi.deleteFlag = false and upi2.deleteFlag = false ")
-		.append(" upi.userAlbumInfoId = uai.id and upi2.coverFlag = true ");
+		.append(" and upi.userAlbumInfoId = uai.id and upi2.coverFlag = true ");
 		if(validEmail || validMobile) {
 			hql.append(" and uai.createUserId = cu.id ");
 		}
