@@ -42,7 +42,7 @@ public class UserAlbumInfoDao extends BaseDao<UserAlbumInfo, String> implements
 	public int deleteUserAlbumInfoByIds(String[] ids, final String deleteUserId) {
 		int ret=0;
 		if(null!=ids && ids.length>0 && !StringUtils.isNull(deleteUserId)) {
-			final List<String> idList=new ArrayList<String>();
+			final Collection<String> idList=new ArrayList<String>();
 			for(int i=0;i<ids.length;i++) {
 				if(!StringUtils.isNull(ids[i])) {
 					idList.add(ids[i]);
@@ -55,9 +55,9 @@ public class UserAlbumInfoDao extends BaseDao<UserAlbumInfo, String> implements
 					public Object doInHibernate(Session session)
 							throws HibernateException, SQLException {
 						Query query=session.createQuery(
-								"update UserAlbumInfo set deleteFlag = true where deleteFlag = false and createUserId = :userId and id in ( :ids )");
-						query.setParameter("userId", deleteUserId);
-						query.setParameter("ids", idList);
+								"update UserAlbumInfo u set u.deleteFlag = true where u.deleteFlag = false and u.createUserId = :createUserId and u.id in ( :ids )");
+						query.setParameter("createUserId", deleteUserId);
+						query.setParameterList("ids", idList);
 						int result=query.executeUpdate();
 						return result;
 					}
@@ -73,15 +73,37 @@ public class UserAlbumInfoDao extends BaseDao<UserAlbumInfo, String> implements
 				params.put("createUserId", deleteUserId);
 				params.put("userAlbumInfoIds", idList);
 				/*搜索相册里可以删除的相片id*/
-				List<String> photoIdList=(List<String>)getResultByHQLAndParam("select id from UserPhotoInfo where upi.deleteFlag = false and upi.createUserId = :createUserId and userAlbumInfoId in ( :userAlbumInfoIds )", 
+				final List<String> photoIdList=(List<String>)getResultByHQLAndParam("select id from UserPhotoInfo where upi.deleteFlag = false and upi.createUserId = :createUserId and userAlbumInfoId in ( :userAlbumInfoIds )", 
 						params,null);
 				if(photoIdList!=null && photoIdList.size()>0) {
-					getHibernateTemplate().bulkUpdate("update UserPhotoInfo set deleteFlag = true where deleteFlag = false and id in ( ? ) ",
-							new Object[]{deleteUserId, photoIdList});
+					this.getHibernateTemplate().execute(new HibernateCallback() {
+						@Override
+						public Object doInHibernate(Session session)
+								throws HibernateException, SQLException {
+							Query query=session.createQuery(
+									"update UserPhotoInfo set deleteFlag = true where deleteFlag = false and id in ( :ids )");
+							query.setParameterList("ids", photoIdList);
+							int result=query.executeUpdate();
+							return result;
+						}
+						
+					});
+					
 					
 					/*3 删除相片评论*/
-					getHibernateTemplate().bulkUpdate("delete from UserPhotoComment where createUserId = ? and userPhotoInfoId in ( ? ) ",
-							new Object[]{deleteUserId, photoIdList});
+					this.getHibernateTemplate().execute(new HibernateCallback() {
+						@Override
+						public Object doInHibernate(Session session)
+								throws HibernateException, SQLException {
+							Query query=session.createQuery(
+									"delete from UserPhotoComment where createUserId = :createUserId and userPhotoInfoId in ( :ids? )");
+							query.setParameter("createUserId", deleteUserId);
+							query.setParameterList("ids", photoIdList);
+							int result=query.executeUpdate();
+							return result;
+						}
+						
+					});
 				}
 			}
 		}
