@@ -120,10 +120,11 @@
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="pictureBox.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAABGdBTUEAALGPC/xhBQAAAHxJREFUOE9j
-        YBh5gJVP/iWHqP4cavn8P7uw7i8mNr4/1DD0v6h53X8hgzyqGAo2DIYpNRTFMEoNxWoYsqHM7Pz/WLil
-        PhITSTgN41Xy/8/Exv+XVUDlPo+ktQ1ZhpFjCMwiuMsoMQRuGDUMARvGyMz+j5QwISbcRtXQMQQAZrNm
-        odayYukAAAAASUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAHxJREFUOE9jYBh5
+        gJVP/iWHqP4cavn8P7uw7i8mNr4/1DD0v6h53X8hgzyqGAo2DIYpNRTFMEoNxWoYsqHM7Pz/WLilPhIT
+        STgN41Xy/8/Exv+XVUDlPo+ktQ1ZhpFjCMwiuMsoMQRuGDUMARvGyMz+j5QwISbcRtXQMQQAZrNmoday
+        YukAAAAASUVORK5CYII=
 </value>
   </data>
   <metadata name="$this.FormFactorShadowProperty" xml:space="preserve">

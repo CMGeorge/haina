@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(lable_Text_Button));
             this.pnl_Full = new System.Windows.Forms.Panel();
-            this.textBox = new System.Windows.Forms.TextBox();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.lable = new System.Windows.Forms.Label();
             this.pnl_Full.SuspendLayout();
@@ -38,21 +37,12 @@
             // 
             // pnl_Full
             // 
-            this.pnl_Full.Controls.Add(this.textBox);
-            this.pnl_Full.Controls.Add(this.pictureBox);
             this.pnl_Full.Controls.Add(this.lable);
+            this.pnl_Full.Controls.Add(this.pictureBox);
             this.pnl_Full.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_Full.Location = new System.Drawing.Point(0, 0);
             this.pnl_Full.Name = "pnl_Full";
             this.pnl_Full.Size = new System.Drawing.Size(150, 26);
-            // 
-            // textBox
-            // 
-            this.textBox.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.textBox.Location = new System.Drawing.Point(47, 5);
-            this.textBox.Name = "textBox";
-            this.textBox.Size = new System.Drawing.Size(79, 21);
-            this.textBox.TabIndex = 3;
             // 
             // pictureBox
             // 
@@ -62,14 +52,14 @@
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(24, 26);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox.Click += new System.EventHandler(this.pictureBox_Click);
             // 
             // lable
             // 
             this.lable.Dock = System.Windows.Forms.DockStyle.Left;
             this.lable.Location = new System.Drawing.Point(0, 0);
             this.lable.Name = "lable";
-            this.lable.Size = new System.Drawing.Size(47, 26);
-            this.lable.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lable.Size = new System.Drawing.Size(127, 26);
             // 
             // lable_Text_Button
             // 
@@ -86,8 +76,7 @@
         #endregion
 
         public System.Windows.Forms.Panel pnl_Full;
-        public System.Windows.Forms.Label lable;
         public System.Windows.Forms.PictureBox pictureBox;
-        public System.Windows.Forms.TextBox textBox;
+        private System.Windows.Forms.Label lable;
     }
 }
