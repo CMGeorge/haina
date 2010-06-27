@@ -133,6 +133,7 @@ public class UserAlbumInfoService extends BaseSerivce<IUserAlbumInfoDao, UserAlb
 			return ret;
 		} catch (Throwable t) {
 			this.log.error("删除相册出错", t);
+			System.out.println(t);
 			ret.setStatusText("删除相册出现异常，请稍候再试");
 			ret.setStatusCode(IStatusCode.DELETE_USER_PHOTO_ERROR);
 			return ret;
