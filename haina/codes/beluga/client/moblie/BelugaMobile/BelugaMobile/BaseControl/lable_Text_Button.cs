@@ -29,17 +29,18 @@ namespace BelugaMobile.BaseControl
             }
         }
 
-        public string TextBoxText
+        public override string Text
         {
             get
             {
-                return this.textBox.Text;
+                return this.lable.Text;
             }
             set
             {
-                this.textBox.Text = value;
+                this.lable.Text = value;
             }
         }
+
 
         private void pictureBox_Click(object sender, EventArgs e)
         {
