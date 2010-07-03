@@ -2,10 +2,7 @@ package com.haina.beluga.album.service;
 
 import java.util.Collection;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +14,8 @@ import com.haina.beluga.album.dto.UserAlbumCoverDto;
 import com.haina.beluga.album.dto.UserAlbumInfoDto;
 import com.haina.beluga.album.dto.UserAlbumInfoListDto;
 import com.haina.beluga.common.service.IToolService;
+import com.haina.beluga.contact.dao.IContactUserDao;
+import com.haina.beluga.contact.domain.ContactUser;
 import com.haina.beluga.webservice.IStatusCode;
 import com.haina.beluga.webservice.data.AbstractRemoteReturning;
 import com.haina.beluga.webservice.data.Returning;
@@ -37,8 +36,10 @@ public class UserAlbumInfoService extends BaseSerivce<IUserAlbumInfoDao, UserAlb
 	
 	@Autowired(required=true)
 	private IToolService toolService;
+	
+	@Autowired(required=true)
+	private IContactUserDao contactUserDao;
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public AbstractRemoteReturning addUserAlbumInfo(String email,
 			String albumName, String description) {
@@ -51,27 +52,17 @@ public class UserAlbumInfoService extends BaseSerivce<IUserAlbumInfoDao, UserAlb
 			ret.setStatusCode(IStatusCode.INVALID_USER_ALBUM_NAME);
 			return ret;
 		}
-		try {
-			Map<String,Object> params=new HashMap<String, Object>();
-			params.put("loginName", email);
-			List<String> idList=(List<String>)getBaseDao().getResultByHQLAndParam(
-					"select id from ContactUser where loginName = :loginName and validFlag = true ", 
-					params, null);
-			String userId=null;
-			if(idList==null || idList.size()<1) {
-				ret.setStatusCode(IStatusCode.INVALID_LOGINNAME);
-				return ret;
-			}
-			userId=idList.get(0);
-			if(StringUtils.isNull(userId)) {
+		try {			
+			ContactUser contactUser=contactUserDao.getInvalidUserByLoginName(email);
+			if(null==contactUser) {
 				ret.setStatusCode(IStatusCode.INVALID_LOGINNAME);
 				return ret;
 			}
 			UserAlbumInfo album=new UserAlbumInfo();
 			album.setAlbumName(albumName);
-			album.setCreateUserId(userId);
+			album.setCreateUserId(contactUser.getId());
 			album.setDescription(description);
-			album.setLastUpdateUserId(userId);
+			album.setLastUpdateUserId(contactUser.getId());
 			this.getBaseDao().create(album);
 //			ContactUser contactUser=contactUserDao.getValidUserByLoginName(email);
 //			if(null==contactUser) {
@@ -95,7 +86,6 @@ public class UserAlbumInfoService extends BaseSerivce<IUserAlbumInfoDao, UserAlb
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public AbstractRemoteReturning deleteUserAlbumInfo(String[] albumIds,
 			String email, String deteleEmail) {
@@ -109,22 +99,12 @@ public class UserAlbumInfoService extends BaseSerivce<IUserAlbumInfoDao, UserAlb
 			return ret;
 		}
 		try {
-			Map<String,Object> params=new HashMap<String, Object>();
-			params.put("loginName", deteleEmail);
-			List<String> idList=(List<String>)getBaseDao().getResultByHQLAndParam(
-					"select id from ContactUser where loginName = :loginName and validFlag = true ", 
-					params, null);
-			String userId=null;
-			if(idList==null || idList.size()<1) {
-				ret.setStatusCode(IStatusCode.INVALID_USER_ALBUM_ID);
-				return ret;
-			}
-			userId=idList.get(0);
-			if(StringUtils.isNull(userId)) {
+			ContactUser contactUser=contactUserDao.getInvalidUserByLoginName(email);
+			if(null==contactUser) {
 				ret.setStatusCode(IStatusCode.INVALID_LOGINNAME);
 				return ret;
 			}
-			int i=this.getBaseDao().deleteUserAlbumInfoByIds(albumIds, userId);
+			int i=this.getBaseDao().deleteUserAlbumInfoByIds(albumIds, contactUser.getId());
 			if(i<albumIds.length) {
 				ret.setStatusCode(IStatusCode.INVALID_PARTIAL_USER_ALBUM_ID);
 				ret.setStatusText("部分相册id无效，可能无法删除");
@@ -140,7 +120,6 @@ public class UserAlbumInfoService extends BaseSerivce<IUserAlbumInfoDao, UserAlb
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public AbstractRemoteReturning editUserAlbumInfo(String albumId,
 			String albumName, String description, String email) {
@@ -158,17 +137,11 @@ public class UserAlbumInfoService extends BaseSerivce<IUserAlbumInfoDao, UserAlb
 			return ret;
 		}
 		try {
-			Map<String,Object> params=new HashMap<String, Object>();
-			params.put("loginName", email);
-			List<String> idList=(List<String>)getBaseDao().getResultByHQLAndParam(
-					"select id from ContactUser where loginName = :loginName and validFlag = true ", 
-					params, null);
-			String userId=null;
-			if(idList==null || idList.size()<1) {
+			ContactUser contactUser=contactUserDao.getInvalidUserByLoginName(email);
+			if(null==contactUser) {
 				ret.setStatusCode(IStatusCode.INVALID_LOGINNAME);
 				return ret;
 			}
-			userId=idList.get(0);
 			
 			UserAlbumInfo album=this.getBaseDao().getUserAlbumInfoById(albumId);
 			if(null==album) {
@@ -176,7 +149,7 @@ public class UserAlbumInfoService extends BaseSerivce<IUserAlbumInfoDao, UserAlb
 				return ret;
 			}
 			album.setLastUpdateTime(new Date());
-			album.setLastUpdateUserId(userId);
+			album.setLastUpdateUserId(contactUser.getId());
 			album.setAlbumName(albumName);
 			album.setDescription(description);
 			this.getBaseDao().update(album);
