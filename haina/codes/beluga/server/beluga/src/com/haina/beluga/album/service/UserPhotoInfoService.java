@@ -3,17 +3,16 @@ package com.haina.beluga.album.service;
 import java.text.MessageFormat;
 import java.util.Collection;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.haina.beluga.album.dao.IUserAlbumInfoDao;
 import com.haina.beluga.album.dao.IUserPhotoInfoDao;
+import com.haina.beluga.album.domain.UserAlbumInfo;
 import com.haina.beluga.album.domain.UserPhotoComment;
 import com.haina.beluga.album.domain.UserPhotoCommentView;
 import com.haina.beluga.album.domain.UserPhotoInfo;
@@ -24,6 +23,8 @@ import com.haina.beluga.album.dto.UserPhotoCommentListDto;
 import com.haina.beluga.album.dto.UserPhotoInfoDto;
 import com.haina.beluga.album.dto.UserPhotoInfoListDto;
 import com.haina.beluga.common.service.IToolService;
+import com.haina.beluga.contact.dao.IContactUserDao;
+import com.haina.beluga.contact.domain.ContactUser;
 import com.haina.beluga.webservice.IStatusCode;
 import com.haina.beluga.webservice.data.AbstractRemoteReturning;
 import com.haina.beluga.webservice.data.Returning;
@@ -43,6 +44,12 @@ public class UserPhotoInfoService extends BaseSerivce<IUserPhotoInfoDao, UserPho
 
 	@Autowired(required=true)
 	private IToolService toolService;
+	
+	@Autowired(required=true)
+	private IContactUserDao contactUserDao;
+	
+	@Autowired(required=true)
+	private IUserAlbumInfoDao userAlbumInfoDao;
 	
 	@Autowired(required=true)
 	@Qualifier(value="userConfig")
@@ -152,7 +159,6 @@ public class UserPhotoInfoService extends BaseSerivce<IUserPhotoInfoDao, UserPho
 		return ret;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public AbstractRemoteReturning addUserPhotoInfo(String albumId, String email, 
 			String createTime, String photoName, String photoDescription, 
@@ -189,27 +195,14 @@ public class UserPhotoInfoService extends BaseSerivce<IUserPhotoInfoDao, UserPho
 			return ret;
 		}
 		try {
-			Map<String,Object> params=new HashMap<String, Object>();
-			params.put("loginName", email);
-			List<String> idList=(List<String>)getBaseDao().getResultByHQLAndParam(
-					"select id from ContactUser where loginName = :loginName and validFlag = true ", 
-					params, null);
-			String userId=null;
-			if(idList==null || idList.size()<1) {
+			ContactUser contactUser=contactUserDao.getInvalidUserByLoginName(email);
+			if(null==contactUser) {
 				ret.setStatusCode(IStatusCode.INVALID_LOGINNAME);
 				return ret;
 			}
-			userId=idList.get(0);
-			if(StringUtils.isNull(userId)) {
-				ret.setStatusCode(IStatusCode.INVALID_LOGINNAME);
-				return ret;
-			}
-			params.clear();
-			params.put(albumId, albumId);
-			idList=(List<String>)getBaseDao().getResultByHQLAndParam(
-					"select id from UserAlbumInfo where id = :albumId and deleteFlag = false ", 
-					params, null);
-			if(idList==null || idList.size()<1) {
+			
+			UserAlbumInfo userAlbumInfo=userAlbumInfoDao.getUserAlbumInfoById(albumId);
+			if(null==userAlbumInfo) {
 				ret.setStatusCode(IStatusCode.INVALID_USER_ALBUM_ID);
 				return ret;
 			}
@@ -241,10 +234,10 @@ public class UserPhotoInfoService extends BaseSerivce<IUserPhotoInfoDao, UserPho
 			int seqNum=this.getBaseDao().getMaxPhotoSeqNumberOfUserAlbum(albumId)+1;
 			UserPhotoInfo userPhotoInfo=new UserPhotoInfo();
 			userPhotoInfo.setCreateTime(time);
-			userPhotoInfo.setCreateUserId(userId);
+			userPhotoInfo.setCreateUserId(contactUser.getId());
 			userPhotoInfo.setFilePath(filePath);
 			userPhotoInfo.setLastUpdateTime(time);
-			userPhotoInfo.setLastUpdateUserId(userId);
+			userPhotoInfo.setLastUpdateUserId(contactUser.getId());
 			userPhotoInfo.setMime(mime);
 			userPhotoInfo.setOriFileName(oriFileName);
 			userPhotoInfo.setPhotoDescription(photoDescription);
@@ -256,10 +249,10 @@ public class UserPhotoInfoService extends BaseSerivce<IUserPhotoInfoDao, UserPho
 			/*$3相册缩略图信息插入数据库*/
 			UserPhotoInfo userPhotoInfo2=new UserPhotoInfo();
 			userPhotoInfo2.setCreateTime(time);
-			userPhotoInfo2.setCreateUserId(userId);
+			userPhotoInfo2.setCreateUserId(contactUser.getId());
 			userPhotoInfo2.setFilePath(filePath2);
 			userPhotoInfo2.setLastUpdateTime(time);
-			userPhotoInfo2.setLastUpdateUserId(userId);
+			userPhotoInfo2.setLastUpdateUserId(contactUser.getId());
 			userPhotoInfo2.setMime(mime);
 			userPhotoInfo2.setOriFileName(oriFileName);
 			userPhotoInfo2.setPhotoDescription(photoDescription);
@@ -279,7 +272,6 @@ public class UserPhotoInfoService extends BaseSerivce<IUserPhotoInfoDao, UserPho
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public AbstractRemoteReturning deleteUserPhotoInfo(String[] photoIds,
 			String albumId, String email) {
@@ -293,22 +285,13 @@ public class UserPhotoInfoService extends BaseSerivce<IUserPhotoInfoDao, UserPho
 			return ret;
 		}
 		try {
-			Map<String,Object> params=new HashMap<String, Object>();
-			params.put("loginName", email);
-			List<String> idList=(List<String>)getBaseDao().getResultByHQLAndParam(
-					"select id from ContactUser where loginName = :loginName and validFlag = true ", 
-					params, null);
-			String userId=null;
-			if(idList==null || idList.size()<1) {
+			ContactUser contactUser=contactUserDao.getInvalidUserByLoginName(email);
+			if(null==contactUser) {
 				ret.setStatusCode(IStatusCode.INVALID_LOGINNAME);
 				return ret;
 			}
-			userId=idList.get(0);
-			if(StringUtils.isNull(userId)) {
-				ret.setStatusCode(IStatusCode.INVALID_LOGINNAME);
-				return ret;
-			}
-			int result=getBaseDao().deleteUserPhotoInfoByIds(photoIds, albumId, userId);
+			
+			int result=getBaseDao().deleteUserPhotoInfoByIds(photoIds, albumId, contactUser.getId());
 			if(result<photoIds.length) {
 				ret.setStatusCode(IStatusCode.INVALID_PARTIAL_USER_PHOTO_ID);
 				ret.setStatusText("部分用户相片id无效，可能无法删除");
@@ -323,7 +306,6 @@ public class UserPhotoInfoService extends BaseSerivce<IUserPhotoInfoDao, UserPho
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public AbstractRemoteReturning addUserPhotoComment(String commentContent,
 			String commentTime, String photoId, String email) {
@@ -339,21 +321,12 @@ public class UserPhotoInfoService extends BaseSerivce<IUserPhotoInfoDao, UserPho
 		Date time=null;
 		time=DateUtil.parse(DateUtil.DEFAULT_DATE_FORMAT, commentTime);
 		try {
-			Map<String,Object> params=new HashMap<String, Object>();
-			params.put("loginName", email);
-			List<String> idList=(List<String>)getBaseDao().getResultByHQLAndParam(
-					"select id from ContactUser where loginName = :loginName and validFlag = true ", 
-					params, null);
-			String userId=null;
-			if(idList==null || idList.size()<1) {
+			ContactUser contactUser=contactUserDao.getInvalidUserByLoginName(email);
+			if(null==contactUser) {
 				ret.setStatusCode(IStatusCode.INVALID_LOGINNAME);
 				return ret;
 			}
-			userId=idList.get(0);
-			if(StringUtils.isNull(userId)) {
-				ret.setStatusCode(IStatusCode.INVALID_LOGINNAME);
-				return ret;
-			}
+			
 			UserPhotoInfo photoInfo=getBaseDao().getUserPhotoInfoById(photoId);
 			if(null==photoInfo) {
 				ret.setStatusCode(IStatusCode.INVALID_USER_PHOTO_ID);
@@ -362,9 +335,9 @@ public class UserPhotoInfoService extends BaseSerivce<IUserPhotoInfoDao, UserPho
 			UserPhotoComment userPhotoComment=new UserPhotoComment();
 			userPhotoComment.setContent(commentContent);
 			userPhotoComment.setCreateTime(time);
-			userPhotoComment.setCreateUserId(userId);
+			userPhotoComment.setCreateUserId(contactUser.getId());
 			userPhotoComment.setLastUpdateTime(time);
-			userPhotoComment.setLastUpdateUserId(userId);
+			userPhotoComment.setLastUpdateUserId(contactUser.getId());
 			userPhotoComment.setUserPhotoInfoId(photoId);
 			userPhotoComment.setTitle("");
 			boolean result=getBaseDao().addUserPhotoComment(userPhotoComment);
@@ -381,7 +354,6 @@ public class UserPhotoInfoService extends BaseSerivce<IUserPhotoInfoDao, UserPho
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public AbstractRemoteReturning deleteUserPhotoComment(String[] commentIds,
 			String photoId, String email) {
@@ -395,22 +367,13 @@ public class UserPhotoInfoService extends BaseSerivce<IUserPhotoInfoDao, UserPho
 			return ret;
 		}
 		try {
-			Map<String,Object> params=new HashMap<String, Object>();
-			params.put("loginName", email);
-			List<String> idList=(List<String>)getBaseDao().getResultByHQLAndParam(
-					"select id from ContactUser where loginName = :loginName and validFlag = true ", 
-					params, null);
-			String userId=null;
-			if(idList==null || idList.size()<1) {
+			ContactUser contactUser=contactUserDao.getInvalidUserByLoginName(email);
+			if(null==contactUser) {
 				ret.setStatusCode(IStatusCode.INVALID_LOGINNAME);
 				return ret;
 			}
-			userId=idList.get(0);
-			if(StringUtils.isNull(userId)) {
-				ret.setStatusCode(IStatusCode.INVALID_LOGINNAME);
-				return ret;
-			}
-			int result=this.getBaseDao().deleteUserPhotoComment(commentIds, photoId, userId);
+			
+			int result=this.getBaseDao().deleteUserPhotoComment(commentIds, photoId, contactUser.getId());
 			if(result<commentIds.length) {
 				ret.setStatusCode(IStatusCode.INVALID_PARTIAL_USER_PHOTO_COMMENT_ID);
 				ret.setStatusText("部分用户相片评论id无效，可能无法删除");
