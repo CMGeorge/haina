@@ -18,6 +18,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.sihus.core.model.IModel;
 import com.sihus.core.util.PagingData;
+import com.sihus.core.util.StringUtils;
 
 /**
  * Hibernate implementation of GenericDao A typesafe implementation of CRUD and
@@ -395,33 +396,58 @@ public class BaseDao<T extends IModel, PK extends Serializable> extends
 	}
 	
 	@Override
-	public List<?> getResultByHQLAndParam(String hql, Map<String,Object> args, PagingData page) {
+	public List<?> getResultByHQLAndParam(String hql, String countHql, Map<String,Object> args, PagingData page) {
 		Session session = this.getSession();
-		// 查询总件数
-		StringBuffer counterHql = new StringBuffer();
-		int fromIndex = hql.toUpperCase().indexOf("FROM");
-		counterHql.append("SELECT count(*) ").append(hql.substring(fromIndex)).append("");
-		Query counterQuery = session.createQuery(counterHql.toString());
-		counterQuery.setCacheable(true);
-		prepareQuery(counterQuery, args);
-		Long counter = (Long) counterQuery.iterate().next();
-		
-		// 更新分页信息
-		if(page!=null) {
-			page.setRowsCount(counter.intValue());
-			page.setPagesCount();
-		}
+//		// 查询总件数
+//		StringBuffer counterHql = new StringBuffer();
+//		hql=hql.toLowerCase();
+//		
+//		int fromIndex=hql.indexOf("order by");
+//		if(fromIndex>=0) {
+//			/*包含order by语句*/
+//			hql=hql.substring(0, fromIndex);
+//		}
+//		fromIndex=hql.indexOf("group by");
+//		if(fromIndex>=0) {
+//			/*包含group by语句*/
+//			hql=hql.substring(0, fromIndex);
+//		}
+//		
+//		fromIndex = hql.indexOf("from");
+//		counterHql.append("select count(*) ").append(hql.substring(fromIndex)).append("");
+//		
+//		Query counterQuery = session.createQuery(counterHql.toString());
+//		counterQuery.setCacheable(true);
+//		prepareQuery(counterQuery, args);
+//		Long counter = (Long) counterQuery.iterate().next();
+//		
+//		// 更新分页信息
+//		if(page!=null) {
+//			page.setRowsCount(counter.intValue());
+//			page.setPagesCount();
+//		}
 		
 		// 执行查询
 		Query query = session.createQuery(hql);
 		query.setCacheable(true);
 		prepareQuery(query, args);
-		if(page!=null) {
-			query.setFirstResult(page.getCurrentPage() * page.getRowsPerPage());
-			query.setMaxResults(page.getRowsPerPage());
-		}
 		List<?> resultList = query.list();
 		
+		if(page!=null && !StringUtils.isNull(countHql)) {
+			//查询总数
+			Query countQuery = session.createQuery(countHql);
+			countQuery.setCacheable(true);
+			prepareQuery(countQuery, args);
+			countQuery.setFirstResult(page.getCurrentPage() * page.getRowsPerPage());
+			countQuery.setMaxResults(page.getRowsPerPage());
+			Iterator iterator=countQuery.iterate();
+			if(iterator!=null && iterator.hasNext()) {
+				Long counter = (Long) countQuery.iterate().next();
+				// 更新分页信息
+				page.setRowsCount(counter.intValue());
+				page.setPagesCount();
+			}
+		}
 		this.releaseSession(session);
 		return resultList;
 	}
