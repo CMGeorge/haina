@@ -171,7 +171,7 @@ public class UserAlbumInfoService extends BaseSerivce<IUserAlbumInfoDao, UserAlb
 		pagingData.setCurrentPage(curPage);
 		pagingData.setRowsPerPage(pageSize);
 		UserAlbumInfoListDto userAlbumInfoListDto=new UserAlbumInfoListDto(); 
-		try {
+		//try {
 			Collection<UserAlbumInfoView> albums=this.getBaseDao().getUserAlbumInfos(email, mobile, pagingData);
 			if(pagingData!=null) {
 				userAlbumInfoListDto.setRowsCount(pagingData.getRowsCount());
@@ -199,12 +199,12 @@ public class UserAlbumInfoService extends BaseSerivce<IUserAlbumInfoDao, UserAlb
 				}
 				userAlbumInfoListDto.setAlbums(albumDtos);
 			}
-		} catch (Throwable t) {
-			this.log.error("获取相册列表出错", t);
-			ret.setStatusText("获取相册列表出现异常，请稍候再试");
-			ret.setStatusCode(IStatusCode.REQUEST_USER_ALBUM_LIST_ERROR);
-			return ret;
-		}
+		//} catch (Throwable t) {
+		//	this.log.error("获取相册列表出错", t);
+		//	ret.setStatusText("获取相册列表出现异常，请稍候再试");
+		//	ret.setStatusCode(IStatusCode.REQUEST_USER_ALBUM_LIST_ERROR);
+		//	return ret;
+		//}
 		ret.setValue(userAlbumInfoListDto);
 		return ret;
 	}
