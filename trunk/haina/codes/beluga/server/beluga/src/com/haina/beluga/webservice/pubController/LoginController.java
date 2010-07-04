@@ -26,6 +26,14 @@ public class LoginController {
 		model.addAttribute(h);
 		return Constant.JSON_VIEW;
 	}
+	
+	@RequestMapping(params = "method=logout")
+	public String logout(String email, ModelMap model) {
+		Returning h = priService.logoutByLoginName(email);
+		model.addAttribute(h);
+		return Constant.JSON_VIEW;
+	}
+	
 	@RequestMapping(params = "method=register")
 	public String register(String loginName, String password, String mobile,
 			ModelMap model) {
@@ -33,7 +41,5 @@ public class LoginController {
 		model.addAttribute(h);
 		return Constant.JSON_VIEW;
 	}
-
-
 
 }
