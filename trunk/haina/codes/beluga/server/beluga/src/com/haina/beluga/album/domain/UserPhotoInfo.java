@@ -162,8 +162,8 @@ public class UserPhotoInfo extends AbstractPicture {
 	}
 
 	/**
-	 * @hibernate.property type="java.lang.Boolean" not-null="true"
-	 * @hibernate.column name="deleteFlag" sql-type="int"
+	 * 是否被删除
+	 * @hibernate.property column="deleteFlag" type="java.lang.Boolean" not-null="true"
 	 * @return
 	 */
 	public Boolean getDeleteFlag() {
