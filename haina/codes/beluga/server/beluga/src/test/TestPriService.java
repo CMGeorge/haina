@@ -38,7 +38,7 @@ public class TestPriService {
 	 * 测试注册
 	 * @throws Exception
 	 */
-	@Ignore(value="")
+	@Ignore(value="已经测试过")
 	@Test(expected=Throwable.class)
 	public void testRegister() throws Exception {
 		Returning h = getPriService().register("paul008@163.com", "123456", "13503280999");
@@ -49,7 +49,7 @@ public class TestPriService {
 	 * 测试注册
 	 * @throws Exception
 	 */
-	@Ignore(value="")
+	@Ignore(value="已经测试过")
 	@Test(expected=Throwable.class)
 	public void testRegister1() throws Exception {
 		Returning h = getPriService().register("luke_huang@163.com", "123456", "13503280900");
@@ -133,17 +133,18 @@ public class TestPriService {
 	 * 测试获取相册列表
 	 * @throws Exception
 	 */
-	@Ignore(value="")
-	@Test(expected=Throwable.class)
+	//@Ignore(value="测试没通过，分页有问题")
+	@Test()
 	public void testGetUserAlbumInfoList() throws Exception {
 		AbstractRemoteReturning h=this.getUserAlbumInfoService().getUserAlbumInfoList("luke_huang@163.com", null, 1, 11);
 		System.out.println(h);
 	}
 	
+	@Ignore(value="已经测试过")
 	@Test(expected=Throwable.class)
 	public void testDeleteUserAlbumInfo() throws Exception {
-		String[] ids=new String[]{"402881e7297776ca01297776dcde0003","402881e7297776ca01297776dcde0005"};
-		AbstractRemoteReturning h=this.getUserAlbumInfoService().deleteUserAlbumInfo(ids, null, "luke_huang@163.com");
+		String[] ids=new String[]{"402881e7297776ca01297776dcde0003","402881e7297776ca01297776dcde0004"};
+		AbstractRemoteReturning h=this.getUserAlbumInfoService().deleteUserAlbumInfo(ids, "luke_huang@163.com", "luke_huang@163.com");
 		System.out.println(h);
 	}
 	
