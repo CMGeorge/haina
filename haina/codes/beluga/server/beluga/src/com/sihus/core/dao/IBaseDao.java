@@ -101,6 +101,8 @@ public interface IBaseDao<T extends IModel, PK extends Serializable> {
 	
 	Iterator<?> getIteratorByHQLAndParam(String hql, Map<String,Object> args, PagingData page);
 	
+	List<?> getResultByHQLAndParam(String hql, Map<String,Object> args, PagingData page);
+	
 	List<?> getResultByHQLAndParam(String hql, String countHql, Map<String,Object> args, PagingData page);
 	
 	Iterator<?> getIteratorByHQLAndParamNoUpdate(String hql, Map<String,Object> args, PagingData page);

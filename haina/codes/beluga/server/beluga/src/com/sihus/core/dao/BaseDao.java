@@ -396,36 +396,49 @@ public class BaseDao<T extends IModel, PK extends Serializable> extends
 	}
 	
 	@Override
+	public List<?> getResultByHQLAndParam(String hql, Map<String,Object> args, PagingData page) {
+		Session session = this.getSession();
+		// 查询总件数
+		StringBuffer counterHql = new StringBuffer();
+		hql=hql.toUpperCase();
+		
+		int fromIndex=hql.indexOf("ORDER BY");
+		if(fromIndex>=0) {
+			/*包含order by语句*/
+			hql=hql.substring(0, fromIndex);
+		}
+		fromIndex=hql.indexOf("GROUP BY");
+		if(fromIndex>=0) {
+			/*包含group by语句*/
+			hql=hql.substring(0, fromIndex);
+		}
+		
+		fromIndex = hql.indexOf("FROM");
+		counterHql.append("SELECT count(*) ").append(hql.substring(fromIndex)).append("");
+		
+		Query counterQuery = session.createQuery(counterHql.toString());
+		counterQuery.setCacheable(true);
+		prepareQuery(counterQuery, args);
+		Long counter = (Long) counterQuery.iterate().next();
+		
+		// 更新分页信息
+		if(page!=null) {
+			page.setRowsCount(counter.intValue());
+			page.setPagesCount();
+		}
+		
+		// 执行查询
+		Query query = session.createQuery(hql);
+		query.setCacheable(true);
+		prepareQuery(query, args);
+		List<?> resultList = query.list();
+		this.releaseSession(session);
+		return resultList;
+	}
+	
+	@Override
 	public List<?> getResultByHQLAndParam(String hql, String countHql, Map<String,Object> args, PagingData page) {
 		Session session = this.getSession();
-//		// 查询总件数
-//		StringBuffer counterHql = new StringBuffer();
-//		hql=hql.toLowerCase();
-//		
-//		int fromIndex=hql.indexOf("order by");
-//		if(fromIndex>=0) {
-//			/*包含order by语句*/
-//			hql=hql.substring(0, fromIndex);
-//		}
-//		fromIndex=hql.indexOf("group by");
-//		if(fromIndex>=0) {
-//			/*包含group by语句*/
-//			hql=hql.substring(0, fromIndex);
-//		}
-//		
-//		fromIndex = hql.indexOf("from");
-//		counterHql.append("select count(*) ").append(hql.substring(fromIndex)).append("");
-//		
-//		Query counterQuery = session.createQuery(counterHql.toString());
-//		counterQuery.setCacheable(true);
-//		prepareQuery(counterQuery, args);
-//		Long counter = (Long) counterQuery.iterate().next();
-//		
-//		// 更新分页信息
-//		if(page!=null) {
-//			page.setRowsCount(counter.intValue());
-//			page.setPagesCount();
-//		}
 		
 		// 执行查询
 		Query query = session.createQuery(hql);
