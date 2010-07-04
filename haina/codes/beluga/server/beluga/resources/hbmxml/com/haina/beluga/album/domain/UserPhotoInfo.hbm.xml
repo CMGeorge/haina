@@ -124,13 +124,9 @@
         <property
             name="deleteFlag"
                     type="java.lang.Boolean"
+                    column="deleteFlag"
                 not-null="true"
         >
-
-            <column
-                name="deleteFlag" 
-                sql-type="int"
-            />
 
         </property>
 
