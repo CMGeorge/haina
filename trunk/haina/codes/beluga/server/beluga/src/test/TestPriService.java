@@ -133,7 +133,7 @@ public class TestPriService {
 	 * 测试获取相册列表
 	 * @throws Exception
 	 */
-	//@Ignore(value="测试没通过，分页有问题")
+	@Ignore(value="已经测试过")
 	@Test()
 	public void testGetUserAlbumInfoList() throws Exception {
 		AbstractRemoteReturning h=this.getUserAlbumInfoService().getUserAlbumInfoList("luke_huang@163.com", null, 1, 11);
