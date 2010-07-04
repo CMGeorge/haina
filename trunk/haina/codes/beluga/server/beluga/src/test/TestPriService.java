@@ -38,7 +38,7 @@ public class TestPriService {
 	 * 测试注册
 	 * @throws Exception
 	 */
-	@Ignore(value="已经测试过")
+	@Ignore(value="已经测试通过")
 	@Test(expected=Throwable.class)
 	public void testRegister() throws Exception {
 		Returning h = getPriService().register("paul008@163.com", "123456", "13503280999");
@@ -49,7 +49,7 @@ public class TestPriService {
 	 * 测试注册
 	 * @throws Exception
 	 */
-	@Ignore(value="已经测试过")
+	@Ignore(value="已经测试通过")
 	@Test(expected=Throwable.class)
 	public void testRegister1() throws Exception {
 		Returning h = getPriService().register("luke_huang@163.com", "123456", "13503280900");
@@ -60,7 +60,7 @@ public class TestPriService {
 	 * 测试添加用户相册
 	 * @throws Exception
 	 */
-	@Ignore(value="已经测试过")
+	@Ignore(value="已经测试通过")
 	@Test(expected=Throwable.class)
 	public void testAddUserAlbumInfo() throws Exception {
 		AbstractRemoteReturning h=this.getUserAlbumInfoService().addUserAlbumInfo("paul008@163.com", "测试相册名1", "测试相册描述1");
@@ -133,14 +133,14 @@ public class TestPriService {
 	 * 测试获取相册列表
 	 * @throws Exception
 	 */
-	@Ignore(value="已经测试过")
+	@Ignore(value="已经测试通过")
 	@Test()
 	public void testGetUserAlbumInfoList() throws Exception {
 		AbstractRemoteReturning h=this.getUserAlbumInfoService().getUserAlbumInfoList("luke_huang@163.com", null, 1, 11);
 		System.out.println(h);
 	}
 	
-	@Ignore(value="已经测试过")
+	@Ignore(value="已经测试通过")
 	@Test(expected=Throwable.class)
 	public void testDeleteUserAlbumInfo() throws Exception {
 		String[] ids=new String[]{"402881e7297776ca01297776dcde0003","402881e7297776ca01297776dcde0004"};
@@ -148,31 +148,31 @@ public class TestPriService {
 		System.out.println(h);
 	}
 	
+	/**
+	 * 测试编辑用户相册
+	 * @throws Exception
+	 */
+	@Ignore(value="已经测试通过")
+	@Test(expected=Throwable.class)
+	public void testEditUserAlbumInfo() throws Exception {
+		AbstractRemoteReturning h = this.getUserAlbumInfoService().editUserAlbumInfo("402881e7297776ca01297776dced000b", 
+				"修改后的测试相册名9", "修改后的测试相册描述9", "paul008@163.com");
+		System.out.println(h);
+	}
+	
 	@Ignore(value="")
 	@Test(expected=Throwable.class)
 	public void testLogin() throws Exception {
-		AbstractRemoteReturning h = getPriService().login("testuser6", "12345");
+		AbstractRemoteReturning h = getPriService().login("luke_huang@163.com", "12345");
 		System.out.println(h);
 	}
 	
 	@Ignore(value="")
-	@Test(expected=Throwable.class)
-	public void testLogin1() throws Exception {
-		AbstractRemoteReturning h = getPriService().login("testuser6", "123456");
+	@Test()
+	public void testLogout() throws Exception {
+		AbstractRemoteReturning h = getPriService().logoutByPsssport("luke_huang@163.com");
 		System.out.println(h);
-		Returning h2 = getPriService().login("testuser6", "123456");
-		System.out.println(h2);
 	}
-	
-//	public void testLogout() throws Exception {
-//		HessianRemoteReturning h = getPriService().logoutByPsssport("testuser6");
-//		System.out.println(h);
-//	}
-	
-//	public void testLogin() throws Exception {
-//		HessianRemoteReturning h = getPriService().login("hyqtest", "123456");
-//		System.out.println(h);
-//	}
 
 	@Before
 	public void setUp() throws Exception {
