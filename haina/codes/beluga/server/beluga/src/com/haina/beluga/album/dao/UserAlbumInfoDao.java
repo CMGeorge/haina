@@ -73,8 +73,9 @@ public class UserAlbumInfoDao extends BaseDao<UserAlbumInfo, String> implements
 				params.put("createUserId", deleteUserId);
 				params.put("userAlbumInfoIds", idList);
 				/*搜索相册里可以删除的相片id*/
-				final List<String> photoIdList=(List<String>)getResultByHQLAndParam("select id from UserPhotoInfo where upi.deleteFlag = false and upi.createUserId = :createUserId and userAlbumInfoId in ( :userAlbumInfoIds )", 
-						params,null);
+				final List<String> photoIdList=(List<String>)getResultByHQLAndParam(
+						"select id from UserPhotoInfo where deleteFlag = false and createUserId = :createUserId and userAlbumInfoId in ( :userAlbumInfoIds )", 
+						null, params, null);
 				if(photoIdList!=null && photoIdList.size()>0) {
 					this.getHibernateTemplate().execute(new HibernateCallback() {
 						@Override
@@ -115,8 +116,15 @@ public class UserAlbumInfoDao extends BaseDao<UserAlbumInfo, String> implements
 	public Collection<UserAlbumInfoView> getUserAlbumInfos(String email,
 			String mobile, PagingData pagingData) {
 		Collection<UserAlbumInfoView> ret=null;
-		StringBuilder hql=new StringBuilder("select new com.haina.beluga.album.domain.UserAlbumInfoView(uai.id, uai.name, uai.createTime, count(upi.id), upi2.filePath) "
+		StringBuilder hql=new StringBuilder("select new com.haina.beluga.album.domain.UserAlbumInfoView(uai.id, uai.albumName, uai.createTime, count(upi.id), upi2.filePath) "
 				+ " from UserAlbumInfo uai, UserPhotoInfo upi, UserPhotoInfo upi2 ");
+		StringBuilder hqlCount=new StringBuilder();
+		if(pagingData!=null) {
+			hqlCount.append("select count(uai.id) from UserAlbumInfo uai, UserPhotoInfo upi, UserPhotoInfo upi2 ");
+			//pagingData.setRowsCount(rowsCount);
+			//pagingData.setPagesCount();
+		}
+		
 		Map<String,Object> params=new HashMap<String, Object>();
 		
 		boolean validEmail=false;
@@ -129,23 +137,32 @@ public class UserAlbumInfoDao extends BaseDao<UserAlbumInfo, String> implements
 		}
 		if(validEmail || validMobile) {
 			hql.append(",  ContactUser cu ");
+			hqlCount.append(",  ContactUser cu ");
 		}
 		
-		hql.append(" where uai.deleteFlag = false and upi.deleteFlag = false and upi2.deleteFlag = false ")
-		.append(" and upi.userAlbumInfoId = uai.id and upi2.coverFlag = true ");
+		hql.append(" where uai.deleteFlag = false and upi.deleteFlag = false and upi2.deleteFlag = false " 
+				+ " and upi.userAlbumInfoId = uai.id and upi2.coverFlag = true ");
+		hqlCount.append(" where uai.deleteFlag = false and upi.deleteFlag = false and upi2.deleteFlag = false " 
+				+ " and upi.userAlbumInfoId = uai.id and upi2.coverFlag = true ");
+		
 		if(validEmail || validMobile) {
 			hql.append(" and uai.createUserId = cu.id ");
+			if(pagingData!=null) {
+				hqlCount.append(" and uai.createUserId = cu.id ");
+			}
 		}
 		if(validEmail) {
 			hql.append(" and cu.loginName = :loginName ");
+			hqlCount.append(" and cu.loginName = :loginName ");
 			params.put("loginName", email.trim());
 		}
 		if(validMobile) {
 			hql.append(" and cu.mobile = :mobile ");
+			hqlCount.append(" and cu.mobile = :mobile ");
 			params.put("mobile", mobile.trim());
 		}		
-		hql.append(" group by uai.id, uai.name, uai.createTime, upi2.filePath order by uai.createTime desc ");
-		ret=(Collection<UserAlbumInfoView>)getResultByHQLAndParam(hql.toString(), params, pagingData);
+		hql.append(" group by uai.id, uai.albumName, uai.createTime, upi2.filePath order by uai.createTime desc ");
+		ret=(Collection<UserAlbumInfoView>)getResultByHQLAndParam(hql.toString(), hqlCount.toString(), params, pagingData);
 		return ret;
 	}
 

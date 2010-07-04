@@ -76,27 +76,39 @@ public class UserPhotoInfoDao extends BaseDao<UserPhotoInfo, String> implements
 		if(!StringUtils.isNull(userAlbumInfoId)) {
 			StringBuilder hql=new StringBuilder("select new com.haina.beluga.album.domain.UserPhotoInfoView(upi.id, upi.photoName, upi.photoDescription, upi.createTime, upi.filePath) "
 					+" from UserPhotoInfo upi, UserAlbumInfo uai ");
+			StringBuilder hqlCount=new StringBuilder();
+			if(pagingData!=null) {
+				hqlCount.append(" select count(upi.id) from UserPhotoInfo upi, UserAlbumInfo uai ");
+			}
+			
 			Map<String,Object> params=new HashMap<String, Object>();
 			boolean validEmail=false;
 			if(!StringUtils.isNull(email)) {
 				validEmail=true;
 				hql.append(",  ContactUser cu ");
+				hqlCount.append(",  ContactUser cu ");
 			}
 			
 			hql.append(" where uai.deleteFlag = false and upi.deleteFlag = false and uai.id = upi.userAlbumInfoId "
 					+" and upi.userAlbumInfoId = :userAlbumInfoId ");
+			
+			hqlCount.append(" where uai.deleteFlag = false and upi.deleteFlag = false and uai.id = upi.userAlbumInfoId "
+					+" and upi.userAlbumInfoId = :userAlbumInfoId ");
+			
 			params.put("userAlbumInfoId", userAlbumInfoId.trim());
 			if(photoSize!=null) {
 				hql.append("and upi.photoSize = :photoSize ");
+				hqlCount.append("and upi.photoSize = :photoSize ");
 				params.put("photoSize", photoSize);
 			}
 			params.put("userAlbumInfoId", userAlbumInfoId.trim());
 			if(validEmail) {
 				hql.append(" and cu.loginName = :loginName ");
+				hqlCount.append(" and cu.loginName = :loginName ");
 				params.put("loginName", email.trim());
 			}
 			hql.append(" order by upi.createTime desc ");
-			ret=(Collection<UserPhotoInfoView>)getResultByHQLAndParam(hql.toString(), params, pagingData);
+			ret=(Collection<UserPhotoInfoView>)getResultByHQLAndParam(hql.toString(), hqlCount.toString(), params, pagingData);
 		}
 		return ret;
 	}
