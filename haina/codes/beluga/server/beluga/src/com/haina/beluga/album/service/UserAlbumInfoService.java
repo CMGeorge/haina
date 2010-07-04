@@ -107,7 +107,7 @@ public class UserAlbumInfoService extends BaseSerivce<IUserAlbumInfoDao, UserAlb
 			int i=this.getBaseDao().deleteUserAlbumInfoByIds(albumIds, contactUser.getId());
 			if(i<albumIds.length) {
 				ret.setStatusCode(IStatusCode.INVALID_PARTIAL_USER_ALBUM_ID);
-				ret.setStatusText("部分相册id无效，可能无法删除");
+				ret.setStatusText("部分相册id无效或不是你创建的，可能无法删除");
 				return ret;
 			}
 			return ret;
