@@ -2,6 +2,7 @@ package com.sihus.core.dao;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -469,7 +470,12 @@ public class BaseDao<T extends IModel, PK extends Serializable> extends
 	private void prepareQuery(Query query, Object[] args) {
 		if(args != null && args.length>0 && query!=null) {
 			for (int i=0;i<args.length;i++) {
-				query.setParameter(i, args[i]);
+//				query.setParameter(i, args[i]);
+				if(args[i] instanceof Collection){
+					query.setParameterList(String.valueOf(i),(Collection) args[i]);
+				}else{
+					query.setParameter(i, args[i]);
+				}
 			}
 		}
 	}
@@ -485,7 +491,12 @@ public class BaseDao<T extends IModel, PK extends Serializable> extends
 			String key=null;
 			while(keys.hasNext()) {
 				key=keys.next();
-				query.setParameter(key, args.get(key));
+				if(args.get(key) instanceof Collection){
+					query.setParameterList(key, (Collection) args.get(key));
+				}else{
+					query.setParameter(key, args.get(key));
+				}
+				
 			}
 		}
 	}
