@@ -19,6 +19,8 @@ namespace BelugaMobile.BInfo
         private TabPage tab_communityRecord;
         private TabPage tab_Host;
         private TabPage tabPage1;
+        private Resco.Controls.AdvancedList.AdvancedList callrecord_List;
+        private Resco.Controls.AdvancedList.AdvancedList communityRecord_List;
         private System.Windows.Forms.Panel pnl_disPlay;
 
         public BInfo() 
@@ -31,19 +33,23 @@ namespace BelugaMobile.BInfo
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BInfo));
             this.pcB_DisPlay = new System.Windows.Forms.PictureBox();
             this.pnl_disPlay = new System.Windows.Forms.Panel();
-            this.pnl_Full = new System.Windows.Forms.Panel();
-            this.ltb_UserName = new BelugaMobile.BaseControl.lable_Text_Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.pcb_mood = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.pcb_mood = new System.Windows.Forms.PictureBox();
+            this.pnl_Full = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.ltb_UserName = new BelugaMobile.BaseControl.lable_Text_Button();
             this.tbc_commuint = new System.Windows.Forms.TabControl();
             this.tab_callrecord = new System.Windows.Forms.TabPage();
             this.tab_communityRecord = new System.Windows.Forms.TabPage();
             this.tab_Host = new System.Windows.Forms.TabPage();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.callrecord_List = new Resco.Controls.AdvancedList.AdvancedList();
+            this.communityRecord_List = new Resco.Controls.AdvancedList.AdvancedList();
             this.pnl_disPlay.SuspendLayout();
             this.pnl_Full.SuspendLayout();
             this.tbc_commuint.SuspendLayout();
+            this.tab_callrecord.SuspendLayout();
+            this.tab_communityRecord.SuspendLayout();
             this.SuspendLayout();
             // 
             // pcB_DisPlay
@@ -67,30 +73,13 @@ namespace BelugaMobile.BInfo
             this.pnl_disPlay.Name = "pnl_disPlay";
             this.pnl_disPlay.Size = new System.Drawing.Size(236, 83);
             // 
-            // pnl_Full
+            // label2
             // 
-            this.pnl_Full.Controls.Add(this.label1);
-            this.pnl_Full.Controls.Add(this.ltb_UserName);
-            this.pnl_Full.Location = new System.Drawing.Point(81, 3);
-            this.pnl_Full.Name = "pnl_Full";
-            this.pnl_Full.Size = new System.Drawing.Size(158, 36);
-            // 
-            // ltb_UserName
-            // 
-            this.ltb_UserName.LableText = "头像：";
-            this.ltb_UserName.Location = new System.Drawing.Point(51, 0);
-            this.ltb_UserName.Name = "ltb_UserName";
-            this.ltb_UserName.Size = new System.Drawing.Size(104, 36);
-            this.ltb_UserName.TabIndex = 2;
-            // 
-            // label1
-            // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(47, 36);
-            this.label1.Text = "          姓名:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label2.Location = new System.Drawing.Point(147, 45);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(47, 36);
+            this.label2.Text = "          心情:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // pcb_mood
             // 
@@ -101,13 +90,30 @@ namespace BelugaMobile.BInfo
             this.pcb_mood.Size = new System.Drawing.Size(33, 38);
             this.pcb_mood.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             // 
-            // label2
+            // pnl_Full
             // 
-            this.label2.Location = new System.Drawing.Point(147, 45);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(47, 36);
-            this.label2.Text = "          心情:";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.pnl_Full.Controls.Add(this.label1);
+            this.pnl_Full.Controls.Add(this.ltb_UserName);
+            this.pnl_Full.Location = new System.Drawing.Point(81, 3);
+            this.pnl_Full.Name = "pnl_Full";
+            this.pnl_Full.Size = new System.Drawing.Size(158, 36);
+            // 
+            // label1
+            // 
+            this.label1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(47, 36);
+            this.label1.Text = "          姓名:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // ltb_UserName
+            // 
+            this.ltb_UserName.LableText = "头像：";
+            this.ltb_UserName.Location = new System.Drawing.Point(51, 0);
+            this.ltb_UserName.Name = "ltb_UserName";
+            this.ltb_UserName.Size = new System.Drawing.Size(104, 36);
+            this.ltb_UserName.TabIndex = 2;
             // 
             // tbc_commuint
             // 
@@ -124,6 +130,7 @@ namespace BelugaMobile.BInfo
             // 
             // tab_callrecord
             // 
+            this.tab_callrecord.Controls.Add(this.callrecord_List);
             this.tab_callrecord.Location = new System.Drawing.Point(0, 0);
             this.tab_callrecord.Name = "tab_callrecord";
             this.tab_callrecord.Size = new System.Drawing.Size(240, 144);
@@ -131,6 +138,7 @@ namespace BelugaMobile.BInfo
             // 
             // tab_communityRecord
             // 
+            this.tab_communityRecord.Controls.Add(this.communityRecord_List);
             this.tab_communityRecord.Location = new System.Drawing.Point(0, 0);
             this.tab_communityRecord.Name = "tab_communityRecord";
             this.tab_communityRecord.Size = new System.Drawing.Size(240, 144);
@@ -150,6 +158,24 @@ namespace BelugaMobile.BInfo
             this.tabPage1.Size = new System.Drawing.Size(240, 144);
             this.tabPage1.Text = "社区";
             // 
+            // callrecord_List
+            // 
+            this.callrecord_List.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.callrecord_List.GridColor = System.Drawing.Color.Empty;
+            this.callrecord_List.Location = new System.Drawing.Point(0, 0);
+            this.callrecord_List.Name = "callrecord_List";
+            this.callrecord_List.Size = new System.Drawing.Size(240, 144);
+            this.callrecord_List.TabIndex = 0;
+            // 
+            // communityRecord_List
+            // 
+            this.communityRecord_List.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.communityRecord_List.GridColor = System.Drawing.Color.Empty;
+            this.communityRecord_List.Location = new System.Drawing.Point(0, 0);
+            this.communityRecord_List.Name = "communityRecord_List";
+            this.communityRecord_List.Size = new System.Drawing.Size(240, 144);
+            this.communityRecord_List.TabIndex = 0;
+            // 
             // BInfo
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -161,6 +187,8 @@ namespace BelugaMobile.BInfo
             this.pnl_disPlay.ResumeLayout(false);
             this.pnl_Full.ResumeLayout(false);
             this.tbc_commuint.ResumeLayout(false);
+            this.tab_callrecord.ResumeLayout(false);
+            this.tab_communityRecord.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
