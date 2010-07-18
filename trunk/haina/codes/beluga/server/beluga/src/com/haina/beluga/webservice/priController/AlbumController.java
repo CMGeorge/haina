@@ -28,7 +28,7 @@ public class AlbumController extends BaseController {
 	private IUserPhotoInfoService userPhotoInfoService;
 	
 	/**
-	 * 取得用户注册列表
+	 * 取得用户相册列表
 	 * @param passport 登录令牌
 	 * @param curPage 当前页
 	 * @param pageSize 每页显示记录数
