@@ -55,7 +55,7 @@ public class AlbumController extends BaseController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(params = "method=getUserAlbumInfoList")
+	@RequestMapping(params = "method=editUserAlbumInfo")
 	public String editUserAlbumInfo(@RequestParam(required=true,value="albumId") String albumId,
 			@RequestParam(required=true,value="albumName") String albumName,	
 			@RequestParam(required=false,value="description") String description, 
