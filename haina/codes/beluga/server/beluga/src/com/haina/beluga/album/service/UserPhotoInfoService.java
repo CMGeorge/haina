@@ -106,11 +106,22 @@ public class UserPhotoInfoService extends BaseSerivce<IUserPhotoInfoDao, UserPho
 	}
 
 	@Override
-	public AbstractRemoteReturning getUserPhotoInfo(String photoId, String albumId,
+	public AbstractRemoteReturning getUserPhotoInfo(String email, String photoId, String albumId,
 			int curPage, int pageSize) {
 		AbstractRemoteReturning ret=new Returning();
 		if(StringUtils.isNull(photoId)) {
 			ret.setStatusCode(IStatusCode.INVALID_USER_PHOTO_ID);
+			return ret;
+		}
+		ContactUser contactUser=contactUserDao.getInvalidUserByLoginName(email);
+		if(null==contactUser) {
+			ret.setStatusCode(IStatusCode.INVALID_LOGINNAME);
+			return ret;
+		}
+		
+		UserAlbumInfo userAlbumInfo=userAlbumInfoDao.getUserAlbumInfoById(albumId);
+		if(null==userAlbumInfo) {
+			ret.setStatusCode(IStatusCode.INVALID_USER_ALBUM_ID);
 			return ret;
 		}
 		PagingData pagingData=new PagingData();
@@ -121,6 +132,10 @@ public class UserPhotoInfoService extends BaseSerivce<IUserPhotoInfoDao, UserPho
 			UserPhotoInfo userPhotoInfo=this.getBaseDao().getUserPhotoInfoById(photoId, albumId);
 			if(null==userPhotoInfo) {
 				ret.setStatusCode(IStatusCode.INVALID_USER_PHOTO_ID);
+				return ret;
+			}
+			if(!userPhotoInfo.getCreateUserId().equals(contactUser.getId())) {
+				ret.setStatusCode(IStatusCode.INVALID_LOGINNAME);
 				return ret;
 			}
 			userPhotoInfoDto=new UserPhotoInfoDto();

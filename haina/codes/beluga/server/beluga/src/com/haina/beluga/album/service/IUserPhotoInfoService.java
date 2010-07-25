@@ -24,13 +24,14 @@ public interface IUserPhotoInfoService extends IBaseSerivce<IUserPhotoInfoDao, U
 	
 	/**
 	 * 获取用户相片信息
+	 * @param email 相片所属用户登录邮箱
 	 * @param photoId 相片id
 	 * @param albumId 相册id
 	 * @param curPage 评论当前页数
 	 * @param pageSize 评论每页显示的数量
 	 * @return
 	 */
-	AbstractRemoteReturning getUserPhotoInfo(String photoId, String albumId, int curPage, int pageSize);
+	AbstractRemoteReturning getUserPhotoInfo(String email, String photoId, String albumId, int curPage, int pageSize);
 	
 	/**
 	 * 添加相片
