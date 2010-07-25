@@ -139,9 +139,11 @@ public class AlbumController extends BaseController {
 	public String getUserPhotoInfo(@RequestParam(required=false,value="curPage") int curPage,
 			@RequestParam(required=false,value="pageSize") int pageSize,
 			@RequestParam(required=false,value="albumId") String albumId,
-			@RequestParam(required=true,value="photoId") String photoId,ModelMap model) {
+			@RequestParam(required=true,value="photoId") String photoId,
+			@RequestParam(required=true,value="passport") String passport, ModelMap model) {
 		AbstractRemoteReturning ret=null;
-		ret=userPhotoInfoService.getUserPhotoInfo(photoId, albumId, curPage, pageSize);
+		String loginName = this.getLoginNameOfPassport(passport);
+		ret=userPhotoInfoService.getUserPhotoInfo(loginName, photoId, albumId, curPage, pageSize);
 		model.addAttribute(ret);
 		return Constant.JSON_VIEW;
 	}
