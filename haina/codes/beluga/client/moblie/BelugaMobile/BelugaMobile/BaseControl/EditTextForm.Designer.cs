@@ -44,11 +44,11 @@
             // Edit_textBox
             // 
             this.Edit_textBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.Edit_textBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Edit_textBox.Location = new System.Drawing.Point(0, 0);
+            this.Edit_textBox.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.Edit_textBox.Location = new System.Drawing.Point(0, 40);
             this.Edit_textBox.Multiline = true;
             this.Edit_textBox.Name = "Edit_textBox";
-            this.Edit_textBox.Size = new System.Drawing.Size(200, 21);
+            this.Edit_textBox.Size = new System.Drawing.Size(200, 160);
             this.Edit_textBox.TabIndex = 0;
             this.Edit_textBox.TextChanged += new System.EventHandler(this.Edit_textBox_TextChanged);
             // 
