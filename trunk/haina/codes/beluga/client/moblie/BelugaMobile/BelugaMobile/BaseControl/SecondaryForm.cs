@@ -6,9 +6,9 @@ namespace BelugaMobile.BaseControl
 {
     public  class SecondaryForm:BaseForm
     {
-        private System.Windows.Forms.Panel pnl_ToolBar;
-        private System.Windows.Forms.Panel pnl_Contents;
-        private System.Windows.Forms.Panel pnl_top;
+        private BasePanel pnl_ToolBar;
+        private BasePanel pnl_Contents;
+        private BasePanel pnl_top;
 
         public SecondaryForm()
        {
@@ -17,9 +17,9 @@ namespace BelugaMobile.BaseControl
 
         private void InitializeComponent()
         {
-            this.pnl_top = new System.Windows.Forms.Panel();
-            this.pnl_ToolBar = new System.Windows.Forms.Panel();
-            this.pnl_Contents = new System.Windows.Forms.Panel();
+            this.pnl_top = new BasePanel();
+            this.pnl_ToolBar = new BasePanel();
+            this.pnl_Contents = new BasePanel();
             this.SuspendLayout();
             // 
             // pnl_top
