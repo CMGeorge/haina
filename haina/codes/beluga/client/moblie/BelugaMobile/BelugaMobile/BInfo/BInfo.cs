@@ -40,11 +40,11 @@ namespace BelugaMobile.BInfo
             this.ltb_UserName = new BelugaMobile.BaseControl.lable_Text_Button();
             this.tbc_commuint = new System.Windows.Forms.TabControl();
             this.tab_callrecord = new System.Windows.Forms.TabPage();
+            this.callrecord_List = new Resco.Controls.AdvancedList.AdvancedList();
             this.tab_communityRecord = new System.Windows.Forms.TabPage();
+            this.communityRecord_List = new Resco.Controls.AdvancedList.AdvancedList();
             this.tab_Host = new System.Windows.Forms.TabPage();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.callrecord_List = new Resco.Controls.AdvancedList.AdvancedList();
-            this.communityRecord_List = new Resco.Controls.AdvancedList.AdvancedList();
             this.pnl_disPlay.SuspendLayout();
             this.pnl_Full.SuspendLayout();
             this.tbc_commuint.SuspendLayout();
@@ -136,6 +136,15 @@ namespace BelugaMobile.BInfo
             this.tab_callrecord.Size = new System.Drawing.Size(240, 144);
             this.tab_callrecord.Text = "通讯记录";
             // 
+            // callrecord_List
+            // 
+            this.callrecord_List.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.callrecord_List.GridColor = System.Drawing.Color.Empty;
+            this.callrecord_List.Location = new System.Drawing.Point(0, 0);
+            this.callrecord_List.Name = "callrecord_List";
+            this.callrecord_List.Size = new System.Drawing.Size(240, 144);
+            this.callrecord_List.TabIndex = 0;
+            // 
             // tab_communityRecord
             // 
             this.tab_communityRecord.Controls.Add(this.communityRecord_List);
@@ -143,6 +152,15 @@ namespace BelugaMobile.BInfo
             this.tab_communityRecord.Name = "tab_communityRecord";
             this.tab_communityRecord.Size = new System.Drawing.Size(240, 144);
             this.tab_communityRecord.Text = "社区记录";
+            // 
+            // communityRecord_List
+            // 
+            this.communityRecord_List.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.communityRecord_List.GridColor = System.Drawing.Color.Empty;
+            this.communityRecord_List.Location = new System.Drawing.Point(0, 0);
+            this.communityRecord_List.Name = "communityRecord_List";
+            this.communityRecord_List.Size = new System.Drawing.Size(240, 144);
+            this.communityRecord_List.TabIndex = 0;
             // 
             // tab_Host
             // 
@@ -157,24 +175,6 @@ namespace BelugaMobile.BInfo
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Size = new System.Drawing.Size(240, 144);
             this.tabPage1.Text = "社区";
-            // 
-            // callrecord_List
-            // 
-            this.callrecord_List.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.callrecord_List.GridColor = System.Drawing.Color.Empty;
-            this.callrecord_List.Location = new System.Drawing.Point(0, 0);
-            this.callrecord_List.Name = "callrecord_List";
-            this.callrecord_List.Size = new System.Drawing.Size(240, 144);
-            this.callrecord_List.TabIndex = 0;
-            // 
-            // communityRecord_List
-            // 
-            this.communityRecord_List.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.communityRecord_List.GridColor = System.Drawing.Color.Empty;
-            this.communityRecord_List.Location = new System.Drawing.Point(0, 0);
-            this.communityRecord_List.Name = "communityRecord_List";
-            this.communityRecord_List.Size = new System.Drawing.Size(240, 144);
-            this.communityRecord_List.TabIndex = 0;
             // 
             // BInfo
             // 
