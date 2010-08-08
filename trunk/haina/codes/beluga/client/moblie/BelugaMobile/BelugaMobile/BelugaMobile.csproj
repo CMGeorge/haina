@@ -47,7 +47,19 @@
   <ItemGroup>
     <Reference Include="Microsoft.WindowsCE.Forms" />
     <Reference Include="mscorlib" />
-    <Reference Include="Resco.CommonControls.CF2, Version=5.9.0.0, Culture=neutral, PublicKeyToken=7444f602060105f9, processorArchitecture=MSIL" />
+    <Reference Include="Resco.AdvancedList.CF2, Version=1.0.3827.39205, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\TargetLib\Resco.AdvancedList.CF2.dll</HintPath>
+    </Reference>
+    <Reference Include="Resco.CommonControls.CF2, Version=1.0.3827.39200, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\TargetLib\Resco.CommonControls.CF2.dll</HintPath>
+    </Reference>
+    <Reference Include="Resco.OutlookControls.CF2, Version=5.9.0.0, Culture=neutral, PublicKeyToken=7444f602060105f9, processorArchitecture=MSIL" />
+    <Reference Include="Resco.ScrollBar.CF2, Version=1.0.3827.39204, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\TargetLib\Resco.ScrollBar.CF2.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.SQLiteClient, Version=1.0.3802.29353, Culture=neutral, processorArchitecture=MSIL">
@@ -59,14 +71,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseControl\SecondaryForm.cs">
+    <Compile Include="Control\BelugaPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Control\GForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BaseControl\BaseForm.cs">
+    <Compile Include="Control\DesignUsedForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BaseControl\IntegratedForm.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Control\DesignUsedForm.Designer.cs">
+      <DependentUpon>DesignUsedForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\GPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ContactPanel.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Db\BelugaDb.cs" />
     <Compile Include="Db\Contact.cs" />
@@ -77,12 +98,6 @@
     <Compile Include="Db\Xsd\msgface.Designer.cs" />
     <Compile Include="Db\Xsd\quickmsg.Designer.cs" />
     <Compile Include="Db\Xsd\userconfig.Designer.cs" />
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,16 +106,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="BaseControl\SecondaryForm.resx">
-      <DependentUpon>SecondaryForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BaseControl\IntegratedForm.resx">
-      <DependentUpon>IntegratedForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Control\DesignUsedForm.resx">
+      <DependentUpon>DesignUsedForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
