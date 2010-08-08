@@ -45,7 +45,9 @@ namespace BelugaMobile.BaseControl
         private void pictureBox_Click(object sender, EventArgs e)
         {
             EditTextForm eidtTxt = new EditTextForm();
+            eidtTxt.EditText = LableText;
             eidtTxt.sendText += new sendTextHandler(eidtTxt_sendText);
+            eidtTxt.ShowDialog();
         }
 
         void eidtTxt_sendText(string text)

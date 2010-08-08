@@ -30,8 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(lable_Text_Button));
             this.pnl_Full = new System.Windows.Forms.Panel();
-            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.lable = new System.Windows.Forms.Label();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.pnl_Full.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,6 +44,14 @@
             this.pnl_Full.Name = "pnl_Full";
             this.pnl_Full.Size = new System.Drawing.Size(150, 26);
             // 
+            // lable
+            // 
+            this.lable.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lable.Font = new System.Drawing.Font("Shruti", 11F, System.Drawing.FontStyle.Regular);
+            this.lable.Location = new System.Drawing.Point(0, 0);
+            this.lable.Name = "lable";
+            this.lable.Size = new System.Drawing.Size(127, 26);
+            // 
             // pictureBox
             // 
             this.pictureBox.Dock = System.Windows.Forms.DockStyle.Right;
@@ -53,13 +61,6 @@
             this.pictureBox.Size = new System.Drawing.Size(24, 26);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox.Click += new System.EventHandler(this.pictureBox_Click);
-            // 
-            // lable
-            // 
-            this.lable.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lable.Location = new System.Drawing.Point(0, 0);
-            this.lable.Name = "lable";
-            this.lable.Size = new System.Drawing.Size(127, 26);
             // 
             // lable_Text_Button
             // 
