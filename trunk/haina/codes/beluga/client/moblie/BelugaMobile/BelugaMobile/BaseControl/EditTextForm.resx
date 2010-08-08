@@ -117,10 +117,117 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="pictureBox2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAADUAAAAfCAIAAADIsxJ3AAAABGdBTUEAALGPC/xhBQAAAwBJREFUWEe1
+        V8GxGyEM3TTgZtyBG/FtW/DVJ5eQmb39QyYFuIJ/Tigm4woieJIQsAK8yWeYHQzi8XgSIH97Pp/LdDmd
+        TrB9vV7Upm87VW2mUSMaGVcTGfxzovxORQ23ECYm1SYkhFdgSqPa+Pj4gfYyXMmCZopbplitOgRsDbB5
+        4GA0iARLZ1stM+qBeO33AC2dosyIlrbRGPOjzZHaj8fjdrudz+vlcqHvbqWhzqg3K/av6/V6XdeNirqY
+        +W1b6FQIfr/faT7xIwTiSvZo7FYP7btTAEXfNRVEHoHU+gG3dTeUo/nRuVsAvy+qJCFVpph8vQz1I34i
+        G4v31RQzpRAG/OgcROVjYMSGfs3PrCUMqpqmx076alt+srEYJPyIkkEyP7hPvaztFBkbBQ/Q5avQmb1u
+        ILopEcI2Sn48BAOpjNzj124djMEPKjqVNZZRVbrq74Ng1NfPC8QeP+XNjYheV+yq2qG74XD2/DvmV4Mm
+        NiJqnI5gTQvk/lAEmR2qvZHQiB/iATXHnz2VuNhgkXe/r00CCuHnrz+6tplVIAjgnswAb/l512zm19LS
+        ngSnO5bzkTkRafDmarexC9vRz/UvGPiVJhIJISrOTfbFJcDXkzhEBFNkrEJvHfyL58a9/2iM3SH8wEBQ
+        DOlIQwNOrjqjsZ5r619Fsw3hFxGZn76KNtKLdsOvQYRmfK3k4GOF7E0pF57xhscPHJbuxcYXutWsVRHx
+        F7dOvkl3mLUR6syMfwq/SkWr33v8dt2h7tZVk6Mjv7RSvnL1RcGD4aEpP1VtoB8LI5HXxc0R2QZAv6f0
+        CZzA9Z/4QaRhxQkdmpnz+5/4tce5T8Ky5AAoeR/wb7H1SRlmpOoH9Lx/5WzOOegAs8r7eOX0qRzGH2cf
+        BxY+MKVN5Gb4ydswHeZvMcsvZ85/3zgfnFbUr7NkTd6rPd/fJNJFGjujX5P3dtOFTiaxn7ratFyThun7
+        T8i5Ge9M1t61aTjR+cCfxvH7Sxb057z/Ru+kwU5uV1kqCe43EtAQyl9DbU0JAE8Q6QAAAABJRU5ErkJg
+        gg==
+</value>
+  </data>
+  <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        Qk2eEgAAAAAAADYAAAAoAAAAMgAAAB8AAAABABgAAAAAAAAAAADEDgAAxA4AAAAAAAAAAAAAmZlmmZlm
+        hoaGhoaGhoaGmZlmhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaG
+        hoaGhoaGhoaGmZlmhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGmZlmhoaGhoaG
+        hoaGhoaGhoaGhoaGhoaGhoaGmZlmhoaGAACZmWaZmWaZmWaZmWaZmWaZmWaZZmaZZmaZZmaZZmaZZmaZ
+        ZmaZZmaZmWaZmWaZmWaZmWaZmWaZmWaZmWaZmWaZmWaZmWaZmWaZmWaZmWaZmWaZmWaZmWaZmWaZmWaZ
+        ZmaZmWaZmWaZmWaZmWaZmWaZmWaZZmaZmWaZmWaZmWaZmWaZZmaGhoaGhoaZmWaZmWaZmWaZmWYAAJmZ
+        ZpmZZpmZZpmZZpmZZpmZZplmZpmZZpmZZpmZZpmZZpmZZpmZZpmZZpmZZpmZZpmZZpmZZpmZZpmZZpmZ
+        ZpmZZpmZZpmZZpmZZpmZZpmZZpmZZpmZZpmZZpmZZpmZZpmZZplmZplmZplmZpmZZpmZZpmZZpmZZpmZ
+        ZpmZZpmZZpmZZpmZZoaGhpmZZpmZZpmZZpmZZgAAmZlmmZlmmZlmmZlmmZlmmZlmmZlmmWZmmWZmmWZm
+        mWZmmWZmmWZmmWZmmWZmmZlmmZlmmZlmmZlmmZlmmZlmmZlmmZlmmWZmmWZmmWZmmWZmmWZmmWZmmWZm
+        mWZmmZlmmZlmmZlmmZlmmZlmmZlmmWZmmWZmmZlmmZlmmZlmmZlmmZlmmZlmmZlmmZlmmZlmmZlmmZlm
+        AACZmWaZmWaZmWaZmWaZmWbMmWbMmWbMmZnMmZnMmZnMmZnMmZnMmZnMmZnMmZnMmZnMmZnMmZnMmZnM
+        mZnMmZnMmZnMmZnMmZnMmZnMmZnMmZnMmZnMmZnMmZnMmZnMmZnMmZnMmZnMmZnMmZnMmZnMmZnMmZmZ
+        mWaZmWaZmWaZmWaZmWaZmWaZmWaZmWaZmWaZmWaZmWYAAJmZZpmZZpmZZpmZZpmZZpmZZplmZplmM5lm
+        M5lmM5lmM5lmM5lmM5lmM5lmM5lmM5lmM5lmM5lmM5lmM5lmM5lmM5lmM5lmM5lmM5lmM5lmM5lmM5lm
+        M5lmM5lmM5lmZplmZplmM5lmM5lmM5lmZplmZpmZZsyZZpmZZpmZZpmZZpmZZpmZZpmZZpmZZpmZZpmZ
+        ZpmZZgAAmZlmmZlmmZlmmZlmmWZmmWYzmWYzmWYzmWYzmWYzmWYzmWYzmWYzmWYzmWYzmWYzmWYzmWYz
+        mWYzmWYzmWYzmWYzmWYzmWYzmWYzmWYzmWYzmWYzmWYzmWYzmWYzmWYzmWYzmWYzmWYzmWYzmWYzmWYz
+        mWZmmZlmmZlmmZlmmZlmmZlmmZlmmZlmmZlmmZlmmZlmmZlmAACZmWaZmWaZmWaZZmaZZjOZZjOZZjOZ
+        ZjOZZjOZZjOZZjOZZjOZZjOZZjOZZjOZZjOZZjOZZjOZZjOZZjOZZjOZZjOZZjOZZjOZZjOZZjOZZjOZ
+        ZjOZZjOZZjOZZjOZZjOZZmaZZmaZZmaZZmaZZjOZZjOZZjOZZmaZZmaZmWaZmWaZmWaZmWaZmWaZmWaZ
+        mWaZmWaZmWYAAJmZZpmZZplmZplmM5lmM5lmM5lmZplmM5lmM5lmM5lmM5lmM5lmM5lmM5lmM5lmM5lm
+        M5lmM5lmM5lmM5lmM5lmM5lmM5lmM5lmM5lmM5lmM5lmM5lmM5lmM5lmM5lmM5lmM5lmM5lmM5lmM5lm
+        M5lmZplmZplmM5lmZsyZZpmZZpmZZpmZZpmZZpmZZpmZZpmZZpmZZgAAmZlmmZlmmZlmZmYzmWZmmWYz
+        mWYzmWYzmWYzmWYzmWZmmWYzmWYzmWZmmWYzmWYzmWYzmWYzmWYzmWZmmWYzmWYzmWYzmWZmmWYzmWYz
+        mWZmmWYzmWYzmWYzmWYzmWYzmWYzmWYzmWYzmWYzmWYzmWYzmWZmmWYzmWZmzJmZmZlmmZlmmZlmmZlm
+        mZlmmZlmmZlmmZlmAACZmWaZmWaZmWZmZjOZZmaZZjOZZjOZZmaZZjOZZjOZZjOZZjOZZjOZZjOZZjOZ
+        ZjOZZjOZZmaZZmaZZjOZZmaZZjOZZmaZZmaZZjOZZmaZZjOZZjOZZjOZZjOZZjOZZjOZZjOZZjOZZjOZ
+        ZjOZZjOZZjOZZmaZZjOZZmbMmWaZmWaZmWaZmWaZmWaZmWaZmWaZmWaZmWYAAJmZZpmZZpmZZmZmM5lm
+        M5lmM5lmM5lmM5lmM5lmM5lmM5lmZplmM5lmZplmM5lmM5mZZmZmM5lmM5lmM5lmM5lmZplmM5lmM5lm
+        M5lmZplmM5lmM5lmZplmZplmM5lmM5lmM5lmM5lmM5lmM5lmM5lmM5lmM5lmM5lmZsyZmZmZZpmZZpmZ
+        ZpmZZpmZZpmZZpmZZpmZZgAAmZlmmZlmmZlmZmYzmWYzmWYzmWYzmWYzmWYzmWYzmWYzmWYzmWYzmWZm
+        mWYzmZlmzMyZzMyZmZlmmWZmzJmZmWZmzJlmzJlmmZlmzMyZmZlmZmYzzJmZ8MqmmWYzmWYzmWYzmWYz
+        mWYzmWYzmWYzmWYzmWZmmWYzmWZmzJmZmZlmzJlmmZlmmZlmmZlmmZlmmZlmmZlmAACZmWbMmZmZmWZm
+        ZjOZZjOZZjOZZjOZZjOZZjOZZjOZZmaZZmbMmWbwyqbwyqbwyqbwyqbMmZnwyqbwyqbwyqaZZmaZZmb/
+        7MyZZmbMmZnMmZmZZmaZmWbwyqaZmWaZZjOZZjOZZjOZZjOZZjOZZjOZZmaZZmaZZjOZZmbMmZmZmWbM
+        mWaZmWaWlpaZmWaZmWaZmWaZmWYAAJmZZsyZmZmZZmZmM5lmM5lmM5lmM5lmM5lmZplmM5lmM5lmM5lm
+        M8yZmczMmcyZmf/szJlmZv/szPDKpmYzM5lmZmZmM8zMmcyZmfDKpsyZmcyZmczMmfDKpplmZplmM5lm
+        M5lmM5lmM5lmM5lmM5lmM5lmZplmM5lmZsyZmZmZZsyZmZaWlpaWlpmZZpaWlpmZZpmZZgAAmZlmzJmZ
+        mZlmZmYzmWYzmWYzmWYzmWYzmWYzmWYzmWZmmWZmmWZmzJmZ8MqmzMyZzMyZmWZmzMyZ8MqmmWZmX19f
+        mWZmmZlmmWZmzMyZzJmZpKCgzJmZzMyZmWZmmWYzmWYzmWYzmWYzmWYzmWYzmWZmmWZmmWYzmWZmzJmZ
+        mZlmzJmZlpaWlpaWlpaWlpaWlpaWlpaWAADMmZnMmZmZmWaZZjOZZmaZZmaZZmaZZmaZZmaZZmaZZmaZ
+        ZmaZZmbMmZnwyqaWlpbMzJmZmWbMmZnwyqaZmWaZZmaZZmbMmZmZZmbwyqbMmZmZmWakoKD/zMyZmWaZ
+        ZmaZZmaZZmaZZmaZZmaZZmaZZmaZZmaZZjOZZmbMmZnMmZmkoKCkoKCkoKCWlpaZmZnMmZnMmZkAAKSg
+        oKSgoMyZZplmM5mZZplmZplmZplmZplmZplmZplmZplmZplmZsyZmfDKpvDKpvDKpsyZmcyZmcyZmcyZ
+        mZlmZqSgoMyZmZmZZsyZmczMmf/MzMzMmczMmZmZZplmZplmZplmZplmZplmZplmZplmZplmZplmZpmZ
+        ZsyZmcyZmaSgoMyZmaSgoKSgoKSgoKSgoKSgoAAAzJmZpKCgzJlmmWYzmZlmmWZmmWZmmWZmmWZmmWZm
+        mWZmmWZmmWZmzJlmzMyZmZlmzJmZzJmZ8Mqm8MqmzMyZmWZmmWZmmZlmmZlmzJmZmWZm/+zMlpaWmZlm
+        mWZmmWZmmWZmmWZmmWZmmWZmmWZmmWZmmWZmmWZmmZlmzJmZzJmZpKCgzJmZpKCgzJmZpKCgpKCgpKCg
+        AADMmZnMmZnMmZmZZjOZmWaZZmaZZmbMmWaZZmaZZmaZZmaZmWbMmZnwyqb/7Mz/zMz/7MzwyqbwyqbM
+        mZnMmZmZmWaZmWb/7MyZmWbwyqbMmZnwyqbMmZn/7MzMmZmZmWaZmWaZmWaZmWaZmWaZmWaZmWaZmWaZ
+        ZmaZmWbMmZnMmZmkoKDMmZmkoKDMmZmkoKCkoKCkoKAAAMyZmcyZmcyZmZlmZpmZZpmZZpmZZpmZZpmZ
+        ZsyZZsyZZpmZZplmZplmZplmZplmZplmZplmZplmZplmZpmZZplmZpmZZplmZpmZZpmZZplmZszMmZmZ
+        ZplmZplmZpmZZpmZZpmZZpmZZpmZZpmZZpmZZpmZZplmZpmZZsyZmcyZmcyZmcyZmcyZmcyZmcyZmcyZ
+        mcyZmQAAzJmZzJmZzJmZmWZmzJlmmZlmzJlmzJlmzJlmmZlmmZlmmZlmmZlmzJlmzJlmmZlmzJmZmZlm
+        mZlmmZlmzJlmmZlmmZlmmZlmmZlmmZlmmZlmmWZmmZlmzJmZzJlmzJlmzJlmzJlmmZlmzJlmmZlmmZlm
+        mZlmmWZmmZlmzJmZzJmZzJmZzJmZzJmZzJmZzJmZzJmZzJmZAADMzJnMmZnMmZmZZmbMmWbMmWbMmWbM
+        mWbMmWbMmWbMmZnMmZnMmWaZmWaZZmaZmWaZmWaZmWaZmWaZmWaZmWbMmZnMmZmZmWaZmWbMmZnMmZmZ
+        mWaZmWaZmWaZmWbMmWbMmWbMmWbMmWbMmWbMmWbMmWbMmWaZZmaZmWbMmZnMmZnMmZnMmZnMmZnMmZnM
+        mZnMmZnMmZkAAMzMmcyZmcyZmZlmZsyZmcyZmcyZmcyZmcyZmcyZmZmZZpmZZsyZZsyZmcyZmZmZZpmZ
+        ZsyZmcyZmcyZmcyZmcyZZpmZZsyZmcyZmcyZmZmZZsyZmZmZZsyZmcyZmcyZmcyZZsyZZsyZmcyZmcyZ
+        mcyZmcyZmZlmZpmZZsyZmcyZmbKyssyZmbKyssyZmcyZmcyZmcyZmQAAzMyZzJmZzJmZmWZmzJmZzJmZ
+        zJmZzJmZzJmZzJmZzJmZzJmZzJmZpKCgzJmZzJmZzJmZzJmZzJmZzJmZzJmZzJmZzJmZzJmZzJmZzJmZ
+        zJmZzJmZzJmZzJmZmZlmzJmZzJmZzJmZzJmZzJmZpKCgpKCgpKCgmWZmlpaWsrKyzJmZsrKysrKysrKy
+        zJmZzJmZzJmZzJmZAADAwMDMzJmkoKCZZmaZZmakoKDMzJnMmZnMmZnMmZnMmZnMmZnMmZnMmZnMmZnM
+        mZnMmZnMmZnMmZnMmZnMmZnMmZnMmZnMmZnMmZnMmZnMmZnMmZnMmZnMmZnMmZnMmZnMmZnMmZnMmZnM
+        mZnMmZnMmZmkoKBmZmaZmZnAwMCysrLMmZmysrKysrLMmZnMmZmysrLMmZkAAMzMmczMmcDAwKSgoJlm
+        ZplmZplmZsyZmcyZmcyZmcyZmZaWlpaWlpaWlpaWlsyZmcyZmcyZmcyZmcyZmcyZmcyZmcyZmcyZmcyZ
+        mcyZmcyZmcyZmcyZmcyZmcyZmZmZZpaWlqSgoMyZmZmZmZmZZplmZmZmZoaGhsyZmcDAwLKysrKysrKy
+        srKysrKyssyZmcyZmcyZmQAAzJmZsrKysrKyzJmZlpaWmWZmX19fZjMzZjMzZjMzZjMzZjMzZjMzZjMz
+        ZjMzZjMzZjMzZjMzZjMzZjMzZjMzZjMzZjMzZjMzZjMzZjMzZjMzZjMzZjMzZjMzZjMzZjMzZjMzZjMz
+        TU1NVVVVX19fd3d3hoaGsrKywMDAwMDAsrKysrKywMDAwMDAsrKysrKywMDAwMDAAADAwMDAwMDAwMDA
+        wMDLy8vAwMCkoKDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDMzJnAwMDMzJnAwMDMzJnAwMDMzJnA
+        wMDMzJnAwMDMzJnAwMDMzJnAwMDAwMDAwMDAwMDAwMDAwMCysrKysrLAwMDAwMDAwMCysrKysrKysrKy
+        srKysrKysrKysrKysrKysrKysrIAALKysrKyssDAwMDAwLKyssDAwMvLy7KysrKysrKysrKysrKysrKy
+        srKysrKyssDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMyZmbKy
+        srKyssDAwMDAwMDAwMDAwLKyssDAwLKysrKyssDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwAAAwMDAwMDA
+        wMDAwMDAsrKysrKywMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDA
+        wMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAzMzMy8vLwMDAsrKysrKywMDAwMDAwMDAwMDAsrKywMDA
+        wMDAwMDAsrKysrKywMDAwMDAwMDAwMDAAAA=
+</value>
+  </data>
   <metadata name="$this.FormFactorShadowProperty" xml:space="preserve">
     <value>Pocket_PC</value>
   </metadata>
   <metadata name="$this.Skin" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
+  </metadata>
+  <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
   </metadata>
 </root>
