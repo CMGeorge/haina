@@ -4,11 +4,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7918ADAC-84EB-49B1-A69F-4CF609CFC233}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <ProjectGuid>{9763C581-595B-4A09-AEC5-A6C0F26D54E7}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BeefWrap</RootNamespace>
-    <AssemblyName>BeefWrapTest</AssemblyName>
+    <RootNamespace>BeefWrap.Net</RootNamespace>
+    <AssemblyName>BeefWrapNet</AssemblyName>
     <ProjectTypeGuids>{4D628B5B-2FBC-4AA6-8C16-197242AEB884};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PlatformFamilyName>PocketPC</PlatformFamilyName>
     <PlatformID>b2c48bd2-963d-4549-9169-1fa021dce484</PlatformID>
@@ -48,39 +48,28 @@
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FrmMain.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmMain.Designer.cs">
-      <DependentUpon>FrmMain.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="AlbumController.cs" />
+    <Compile Include="AppController.cs" />
+    <Compile Include="Common\BeefWrapNet.cs" />
+    <Compile Include="AControl.cs" />
+    <Compile Include="Common\Command.cs" />
+    <Compile Include="ContactController.cs" />
+    <Compile Include="MsgController.cs" />
+    <Compile Include="UserController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FrmMain.resx">
-      <DependentUpon>FrmMain.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
+    <Compile Include="Common\NetReader.cs" />
+    <Compile Include="Common\NetUtility.cs" />
+    <Compile Include="Common\NetWriter.cs" />
+    <Compile Include="Result.cs" />
+    <Compile Include="CommonController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BeefWrapNet\BeefWrapNet.csproj">
-      <Project>{9763C581-595B-4A09-AEC5-A6C0F26D54E7}</Project>
-      <Name>BeefWrapNet</Name>
-    </ProjectReference>
+    <Content Include="BeefWrapCache.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>

@@ -9,14 +9,16 @@ using System.IO;
 using System.Threading;
 using System.Reflection;
 using System.Net;
+using BeefWrap.Common.Net;
 using BeefWrap.Net;
+using System.Diagnostics;
 
 namespace BeefWrap
 {
     public partial class FrmMain : Form
     {
-        public static readonly string host = "jackyho-acfd27d";
-        string url = "http://" + host + ":8120/BeefWrap";
+        public static readonly string host = "localhost";
+        string url = "http://" + host + ":80/BeefWrap";
 
         bool boolValue = true;
         float floatValue = 111100.222255F;
@@ -373,5 +375,29 @@ namespace BeefWrap
         }
 
         #endregion
+
+        private void menuItemTest_Click(object sender, EventArgs e)
+        {
+            UserController user = new UserController();            
+            string email = "a@abc.com";
+            string mobile = "13042192283";
+            Result result = new Result();
+
+            result.StatusCode = 200;
+            result.StatusText = "aa测试";
+            result.Value = "bb测试";
+            string name = string.Format("{0}_Exist_{1}_{2}", Command.C_USER_EXIST_CHECK_REQUEST, email, mobile);
+
+            user.WriteCache(name, 100, result);
+            // user.DeleteCacheLike(name);
+
+            user.Exist(email, mobile, out result);
+
+            this.Log(string.Format("email={0}", email));
+            this.Log(string.Format("mobile={0}", mobile));
+            this.Log(string.Format("StatusCode={0}", result.StatusCode));
+            this.Log(string.Format("StatusText={0}", result.StatusText));
+            this.Log(string.Format("Value={0}", result.Value));
+        }
     }
 }
