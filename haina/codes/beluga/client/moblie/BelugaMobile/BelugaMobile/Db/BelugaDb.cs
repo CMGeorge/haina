@@ -6,18 +6,20 @@ using System.IO;
 using System.Reflection;
 using System.Data;
 using System.Data.SQLiteClient;
+using System.Data.SQLiteClient.Native;
+using System.Runtime.InteropServices;
 using BelugaMobile.Db.Xsd;
 
 namespace BelugaMobile.Db
 {
-    class MsgFace
+    public class MsgFace
     {
         public string face_symbol;
         public string face_picture;
         public string face_desc;
     }
 
-    class UserConfig
+    public class UserConfig
     {
         public string user_id;
         public string imei;
@@ -52,7 +54,7 @@ namespace BelugaMobile.Db
         public string note;
     }
 
-    class BelugaDb
+    public class BelugaDb
     {
         private static string RUN_PATH = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase);
         private static string DATA_PATH = RUN_PATH + @"\data";
@@ -471,8 +473,7 @@ namespace BelugaMobile.Db
                     "<@_@>",
                     "^-^",
                     "?_?",
-                    "~zZ",
-                    "/ToT/"
+                    "~zZ"
                 };
 
                 string[] descriptions = {
