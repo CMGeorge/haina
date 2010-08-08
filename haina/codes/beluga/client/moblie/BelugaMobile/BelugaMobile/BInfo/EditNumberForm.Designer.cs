@@ -32,11 +32,13 @@
             this.basePnl_top = new BelugaMobile.BaseControl.BasePanel();
             this.basePanel1 = new BelugaMobile.BaseControl.BasePanel();
             this.basePanel2 = new BelugaMobile.BaseControl.BasePanel();
+            this.lable_Text_Button1 = new BelugaMobile.BaseControl.lable_Text_Button();
             this.basePanel3 = new BelugaMobile.BaseControl.BasePanel();
             this.basePanel4 = new BelugaMobile.BaseControl.BasePanel();
             this.basePanel5 = new BelugaMobile.BaseControl.BasePanel();
             this.basePanel6 = new BelugaMobile.BaseControl.BasePanel();
             this.basePanel7 = new BelugaMobile.BaseControl.BasePanel();
+            this.basePanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // basePnl_top
@@ -57,10 +59,18 @@
             // basePanel2
             // 
             this.basePanel2.BackgroundImage = ((System.Drawing.Bitmap)(resources.GetObject("basePanel2.BackgroundImage")));
+            this.basePanel2.Controls.Add(this.lable_Text_Button1);
             this.basePanel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.basePanel2.Location = new System.Drawing.Point(0, 81);
             this.basePanel2.Name = "basePanel2";
             this.basePanel2.Size = new System.Drawing.Size(240, 35);
+            // 
+            // lable_Text_Button1
+            // 
+            this.lable_Text_Button1.Location = new System.Drawing.Point(81, 4);
+            this.lable_Text_Button1.Name = "lable_Text_Button1";
+            this.lable_Text_Button1.Size = new System.Drawing.Size(156, 26);
+            this.lable_Text_Button1.TabIndex = 0;
             // 
             // basePanel3
             // 
@@ -118,6 +128,7 @@
             this.Controls.Add(this.basePnl_top);
             this.Name = "EditNumberForm";
             this.Text = "编辑号码";
+            this.basePanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -132,5 +143,6 @@
         private BelugaMobile.BaseControl.BasePanel basePanel5;
         private BelugaMobile.BaseControl.BasePanel basePanel6;
         private BelugaMobile.BaseControl.BasePanel basePanel7;
+        private BelugaMobile.BaseControl.lable_Text_Button lable_Text_Button1;
     }
 }

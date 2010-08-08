@@ -76,7 +76,7 @@ namespace BelugaMobile.BInfo
             // 
             // tabControl1
             // 
-            this.tabControl1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabControl1.BackgroundImage")));
+            this.tabControl1.BackgroundImage = ((System.Drawing.Bitmap)(resources.GetObject("tabControl1.BackgroundImage")));
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tabControl1.Location = new System.Drawing.Point(0, 126);
             this.tabControl1.Name = "tabControl1";
