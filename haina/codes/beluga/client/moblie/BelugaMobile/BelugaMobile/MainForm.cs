@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,10 +7,11 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using BelugaMobile.Db;
-using BelugaMobile.Control;
+using BelugaMobile.BaseControl;
 using System.Data.SQLiteClient;
 using System.Data.SQLiteClient.Native;
 using System.Runtime.InteropServices;
+using BelugaMobile.Control;
 
 namespace BelugaMobile
 {
