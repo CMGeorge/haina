@@ -24,7 +24,7 @@ namespace MessagePhone
         {
             if (PhoneIncomingCallEvent != null)
             {
- 
+                PhoneIncomingCallEvent("", DateTime.Now);
             }
         }
         
