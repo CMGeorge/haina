@@ -38,11 +38,13 @@
             this.btnDownLoad = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnUpFile = new System.Windows.Forms.Button();
+            this.menuItemTest = new System.Windows.Forms.MenuItem();
             this.SuspendLayout();
             // 
             // mainMenu1
             // 
             this.mainMenu1.MenuItems.Add(this.menuItemExit);
+            this.mainMenu1.MenuItems.Add(this.menuItemTest);
             // 
             // menuItemExit
             // 
@@ -111,6 +113,11 @@
             this.btnUpFile.Text = "上传文件";
             this.btnUpFile.Click += new System.EventHandler(this.btnUpFile_Click);
             // 
+            // menuItemTest
+            // 
+            this.menuItemTest.Text = "测试";
+            this.menuItemTest.Click += new System.EventHandler(this.menuItemTest_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -141,6 +148,7 @@
         private System.Windows.Forms.Button btnDownLoad;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Button btnUpFile;
+        private System.Windows.Forms.MenuItem menuItemTest;
     }
 }
 
