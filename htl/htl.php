@@ -1,6 +1,6 @@
-﻿ <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+﻿
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  	<script src="ext-base.js"></script>
-
     <script src="ext-all.js"></script>
 	<title>统计回头客</title>
     
@@ -16,18 +16,18 @@ $appSecret = '361df3380f1dadbf9c4e381ad729b365';
 ?>
 
 <?php
-if ($_GET['authcode']) {
+if ($_GET['top_session']) {
 	//通过授权码获取session
-	$url = 'http://container.open.taobao.com/container?authcode='.$_GET['authcode'];
-	@$sessionStr = file_get_contents($url);
-	$sessArr = explode('&', $sessionStr);
-	$sessArr1 = array();
-	$sessArr2 = array();
-	foreach ($sessArr as $key => $val) {
-		$sessArr1 = explode('=', $val);
-		$sessArr2[$sessArr1[0]] = $sessArr1[1];
-	}
-	$sessionKey = $sessArr2['top_session'];
+	//$url = 'http://container.open.taobao.com/container?authcode='.$_GET['authcode'];
+	//@$sessionStr = file_get_contents($url);
+	//$sessArr = explode('&', $sessionStr);
+	//$sessArr1 = array();
+	//$sessArr2 = array();
+	//foreach ($sessArr as $key => $val) {
+	//	$sessArr1 = explode('=', $val);
+	//	$sessArr2[$sessArr1[0]] = $sessArr1[1];
+	//}
+	$sessionKey = $_GET['top_session'];
 	$page_no = 1;
 	$total_results = 101;
 	//显示数据集合
@@ -36,16 +36,16 @@ if ($_GET['authcode']) {
 	for ($i = 0; $i <= $total_results/100; $i++) {
 		//参数数组
 		$paramArr = array(
+		'timestamp' => date('Y-m-d H:i:s'), 
 	    'app_key' => $appKey,
 	    'method' => 'taobao.trades.sold.get',
 	    'format' => 'xml',
-	    'v' => '2.0',
-	    'timestamp' => date('Y-m-d H:i:s'),
 		'session' => $sessionKey,
 	    'fields' => 'tid,buyer_nick,seller_nick,status,price,num,total_fee,end_time',
 		"page_size" => 100,
 		"page_no"=>($i+1),
-		'status' => 'TRADE_FINISHED'
+		'status' => 'TRADE_FINISHED',
+		'v' => '2.0'
 		);
 
 		//生成签名
@@ -57,9 +57,7 @@ if ($_GET['authcode']) {
 
 		//访问服务
 		$url = 'http://gw.api.taobao.com/router/rest?'.$strParam;
-		
-		
-		
+		//echo $url;
 		$result = @file_get_contents($url);
 
 		$result = getXmlData($result);
@@ -82,13 +80,16 @@ if ($_GET['authcode']) {
 	}
 	?>
 
-<h1>统计回头客</h1>
 
-<div id="container1" style="width:40%;float:left;" >
+<h1>统计回头客</h1>
+下面图表显示您店铺消费排行前100名的买家，以及此100名买家的购买次数。<br>
+你可以通过图表看到您的最忠实客户。和最大买家。
+<p>
+<div id="container1" style="width:40%;float:left;height:1500px;border:1px dashed #990033;" >
     
 </div>
 
-<div id="container2" style="width:40%;float:left;" >
+<div id="container2" style="width:40%;float:left;height:1500px;border:1px dashed #990033;" >
     
 </div>
 
@@ -114,8 +115,10 @@ if ($_GET['authcode']) {
       
       
         new Ext.Panel({
-            width: 600,
-            height: 400,
+            width: 450,
+            height: Ext.get("container1").getHeight(),
+			autoScroll:true,
+			resizable:true,
             renderTo: 'container1',
             title: '您的店铺购买总额TOP100',
             items: {
@@ -133,8 +136,10 @@ if ($_GET['authcode']) {
             }
         });
      new Ext.Panel({
-            width: 600,
-            height: 400,
+            width: 450,
+			height:Ext.get("container2").getHeight(),
+			autoScroll:true,
+			resizable:true,
             renderTo: 'container2',
             title: '总额TOP100的顾客购买次数',
             items: {
