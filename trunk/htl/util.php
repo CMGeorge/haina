@@ -23,6 +23,7 @@ function createStrParam ($paramArr) {
 			$strParam .= $key.'='.urlencode($val).'&';
 		}
 	}
+	//$strParam =str_replace("&Timestamp", "&imestamp", $strParam);
 	return $strParam;
 }
 
